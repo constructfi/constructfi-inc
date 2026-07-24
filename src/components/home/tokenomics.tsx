@@ -66,7 +66,7 @@ export function Tokenomics() {
         {/* ELUV — CORRECTED to ERC-5192 soulbound NFT */}
         <Reveal delay={0.08}>
           <div className="flex h-full flex-col rounded-2xl bg-gradient-to-br from-[#9A742A] to-[#C09A45] p-7 text-white shadow-lg">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-start justify-between gap-y-2">
               <div className="flex items-center gap-3">
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15">
                   <Fingerprint className="h-6 w-6" />
@@ -76,7 +76,7 @@ export function Tokenomics() {
                   <div className="text-xs text-white/75">{ELUV.role}</div>
                 </div>
               </div>
-              <Badge className="border border-white/30 bg-white/20 font-semibold text-white">
+              <Badge className="shrink-0 whitespace-nowrap border border-white/30 bg-white/20 font-semibold text-white">
                 ERC-5192 · Soulbound NFT
               </Badge>
             </div>
