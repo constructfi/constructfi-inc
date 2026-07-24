@@ -76,7 +76,9 @@ export function Tokenomics() {
                   <div className="text-xs text-white/75">{ELUV.role}</div>
                 </div>
               </div>
-              <Badge className="bg-white/20 text-white">ERC-5192 · Soulbound NFT</Badge>
+              <Badge className="border border-white/30 bg-white/20 font-semibold text-white">
+                ERC-5192 · Soulbound NFT
+              </Badge>
             </div>
 
             <div className="mt-6 flex-1">

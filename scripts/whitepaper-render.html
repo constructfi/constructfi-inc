@@ -1,0 +1,230 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+:root{--ink:#0B1930;--ink2:#10233F;--navy:#14325A;--teal:#0E9F8A;--mint:#2BC5A0;--sky:#1E9FC9;--gold:#B9903B;--gold2:#D8B25E;--paper:#FFFFFF;--wash:#F2F7F6;--line:#DDE7E5;--grey:#54646F;--red:#8A3B2F;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html,body{font-family:'Poppins',-apple-system,'Segoe UI',sans-serif;color:var(--ink);font-size:10pt;line-height:1.62}
+@page{size:letter;margin:0}
+.pg{width:8.5in;min-height:11in;position:relative;overflow:hidden;page-break-after:always;background:var(--paper)}
+.pad{padding:.75in .9in .95in .9in}
+.ft{position:absolute;left:.9in;right:.9in;bottom:.42in;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:7px;font-size:6.6pt;letter-spacing:.14em;text-transform:uppercase;color:#8798A3}
+.ft b{color:var(--teal);font-weight:600}.ft .pn{font-weight:600;color:var(--navy)}
+.eyebrow{font-size:7.2pt;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+h1{font-size:23pt;font-weight:700;line-height:1.14;color:var(--navy);letter-spacing:-.01em}
+h2{font-size:13.5pt;font-weight:600;color:var(--navy);margin:20px 0 8px;letter-spacing:-.005em}
+h3{font-size:10.5pt;font-weight:600;color:var(--navy);margin:15px 0 5px}
+p{margin:0 0 9px}
+.lede{font-size:10.8pt;line-height:1.66;color:#2A3A4A;font-weight:300}
+strong{font-weight:600;color:var(--ink)}
+.chap{position:relative;background:var(--ink);color:#fff;padding:.5in .9in .42in;overflow:hidden}
+.chap .bp{position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(43,197,160,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(43,197,160,.10) 1px,transparent 1px);background-size:96px 96px,96px 96px}
+.chap .in{position:relative}
+.chap .num{position:absolute;right:0;top:-6px;font-size:46pt;font-weight:700;color:transparent;-webkit-text-stroke:1.2px rgba(43,197,160,.55);line-height:1}
+.chap .eyebrow{color:var(--mint)}.chap h1{color:#fff;max-width:5.9in;font-size:20pt}
+.chap .dek{margin-top:9px;color:rgba(255,255,255,.75);font-weight:300;font-size:10pt;max-width:5.7in;line-height:1.55}
+.chap .bar{width:52px;height:4px;background:linear-gradient(90deg,var(--mint),var(--sky));margin-top:14px;border-radius:2px}
+.call{border-left:3px solid var(--teal);background:var(--wash);padding:11px 14px;margin:12px 0;border-radius:0 6px 6px 0}
+.call .ct{font-size:8.2pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:4px}
+.call p{margin:0;font-size:9.4pt}
+.call.gold{border-left-color:var(--gold);background:#FBF6EA}.call.gold .ct{color:var(--gold)}
+.call.risk{border-left-color:var(--red);background:#F9F1EF}.call.risk .ct{color:var(--red)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:8.8pt;line-height:1.5}
+th{background:var(--navy);color:#fff;font-weight:600;text-align:left;padding:7px 10px;font-size:8.4pt}
+td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--wash)}
+td.lab{font-weight:600;color:var(--navy)}
+ul.tight{margin:6px 0 10px 16px}ul.tight li{margin-bottom:5px;font-size:9.4pt}ul.tight li::marker{color:var(--mint)}
+.cover{background:var(--ink);color:#fff;height:11in}
+.cover .bp{position:absolute;inset:0;background:linear-gradient(rgba(43,197,160,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(43,197,160,.09) 1px,transparent 1px);background-size:120px 120px,120px 120px}
+.cover .glow{position:absolute;width:560px;height:560px;border-radius:50%;right:-190px;bottom:-190px;background:radial-gradient(circle,rgba(43,197,160,.22),transparent 62%)}
+.cover .glow2{position:absolute;width:420px;height:420px;border-radius:50%;left:-160px;top:-160px;background:radial-gradient(circle,rgba(30,159,201,.18),transparent 62%)}
+.cover .in{position:relative;padding:1in .9in}
+.logo{font-size:15pt;font-weight:700}.logo .fi{color:var(--mint)}
+.logomark{display:inline-block;width:17px;height:17px;border-radius:3px;margin-right:8px;vertical-align:-2px;background:linear-gradient(135deg,var(--mint) 0 50%,var(--sky) 50% 100%)}
+.cover h1{font-size:34pt;margin-top:2.6in;max-width:6in;color:#fff}
+.cover .sub{margin-top:14px;font-size:12pt;color:rgba(255,255,255,.8);font-weight:300;max-width:5in}
+.cover .meta{position:absolute;left:.9in;bottom:.9in;font-size:8.6pt;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.toc-row{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:1px dotted #C9D6D3;font-size:9.6pt}
+.toc-row .n{flex:0 0 26px;font-weight:700;color:var(--mint);font-size:8.6pt}
+.toc-row .t{font-weight:500;color:var(--ink)}
+.sig{font-family:'Lora',Georgia,serif;font-style:italic;font-size:13pt;color:var(--navy)}
+</style></head><body>
+<div class="pg cover">
+  <div class="bp"></div><div class="glow"></div><div class="glow2"></div>
+  <div class="in">
+    <div class="logo"><span class="logomark"></span>Construct<span class="fi">Fi</span></div>
+    <h1>ConstructFi Whitepaper</h1>
+    <div class="sub">A programmable economic-participation platform. COVI moves. ELUV proves.</div>
+  </div>
+  <div class="meta">Version 2.1 · July 2026 · From participation to ownership</div>
+</div><div class="pg"><div class="pad">
+  <div class="eyebrow">Contents</div>
+  <h1 style="font-size:19pt">Table of contents</h1>
+  <div style="margin-top:18px">
+    <div class="toc-row"><span class="n">01</span><span class="t">Overview &amp; thesis</span></div><div class="toc-row"><span class="n">02</span><span class="t">Two-token model</span></div><div class="toc-row"><span class="n">03</span><span class="t">Marketplace, procurement &amp; commerce</span></div><div class="toc-row"><span class="n">04</span><span class="t">Gaming, education &amp; engagement</span></div><div class="toc-row"><span class="n">05</span><span class="t">COVI token allocation</span></div><div class="toc-row"><span class="n">06</span><span class="t">ELUV readiness &amp; credential framework</span></div><div class="toc-row"><span class="n">07</span><span class="t">Fee-recycling economics</span></div><div class="toc-row"><span class="n">08</span><span class="t">Institutional infrastructure &amp; white-label</span></div><div class="toc-row"><span class="n">09</span><span class="t">For funders &amp; grant outcomes</span></div><div class="toc-row"><span class="n">10</span><span class="t">Governance</span></div><div class="toc-row"><span class="n">11</span><span class="t">Security &amp; audit posture</span></div><div class="toc-row"><span class="n">12</span><span class="t">Compliance &amp; regulatory path</span></div><div class="toc-row"><span class="n">13</span><span class="t">Roadmap</span></div><div class="toc-row"><span class="n">14</span><span class="t">Risk factors</span></div><div class="toc-row"><span class="n">15</span><span class="t">Legal disclaimers</span></div>
+  </div>
+  <div class="ft"><span>Construct<b>Fi</b> Whitepaper v2.1</span><span class="pn">ii</span></div>
+</div></div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">01</div>
+      <div class="eyebrow">Chapter 1</div>
+      <h1>Overview &amp; thesis</h1>
+      <div class="dek">From participation to ownership — a platform built on real operations, not a whitepaper alone.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>ConstructFi is a programmable economic-participation platform that turns verified activity — learning, procurement, transactions, and readiness — into durable, portable value. It launches on top of two operating businesses: Eluvial Enterprise Inc. (housing &amp; development, $60M+ in supported development activity) and Covington Supply Co. (procurement &amp; materials, ~$7M in annual supply operations across DC, VA, MD, NC, FL, and MO).</p><p>The thesis is simple: rewards should be funded by real commerce through a verified supplier network — not by printing tokens. Two tokens coordinate the system. COVI moves value; ELUV proves progress.</p><div class="call "><div class="ct">Positioning</div><p>ConstructFi is a real-world-asset (RWA) participation platform. COVI is a utility/consumption token — not an investment. ELUV is a non-transferable credential that confers no financial rights.</p></div><h3>Who it serves</h3><ul class="tight"><li>Individuals — build readiness, earn rewards, and gain a verifiable record through participation.</li><li>Businesses — coordinate procurement, transactions, and supply chains on transparent infrastructure.</li><li>Communities — turn shared economic activity into resilient, measurable, long-term value.</li></ul>
+      <div class="ft"><span>Construct<b>Fi</b> · Overview &amp; thesis</span><span class="pn">1</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">02</div>
+      <div class="eyebrow">Chapter 2</div>
+      <h1>Two-token model</h1>
+      <div class="dek">COVI (ERC-20 utility) and ELUV (ERC-5192 soulbound credential) — different standards, different rules.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>ConstructFi deliberately separates transaction infrastructure from progression infrastructure. Conflating the two is a common failure mode in token design; ConstructFi avoids it by using two distinct standards.</p><table><thead><tr><th></th><th>COVI</th><th>ELUV</th></tr></thead><tbody><tr><td class="lab">Purpose</td><td class="">Commerce &amp; rewards (spendable)</td><td class="">Readiness &amp; governance credential (proof)</td></tr><tr><td class="lab">Standard</td><td class="">ERC-20</td><td class="">ERC-5192 (minimal soulbound) over ERC-721</td></tr><tr><td class="lab">Fungible?</td><td class="">Yes</td><td class="">No — one token per verified milestone</td></tr><tr><td class="lab">Transferable?</td><td class="">Yes</td><td class="">Never — locked at mint, permanently</td></tr><tr><td class="lab">Supply</td><td class="">Fixed cap 10,000,000,000</td><td class="">No fixed fungible supply; minted per attestation</td></tr><tr><td class="lab">How obtained</td><td class="">Earned + limited compliant sale</td><td class="">Earned only — verified progression</td></tr></tbody></table><div class="call gold"><div class="ct">Correction from earlier drafts</div><p>ELUV is an ERC-5192 soulbound NFT, not an ERC-20 with a fixed 3,000,000,000 supply. There is no fixed fungible ELUV supply; one non-transferable token is minted per verified milestone.</p></div><h3>ELUV consent, dispute, and revocation</h3><ul class="tight"><li>Explicit consent at issuance — never airdropped unprompted; the member accepts each milestone.</li><li>Dispute/appeal path — a dispute role can flag a token pending resolution.</li><li>Revocation &amp; re-issuance — the only path a token leaves a wallet, for fraud or error.</li><li>Minimal disclosure — no PII on-chain; metadata references an off-chain attestation hash.</li></ul>
+      <div class="ft"><span>Construct<b>Fi</b> · Two-token model</span><span class="pn">2</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">03</div>
+      <div class="eyebrow">Chapter 3</div>
+      <h1>Marketplace, procurement &amp; commerce</h1>
+      <div class="dek">Verified suppliers, transparent transactions, and coordinated supply chains.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>The marketplace is where commerce becomes infrastructure. Educational apps, NFTs, supply &amp; procurement, and a partner marketplace all transact on shared rails. Every purchase earns approximately 2% back in COVI, and marketplace fees fund the rewards loop.</p><p>Gaming and DeFi capabilities follow, deliberately sequenced and compliance-reviewed. The marketplace draws on real procurement relationships from Covington Supply Co., giving the platform genuine transaction volume from day one rather than synthetic demand.</p><div class="call "><div class="ct">Consistency note</div><p>COVI spend use-cases reference partner programs (nonprofit, banking, and public partners) consistently across all materials.</p></div>
+      <div class="ft"><span>Construct<b>Fi</b> · Marketplace, procurement &amp; commerce</span><span class="pn">3</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">04</div>
+      <div class="eyebrow">Chapter 4</div>
+      <h1>Gaming, education &amp; engagement</h1>
+      <div class="dek">Learning and credentials that move people from knowledge to opportunity.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>Education on ConstructFi is action-oriented. Build or Bust, the platform's first mobile app, lets a member analyze a property, receive a clear verdict with the underlying numbers and the gates it cleared, and get a financing-readiness read. Every completed analysis earns COVI and builds the member's soulbound ELUV record.</p><p>Engagement mechanics — lessons, referrals, and milestone progression — are designed to reward genuine contribution, with per-address, per-epoch rate limits to resist farming. Gaming layers extend engagement while remaining subordinate to the readiness and commerce mission.</p>
+      <div class="ft"><span>Construct<b>Fi</b> · Gaming, education &amp; engagement</span><span class="pn">4</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">05</div>
+      <div class="eyebrow">Chapter 5</div>
+      <h1>COVI token allocation</h1>
+      <div class="dek">A fixed 10,000,000,000 supply distributed across eight buckets, insiders vesting slower than community.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>COVI has a fixed maximum supply of 10,000,000,000 tokens. Each allocation bucket is governed by a separate vesting/minter contract limited to its cap. Nothing large unlocks at launch except liquidity; insiders (team and advisors) unlock more slowly than the community.</p><table><thead><tr><th>Allocation</th><th>Share</th><th>Tokens</th><th>Vesting</th></tr></thead><tbody><tr><td class="lab">Ecosystem &amp; participation rewards</td><td class="">35%</td><td class="">3.50B</td><td class="">Declining emission schedule to RewardsDistributor</td></tr><tr><td class="lab">Token sale (private + public)</td><td class="">15%</td><td class="">1.50B</td><td class="">KYC/AML-gated; lockups per tranche</td></tr><tr><td class="lab">Treasury / reserve</td><td class="">15%</td><td class="">1.50B</td><td class="">Timelock + multisig; governance-controlled</td></tr><tr><td class="lab">Team &amp; core contributors</td><td class="">15%</td><td class="">1.50B</td><td class="">12-mo cliff, then 36–48-mo linear</td></tr><tr><td class="lab">Liquidity &amp; market making</td><td class="">10%</td><td class="">1.00B</td><td class="">Unlockable near launch (only large launch unlock)</td></tr><tr><td class="lab">Partnerships &amp; institutional</td><td class="">5%</td><td class="">0.50B</td><td class="">Milestone / linear per agreement</td></tr><tr><td class="lab">Community / airdrop</td><td class="">3%</td><td class="">0.30B</td><td class="">Consent-based claim; anti-Sybil checks</td></tr><tr><td class="lab">Advisors</td><td class="">2%</td><td class="">0.20B</td><td class="">Cliff + linear</td></tr></tbody></table><p>The sum of all bucket caps equals 10,000,000,000 (100%). On-chain invariants assert that no bucket over-mints and that total supply never exceeds the cap.</p>
+      <div class="ft"><span>Construct<b>Fi</b> · COVI token allocation</span><span class="pn">5</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">06</div>
+      <div class="eyebrow">Chapter 6</div>
+      <h1>ELUV readiness &amp; credential framework</h1>
+      <div class="dek">A soulbound record of verified milestones — portable, auditable, and governance-bearing.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>ELUV is the readiness and governance credential. Each token is an attestation of a completed, verified milestone, permanently locked to the member's wallet at mint. Because ELUV is non-transferable, it cannot be bought, sold, or farmed across wallets.</p><h3>Data model</h3><ul class="tight"><li>One token per (member, milestone) — enforced on-chain to prevent duplicates.</li><li>On-chain: milestone id, issuer, evidence hash, issued-at, disputed flag.</li><li>Off-chain: the full attestation bundle, referenced by hash and pinned to IPFS/Arweave.</li></ul><h3>Governance weighting</h3><p>Voting power derives from the count and tier of a member's non-disputed milestones — not a fungible balance — with a per-address cap (logarithmic or hard ceiling) to prevent whales-by-participation. Disputed or revoked tokens contribute zero weight.</p>
+      <div class="ft"><span>Construct<b>Fi</b> · ELUV readiness &amp; credential framework</span><span class="pn">6</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">07</div>
+      <div class="eyebrow">Chapter 7</div>
+      <h1>Fee-recycling economics</h1>
+      <div class="dek">Why COVI holds value: a closed loop between real commerce and rewards.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>COVI's value is anchored in real marketplace demand. A fixed 20% of marketplace and ecosystem fee revenue is used to buy back COVI (or route already-collected COVI fees) and replenish the rewards pool. This funds rewards from real commerce, not from emissions alone.</p><div class="call gold"><div class="ct">Compliance-neutral by design</div><p>The fee-recycling buyback replenishes a rewards pool — it is not a holder dividend, revenue share, or yield. There is no pro-rata distribution to COVI holders. The mechanism is named replenishRewardsPool, not distributeProfits.</p></div><p>Combined with a declining emissions curve, fee recycling shifts reward funding over time from newly minted tokens toward recycled commerce revenue — the flywheel that gives COVI durable, demand-backed utility.</p>
+      <div class="ft"><span>Construct<b>Fi</b> · Fee-recycling economics</span><span class="pn">7</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">08</div>
+      <div class="eyebrow">Chapter 8</div>
+      <h1>Institutional infrastructure &amp; white-label</h1>
+      <div class="dek">Your brand, your content, your users — powered and maintained by ConstructFi.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>ConstructFi builds educational apps for nonprofits, banks, and institutional and public partners on shared platform infrastructure, so every partner app launches with rewards, readiness, and reporting already wired in.</p><h3>What partners own vs. share</h3><ul class="tight"><li>Partner-owned: brand, curriculum &amp; content, user relationships, and program data — with a perpetual license to the app instance, full data-export rights, and source-code escrow for regulated partners.</li><li>Shared engine: rewards rails, readiness engine, wallets, templates, and hosting — continuously maintained, audited, and improved across every partner app at once.</li><li>Member progress: participation earns COVI and mints soulbound ELUV milestones — a portable readiness record partners can report on and build eligibility around.</li></ul>
+      <div class="ft"><span>Construct<b>Fi</b> · Institutional infrastructure &amp; white-label</span><span class="pn">8</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">09</div>
+      <div class="eyebrow">Chapter 9</div>
+      <h1>For funders &amp; grant outcomes</h1>
+      <div class="dek">Measurable, auditable outcomes mapped to funder frameworks.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>ConstructFi produces the kind of measurable, auditable outcomes funders require: completion rates, milestone progression, and impact reporting anchored to on-chain ELUV credentials that cannot be fabricated or double-counted.</p><table><thead><tr><th>Framework</th><th>How ConstructFi maps</th></tr></thead><tbody><tr><td class="lab">WIOA (workforce)</td><td class="">Verified skills milestones and readiness progression as auditable outcome evidence.</td></tr><tr><td class="lab">HUD (housing)</td><td class="">Housing-readiness tracks and ownership pathways with milestone attestations.</td></tr><tr><td class="lab">CRA (banking)</td><td class="">Branded financial-education engagement your community teams can measure — educational only, non-lending.</td></tr><tr><td class="lab">CFPB alignment</td><td class="">Clear disclosures, utility-first positioning, and consumer-protection guardrails.</td></tr></tbody></table>
+      <div class="ft"><span>Construct<b>Fi</b> · For funders &amp; grant outcomes</span><span class="pn">9</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">10</div>
+      <div class="eyebrow">Chapter 10</div>
+      <h1>Governance</h1>
+      <div class="dek">Progressive, credential-weighted governance with a per-address cap.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>Governance is introduced deliberately in a later phase via an ELUV-weighted governor. Voting power comes from non-disputed milestone count and tier, capped per address, so influence tracks genuine, verified participation rather than token accumulation.</p><p>All privileged roles (admin, minter, pauser, issuer, dispute) sit behind a timelock and a multisig. No externally owned account holds privileged roles on mainnet.</p>
+      <div class="ft"><span>Construct<b>Fi</b> · Governance</span><span class="pn">10</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">11</div>
+      <div class="eyebrow">Chapter 11</div>
+      <h1>Security &amp; audit posture</h1>
+      <div class="dek">OpenZeppelin foundations, independent audit before launch, addresses after.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><ul class="tight"><li>OpenZeppelin Contracts v5.x foundations; Solidity ^0.8.24; Foundry test suite with unit, fuzz, and invariant tests (≥95% coverage on token logic).</li><li>Access control behind a Timelock + Gnosis Safe multisig; reentrancy guards on external-call paths; pausable transfers (emergency only).</li><li>Rate limiting on rewards distribution and milestone minting to resist farming.</li><li>Independent audit before mainnet; verified contract addresses published only after audit — never before.</li></ul><div class="call "><div class="ct">Verification</div><p>Contract addresses are not published on this site until the independent audit is complete. Any address claiming to be COVI or ELUV before that point should be treated as fraudulent.</p></div>
+      <div class="ft"><span>Construct<b>Fi</b> · Security &amp; audit posture</span><span class="pn">11</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">12</div>
+      <div class="eyebrow">Chapter 12</div>
+      <h1>Compliance &amp; regulatory path</h1>
+      <div class="dek">Utility-first, KYC/AML on sales, with a documented path for later phases.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>ConstructFi is built with regulatory alignment as a first-class requirement. COVI is positioned as a utility/consumption token; ELUV is a non-transferable credential. Neither is marketed as an investment, and no profit, yield, or dividend is represented anywhere.</p><ul class="tight"><li>Any COVI sale occurs only under a compliant exemption with KYC/AML and per-tranche lockups.</li><li>RWA framing: value is anchored in real commerce through a verified supplier network.</li><li>Later-phase financial rails are compliance-reviewed and deliberately sequenced; a securities-registration path is contemplated where required for future capabilities.</li></ul>
+      <div class="ft"><span>Construct<b>Fi</b> · Compliance &amp; regulatory path</span><span class="pn">12</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">13</div>
+      <div class="eyebrow">Chapter 13</div>
+      <h1>Roadmap</h1>
+      <div class="dek">Five phases, sequenced by capability milestone.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><table><thead><tr><th>Phase</th><th>Focus</th><th>Status</th></tr></thead><tbody><tr><td class="lab">1 — Foundation</td><td class="">Core protocol, verification, wallet, marketplace, readiness track.</td><td class="">In progress</td></tr><tr><td class="lab">2 — Partnerships</td><td class="">Nonprofit, banking, and public-program partnerships and institutional participation.</td><td class="">Next</td></tr><tr><td class="lab">3 — Coordination</td><td class="">Intelligence, automation, and cross-platform coordination.</td><td class="">Planned</td></tr><tr><td class="lab">4 — Financial tools</td><td class="">Financial rails, liquidity layers, and sustainable incentive models (compliance-reviewed).</td><td class="">Future</td></tr><tr><td class="lab">5 — Global growth</td><td class="">Localized systems, interoperability, and mass participation.</td><td class="">Future</td></tr></tbody></table><p>Timing is subject to development, partnerships, and regulatory readiness.</p>
+      <div class="ft"><span>Construct<b>Fi</b> · Roadmap</span><span class="pn">13</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">14</div>
+      <div class="eyebrow">Chapter 14</div>
+      <h1>Risk factors</h1>
+      <div class="dek">Participation carries risk; read carefully.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><div class="call risk"><div class="ct">Not an investment</div><p>COVI is a utility/consumption token and ELUV is a non-transferable credential. Neither is offered as an investment, and neither confers rights to profit, yield, or revenue.</p></div><ul class="tight"><li>Regulatory risk — token and platform treatment may change with evolving law and enforcement.</li><li>Technology risk — smart contracts may contain undiscovered vulnerabilities despite audits.</li><li>Market risk — COVI's utility value depends on real marketplace demand, which may fluctuate.</li><li>Execution risk — roadmap timing depends on development, partnerships, and regulatory readiness.</li><li>Key-management risk — non-custodial participation means users are responsible for their keys.</li></ul>
+      <div class="ft"><span>Construct<b>Fi</b> · Risk factors</span><span class="pn">14</span></div>
+    </div>
+  </div><div class="pg">
+    <div class="chap"><div class="bp"></div><div class="in">
+      <div class="num">15</div>
+      <div class="eyebrow">Chapter 15</div>
+      <h1>Legal disclaimers</h1>
+      <div class="dek">Important notices governing use of this document.</div>
+      <div class="bar"></div>
+    </div></div>
+    <div class="pad" style="padding-top:.4in"><p>This whitepaper is provided for informational purposes only and does not constitute an offer to sell, or a solicitation of an offer to buy, any security, token, or other financial instrument in any jurisdiction. Nothing herein is investment, legal, tax, or financial advice.</p><p>Forward-looking statements reflect current expectations and are subject to change. ConstructFi makes no guarantee that any roadmap item, capability, or timeline will be achieved. Any COVI sale, if and when offered, will be conducted only under a compliant exemption with KYC/AML and applicable lockups.</p><p>COVI is a utility/consumption token, not an investment. ELUV is a non-transferable credential and confers no financial rights. Prospective participants should consult qualified professional advisors before participating.</p>
+      <div class="ft"><span>Construct<b>Fi</b> · Legal disclaimers</span><span class="pn">15</span></div>
+    </div>
+  </div></body></html>
