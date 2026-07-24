@@ -44,7 +44,7 @@ export function Tokenomics() {
                   <div className="text-xs text-white/70">{COVI.role}</div>
                 </div>
               </div>
-              <Badge className="bg-white/15 text-white">ERC-20</Badge>
+              <Badge className="shrink-0 whitespace-nowrap border border-white/40 bg-black/25 font-semibold text-white">ERC-20</Badge>
             </div>
 
             <div className="mt-6 flex-1">
@@ -76,7 +76,7 @@ export function Tokenomics() {
                   <div className="text-xs text-white/75">{ELUV.role}</div>
                 </div>
               </div>
-              <Badge className="shrink-0 whitespace-nowrap border border-white/30 bg-white/20 font-semibold text-white">
+              <Badge className="shrink-0 whitespace-nowrap border border-white/40 bg-black/25 font-semibold text-white">
                 ERC-5192 · Soulbound NFT
               </Badge>
             </div>
