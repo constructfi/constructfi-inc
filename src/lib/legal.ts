@@ -10,10 +10,22 @@
 
 // Founder fills this in once counsel approves. Until then, pages render a subtle,
 // non-self-incriminating "not yet effective" note rather than a bracketed blank.
-export const EFFECTIVE_DATE = "September 9, 2026"; // launch date placeholder — founder to confirm with counsel
-export const IS_EFFECTIVE = false; // set true after counsel review + launch
-export const GOVERNING_LAW = "the State of Delaware, USA"; // placeholder — confirm with counsel
-export const CONTACT_EMAIL = "legal@constructfi.co";
+// These read from Vercel env vars so counsel-approved values can be flipped
+// WITHOUT a code change/redeploy of source. Set them in Vercel → Settings →
+// Environment Variables (Production), then redeploy:
+//   NEXT_PUBLIC_LEGAL_EFFECTIVE_DATE = "September 9, 2026"  (counsel-approved date)
+//   NEXT_PUBLIC_LEGAL_IS_EFFECTIVE   = "true"               (only AFTER counsel signs off)
+//   NEXT_PUBLIC_LEGAL_GOVERNING_LAW  = "the State of Delaware, USA"
+// Defaults below keep the page in the safe "Draft — not yet effective" state
+// until the founder explicitly flips the env var.
+export const EFFECTIVE_DATE =
+  process.env.NEXT_PUBLIC_LEGAL_EFFECTIVE_DATE || "September 9, 2026"; // founder to confirm with counsel
+export const IS_EFFECTIVE =
+  process.env.NEXT_PUBLIC_LEGAL_IS_EFFECTIVE === "true"; // stays false until env var set true after counsel review
+export const GOVERNING_LAW =
+  process.env.NEXT_PUBLIC_LEGAL_GOVERNING_LAW || "the State of Delaware, USA"; // confirm with counsel
+export const CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_LEGAL_CONTACT_EMAIL || "legal@constructfi.co";
 
 export interface LegalSection {
   heading: string;
