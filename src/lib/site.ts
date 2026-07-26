@@ -72,6 +72,7 @@ export const NAV_LINKS = [
   { href: "/whitepaper", label: "Whitepaper" },
   { href: "/marketplace", label: "Marketplace" },
   { href: "/app", label: "Build or Bust" },
+  { href: "/apps", label: "Apps" },
   { href: "/developers", label: "Developers" },
   { href: "/security", label: "Security" },
   { href: "/partners", label: "Partners" },
@@ -82,6 +83,9 @@ export const FOOTER_LINKS = {
   Platform: [
     { href: "/marketplace", label: "Marketplace" },
     { href: "/app", label: "Build or Bust" },
+    { href: "/apps", label: "Apps" },
+    { href: "/dashboard", label: "Dashboard" },
+    { href: "/getting-started", label: "Getting Started" },
     { href: "/developers", label: "Developers" },
     { href: "/security", label: "Security" },
   ],
@@ -94,6 +98,7 @@ export const FOOTER_LINKS = {
   Company: [
     { href: "/contact", label: "Contact" },
     { href: SITE.githubRepo, label: "GitHub", external: true },
+    { href: "/admin", label: "Admin (preview)" },
   ],
   Legal: [
     { href: "/legal/terms", label: "Terms of Use" },
