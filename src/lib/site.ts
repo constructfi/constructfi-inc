@@ -79,6 +79,59 @@ export const NAV_LINKS = [
   { href: "/funders", label: "Funders" },
 ] as const;
 
+// Grouped dropdown navigation (older design). Every existing page is mapped
+// so nothing is dropped in the merge.
+export type NavItem = { href: string; label: string; desc?: string };
+export type NavGroup = { label: string; href?: string; items?: NavItem[] };
+
+export const NAV_GROUPS: NavGroup[] = [
+  { label: "Overview", href: "/" },
+  {
+    label: "Products",
+    items: [
+      { href: "/app", label: "Build or Bust", desc: "Real-estate deal analyzer app" },
+      { href: "/apps", label: "Apps", desc: "The ConstructFi app suite" },
+      { href: "/marketplace", label: "Marketplace", desc: "Materials, services & rewards" },
+      { href: "/dashboard", label: "Dashboard", desc: "Track assets & readiness" },
+    ],
+  },
+  {
+    label: "Platform",
+    items: [
+      { href: "/whitepaper", label: "Whitepaper", desc: "Protocol & tokenomics" },
+      { href: "/developers", label: "Developers", desc: "Build on ConstructFi" },
+      { href: "/security", label: "Security", desc: "Audits & non-custodial design" },
+      { href: "/getting-started", label: "Getting Started", desc: "Onboard in minutes" },
+    ],
+  },
+  {
+    label: "Partners",
+    items: [
+      { href: "/partners", label: "Partners", desc: "Programs & institutions" },
+      { href: "/funders", label: "Funders", desc: "Capital & liquidity" },
+    ],
+  },
+  {
+    label: "Resources",
+    items: [
+      { href: "/resources", label: "Resources", desc: "Guides & documentation" },
+      { href: "/contact", label: "Contact", desc: "Get in touch" },
+    ],
+  },
+];
+
+// Secondary in-page anchor bar shown on the homepage (older design).
+export const ON_THIS_PAGE = [
+  { href: "#platform", label: "Platform" },
+  { href: "#the-app", label: "The app" },
+  { href: "#marketplace", label: "Marketplace" },
+  { href: "#tokenomics", label: "Tokenomics" },
+  { href: "#roadmap", label: "Roadmap" },
+  { href: "#trust", label: "Trust" },
+] as const;
+
+export const APP_URL = "/app";
+
 export const FOOTER_LINKS = {
   Platform: [
     { href: "/marketplace", label: "Marketplace" },
