@@ -55,7 +55,7 @@ export default function RootLayout({
       className={`${poppins.variable} ${plex.variable} ${lora.variable}`}
     >
       <body className="font-sans">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Web3Provider>
             <div className="flex min-h-screen flex-col">
               <SiteHeader />
