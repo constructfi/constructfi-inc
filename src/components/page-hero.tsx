@@ -16,7 +16,7 @@ export function PageHero({
       <div className="bg-grid absolute inset-0 opacity-25" aria-hidden />
       <div
         className="absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-40 blur-3xl"
-        style={{ background: "radial-gradient(circle, #2BC5A0 0%, transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, #00d19a 0%, transparent 65%)" }}
         aria-hidden
       />
       <div className="container relative py-16 sm:py-20">

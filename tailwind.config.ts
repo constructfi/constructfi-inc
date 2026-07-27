@@ -13,15 +13,19 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Brand palette (spec §Design system)
-        ink: { DEFAULT: "#0B1930", 2: "#10233F" },
-        navy: "#14325A",
-        teal: { DEFAULT: "#0E9F8A", 2: "#0C8A78" },
-        mint: { DEFAULT: "#2BC5A0", 2: "#25B594" },
-        sky: "#1E9FC9",
+        // Brand palette — official ConstructFi Branding Guide colors
+        //   Navy #00336b · Emerald/Mint #00d19a · Teal #019599
+        //   Sky #1bb6fd · Indigo #4a67ce · Periwinkle #8298fc
+        ink: { DEFAULT: "#041428", 2: "#082140" },
+        navy: { DEFAULT: "#00336b", 2: "#012a57" },
+        teal: { DEFAULT: "#019599", 2: "#017a7d" },
+        mint: { DEFAULT: "#00d19a", 2: "#00b487" },
+        sky: { DEFAULT: "#1bb6fd", 2: "#0f97d6" },
+        indigo: { DEFAULT: "#4a67ce", 2: "#3d55ad" },
+        periwinkle: { DEFAULT: "#8298fc", 2: "#6a82f0" },
         gold: { DEFAULT: "#B9903B", 2: "#D8B25E" },
-        wash: "#F2F7F6",
-        line: "#DDE7E5",
+        wash: "#F1F7F9",
+        line: "#D9E5EA",
         // shadcn tokens
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

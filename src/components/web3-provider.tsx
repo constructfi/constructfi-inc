@@ -27,7 +27,7 @@ createAppKit({
   },
   themeMode: "dark",
   themeVariables: {
-    "--w3m-accent": "#0E9F8A",
+    "--w3m-accent": "#00d19a",
     "--w3m-border-radius-master": "3px",
     "--w3m-font-family": "var(--font-poppins), system-ui, sans-serif",
   },

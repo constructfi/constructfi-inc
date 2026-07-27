@@ -5,39 +5,39 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 213 58% 12%;
+    --foreground: 209 100% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 213 58% 12%;
-    --primary: 168 84% 34%;
+    --card-foreground: 209 100% 12%;
+    --primary: 209 100% 21%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 168 40% 96%;
-    --secondary-foreground: 213 58% 12%;
-    --muted: 168 25% 96%;
-    --muted-foreground: 205 12% 38%;
-    --accent: 168 63% 47%;
-    --accent-foreground: 213 58% 12%;
-    --border: 168 20% 89%;
-    --input: 168 20% 89%;
-    --ring: 168 84% 34%;
+    --secondary: 174 60% 96%;
+    --secondary-foreground: 209 100% 14%;
+    --muted: 190 30% 96%;
+    --muted-foreground: 205 14% 38%;
+    --accent: 165 100% 41%;
+    --accent-foreground: 209 100% 12%;
+    --border: 195 24% 88%;
+    --input: 195 24% 88%;
+    --ring: 165 100% 41%;
     --radius: 0.625rem;
   }
 
   .dark {
-    --background: 213 62% 11%;
-    --foreground: 168 30% 96%;
-    --card: 214 60% 15%;
-    --card-foreground: 168 30% 96%;
-    --primary: 165 62% 47%;
-    --primary-foreground: 213 62% 8%;
-    --secondary: 214 45% 20%;
-    --secondary-foreground: 168 30% 96%;
-    --muted: 214 40% 20%;
-    --muted-foreground: 200 18% 70%;
-    --accent: 165 62% 47%;
-    --accent-foreground: 213 62% 8%;
-    --border: 214 35% 24%;
-    --input: 214 35% 24%;
-    --ring: 165 62% 47%;
+    --background: 209 100% 8%;
+    --foreground: 174 40% 96%;
+    --card: 209 90% 12%;
+    --card-foreground: 174 40% 96%;
+    --primary: 165 100% 41%;
+    --primary-foreground: 209 100% 8%;
+    --secondary: 209 55% 18%;
+    --secondary-foreground: 174 40% 96%;
+    --muted: 209 45% 18%;
+    --muted-foreground: 195 20% 72%;
+    --accent: 165 100% 41%;
+    --accent-foreground: 209 100% 8%;
+    --border: 209 45% 22%;
+    --input: 209 45% 22%;
+    --ring: 165 100% 41%;
   }
 }
 
@@ -53,33 +53,33 @@
     font-feature-settings: "ss01", "cv01";
   }
   ::selection {
-    background: rgba(43, 197, 160, 0.25);
+    background: rgba(0, 209, 154, 0.25);
   }
 }
 
 @layer utilities {
   .bg-grid {
     background-image:
-      linear-gradient(rgba(43, 197, 160, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(43, 197, 160, 0.06) 1px, transparent 1px);
+      linear-gradient(rgba(0, 209, 154, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 209, 154, 0.06) 1px, transparent 1px);
     background-size: 48px 48px;
   }
   .bg-grid-fine {
     background-image:
-      linear-gradient(rgba(43, 197, 160, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(43, 197, 160, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(0, 209, 154, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 209, 154, 0.05) 1px, transparent 1px);
     background-size: 24px 24px;
   }
   .text-gradient-brand {
-    background: linear-gradient(120deg, #2BC5A0, #1E9FC9);
+    background: linear-gradient(120deg, #00d19a, #1bb6fd);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .ink-surface {
-    background: radial-gradient(1200px 600px at 80% -10%, rgba(30, 159, 201, 0.12), transparent 60%),
-      radial-gradient(900px 500px at 0% 10%, rgba(43, 197, 160, 0.10), transparent 55%),
-      linear-gradient(180deg, #0B1930, #10233F);
+    background: radial-gradient(1200px 600px at 80% -10%, rgba(27, 182, 253, 0.14), transparent 60%),
+      radial-gradient(900px 500px at 0% 10%, rgba(0, 209, 154, 0.12), transparent 55%),
+      linear-gradient(180deg, #041428, #082140);
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -87,7 +87,7 @@
 
 /* Reown AppKit modal theme alignment */
 :root {
-  --w3m-accent: #0E9F8A;
-  --w3m-color-mix: #0B1930;
+  --w3m-accent: #00d19a;
+  --w3m-color-mix: #041428;
   --w3m-border-radius-master: 3px;
 }
