@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { poppins, plex, lora } from "@/lib/fonts";
+import "./jul16.css";
+import { poppins, plexSans, plexMono, lora } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Web3Provider } from "@/components/web3-provider";
 import { SiteHeader } from "@/components/site-header";
@@ -52,10 +53,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.variable} ${plex.variable} ${lora.variable}`}
+      className={`${poppins.variable} ${plexSans.variable} ${plexMono.variable} ${lora.variable}`}
     >
-      <body className="font-sans">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <Web3Provider>
             <div className="flex min-h-screen flex-col">
               <SiteHeader />

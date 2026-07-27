@@ -1,75 +1,60 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
-import { FOOTER_LINKS, SITE } from "@/lib/site";
+import { FOOTER_LINKS, COMPANY, SITE } from "@/lib/site";
 
 export function SiteFooter() {
   return (
-    <footer className="ink-surface relative border-t border-white/10 text-white/80">
-      <div className="bg-grid-fine absolute inset-0 opacity-30" aria-hidden />
-      <div className="container relative py-14">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(4,1fr)]">
-          <div className="max-w-xs">
-            <Logo className="text-white" />
-            <p className="mt-4 text-sm leading-relaxed text-white/60">
-              {SITE.tagline} {SITE.subtagline}
+    <footer>
+      <div className="wrap">
+        <div className="foot-grid">
+          <div>
+            <Link className="logo" href="/" style={{ marginBottom: 14 }}>
+              <Logo />
+            </Link>
+            <p style={{ fontSize: "13.5px", color: "var(--ink3)", maxWidth: 280 }}>
+              A programmable economic-participation platform. Built on Ethereum. Verified
+              contract addresses will be published after independent audit.
             </p>
-            <p className="mt-4 font-signature text-lg italic text-mint">
-              Built on real operations.
+            <p style={{ fontSize: "13.5px", color: "var(--ink3)", marginTop: 12 }}>
+              <a
+                href={SITE.githubRepo}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--ink2)" }}
+              >
+                GitHub →
+              </a>
             </p>
           </div>
           {Object.entries(FOOTER_LINKS).map(([group, links]) => (
             <div key={group}>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/50">
-                {group}
-              </h3>
-              <ul className="space-y-2.5">
-                {links.map((l) => (
-                  <li key={l.href}>
-                    {"external" in l && l.external ? (
-                      <a
-                        href={l.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-white/70 transition-colors hover:text-mint"
-                      >
-                        {l.label}
-                      </a>
-                    ) : (
-                      <Link
-                        href={l.href}
-                        className="text-sm text-white/70 transition-colors hover:text-mint"
-                      >
-                        {l.label}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
+              <h4>{group}</h4>
+              {links.map((l) => (
+                <Link key={l.href} href={l.href}>
+                  {l.label}
+                </Link>
+              ))}
             </div>
           ))}
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6">
-          <p className="text-xs leading-relaxed text-white/45">
-            COVI is a utility/consumption token, not an investment. ELUV is a
-            non-transferable credential and confers no financial rights. Nothing on
-            this site is an offer to sell or a solicitation to buy any security. Any
-            token sale will occur only under a compliant exemption with KYC/AML.
-            Smart-contract addresses are published only after independent audit. See
-            the{" "}
-            <Link href="/legal/risk" className="text-white/70 underline hover:text-mint">
-              Risk Disclosure
-            </Link>
-            .
+        <div className="legal">
+          <p>
+            <b style={{ color: "var(--ink2)" }}>Important notice.</b> Nothing on this site is
+            an offer to sell, or a solicitation of an offer to buy, any token, security, or
+            financial instrument. COVI is a utility token for ecosystem commerce and rewards;
+            any sale will be made solely through definitive offering materials under an
+            available exemption, with KYC/AML screening. ELUV is a non-transferable, soulbound
+            participation credential — it is never sold, traded, or offered as an investment.
+            ConstructFi is not a lender and does not guarantee any profit, return, capital
+            access, or financial outcome. Digital assets involve significant risk, including
+            total loss of value. Marketplace listings, balances, and metrics shown in previews
+            are demonstration data.
           </p>
-          <div className="mt-6 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
-            <p className="text-xs text-white/50">
-              © {new Date().getFullYear()} ConstructFi. All rights reserved.
-            </p>
-            <p className="text-xs text-white/40">
-              Founded by {SITE.founder} · Licensed real-estate broker (DC) since 2014
-            </p>
-          </div>
+          <p>
+            © {new Date().getFullYear()} ConstructFi Inc. · {COMPANY.address} ·{" "}
+            {COMPANY.email}
+          </p>
         </div>
       </div>
     </footer>

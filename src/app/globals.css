@@ -49,8 +49,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "ss01", "cv01";
+    @apply antialiased;
   }
   ::selection {
     background: rgba(0, 209, 154, 0.25);

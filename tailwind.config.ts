@@ -8,8 +8,8 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "1.25rem",
-      screens: { "2xl": "1200px" },
+      padding: "1.75rem",
+      screens: { "2xl": "1180px" },
     },
     extend: {
       colors: {
@@ -18,14 +18,14 @@ const config: Config = {
         //   Sky #1bb6fd · Indigo #4a67ce · Periwinkle #8298fc
         ink: { DEFAULT: "#041428", 2: "#082140" },
         navy: { DEFAULT: "#00336b", 2: "#012a57" },
-        teal: { DEFAULT: "#019599", 2: "#017a7d" },
-        mint: { DEFAULT: "#00d19a", 2: "#00b487" },
+        teal: { DEFAULT: "#00a87c", 2: "#008a66" },
+        mint: { DEFAULT: "#00d19a", 2: "#00b487", 3: "#0ae8ae" },
         sky: { DEFAULT: "#1bb6fd", 2: "#0f97d6" },
         indigo: { DEFAULT: "#4a67ce", 2: "#3d55ad" },
         periwinkle: { DEFAULT: "#8298fc", 2: "#6a82f0" },
-        gold: { DEFAULT: "#B9903B", 2: "#D8B25E" },
-        wash: "#F1F7F9",
-        line: "#D9E5EA",
+        gold: { DEFAULT: "#e4b95b", 2: "#db8a0e" },
+        wash: "#f2f7fb",
+        line: "#dee6ee",
         // shadcn tokens
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -54,9 +54,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-poppins)", "system-ui", "sans-serif"],
-        sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
-        mono: ["var(--font-plex)", "ui-monospace", "monospace"],
+        display: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
+        sans: ["var(--font-plex-sans)", "IBM Plex Sans", "system-ui", "sans-serif"],
+        mono: ["var(--font-plex-mono)", "IBM Plex Mono", "ui-monospace", "monospace"],
         signature: ["var(--font-lora)", "Georgia", "serif"],
       },
       borderRadius: {

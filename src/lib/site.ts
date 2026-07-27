@@ -89,73 +89,92 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     label: "Products",
     items: [
-      { href: "/app", label: "Build or Bust", desc: "Real-estate deal analyzer app" },
-      { href: "/apps", label: "Apps", desc: "The ConstructFi app suite" },
-      { href: "/marketplace", label: "Marketplace", desc: "Materials, services & rewards" },
-      { href: "/dashboard", label: "Dashboard", desc: "Track assets & readiness" },
+      { href: "/marketplace", label: "Marketplace" },
+      { href: "/apps", label: "ConstructFi Apps" },
+      { href: "/app", label: "Build or Bust" },
     ],
   },
   {
     label: "Platform",
     items: [
-      { href: "/whitepaper", label: "Whitepaper", desc: "Protocol & tokenomics" },
-      { href: "/developers", label: "Developers", desc: "Build on ConstructFi" },
-      { href: "/security", label: "Security", desc: "Audits & non-custodial design" },
-      { href: "/getting-started", label: "Getting Started", desc: "Onboard in minutes" },
+      { href: "/whitepaper", label: "Whitepaper" },
+      { href: "/developers", label: "Developers" },
+      { href: "/security", label: "Security & compliance" },
+      { href: "/dashboard", label: "Dashboard preview" },
     ],
   },
   {
     label: "Partners",
     items: [
-      { href: "/partners", label: "Partners", desc: "Programs & institutions" },
-      { href: "/funders", label: "Funders", desc: "Capital & liquidity" },
+      { href: "/partners", label: "Partner program" },
+      { href: "/funders", label: "For funders" },
+      { href: "/admin", label: "Admin dashboard" },
     ],
   },
   {
     label: "Resources",
     items: [
-      { href: "/resources", label: "Resources", desc: "Guides & documentation" },
-      { href: "/contact", label: "Contact", desc: "Get in touch" },
+      { href: "/resources", label: "Resources" },
+      { href: "/getting-started", label: "Getting started" },
+      { href: "/contact", label: "Contact" },
     ],
   },
 ];
 
+// Flat mobile drawer, mirroring the Jul 16 mobile menu order.
+export const MOBILE_NAV: NavItem[] = [
+  { href: "/", label: "Overview" },
+  { href: "/whitepaper", label: "Whitepaper" },
+  { href: "/marketplace", label: "Marketplace" },
+  { href: "/apps", label: "ConstructFi Apps" },
+  { href: "/app", label: "Build or Bust" },
+  { href: "/partners", label: "Partners" },
+  { href: "/funders", label: "For Funders" },
+  { href: "/developers", label: "Developers" },
+  { href: "/security", label: "Security & compliance" },
+  { href: "/resources", label: "Resources" },
+  { href: "/admin", label: "Admin dashboard" },
+  { href: "/dashboard", label: "Dashboard" },
+  { href: "/getting-started", label: "Getting started" },
+  { href: "/contact", label: "Contact" },
+];
+
 // Secondary in-page anchor bar shown on the homepage (older design).
 export const ON_THIS_PAGE = [
-  { href: "#platform", label: "Platform" },
-  { href: "#the-app", label: "The app" },
-  { href: "#marketplace", label: "Marketplace" },
-  { href: "#tokenomics", label: "Tokenomics" },
-  { href: "#roadmap", label: "Roadmap" },
-  { href: "#trust", label: "Trust" },
+  { href: "#s-platform", label: "Platform" },
+  { href: "#s-app", label: "The app" },
+  { href: "#s-market", label: "Marketplace" },
+  { href: "#s-build", label: "Build on ConstructFi" },
+  { href: "#s-founder", label: "Team" },
+  { href: "#s-tokens", label: "Tokenomics" },
+  { href: "#s-roadmap", label: "Roadmap" },
+  { href: "#s-trust", label: "Trust" },
 ] as const;
 
 export const APP_URL = "/app";
 
 export const FOOTER_LINKS = {
   Platform: [
-    { href: "/marketplace", label: "Marketplace" },
+    { href: "/apps", label: "ConstructFi Apps" },
     { href: "/app", label: "Build or Bust" },
-    { href: "/apps", label: "Apps" },
-    { href: "/dashboard", label: "Dashboard" },
-    { href: "/getting-started", label: "Getting Started" },
-    { href: "/developers", label: "Developers" },
-    { href: "/security", label: "Security" },
+    { href: "/marketplace", label: "Marketplace" },
+    { href: "/dashboard", label: "Dashboard preview" },
   ],
   Ecosystem: [
-    { href: "/partners", label: "Partners" },
-    { href: "/funders", label: "Funders" },
-    { href: "/resources", label: "Resources" },
     { href: "/whitepaper", label: "Whitepaper" },
-  ],
-  Company: [
+    { href: "/resources", label: "Resources" },
+    { href: "/partners", label: "Institutions & partners" },
+    { href: "/getting-started", label: "Getting started guide" },
     { href: "/contact", label: "Contact" },
-    { href: SITE.githubRepo, label: "GitHub", external: true },
-    { href: "/admin", label: "Admin (preview)" },
   ],
   Legal: [
-    { href: "/legal/terms", label: "Terms of Use" },
-    { href: "/legal/privacy", label: "Privacy Policy" },
-    { href: "/legal/risk", label: "Risk Disclosure" },
+    { href: "/legal/terms", label: "Terms of service" },
+    { href: "/legal/privacy", label: "Privacy policy" },
+    { href: "/legal/risk", label: "Risk disclosures" },
   ],
+} as const;
+
+export const COMPANY = {
+  address: "30 N Gould St #64427, Sheridan, WY 82801",
+  email: "info@constructfi.co",
 } as const;

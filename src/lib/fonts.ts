@@ -1,16 +1,24 @@
-import { Poppins, IBM_Plex_Mono, Lora } from "next/font/google";
+import { Poppins, IBM_Plex_Sans, IBM_Plex_Mono, Lora } from "next/font/google";
 
+// Jul 16 type system: Poppins display, IBM Plex Sans body, IBM Plex Mono data.
 export const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-poppins",
   display: "swap",
 });
 
-export const plex = IBM_Plex_Mono({
+export const plexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plex-sans",
+  display: "swap",
+});
+
+export const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-plex",
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
