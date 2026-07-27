@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, Check, Lock } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Check, Lock, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { SITE } from "@/lib/site";
 
-/* --- Phone mockup: "Readiness journey" app screen (older design, built in code) --- */
+/* --- Phone mockup: "Readiness journey" app screen (dark, built in code) --- */
 
 const MILESTONES = [
   { label: "Financial literacy track", meta: "Verified · ELUV minted", done: true },
@@ -18,7 +20,6 @@ function PhoneMockup() {
     <div className="relative mx-auto w-[300px] max-w-full">
       <div className="rounded-[2.5rem] border border-white/10 bg-[#0b1220] p-3 shadow-2xl ring-1 ring-black/40">
         <div className="overflow-hidden rounded-[2rem] bg-[#070d17]">
-          {/* status bar */}
           <div className="flex items-center justify-between px-5 pt-4 text-[11px] font-medium text-white/70">
             <span>9:41</span>
             <span className="flex items-center gap-1">
@@ -27,7 +28,6 @@ function PhoneMockup() {
               <span className="inline-block h-2.5 w-4 rounded-sm bg-white/60" />
             </span>
           </div>
-          {/* header */}
           <div className="flex items-center justify-between px-5 pb-3 pt-3">
             <h3 className="text-lg font-bold text-white">Readiness journey</h3>
             <span className="flex items-center gap-1.5 rounded-full bg-white/5 px-2 py-1 text-xs font-semibold text-gold-2">
@@ -35,7 +35,6 @@ function PhoneMockup() {
               1,050
             </span>
           </div>
-          {/* current milestone card */}
           <div className="mx-4 rounded-2xl border border-mint/20 bg-mint/5 p-4">
             <div className="flex items-center justify-between text-xs">
               <span className="font-semibold text-white">Milestone 4 of 5</span>
@@ -48,7 +47,6 @@ function PhoneMockup() {
               Complete your savings plan to mint the next soulbound ELUV
             </p>
           </div>
-          {/* list */}
           <div className="space-y-2 p-4">
             {MILESTONES.map((m) => (
               <div
@@ -94,34 +92,41 @@ function PhoneMockup() {
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-background">
-      {/* soft light wash (older design) */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-mint/[0.06] via-transparent to-transparent dark:from-mint/[0.04]"
-        aria-hidden
+    <section className="relative isolate overflow-hidden ink-surface text-white">
+      {/* Jul 24 dark base: background image + grid */}
+      <Image
+        src="/img/hero.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-right opacity-70 [mask-image:linear-gradient(90deg,transparent,black_55%)]"
       />
-      <div className="bg-grid-fine absolute inset-0 -z-10 opacity-[0.15] dark:opacity-20" aria-hidden />
+      <div className="bg-grid absolute inset-0 opacity-30" aria-hidden />
       <div className="container relative py-16 sm:py-20 lg:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left: copy */}
+          {/* Left: copy (dark base) */}
           <div className="max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal dark:text-mint">
-              — An operating system for economic participation
-            </p>
-            <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.06] tracking-tight text-navy dark:text-white sm:text-5xl lg:text-6xl">
+            <Badge variant="default" className="bg-mint/15 text-mint">
+              <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+              Public launch · {SITE.launchDate}
+            </Badge>
+            <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
               From participation
               <br className="hidden sm:block" /> to{" "}
               <span className="text-gradient-brand">ownership.</span>
             </h1>
-            <p className="mt-5 text-pretty text-lg leading-relaxed text-muted-foreground">
-              ConstructFi turns real economic activity — development, marketplace
-              commerce, and procurement — into measurable, on-chain progress toward
-              ownership through a dual-token ecosystem on Ethereum.
+            <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-white/75">
+              A programmable economic-participation platform built on two operating
+              businesses — real transactions, real counterparties, real fee revenue.
+              Two tokens coordinate it all:{" "}
+              <span className="font-semibold text-mint">COVI moves.</span>{" "}
+              <span className="font-semibold text-gold-2">ELUV proves.</span>
             </p>
 
-            {/* Earned first callout (older design, gold) */}
-            <div className="mt-6 rounded-r-lg border-l-4 border-gold-2 bg-gold/5 py-3 pl-4 pr-4">
-              <p className="text-sm leading-relaxed text-foreground/80">
+            {/* Earned first callout (added, gold, dark-styled) */}
+            <div className="mt-6 rounded-r-lg border-l-4 border-gold-2 bg-white/[0.04] py-3 pl-4 pr-4">
+              <p className="text-sm leading-relaxed text-white/80">
                 <span className="font-bold text-gold-2">Earned first.</span> Earn
                 COVI through participation, learning, and marketplace activity.{" "}
                 <span className="font-bold text-gold-2">ELUV is never sold</span> —
@@ -136,19 +141,24 @@ export function Hero() {
                   <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                asChild
+              >
                 <Link href="/whitepaper" data-testid="cta-hero-whitepaper">
                   Read the whitepaper
                 </Link>
               </Button>
             </div>
-            <p className="mt-5 text-sm text-muted-foreground">
+            <p className="mt-5 text-sm text-white/50">
               Non-custodial · KYC/AML on any sale · Contracts published after
-              independent audit · Public launch {SITE.launchDate}
+              independent audit
             </p>
           </div>
 
-          {/* Right: phone mockup */}
+          {/* Right: phone mockup (added) */}
           <div className="relative flex justify-center lg:justify-end">
             <div
               className="pointer-events-none absolute inset-0 -z-10 mx-auto h-full w-[80%] rounded-full bg-mint/10 blur-3xl"
