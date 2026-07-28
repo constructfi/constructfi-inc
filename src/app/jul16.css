@@ -1202,3 +1202,55 @@ html:not(.dark) .cat-tab.on{background:#00336B;color:#FFFFFF}
 .primer .pr-d{font-size:13px;color:var(--ink3);line-height:1.55}
 @media(max-width:960px){.primer{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.primer{grid-template-columns:1fr}}
+
+/* Launch-status strip — shared by the homepage and /getting-started. Built on
+   tokens only, so it re-contrasts inside .section.dkband and .ink-surface. */
+.lss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.lss-col{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 20px;border-top:3px solid var(--line2)}
+.lss-today{border-top-color:var(--green)}
+.lss-launch{border-top-color:var(--blue)}
+.lss-audit{border-top-color:var(--gold)}
+.lss-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.lss-ic{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:9px;flex:none}
+.lss-today .lss-ic{background:rgba(0,209,154,.12);color:var(--green)}
+.lss-launch .lss-ic{background:rgba(27,182,253,.12);color:var(--blue)}
+.lss-audit .lss-ic{background:rgba(228,185,91,.12);color:var(--gold)}
+.lss-title{font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.3;color:var(--ink);margin:0}
+.lss-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.lss-list li{display:flex;gap:10px;font-size:13.5px;line-height:1.55;color:var(--ink2)}
+.lss-dot{width:6px;height:6px;border-radius:50%;flex:none;margin-top:7px;background:var(--ink3)}
+.lss-today .lss-dot{background:var(--green)}
+.lss-launch .lss-dot{background:var(--blue)}
+.lss-audit .lss-dot{background:var(--gold)}
+.lss-link{color:var(--ink2);text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px;transition:color .15s,text-decoration-color .15s}
+.lss-link:hover{color:var(--green);text-decoration-color:var(--green)}
+.lss-foot{margin:16px 0 0;font-size:12.5px;line-height:1.55;color:var(--ink3)}
+@media(max-width:900px){.lss-grid{grid-template-columns:1fr}}
+
+/* Compact product roster on /apps — a platform map, deliberately lighter than
+   the marketplace cards so the two pages do not read as the same store. */
+.roster{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.roster-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto auto;align-items:center;gap:16px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.roster-row:last-child{border-bottom:none}
+.roster-row:hover{background:var(--panel2)}
+.roster-ic{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;flex:none;background:rgba(0,209,154,.10);color:var(--green)}
+.roster-ic svg{width:19px;height:19px}
+.roster-txt{display:flex;flex-direction:column;min-width:0}
+.roster-txt b{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--ink);line-height:1.3}
+.roster-txt span{font-size:13px;color:var(--ink3);line-height:1.45;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.roster-cat{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);white-space:nowrap}
+.roster-link{font-size:13px;font-weight:600;color:var(--green);white-space:nowrap}
+.roster-link:hover{text-decoration:underline;text-underline-offset:3px}
+/* The shared .chip tints land under 3:1 on the roster's near-white rows; darken
+   the label here only, so /marketplace keeps its verified styling. */
+html:not(.dark) .roster .chip.live{color:#008F6B}
+html:not(.dark) .roster .chip.soon{color:#0B7FBB}
+@media(max-width:860px){
+  .roster-row{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"ic txt" ". meta";row-gap:10px}
+  .roster-ic{grid-area:ic}
+  .roster-txt{grid-area:txt}
+  .roster-txt span{white-space:normal}
+  .roster-cat{display:none}
+  .roster-row .chip{grid-area:meta;justify-self:start}
+  .roster-link{grid-area:meta;justify-self:end}
+}

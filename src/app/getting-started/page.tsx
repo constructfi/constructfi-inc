@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { FaqAccordion, type FaqItem } from "@/components/faq-accordion";
+import { LaunchStatusStrip } from "@/components/launch-status-strip";
 import { COVI, ELUV, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -112,6 +113,17 @@ export default function GettingStartedPage() {
           <Badge className="bg-white/10 text-white">Non-custodial · Base</Badge>
         </div>
       </PageHero>
+
+      <Section className="bg-wash dark:bg-ink-2/30">
+        <SectionHeading
+          eyebrow="Current state"
+          title="Where things stand"
+          lede="What you can use right now, what opens at launch, and what stays gated behind an independent audit."
+        />
+        <div className="mt-10">
+          <LaunchStatusStrip />
+        </div>
+      </Section>
 
       <Section>
         <SectionHeading

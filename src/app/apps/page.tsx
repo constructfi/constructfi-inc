@@ -8,9 +8,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { StoreBadges } from "@/components/store-badges";
-import { ProductCard } from "@/components/product-card";
-import { PRODUCTS } from "@/lib/products";
+import { ProductIcon } from "@/components/product-icon";
+import { StatusPill } from "@/components/status-pill";
+import { CATEGORIES, PRODUCTS, type Product } from "@/lib/products";
 import { SITE } from "@/lib/site";
+
+function categoryLabel(key: Product["category"]) {
+  return CATEGORIES.find((c) => c.key === key)?.label ?? key;
+}
 
 export const metadata: Metadata = {
   title: "All apps & roadmap",
@@ -68,17 +73,28 @@ export default function AppsPage() {
 
       <Section>
         <SectionHeading
-          eyebrow="In the store"
-          title="Every product, in one place"
-          lede="These all live in the marketplace — the ConstructFi app store. Nothing here is presented as shipped before it is; dates and phases are honest labels, not download links."
+          eyebrow="The platform map"
+          title={`All ${PRODUCTS.length} products and the phase each ships in`}
+          lede="A roster, not a storefront — one line per product so the sequence is readable at a glance. Full descriptions, screenshots, and tags live in the marketplace."
         />
-        <div className="mt-12 apps-row store-grid">
-          {PRODUCTS.map((p, i) => (
-            <Reveal key={p.slug} delay={i * 0.04}>
-              <ProductCard product={p} />
-            </Reveal>
+        <ul className="mt-12 roster">
+          {PRODUCTS.map((p) => (
+            <li className="roster-row" key={p.slug} data-testid={`roster-${p.slug}`}>
+              <span className="roster-ic" aria-hidden>
+                <ProductIcon icon={p.icon} />
+              </span>
+              <span className="roster-txt">
+                <b>{p.name}</b>
+                <span>{p.tagline}</span>
+              </span>
+              <span className="roster-cat">{categoryLabel(p.category)}</span>
+              <StatusPill status={p.status} />
+              <Link className="roster-link" href={`/marketplace/${p.slug}`}>
+                View in store →
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
         <div className="mt-10 flex flex-wrap gap-3">
           <Button asChild>
             <Link href="/marketplace">

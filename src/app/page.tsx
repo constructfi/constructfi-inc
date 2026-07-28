@@ -11,6 +11,7 @@ import {
   IconStar,
   IconTarget,
 } from "@/components/jul16/icons";
+import { LaunchStatusStrip } from "@/components/launch-status-strip";
 import { ProductCard, FeaturedProductCard } from "@/components/product-card";
 import { FEATURED_PRODUCT, PRODUCTS } from "@/lib/products";
 import { COVI, ELUV, APP_URL } from "@/lib/site";
@@ -142,6 +143,20 @@ export default function HomePage() {
               Getting started
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="section" id="s-status">
+        <div className="wrap">
+          <div className="section-head">
+            <span className="eyebrow">Current state</span>
+            <h2>Where things stand</h2>
+            <p>
+              What you can use right now, what opens at launch, and what stays gated
+              behind an independent audit.
+            </p>
+          </div>
+          <LaunchStatusStrip />
         </div>
       </section>
 
