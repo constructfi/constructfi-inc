@@ -15,7 +15,14 @@ import {
   IconTarget,
   IconWallet,
 } from "@/components/jul16/icons";
+import { ProductCard, FeaturedProductCard } from "@/components/product-card";
+import { FEATURED_PRODUCT, PRODUCTS } from "@/lib/products";
 import { COVI, ELUV, APP_URL } from "@/lib/site";
+
+// The homepage teases three products next to the flagship; the store has the rest.
+const HOME_PRODUCTS = PRODUCTS.filter((p) =>
+  ["supplier-marketplace", "covi-wallet", "collectibles"].includes(p.slug)
+);
 
 /** "Build or Bust" wordmark — green / muted / red, per the Jul 16 design. */
 function BobWord() {
@@ -135,6 +142,68 @@ export default function HomePage() {
                 <Link href="/marketplace">Explore →</Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="s-primer">
+        <div className="wrap">
+          <div className="section-head">
+            <span className="eyebrow">New here? Start with these four</span>
+            <h2>ConstructFi in ninety seconds</h2>
+            <p>
+              A plain-English orientation before the detail: what this is, what you can
+              actually use, how the two tokens differ, and where to begin.
+            </p>
+          </div>
+          <div className="primer">
+            <div className="pr">
+              <div className="pr-n">01 · WHAT IT IS</div>
+              <div className="pr-t">A platform built on real operations</div>
+              <p className="pr-d">
+                ConstructFi runs on top of two operating businesses — $60M+ of development
+                activity and ~$7M/year of supply operations across six markets. The
+                platform turns that real commerce into participation anyone can join.
+              </p>
+            </div>
+            <div className="pr">
+              <div className="pr-n">02 · THE PRODUCTS</div>
+              <div className="pr-t">One app store, {PRODUCTS.length} products</div>
+              <p className="pr-d">
+                Apps, games, materials, and collectibles all live in the marketplace.
+                Build or Bust — a real-estate deal analyzer with a free 60-second verdict
+                — is the flagship, and you can try it right now.
+              </p>
+            </div>
+            <div className="pr">
+              <div className="pr-n">03 · THE TWO TOKENS</div>
+              <div className="pr-t">COVI moves. ELUV proves.</div>
+              <p className="pr-d">
+                COVI is the utility token you earn and spend on platform features — not an
+                investment. ELUV is a soulbound credential minted by verified milestones:
+                earned only, never sold, never transferable.
+              </p>
+            </div>
+            <div className="pr">
+              <div className="pr-n">04 · HOW TO START</div>
+              <div className="pr-t">Try the demo, then connect a wallet</div>
+              <p className="pr-d">
+                Screening a deal costs nothing and needs no account. When you are ready,
+                the getting-started guide covers wallet setup on Base and how your first
+                milestone gets minted.
+              </p>
+            </div>
+          </div>
+          <div className="store-line">
+            <Link className="btn btn-primary" href="/app#demo">
+              Try Build or Bust
+            </Link>
+            <Link className="btn btn-ghost" href="/marketplace">
+              Browse the app store →
+            </Link>
+            <Link className="btn btn-ghost" href="/getting-started">
+              Getting started
+            </Link>
           </div>
         </div>
       </section>
@@ -335,86 +404,29 @@ export default function HomePage() {
       <section className="section" id="s-market">
         <div className="wrap">
           <div className="section-head">
-            <span className="eyebrow">The marketplace</span>
+            <span className="eyebrow">The app store</span>
             <h2>One marketplace. Many products.</h2>
             <p>
-              Educational apps, NFTs, supply &amp; procurement, and a partner marketplace — every
-              purchase earns ~2% back in COVI, and marketplace fees fund the rewards loop. Gaming
-              and DeFi follow, deliberately sequenced.
+              The marketplace is the ConstructFi app store — apps, games, materials, and
+              collectibles in one place. Eligible purchases earn ~2% back in COVI, and a share
+              of marketplace fees funds the rewards loop.
             </p>
           </div>
           <div className="store-layout">
             <div className="store-main">
-              <div className="apps-row">
-                <div className="app-card featured">
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <span style={{ display: "flex", alignItems: "center", gap: 9 }}>
-                      <BobMark className="sm" />
-                      <span className="a-n">Educational apps</span>
-                    </span>
-                    <span className="chip live">Live</span>
-                  </div>
-                  <div className="a-d">
-                    Financial, real-estate, and readiness education — built first for nonprofit,
-                    banking, and institutional &amp; public partners. Featured:{" "}
-                    <b>
-                      <BobWord />
-                    </b>
-                    , the platform&apos;s first mobile app.
-                  </div>
-                  <div className="a-m">
-                    <span>Apple App Store · Google Play</span>
-                    <span>Coming soon</span>
-                  </div>
-                  <Link href="/app">See Build or Bust →</Link>
-                </div>
-                <div className="app-card">
-                  <span className="a-n">
-                    NFTs{" "}
-                    <span className="os-badge" style={{ marginLeft: 6 }}>
-                      OpenSea
-                    </span>
-                  </span>
-                  <div className="a-d">
-                    Every Covi product is minted as an NFT on Ethereum and listed on OpenSea —
-                    utility-first minting, listing, and rewards inside the ecosystem.
-                  </div>
-                  <div className="a-m">
-                    <span>Utility NFTs · OpenSea</span>
-                    <span>V1 launch</span>
-                  </div>
-                  <Link href="/marketplace">How it works →</Link>
-                </div>
-                <div className="app-card">
-                  <span className="a-n">Supply &amp; procurement</span>
-                  <div className="a-d">
-                    Verified suppliers and materials through Covington Supply Co. — transparent
-                    pricing, ~2% back in COVI.
-                  </div>
-                  <div className="a-m">
-                    <span>Covington-backed</span>
-                    <span>V1 launch</span>
-                  </div>
-                  <Link href="/marketplace">Browse categories →</Link>
-                </div>
-                <div className="app-card">
-                  <span className="a-n">Partner marketplace</span>
-                  <div className="a-d">
-                    Custom apps and training tools built for partners on the platform — plus gaming
-                    (House Hackers) and compliance-reviewed DeFi, sequenced later.
-                  </div>
-                  <div className="a-m">
-                    <span>Gaming · DeFi</span>
-                    <span>Sequenced</span>
-                  </div>
-                  <Link href="/marketplace">Explore →</Link>
-                </div>
+              <FeaturedProductCard product={FEATURED_PRODUCT} />
+              <div className="apps-row store-grid" style={{ marginTop: 18 }}>
+                {HOME_PRODUCTS.map((p) => (
+                  <ProductCard key={p.slug} product={p} />
+                ))}
+              </div>
+              <div className="store-line">
+                <Link className="btn btn-primary" href="/marketplace">
+                  Browse the app store
+                </Link>
+                <span style={{ fontSize: "13px", color: "var(--ink3)" }}>
+                  {PRODUCTS.length} products · apps, games, materials &amp; collectibles
+                </span>
               </div>
             </div>
             <aside className="store-side">

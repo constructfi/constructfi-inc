@@ -89,9 +89,10 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     label: "Products",
     items: [
-      { href: "/marketplace", label: "Marketplace" },
-      { href: "/apps", label: "ConstructFi Apps" },
+      { href: "/marketplace", label: "Marketplace (app store)" },
       { href: "/app", label: "Build or Bust" },
+      { href: "/marketplace/supplier-marketplace", label: "Supplier marketplace" },
+      { href: "/apps", label: "All apps & roadmap" },
     ],
   },
   {
@@ -125,9 +126,9 @@ export const NAV_GROUPS: NavGroup[] = [
 export const MOBILE_NAV: NavItem[] = [
   { href: "/", label: "Overview" },
   { href: "/whitepaper", label: "Whitepaper" },
-  { href: "/marketplace", label: "Marketplace" },
-  { href: "/apps", label: "ConstructFi Apps" },
+  { href: "/marketplace", label: "Marketplace (app store)" },
   { href: "/app", label: "Build or Bust" },
+  { href: "/apps", label: "All apps & roadmap" },
   { href: "/partners", label: "Partners" },
   { href: "/funders", label: "For Funders" },
   { href: "/developers", label: "Developers" },
@@ -155,9 +156,9 @@ export const APP_URL = "/app";
 
 export const FOOTER_LINKS = {
   Platform: [
-    { href: "/apps", label: "ConstructFi Apps" },
+    { href: "/marketplace", label: "Marketplace (app store)" },
     { href: "/app", label: "Build or Bust" },
-    { href: "/marketplace", label: "Marketplace" },
+    { href: "/apps", label: "All apps & roadmap" },
     { href: "/dashboard", label: "Dashboard preview" },
   ],
   Ecosystem: [

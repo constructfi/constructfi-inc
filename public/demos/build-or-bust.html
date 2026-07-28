@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build or Bust — Real Estate Deal Analyzer · buildorbusted.app (Prototype)</title>
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><clipPath id="r"><rect width="48" height="48" rx="10.8"/></clipPath></defs><g clip-path="url(%23r)"><rect width="48" height="48" fill="%23D4A95A"/><path d="M0 0H48L0 48Z" fill="%2300D19A"/><g fill="none" stroke="%2305131F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15.6 22.8 24 15.6 32.4 22.8"/><path d="M18.4 21.7V32.1H29.6V21.7"/></g></g></svg>'>
+<style>@font-face{font-family:"Poppins";font-weight:700;font-style:normal;src:url(data:font/woff;base64,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) format("woff")}</style>
+<style>
+  :root{
+    --navy-950:#05131F; --navy-900:#081C2B; --navy-850:#0B2233; --navy-800:#0E2837; --navy-700:#173A4E;
+    --line:rgba(255,255,255,.09); --line-strong:rgba(255,255,255,.16);
+    --emerald:#00D19A; --emerald-dim:#0A3D31; --green-deep:#196C52; --forest:#386641;
+    --gold:#D4A95A; --gold-dim:#3A2F17;
+    --danger:#FF7A6B; --danger-dim:#3C1D18;
+    --ink:#F2F7F5; --muted:#8FA6A0; --slate:#90A1B9; --faint:#5E7370;
+    --font-ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-data:ui-monospace,'SF Mono','Cascadia Mono','Roboto Mono',Menlo,monospace;
+    --r-lg:20px; --r-md:14px; --r-sm:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    background:#020A12;
+    background-image:radial-gradient(1200px 600px at 70% -10%, rgba(0,209,154,.07), transparent 60%),
+                     radial-gradient(900px 500px at 10% 110%, rgba(212,169,90,.05), transparent 60%);
+    font-family:var(--font-ui); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px 12px;
+  }
+  /* ---------- phone frame ---------- */
+  .phone{
+    width:min(400px,100%); height:min(860px,calc(100vh - 32px)); min-height:640px;
+    background:var(--navy-950); border:1px solid var(--line-strong); border-radius:34px;
+    box-shadow:0 40px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06);
+    display:flex; flex-direction:column; overflow:hidden; position:relative;
+  }
+  .statusbar{height:34px; flex:none; display:flex; align-items:center; justify-content:space-between;
+    padding:0 22px; font-size:12px; color:var(--faint); font-family:var(--font-data); letter-spacing:.04em}
+  .appbar{height:52px; flex:none; display:flex; align-items:center; gap:10px; padding:0 14px; position:relative; z-index:5}
+  .appbar .back{width:36px;height:36px;border-radius:12px;border:1px solid var(--line);background:var(--navy-900);
+    color:var(--muted);display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none}
+  .appbar .back:hover{color:var(--ink);border-color:var(--line-strong)}
+  .appbar .crumb{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  .appbar .spacer{flex:1}
+  .appbar .step-count{font-family:var(--font-data);font-size:12px;color:var(--faint)}
+  .screen{flex:1; overflow-y:auto; overflow-x:hidden; padding:6px 20px 120px; scrollbar-width:thin; scrollbar-color:var(--navy-700) transparent}
+  .screen::-webkit-scrollbar{width:4px}
+  .screen::-webkit-scrollbar-thumb{background:var(--navy-700);border-radius:2px}
+  .cta-dock{position:absolute; left:0; right:0; bottom:0; padding:14px 20px 22px; z-index:6;
+    background:linear-gradient(to top, var(--navy-950) 55%, transparent)}
+  .btn{width:100%; border:none; border-radius:16px; padding:16px 18px; font-family:var(--font-ui);
+    font-size:16px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+    transition:transform .08s ease, filter .15s ease}
+  .btn:active{transform:scale(.985)}
+  .btn:focus-visible,.back:focus-visible,.chip:focus-visible,.card-btn:focus-visible,input:focus-visible,.seg button:focus-visible{
+    outline:2px solid var(--emerald); outline-offset:2px}
+  .btn-primary{background:var(--emerald); color:#04241B}
+  .btn-primary:hover{filter:brightness(1.06)}
+  .btn-primary:disabled{background:var(--navy-800);color:var(--faint);cursor:not-allowed}
+  .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-gold{background:var(--gold);color:#2A1F08}
+  .progress{height:3px;background:var(--navy-800);border-radius:2px;overflow:hidden;margin:2px 0 18px}
+  .progress i{display:block;height:100%;background:var(--emerald);border-radius:2px;transition:width .35s cubic-bezier(.4,0,.2,1)}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--emerald);font-weight:700;margin-bottom:10px}
+  .eyebrow.gold{color:var(--gold)}
+  h1{font-size:30px;line-height:1.15;letter-spacing:-.02em;font-weight:700}
+  h2{font-size:22px;line-height:1.2;letter-spacing:-.01em;font-weight:700}
+  .lede{color:var(--muted);font-size:15px;line-height:1.55;margin-top:10px}
+  .data{font-family:var(--font-data);font-variant-numeric:tabular-nums}
+
+  /* ---------- welcome ---------- */
+  .brandmark{display:flex;align-items:center;gap:10px;margin:18px 0 34px}
+  .brandmark .bx{width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,var(--green-deep),var(--emerald));
+    display:flex;align-items:center;justify-content:center}
+  .brandmark .bx svg{width:18px;height:18px}
+  .brandmark span{font-weight:700;font-size:16px;letter-spacing:-.01em}
+  .brandmark small{color:var(--faint);font-weight:500}
+  .hero-verdict{margin:26px 0 8px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--navy-900);padding:18px;position:relative;overflow:hidden}
+  .hero-verdict::after{content:"";position:absolute;inset:0;background:radial-gradient(300px 140px at 85% 0%,rgba(0,209,154,.12),transparent 70%);pointer-events:none}
+  .hv-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .hv-addr{font-size:13px;color:var(--muted)}
+  .hv-addr b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+  .stamp{font-family:'Poppins',var(--font-ui);font-weight:700;font-size:13px;letter-spacing:.12em;border-radius:8px;padding:7px 12px;border:1.5px solid}
+  .stamp.go{color:var(--emerald);border-color:var(--emerald);background:rgba(0,209,154,.08)}
+  .stamp.pursue{color:var(--gold);border-color:var(--gold);background:rgba(212,169,90,.08)}
+  .stamp.nogo{color:var(--slate);border-color:var(--slate);background:rgba(144,161,185,.08)}
+  .hv-lever{margin-top:14px;font-size:13.5px;color:var(--muted)}
+  .hv-lever b{color:var(--gold);font-family:var(--font-data)}
+  .free-note{display:flex;gap:10px;align-items:flex-start;margin-top:22px;color:var(--faint);font-size:12.5px;line-height:1.5}
+  .free-note svg{flex:none;margin-top:1px}
+
+  /* ---------- option cards ---------- */
+  .card-btn{width:100%;text-align:left;background:var(--navy-900);border:1px solid var(--line);border-radius:var(--r-md);
+    padding:16px;cursor:pointer;display:flex;align-items:center;gap:14px;margin-bottom:10px;transition:border-color .15s,background .15s;color:var(--ink);font-family:var(--font-ui)}
+  .card-btn:hover{border-color:var(--emerald);background:var(--navy-850)}
+  .card-btn.dis{opacity:.85}
+  .card-btn.dis:hover{border-color:var(--gold)}
+  .card-btn .ic{width:42px;height:42px;flex:none;border-radius:12px;background:var(--navy-800);display:flex;align-items:center;justify-content:center;color:var(--emerald)}
+  .card-btn.dis .ic{color:var(--faint)}
+  .card-btn .tx b{display:block;font-size:15.5px;margin-bottom:2px;font-weight:600}
+  .card-btn .tx span{font-size:13px;color:var(--muted);line-height:1.4;display:block}
+  .card-btn .tag{margin-left:auto;flex:none;font-size:10.5px;letter-spacing:.08em;font-weight:700;text-transform:uppercase;
+    padding:4px 8px;border-radius:6px}
+  .tag.soon{color:var(--gold);background:var(--gold-dim)}
+  .tag.dual{color:var(--emerald);background:var(--emerald-dim)}
+
+  /* ---------- question screens ---------- */
+  .q-help{color:var(--muted);font-size:14px;line-height:1.55;margin:10px 0 24px}
+  .bigfield{position:relative;margin-bottom:14px}
+  .bigfield .sym{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--faint);font-family:var(--font-data)}
+  .bigfield input{width:100%;background:var(--navy-900);border:1px solid var(--line-strong);border-radius:var(--r-md);
+    padding:20px 18px 20px 44px;font-size:28px;font-weight:600;color:var(--ink);font-family:var(--font-data);font-variant-numeric:tabular-nums}
+  .bigfield input.nosym{padding-left:18px}
+  .bigfield .unit{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--faint)}
+  .bigfield input:focus{border-color:var(--emerald);outline:none}
+  .src-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);
+    background:var(--navy-900);border:1px solid var(--line);border-radius:999px;padding:6px 12px;margin-bottom:8px}
+  .src-chip i{width:6px;height:6px;border-radius:3px;background:var(--emerald);flex:none}
+  .src-chip.gold i{background:var(--gold)}
+  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+  .seg.two{grid-template-columns:repeat(2,1fr)}
+  .seg button{background:var(--navy-900);border:1px solid var(--line);border-radius:var(--r-sm);padding:13px 8px;
+    color:var(--muted);font-family:var(--font-ui);font-size:13.5px;font-weight:600;cursor:pointer}
+  .seg button small{display:block;font-family:var(--font-data);font-weight:500;font-size:11.5px;color:var(--faint);margin-top:3px}
+  .seg button.on{border-color:var(--emerald);color:var(--ink);background:var(--emerald-dim)}
+  .seg button.on small{color:var(--emerald)}
+  .whatis{border:none;background:none;color:var(--emerald);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-ui);padding:4px 0}
+  .explain{display:none;background:var(--navy-900);border:1px solid var(--line);border-left:3px solid var(--emerald);
+    border-radius:var(--r-sm);padding:12px 14px;font-size:13px;color:var(--muted);line-height:1.55;margin-top:8px}
+  .explain.open{display:block}
+
+  /* ---------- results ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .r-anim{opacity:0;animation:rise .5s cubic-bezier(.2,.7,.3,1) forwards}
+  @media (prefers-reduced-motion: reduce){
+    .r-anim{animation:none;opacity:1}
+    .progress i{transition:none}
+    .arc-fg{transition:none !important}
+  }
+  .verdict-card{border-radius:var(--r-lg);padding:22px 20px;position:relative;overflow:hidden;border:1px solid;margin-bottom:14px}
+  .verdict-card.go{background:linear-gradient(160deg,#0A2E23,#081C2B 70%);border-color:rgba(0,209,154,.35)}
+  .verdict-card.pursue{background:linear-gradient(160deg,#2E250D,#081C2B 70%);border-color:rgba(212,169,90,.4)}
+  .verdict-card.nogo{background:linear-gradient(160deg,#1B2431,#081C2B 70%);border-color:var(--line-strong)}
+  .v-top{display:flex;align-items:center;gap:18px}
+  .arc-wrap{width:92px;height:92px;flex:none;position:relative}
+  .arc-wrap svg{transform:rotate(-90deg)}
+  .arc-fg{transition:stroke-dashoffset 1.1s cubic-bezier(.3,.6,.2,1)}
+  .arc-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .arc-num b{font-family:var(--font-data);font-size:26px;line-height:1}
+  .arc-num span{font-size:9.5px;letter-spacing:.14em;color:var(--faint);text-transform:uppercase;margin-top:3px}
+  .v-word{font-size:26px;font-weight:700;letter-spacing:0;line-height:1.05;font-family:'Poppins',var(--font-ui)}
+  .bob-wordmark{font-family:'Poppins',var(--font-ui);font-weight:700}
+  .v-word.go{color:var(--emerald)} .v-word.pursue{color:var(--gold)} .v-word.nogo{color:var(--slate)}
+  .v-sub{font-size:13.5px;color:var(--muted);line-height:1.5;margin-top:6px}
+  .sec-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:22px 0 10px}
+  .driver{background:var(--navy-900);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start}
+  .driver .dot{width:26px;height:26px;flex:none;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .driver .dot.ok{background:var(--emerald-dim);color:var(--emerald)}
+  .driver .dot.bad{background:var(--danger-dim);color:var(--danger)}
+  .driver b{font-size:14.5px;font-weight:600;display:block}
+  .driver .nums{font-family:var(--font-data);font-size:13px;margin:3px 0 4px}
+  .driver .nums .act{color:var(--ink);font-weight:600}
+  .driver .nums .vs{color:var(--faint);margin:0 6px}
+  .driver .gloss{font-size:12.5px;color:var(--muted);line-height:1.45}
+  .lever{background:linear-gradient(150deg,#2A2210,var(--navy-900) 75%);border:1px solid rgba(212,169,90,.45);
+    border-radius:var(--r-md);padding:18px;margin-bottom:8px;position:relative}
+  .lever .lv-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+  .lever .lv-main{font-size:17px;line-height:1.4}
+  .lever .lv-main b{color:var(--gold);font-family:var(--font-data);font-size:19px}
+  .lever .lv-alt{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5}
+  .lever .lv-alt b{color:var(--ink);font-family:var(--font-data)}
+  .share-row{display:flex;gap:8px;margin-top:12px}
+  .chip{border:1px solid var(--line);background:var(--navy-850);color:var(--muted);border-radius:999px;
+    padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--font-ui);display:flex;align-items:center;gap:6px}
+  .chip:hover{color:var(--ink);border-color:var(--line-strong)}
+  .chip.gold{color:var(--gold);border-color:rgba(212,169,90,.4)}
+
+  /* readiness */
+  .fr-card{background:var(--navy-900);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin-bottom:8px}
+  .fr-head{padding:14px 16px 12px;border-bottom:1px solid var(--line)}
+  .fr-head .t{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .fr-head b{font-size:15px}
+  .fr-head .edit{border:none;background:none;color:var(--emerald);font-weight:600;font-size:12.5px;cursor:pointer;font-family:var(--font-ui)}
+  .fr-head p{font-size:12px;color:var(--faint);margin-top:4px;line-height:1.45}
+  .fr-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .fr-row:last-of-type{border-bottom:none}
+  .fr-row .nm{font-size:13.5px;font-weight:600;flex:1}
+  .fr-row .nm small{display:block;font-weight:400;font-size:11.5px;color:var(--faint);margin-top:2px;line-height:1.4}
+  .badge{flex:none;font-size:10px;letter-spacing:.08em;font-weight:700;padding:5px 9px;border-radius:6px;font-family:var(--font-data)}
+  .badge.ready{color:var(--emerald);background:var(--emerald-dim)}
+  .badge.almost{color:var(--gold);background:var(--gold-dim)}
+  .badge.build{color:var(--slate);background:rgba(144,161,185,.12)}
+  .fr-note{padding:11px 16px;font-size:10.5px;color:var(--faint);line-height:1.5;background:var(--navy-850)}
+  .stress{display:flex;gap:10px;align-items:flex-start;background:var(--danger-dim);border:1px solid rgba(255,122,107,.3);
+    border-radius:var(--r-sm);padding:12px 14px;margin:10px 16px;font-size:12.5px;color:#FFB4AA;line-height:1.5}
+
+  /* scorecard + waterfall */
+  .sc-table{background:var(--navy-900);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin-bottom:8px}
+  .sc-r{display:grid;grid-template-columns:1.4fr .8fr .9fr .6fr;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+  .sc-r:last-child{border-bottom:none}
+  .sc-r.h{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:700;background:var(--navy-850);padding:9px 14px}
+  .sc-r .m small{display:block;color:var(--faint);font-size:11px;margin-top:1px}
+  .sc-r .val{font-family:var(--font-data);font-weight:600;font-size:14px}
+  .sc-r .val.ok{color:var(--emerald)} .sc-r .val.bad{color:var(--danger)} .sc-r .val.na{color:var(--slate)}
+  .sc-r input{width:100%;max-width:66px;background:var(--navy-850);border:1px solid var(--line);border-radius:7px;
+    padding:6px;color:var(--ink);font-family:var(--font-data);font-size:12.5px;text-align:center}
+  .sc-r input:focus{border-color:var(--emerald);outline:none}
+  .pf{font-family:var(--font-data);font-size:10px;font-weight:700;letter-spacing:.06em}
+  .pf.ok{color:var(--emerald)} .pf.bad{color:var(--danger)} .pf.na{color:var(--slate)}
+  .wf{background:var(--navy-900);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 14px 10px;margin-bottom:8px}
+  .wf-bars{display:flex;align-items:flex-end;gap:6px;height:130px}
+  .wf-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+  .wf-bar{width:100%;border-radius:6px 6px 3px 3px;min-height:5px;position:relative}
+  .wf-bar.in{background:linear-gradient(to top,var(--green-deep),var(--emerald))}
+  .wf-bar.out{background:#43302F;border:1px solid rgba(255,122,107,.35)}
+  .wf-bar.net{background:linear-gradient(to top,#7A5F2B,var(--gold))}
+  .wf-amt{font-family:var(--font-data);font-size:9px;color:var(--muted);white-space:nowrap}
+  .wf-lbl{font-size:9px;letter-spacing:.04em;color:var(--faint);text-transform:uppercase;text-align:center}
+  .num-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+  .num-cell{background:var(--navy-900);border:1px solid var(--line);border-radius:var(--r-md);padding:13px 14px}
+  .num-cell .nl{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  .num-cell .nv{font-family:var(--font-data);font-size:19px;font-weight:700;margin-top:5px}
+  .num-cell .nv.neg{color:var(--danger)}
+  .num-cell.hero{background:var(--emerald-dim);border-color:rgba(0,209,154,.3)}
+  .num-cell.hero .nl{color:var(--emerald)}
+
+  /* locked / covi */
+  .locked{position:relative;border:1px dashed rgba(212,169,90,.45);border-radius:var(--r-md);padding:16px;margin-bottom:8px;background:rgba(212,169,90,.04)}
+  .locked .lk-t{display:flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px}
+  .locked .lk-t svg{color:var(--gold)}
+  .locked p{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .covi-pill{display:inline-flex;align-items:center;gap:6px;background:var(--gold-dim);color:var(--gold);
+    border-radius:999px;padding:5px 11px;font-size:11px;font-weight:700;font-family:var(--font-data);letter-spacing:.04em}
+
+  /* tabs (dual verdict) */
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--navy-900);border:1px solid var(--line);
+    border-radius:12px;padding:5px;margin-bottom:14px}
+  .tabs button{border:none;border-radius:8px;padding:10px;background:transparent;color:var(--muted);font-weight:600;
+    font-size:13.5px;cursor:pointer;font-family:var(--font-ui)}
+  .tabs button.on{background:var(--navy-700);color:var(--ink)}
+  .tabs button .mini{font-family:var(--font-data);font-size:10px;letter-spacing:.08em;margin-left:6px}
+  .mini.go{color:var(--emerald)} .mini.pursue{color:var(--gold)} .mini.nogo{color:var(--slate)}
+
+  /* sheet */
+  .sheet-veil{position:absolute;inset:0;background:rgba(2,10,18,.72);z-index:20;display:none;align-items:flex-end;backdrop-filter:blur(2px)}
+  .sheet-veil.open{display:flex}
+  .sheet{width:100%;background:var(--navy-900);border-top:1px solid var(--line-strong);border-radius:24px 24px 0 0;
+    padding:10px 20px 26px;max-height:82%;overflow-y:auto;animation:rise .3s ease}
+  .sheet .grab{width:38px;height:4px;border-radius:2px;background:var(--navy-700);margin:4px auto 16px}
+  .sheet h3{font-size:19px;margin-bottom:6px}
+  .sheet .lede{margin-top:4px;margin-bottom:16px;font-size:13.5px}
+  .fld{margin-bottom:14px}
+  .fld label{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:7px}
+  .fld input{width:100%;background:var(--navy-850);border:1px solid var(--line-strong);border-radius:10px;padding:12px;
+    color:var(--ink);font-family:var(--font-data);font-size:15px}
+  .fld input:focus{border-color:var(--emerald);outline:none}
+  .price-line{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .price-line b{font-family:var(--font-data)}
+  .price-line small{color:var(--faint);display:block;font-size:11.5px;margin-top:2px}
+  .toast{position:absolute;left:50%;bottom:104px;transform:translateX(-50%) translateY(8px);background:var(--navy-700);
+    border:1px solid var(--line-strong);color:var(--ink);font-size:13px;font-weight:500;padding:10px 16px;border-radius:12px;
+    opacity:0;pointer-events:none;transition:.25s ease;z-index:30;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .assume{background:var(--navy-900);border:1px solid var(--line);border-radius:var(--r-md);margin-bottom:8px;overflow:hidden}
+  .assume summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:14px}
+  .assume summary::-webkit-details-marker{display:none}
+  .assume summary .cv{color:var(--faint);font-size:12px;font-weight:500}
+  .a-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 16px 16px}
+  .a-grid .fld{margin-bottom:0}
+  .foot-disc{font-size:10.5px;color:var(--faint);line-height:1.55;margin:18px 0 6px;text-align:center}
+</style>
+</head>
+<body>
+<div class="phone" id="phone">
+  <div class="statusbar"><span>9:41</span><span>buildorbusted.app · prototype</span><span>●●●</span></div>
+  <div class="appbar" id="appbar"></div>
+  <div class="screen" id="screen"></div>
+  <div class="cta-dock" id="dock"></div>
+  <div class="sheet-veil" id="veil"><div class="sheet" id="sheet"></div></div>
+  <div class="toast" id="toast"></div>
+</div>
+<script>
+/* ConstructFi Deal Screener — clickable prototype
+   Engines per v1 spec: rental (Buy & Hold, from the Eluvial Academy Deal Analyzer, with §2.3 corrections) + flip.
+   Verdict: GO / PURSUE WITH CONDITIONS / NO-GO per §3. Financing Readiness per §7a (educational). */
+
+(function(){
+"use strict";
+
+/* ---------------- state ---------------- */
+var S = {
+  route:"welcome", goal:null, asset:"sf", qIndex:0, proto:{}, touched:{},
+  addr:{street:"", city:"", state:""},
+  targets:{ coc:8, yocSpread:1.5, cfUnit:200, feq:15, dscr:1.20, mcf:0, margin:15, roi:30 },
+  profile:{ credit:"good", cash:60000, wallet:8000, deals:0 },
+  unlocked:{sens:false}, expLevel:null, fromReview:false,
+  marketCap:6.0, resultTab:"hold", lastResults:null
+};
+
+var GOALS=[
+  {id:"hold", name:"Hold", desc:"Buy it, rent it, keep it", live:true},
+  {id:"sell", name:"Sell", desc:"Buy it, improve it, sell it", live:true},
+  {id:"brrrr", name:"Hold after building value", desc:"BRRRR — recycle your cash and keep the property", live:true},
+  {id:"build", name:"Build", desc:"Ground-up on land you have or will buy", live:true},
+  {id:"entitle", name:"Entitle only", desc:"Get land approved, then sell the approval", live:true},
+  {id:"unsure", name:"Not sure yet", desc:"Show me what this property could be", live:true, dual:true}
+];
+var ASSETS=[
+  {id:"sf", name:"Single family", desc:"1 unit — house, condo, townhome", live:true},
+  {id:"smf", name:"Small multifamily", desc:"2–20 units", live:true},
+  {id:"lmf", name:"Large multifamily", desc:"20+ units · agency-style underwriting", live:true},
+  {id:"ret", name:"Retail / Industrial", desc:"Lease-based commercial · NNN", live:true},
+  {id:"mix", name:"Mixed-use", desc:"Blend of components", live:false, wave:"Wave 3"}
+];
+
+/* defaults seeded "from data" (demo values, source-tagged in UI) */
+var D = {
+  price:225000, rehabScope:"moderate", rehab:38000, arv:295000, rent:2200, units:1, beds:"b3",
+  downPct:25, ratePct:7.0, selfManage:false, taxes:2400, insurance:1500, financeRehab:false,
+  holdMonths:6, loanType:"hard", refiLtv:75, refiRatePct:7.25, seasonMonths:6, sqft:2400, rentPsf:16, hardPsf:165, salePsf:310, rentTotal:2600, softPct:20, buildMonths:12, exitMode:true, entBudget:120000, entMonths:18, confidence:"likely", exitValue:1350000, optionMode:false
+};
+var BR_RENTS={ st:{label:"Studio", rent:1150}, b1:{label:"1 BR", rent:1300}, b2:{label:"2 BR", rent:1650}, b3:{label:"3 BR", rent:2200}, b4:{label:"4 BR", rent:2600} };
+var REHAB_SCOPES={ light:{label:"Cosmetic", amt:16000, psf:"$14/SF"}, moderate:{label:"Moderate", amt:38000, psf:"$34/SF"}, heavy:{label:"Heavy", amt:78000, psf:"$70/SF"} };
+
+/* ---------------- engines ---------------- */
+function rentalEngine(i,t){
+  var closing=Math.max(i.price*0.03,3500);
+  var loanBase=i.price*(1-i.downPct/100);
+  var points=loanBase*0.01;
+  var ltc=0.85;
+  var loan=i.financeRehab? loanBase+i.rehab*ltc : loanBase;
+  var allIn=i.price+i.rehab+closing+points;
+  var forcedEq=i.arv-allIn;
+  var units=i.units||1;
+  var gsr=i.rent*units*12;
+  var isLmf=(S.asset==="lmf");
+  var vacPct=isLmf?7:5, egi=gsr*(1-vacPct/100);
+  var r=i.ratePct/100/12, n=30*12;
+  var pi=loan<=0?0:(r===0?loan/n:loan*r/(1-Math.pow(1+r,-n)));
+  var debt=pi*12;
+  var pmPct=i.selfManage?0:(isLmf?4:8);
+  var payroll=isLmf&&units>40? units*1150:0;
+  var opex=i.taxes+i.insurance+(pmPct/100*egi)+(0.05*gsr)+(0.05*gsr)+payroll;
+  var noi=egi-opex, acf=noi-debt, mcf=acf/12;
+  var cashIn=(i.price*i.downPct/100)+closing+points+(i.financeRehab? i.rehab*(1-ltc): i.rehab);
+  var m={
+    mcf:mcf, dscr:debt? noi/debt:99,
+    coc:cashIn? acf/cashIn*100:0,
+    yoc:allIn? noi/allIn*100:0,
+    cap:i.price? noi/i.price*100:0,
+    feq:allIn? forcedEq/allIn*100:0,
+    cfUnit:mcf/units, onePct:i.price? i.rent/i.price*100:0,
+    noi:noi, egi:egi, gsr:gsr, opex:opex, debt:debt, acf:acf,
+    allIn:allIn, cashIn:cashIn, forcedEq:forcedEq, loan:loan, closing:closing, points:points, pi:pi, units:units
+  };
+  /* gates */
+  var dscrTgt=isLmf? Math.max(t.dscr,1.25): t.dscr;
+  var gates=[
+    {id:"dscr", name:"DSCR", val:m.dscr, tgt:dscrTgt, pass:m.dscr>=dscrTgt, fmt:function(v){return v.toFixed(2);}},
+    {id:"mcf", name:"Monthly cash flow", val:m.mcf, tgt:t.mcf, pass:m.mcf>=t.mcf, fmt:usd0}
+  ];
+  if(isLmf){ var dy=m.loan? m.noi/m.loan*100:99;
+    gates.push({id:"dy", name:"Debt yield", val:dy, tgt:8, pass:dy>=8, fmt:pct1}); m.debtYield=dy; }
+  /* scored, per §3.2 */
+  function lerp(v,zero,full){ if(full===zero) return v>=full?1:0; var x=(v-zero)/(full-zero); return Math.max(0,Math.min(1,x)); }
+  var cap0=S.marketCap;
+  var sc=[
+    {id:"coc", name:"Cash-on-cash", w:35, pts:35*lerp(m.coc,2,t.coc), val:m.coc, tgt:t.coc, fmt:pct1, gloss:"Every $1 you put in earns "+(m.coc/100).toFixed(2).replace("0.","")+"¢ a year — your target is "+t.coc+"¢."},
+    {id:"yoc", name:"Yield-on-cost vs market", w:25, pts:25*lerp(m.yoc,cap0-0.5,cap0+t.yocSpread), val:m.yoc, tgt:cap0+t.yocSpread, fmt:pct1, gloss:"Return on everything you spend, vs a "+cap0.toFixed(1)+"% metro cap rate."},
+    {id:"cfu", name:"Cash flow per unit", w:20, pts:20*lerp(m.cfUnit,0,t.cfUnit), val:m.cfUnit, tgt:t.cfUnit, fmt:usd0, gloss:"Monthly cushion each unit leaves after all bills and the loan."},
+    {id:"feq", name:"Forced equity", w:20, pts:20*lerp(m.feq,0,t.feq), val:m.feq, tgt:t.feq, fmt:pct1, gloss:"Value you create on day one: worth after repairs vs everything it costs you."}
+  ];
+  var score=Math.round(sc.reduce(function(a,x){return a+x.pts;},0));
+  return {kind:"hold", m:m, gates:gates, scored:sc, score:score, advisory:{onePct:m.onePct}};
+}
+
+function amort(loan, ratePct, yrs){
+  var r=ratePct/100/12, n=yrs*12;
+  return loan<=0?0:(r===0? loan/n : loan*r/(1-Math.pow(1+r,-n)));
+}
+function lerpN(v,zero,full){ if(full===zero) return v>=full?1:0; var x=(v-zero)/(full-zero); return Math.max(0,Math.min(1,x)); }
+
+function brrrrEngine(i,t){
+  var closing=Math.max(i.price*0.03,3500);
+  var bridge=(i.price+i.rehab)*0.85, pts=bridge*0.02;
+  var season=i.seasonMonths||6;
+  var carryMo=(i.taxes+i.insurance)/12 + bridge*0.11/12;
+  var cashIn=(i.price+i.rehab)-bridge + closing + pts + carryMo*season;
+  var refiLoan=i.arv*(i.refiLtv||75)/100, refiCosts=refiLoan*0.01;
+  var cashOut=Math.max(0, refiLoan-bridge-refiCosts);
+  var cashLeft=Math.max(0, cashIn-cashOut);
+  var units=i.units||1, gsr=i.rent*units*12, egi=gsr*0.95;
+  var opex=i.taxes+i.insurance+0.08*egi+0.10*gsr;
+  var noi=egi-opex, pi=amort(refiLoan, i.refiRatePct||7.25, 30), debt=pi*12;
+  var acf=noi-debt, mcf=acf/12, dscr=debt? noi/debt:99;
+  var coc=cashLeft>500? acf/cashLeft*100 : (acf>0? 999:0);
+  var eqCap=i.arv? (i.arv-refiLoan)/i.arv*100:0;
+  var leftPct=cashIn? cashLeft/cashIn*100:0;
+  var m={cashIn:cashIn, cashOut:cashOut, cashLeft:cashLeft, refiLoan:refiLoan, bridge:bridge,
+    noi:noi, egi:egi, gsr:gsr, opex:opex, debt:debt, acf:acf, mcf:mcf, dscr:dscr, coc:coc, eqCap:eqCap, leftPct:leftPct,
+    pi:pi, units:units, allIn:i.price+i.rehab+closing+pts, forcedEq:i.arv-(i.price+i.rehab+closing+pts)};
+  var gates=[
+    {id:"dscr", name:"Post-refi DSCR", val:dscr, tgt:Math.max(t.dscr,1.20), pass:dscr>=Math.max(t.dscr,1.20), fmt:function(v){return v.toFixed(2);}},
+    {id:"mcf", name:"Post-refi cash flow", val:mcf, tgt:0, pass:mcf>=0, fmt:usd0}
+  ];
+  var sc=[
+    {id:"left", name:"Cash left in deal", w:35, pts:35*lerpN(60-leftPct,0,50), val:cashLeft, tgt:cashIn*0.10, fmt:usd0,
+     gloss:"The BRRRR goal: pull your money back out at the refi. Full marks at 10% or less left in."},
+    {id:"coc", name:"Post-refi cash-on-cash", w:35, pts:35*lerpN(Math.min(coc,60),4,12), val:Math.min(coc,999), tgt:12, fmt:function(v){return v>=999?"\u221e":pct1(v);},
+     gloss:"Return on whatever cash stays in the deal after the refinance."},
+    {id:"eq", name:"Equity capture", w:30, pts:30*lerpN(eqCap,10,25), val:eqCap, tgt:25, fmt:pct1,
+     gloss:"How much of the finished value you keep above the new loan."}
+  ];
+  return {kind:"brrrr", m:m, gates:gates, scored:sc, score:Math.round(sc.reduce(function(a,x){return a+x.pts;},0)), advisory:{}};
+}
+
+function buildEngine(i,t){
+  var land=i.price, sf=i.sqft||1;
+  var hard=sf*i.hardPsf, soft=hard*(i.softPct||20)/100, cont=(hard+soft)*0.075;
+  var closing=Math.max(land*0.02,2500), months=i.buildMonths||12;
+  var budget=land+hard+soft+cont+closing;
+  var cloan=budget*0.70, interest=cloan*0.095*(months/12)*0.55;
+  var TDC=budget+interest, cashIn=TDC-cloan;
+  var m={TDC:TDC, cashIn:cashIn, hard:hard, soft:soft, cont:cont, interest:interest, cloan:cloan, sf:sf};
+  var gates, sc;
+  if(i.exitMode){ /* SELL (merchant build) */
+    var gross=sf*i.salePsf, sellCost=gross*0.05;
+    var profit=gross-TDC-sellCost;
+    var margin=TDC? profit/TDC*100:0, roi=cashIn? profit/cashIn*100:0;
+    var totMonths=months+(i.sellMonths||4), ann=roi*12/totMonths, em=cashIn? (cashIn+profit)/cashIn:0;
+    Object.assign(m,{gross:gross, sellCost:sellCost, profit:profit, margin:margin, roi:roi, em:em, ann:ann});
+    gates=[{id:"profit", name:"Development profit", val:profit, tgt:0, pass:profit>=0, fmt:usd0}];
+    sc=[
+      {id:"margin", name:"Profit margin on cost", w:40, pts:40*lerpN(margin,5,15), val:margin, tgt:15, fmt:pct1, gloss:"Profit vs total development cost — the buffer against overruns and a soft market."},
+      {id:"roi", name:"ROI on equity", w:30, pts:30*lerpN(roi,10,30), val:roi, tgt:30, fmt:pct1, gloss:"Profit vs the cash equity the stack requires."},
+      {id:"em", name:"Equity multiple", w:15, pts:15*lerpN(em,1.1,1.5), val:em, tgt:1.5, fmt:function(v){return v.toFixed(2)+"\u00d7";}, gloss:"Total cash back vs cash in."},
+      {id:"ann", name:"Annualized return", w:15, pts:15*lerpN(ann,12,35), val:ann, tgt:35, fmt:pct1, gloss:"What the return works out to per year including sell-out time."}
+    ];
+  } else { /* HOLD: build → stabilize → refi */
+    var noi=(i.rentTotal||0)*12*0.60;
+    var devYield=TDC? noi/TDC*100:0, spread=devYield-S.marketCap;
+    var value=noi/(S.marketCap/100), refiLoan=value*0.70;
+    var cashLeft=Math.max(0,cashIn-Math.max(0,refiLoan-cloan));
+    var pi=amort(refiLoan, i.ratePct||7, 30), debt=pi*12, dscr=debt? noi/debt:99, cf=noi-debt;
+    var devProfit=value-TDC;
+    Object.assign(m,{noi:noi, devYield:devYield, spread:spread, value:value, refiLoan:refiLoan, cashLeft:cashLeft, dscr:dscr, cf:cf, devProfit:devProfit, pi:pi});
+    gates=[
+      {id:"yield", name:"Development yield", val:devYield, tgt:S.marketCap+0.75, pass:devYield>=S.marketCap+0.75, fmt:pct1},
+      {id:"dscr", name:"Stabilized DSCR", val:dscr, tgt:1.20, pass:dscr>=1.20, fmt:function(v){return v.toFixed(2);}}
+    ];
+    sc=[
+      {id:"spread", name:"Development spread", w:35, pts:35*lerpN(spread,0,1.5), val:spread, tgt:1.5, fmt:function(v){return v.toFixed(2)+" pts";}, gloss:"Yield-on-cost above the market cap rate — the reason to build instead of buy."},
+      {id:"profit", name:"Value created", w:35, pts:35*lerpN(TDC?devProfit/TDC*100:0,0,20), val:devProfit, tgt:TDC*0.20, fmt:usd0, gloss:"Stabilized value vs everything it costs to build."},
+      {id:"left", name:"Cash left after refi", w:30, pts:30*lerpN(cashIn? (100-cashLeft/cashIn*100):0,40,90), val:cashLeft, tgt:cashIn*0.10, fmt:usd0, gloss:"How much equity the refinance returns to you at stabilization."}
+    ];
+  }
+  return {kind:"build", m:m, gates:gates, scored:sc, score:Math.round(sc.reduce(function(a,x){return a+x.pts;},0)), advisory:{}};
+}
+
+function entitleEngine(i,t){
+  var land=i.price, budget=i.entBudget||0, months=i.entMonths||18;
+  var conf=i.confidence||"likely", factor= conf==="byright"?0.9: conf==="likely"?0.6:0.35;
+  var closing=Math.max(land*0.02,2000);
+  var carry=land*0.011/12*months + 300*months;
+  var totalIn=land+budget+carry+closing;
+  var exit=i.exitValue||0, sellCost=exit*0.04;
+  var margin=exit-totalIn-sellCost;
+  var mult=totalIn? (totalIn+margin)/totalIn:0;
+  var ann=totalIn? margin/totalIn*100*(12/months):0;
+  var raPct=totalIn? margin*factor/totalIn*100:0;
+  var floorPct=totalIn? (land*0.9-totalIn)/totalIn*100:0;
+  var m={totalIn:totalIn, carry:carry, margin:margin, mult:mult, ann:ann, raPct:raPct, floorPct:floorPct, factor:factor, exit:exit, sellCost:sellCost, budget:budget};
+  var gates=[{id:"margin", name:"Entitlement margin", val:margin, tgt:0, pass:margin>=0, fmt:usd0}];
+  var sc=[
+    {id:"mult", name:"Cash multiple", w:35, pts:35*lerpN(mult,1.1,2.0), val:mult, tgt:2.0, fmt:function(v){return v.toFixed(2)+"\u00d7";}, gloss:"Entitlement risk demands venture-like returns — 2\u00d7 is the bar."},
+    {id:"ann", name:"Annualized return", w:25, pts:25*lerpN(ann,8,25), val:ann, tgt:25, fmt:pct1, gloss:"Margin per year of entitlement timeline — time is the real cost here."},
+    {id:"ra", name:"Risk-adjusted margin", w:25, pts:25*lerpN(raPct,0,30), val:raPct, tgt:30, fmt:pct1, gloss:"Margin haircut by approval odds ("+conf.replace("byright","by-right")+" = \u00d7"+factor+")."},
+    {id:"floor", name:"Downside floor", w:15, pts:15*lerpN(floorPct,-40,-10), val:floorPct, tgt:-10, fmt:pct1, gloss:"If denied: resell unentitled at ~90% of your land basis — how whole do you get?"}
+  ];
+  return {kind:"entitle", m:m, gates:gates, scored:sc, score:Math.round(sc.reduce(function(a,x){return a+x.pts;},0)), advisory:{}};
+}
+
+function retailEngine(i,t){
+  var sf=i.sqft||1, closing=Math.max(i.price*0.025,4000);
+  var loanBase=i.price*(1-i.downPct/100), points=loanBase*0.01;
+  var allIn=i.price+i.rehab+closing+points;
+  var gsr=sf*i.rentPsf, egi=gsr*0.90;                 /* 10% vacancy/credit */
+  var opex=0.03*egi + 1.0*sf;                          /* NNN: mgmt + TI/LC reserve */
+  var noi=egi-opex;
+  var pi=amort(loanBase, i.ratePct, 25), debt=pi*12;
+  var acf=noi-debt, mcf=acf/12, dscr=debt? noi/debt:99;
+  var cashIn=(i.price*i.downPct/100)+closing+points+i.rehab;
+  var coc=cashIn? acf/cashIn*100:0, yoc=allIn? noi/allIn*100:0;
+  var feq=allIn? (i.arv-allIn)/allIn*100:0;
+  var retCap=6.75;
+  var m={gsr:gsr, egi:egi, opex:opex, noi:noi, debt:debt, acf:acf, mcf:mcf, dscr:dscr, coc:coc, yoc:yoc,
+    feq:feq, allIn:allIn, cashIn:cashIn, pi:pi, loan:loanBase, units:1, forcedEq:i.arv-allIn, psf:i.price/sf};
+  var gates=[
+    {id:"dscr", name:"DSCR", val:dscr, tgt:1.30, pass:dscr>=1.30, fmt:function(v){return v.toFixed(2);}},
+    {id:"mcf", name:"Monthly cash flow", val:mcf, tgt:0, pass:mcf>=0, fmt:usd0}
+  ];
+  var sc=[
+    {id:"yoc", name:"Yield-on-cost vs retail cap", w:30, pts:30*lerpN(yoc,retCap-0.5,retCap+1.0), val:yoc, tgt:retCap+1.0, fmt:pct1, gloss:"Return on total basis vs a "+retCap+"% commercial cap rate."},
+    {id:"coc", name:"Cash-on-cash", w:30, pts:30*lerpN(coc,3,8), val:coc, tgt:8, fmt:pct1, gloss:"Annual cash flow vs the cash you put in."},
+    {id:"feq", name:"Forced equity", w:25, pts:25*lerpN(feq,0,15), val:feq, tgt:15, fmt:pct1, gloss:"Stabilized value vs your all-in basis."},
+    {id:"cf", name:"Cash flow cushion", w:15, pts:15*lerpN(mcf,0,3000), val:mcf, tgt:3000, fmt:usd0, gloss:"Monthly cushion after the reserve for re-tenanting costs."}
+  ];
+  return {kind:"hold", m:m, gates:gates, scored:sc, score:Math.round(sc.reduce(function(a,x){return a+x.pts;},0)), advisory:{onePct:0}};
+}
+function flipEngine(i,t){
+  var closing=Math.max(i.price*0.03,3500);
+  var hard= i.loanType==="hard";
+  var ltc=0.85, rate= hard?11:8.5, ptsPct= hard?2:1;
+  var loan= hard? (i.price+i.rehab)*ltc : i.price*0.8;
+  var points=loan*ptsPct/100;
+  var months=i.holdMonths||6;
+  var interest=loan*(rate/100)*(months/12);
+  var carry=(i.taxes+i.insurance)/12*months + 150*months;
+  var allIn=i.price+i.rehab+closing+points;
+  var sellCost=i.arv*0.07;
+  var profit=i.arv-allIn-carry-interest-sellCost;
+  var cashIn=Math.max(allIn-loan,0)+carry;
+  var roi=cashIn? profit/cashIn*100:0;
+  var annRoi=roi*12/months;
+  var margin=i.arv? profit/i.arv*100:0;
+  var mao=0.70*i.arv-i.rehab;
+  var m={profit:profit, roi:roi, annRoi:annRoi, margin:margin, mao:mao, allIn:allIn, cashIn:cashIn,
+    carry:carry, interest:interest, sellCost:sellCost, loan:loan, closing:closing, points:points};
+  var gates=[{id:"profit", name:"Net profit", val:profit, tgt:0, pass:profit>=0, fmt:usd0}];
+  function lerp(v,zero,full){ var x=(v-zero)/(full-zero); return Math.max(0,Math.min(1,x)); }
+  var sc=[
+    {id:"margin", name:"Profit margin", w:40, pts:40*lerp(margin,5,t.margin), val:margin, tgt:t.margin, fmt:pct1, gloss:"Profit as a share of the sale price — the buffer if anything slips."},
+    {id:"roi", name:"ROI on cash", w:30, pts:30*lerp(roi,10,t.roi), val:roi, tgt:t.roi, fmt:pct1, gloss:"Profit vs the cash you actually put in."},
+    {id:"ann", name:"Annualized ROI", w:15, pts:15*lerp(annRoi,15,50), val:annRoi, tgt:50, fmt:pct1, gloss:"What the return works out to per year at this hold length."},
+    {id:"disc", name:"Buy discount (70% rule)", w:15, pts:15*lerp(mao-i.price,-(0.1*i.arv),0), val:i.price, tgt:mao, fmt:usd0, gloss:"Classic flip check: pay no more than 70% of ARV minus rehab ("+usd0(mao)+")."}
+  ];
+  var score=Math.round(sc.reduce(function(a,x){return a+x.pts;},0));
+  return {kind:"sell", m:m, gates:gates, scored:sc, score:score, advisory:{}};
+}
+
+function runEngine(kind, inputs, targets){
+  if(kind==="sell") return flipEngine(inputs,targets);
+  if(kind==="brrrr") return brrrrEngine(inputs,targets);
+  if(kind==="build") return buildEngine(inputs,targets);
+  if(kind==="entitle") return entitleEngine(inputs,targets);
+  if(S.asset==="ret") return retailEngine(inputs,targets);
+  return rentalEngine(inputs,targets);
+}
+function verdictOf(res, inputs, targets, kind){
+  var gatesPass=res.gates.every(function(g){return g.pass;});
+  var v, msg;
+  var solvedPrice=solveMaxPrice(kind, inputs, targets);
+  var fixable = solvedPrice!==null && solvedPrice >= inputs.price*0.90;
+  if(gatesPass && res.score>=70){ v="GO"; msg="Clears your gates and scores "+res.score+"/100 against your targets — worth an offer."; }
+  else if(gatesPass && res.score>=45){ v="PURSUE"; msg="No dealbreakers, but only "+res.score+"/100 against your targets — pursue if you can improve the terms below."; }
+  else if(!gatesPass && fixable){ v="PURSUE"; msg="A dealbreaker at this price — but the fix is within 10% of asking. Negotiate before you walk."; }
+  else { v="NO-GO"; msg = gatesPass? "Scores "+res.score+"/100 — too far from your targets as structured." : "Fails a hard gate, and the fix sits more than 10% below asking."; }
+  return {v:v, msg:msg, solvedPrice:solvedPrice};
+}
+
+/* bisection: max price where gates pass and score>=70 */
+function passesAll(kind, inputs, targets, price){
+  var i=Object.assign({},inputs,{price:price});
+  var r=runEngine(kind,i,targets);
+  return r.gates.every(function(g){return g.pass;}) && r.score>=70;
+}
+function solveMaxPrice(kind, inputs, targets){
+  if(passesAll(kind,inputs,targets,inputs.price)) {
+    var lo=inputs.price, hi=inputs.price*2;
+    if(passesAll(kind,inputs,targets,hi)) return hi;
+    for(var k=0;k<40;k++){var mid=(lo+hi)/2; if(passesAll(kind,inputs,targets,mid)) lo=mid; else hi=mid;}
+    return Math.floor(lo/100)*100;
+  }
+  if(!passesAll(kind,inputs,targets,1000)) return null;
+  var lo2=1000, hi2=inputs.price;
+  for(var k2=0;k2<40;k2++){var mid2=(lo2+hi2)/2; if(passesAll(kind,inputs,targets,mid2)) lo2=mid2; else hi2=mid2;}
+  return Math.floor(lo2/100)*100;
+}
+function solveMinRent(inputs,targets,kind){
+  kind=kind||"hold";
+  var t=function(rent){ var i=Object.assign({},inputs,{rent:rent}); var r=runEngine(kind,i,targets);
+    return r.gates.every(function(g){return g.pass;}) && r.score>=70; };
+  if(t(inputs.rent)) return null;
+  if(!t(inputs.rent*3)) return null;
+  var lo=inputs.rent, hi=inputs.rent*3;
+  for(var k=0;k<36;k++){var mid=(lo+hi)/2; if(t(mid)) hi=mid; else lo=mid;}
+  return Math.ceil(hi/5)*5;
+}
+function solveMaxRehab(kind,inputs,targets){
+  var t=function(rh){ var i=Object.assign({},inputs,{rehab:rh}); var r=runEngine(kind,i,targets);
+    return r.gates.every(function(g){return g.pass;}) && r.score>=70; };
+  if(!t(0)) return null;
+  if(t(inputs.rehab)) return null;
+  var lo=0, hi=inputs.rehab;
+  for(var k=0;k<36;k++){var mid=(lo+hi)/2; if(t(mid)) lo=mid; else hi=mid;}
+  return Math.floor(lo/500)*500;
+}
+
+/* ---------------- financing readiness (educational) ---------------- */
+function readiness(kind, res, inputs){
+  var p=S.profile, m=res.m, out=[];
+  var cashNeed = m.cashIn!==undefined? m.cashIn : m.totalIn;
+  function level(ratio){ return ratio>=1? "ready" : ratio>=0.8? "almost" : "build"; }
+  if(kind==="brrrr"){
+    var hb=level(p.cash/cashNeed);
+    out.push({name:"Bridge / hard money (phase 1)", lvl:hb, note: hb==="ready"?"Gap equity, points and seasoning carry all fit your stated cash."
+      : hb==="almost"?"Typically wants ~"+usd0(Math.max(cashNeed-p.cash,0))+" more for the bridge phase.":"Cash on hand is below the typical bridge-phase requirement."});
+    var dr = m.dscr>=1.2? level(Math.min(p.cash/cashNeed,1)) : "build";
+    out.push({name:"DSCR refinance (phase 2)", lvl:dr, note: m.dscr>=1.2? "Post-refi DSCR tracks with typical refi criteria at your chosen LTV.":"Post-refi DSCR is under 1.20 — lower the refi LTV or improve rent before this typically clears."});
+  } else if(kind==="build"){
+    var cb=level(p.cash/cashNeed);
+    if(p.deals===0 && cb!=="build") cb="almost";
+    out.push({name:"Construction loan", lvl:cb, note: cb==="ready"?"Equity requirement and typical experience bar both track."
+      : cb==="almost"?(p.deals===0?"Equity tracks, but first-time builders typically see lower leverage and a completion guaranty — budget cushion.":"Typically wants ~"+usd0(Math.max(cashNeed-p.cash,0))+" more equity.")
+      :"Stated cash is well below the ~30% equity construction lenders typically require."});
+  } else if(kind==="entitle"){
+    var eb=level(p.cash/cashNeed);
+    out.push({name:"Land / entitlement financing", lvl:eb, note: eb==="ready"?"Most entitlement plays run on cash or land loans at low leverage — your stated cash covers this one."
+      : eb==="almost"?"Close — an option structure could cap your exposure below your cash on hand.":"Consider optioning instead of buying: caps exposure at the option fee + pursuit costs."});
+  } else if(kind==="hold"){
+    var credOK = p.credit==="excellent"||p.credit==="good";
+    var conv = credOK? level(p.cash/cashNeed) : "build";
+    out.push({name:"Conventional", lvl:conv, note: conv==="ready"? "Your profile tracks with typical conventional criteria for a deal this size."
+      : conv==="almost"? "Typically wants about "+usd0(Math.max(cashNeed-p.cash,0))+" more in cash than your profile shows."
+      : credOK? "Cash on hand is well below what a deal this size typically requires — reserve-building track suggested."
+      : "Conventional lending typically requires a stronger credit band — the Academy credit-building track maps the steps."});
+    var dscrOK = m.dscr>=1.20;
+    var dl = !dscrOK? "build" : level(p.cash/cashNeed);
+    out.push({name:"DSCR loan", lvl:dl, note: !dscrOK? "The deal itself is below the 1.20 DSCR these products typically require — see the price lever above."
+      : dl==="ready"? "Deal DSCR and your liquidity both track with typical DSCR-lender criteria."
+      : dl==="almost"? "Deal qualifies on DSCR; typically wants ~"+usd0(Math.max(cashNeed-p.cash,0))+" more liquidity."
+      : "Deal qualifies on DSCR, but liquidity is the gap — here's the reserve path."});
+  } else {
+    var hm = level(p.cash/cashNeed);
+    if(p.deals===0 && hm==="ready") hm="almost";
+    out.push({name:"Hard money / bridge", lvl:hm, note: hm==="ready"? "Points, carry and the equity gap all sit inside your stated cash."
+      : hm==="almost"? (p.deals===0? "Cash tracks, but first-time flippers typically see lower leverage — budget extra cushion.":"Typically wants ~"+usd0(Math.max(cashNeed-p.cash,0))+" more cash for points and carry.")
+      : "Cash on hand is below typical points + carry + equity for this flip."});
+  }
+  /* DeFi — honest collateral math */
+  var ltv=0.60, support=p.wallet*ltv;
+  var dl2 = support>=cashNeed? "ready" : support>=cashNeed*0.25? "almost" : "build";
+  var liqDrop=Math.round((1-0.60/0.85)*100); /* stress vs typical liq threshold */
+  var defiNote = dl2==="ready"? "Your connected wallet would typically support the full "+usd0(cashNeed)+" cash need at a conservative 60% LTV."
+    : dl2==="almost"? "Your wallet would typically support ~"+usd0(support)+" of the "+usd0(cashNeed)+" need — gap-closing paths in the Academy."
+    : "Typical crypto-collateralized structures would want ~"+usd0(Math.ceil(cashNeed/ltv/1000)*1000)+" posted for this cash need. At your current earn pace: typically ready in ~7 months.";
+  out.push({name:"DeFi (crypto-collateralized)", lvl:dl2, note:defiNote, defi:true, drop:liqDrop});
+  return {rows:out, cashNeed:cashNeed};
+}
+
+/* ---------------- questions ---------------- */
+function questionsFor(goal){
+  var q=[
+    {id:"addr", t:"Where is it?", help:"Street, city and state. We’ll pull the county record, rent data and tax basis for this exact parcel.",
+     type:"address"},
+    {id:"price", t:"What's the asking price?", help:"Or the offer you have in mind — you can test other prices on the results screen.",
+     type:"money", src:"Listing data · demo", key:"price"},
+    {id:"rehab", t:"How much work does it need?", help:"Pick the scope and we'll estimate from real supplier pricing. Adjust the number if you have bids.",
+     type:"rehab", src:"Covington supplier pricing · Jun 2026", key:"rehab",
+     explain:"Cosmetic = paint, floors, fixtures. Moderate = kitchen/baths + systems touch-ups. Heavy = full gut or additions."},
+    {id:"arv", t:"What will it be worth fixed up?", help:"The after-repair value. We've estimated from nearby sales — override it if you know better.",
+     type:"money", src:"Comp estimate · ±8%", key:"arv",
+     explain:"ARV (after-repair value) is what similar, already-renovated homes nearby sell for. It anchors your equity and your exit."}
+  ];
+  if(S.asset==="ret"){
+    /* retail/industrial swaps residential questions */
+    q=q.filter(function(x){return x.id!=="rehab"&&x.id!=="arv";});
+    q.push({id:"rehab", t:"TI / improvement budget", help:"Tenant improvements and building work to stabilize it.", type:"money", src:"Covington supplier pricing · Jun 2026", key:"rehab"});
+    q.push({id:"arv", t:"Stabilized value", help:"What it\u2019s worth leased at market.", type:"money", src:"Cap-rate valuation · demo", key:"arv"});
+    q.push({id:"sqft", t:"Leasable square feet", help:"NRA — what tenants actually pay on.", type:"count2", key:"sqft", unit:"SF"});
+    q.push({id:"psf", t:"Rent per square foot (NNN, yearly)", help:"Tenants cover taxes, insurance and CAM under NNN — this is your net rent.",
+      type:"money", src:"Commercial comps · demo", key:"rentPsf",
+      explain:"NNN means the tenant reimburses taxes, insurance and maintenance. Your main owner costs left: management and a reserve for re-tenanting (we budget both)."});
+    q.push({id:"down", t:"How much are you putting down?", help:"Commercial lenders typically want 25–35%.", type:"pctseg", key:"downPct", opts:[25,30,35]});
+    q.push({id:"rate", t:"Interest rate", help:"Commercial mortgage, 25-year amortization assumed.", type:"pct", src:"Rate table · this week", key:"ratePct"});
+    return q;
+  }
+  if(S.asset==="lmf" && goal!=="sell"){
+    q=q.filter(function(x){return true;});
+    q.push({id:"units2", t:"How many units?", help:"20+ for this template.", type:"count2", key:"units", unit:"units"});
+    q.push({id:"rent", t:"Average rent per unit", help:"Across the mix, post-renovation.", type:"money", src:"Metro rent data · demo", key:"rent"});
+    q.push({id:"down", t:"How much are you putting down?", help:"Agency-style loans typically want 25–35% down.", type:"pctseg", key:"downPct", opts:[25,30,35]});
+    q.push({id:"rate", t:"Interest rate", help:"Agency-style terms prefilled.", type:"pct", src:"Rate table · this week", key:"ratePct"});
+    q.push({id:"taxes", t:"Annual property taxes", help:"Defaulted from the county\u2019s effective rate \u00d7 your price.", type:"money", src:"County rate \u00d7 your price", key:"taxes", smart:"tax"});
+    q.push({id:"ins", t:"Annual insurance", help:"Per-unit metro average.", type:"money", src:"Metro $/unit table", key:"insurance", smart:"ins"});
+    if(goal==="brrrr"){ q=q.concat(brrrrQs()); }
+    return q;
+  }
+  if(goal!=="sell"){
+    if(S.asset==="smf"){
+      q.push({id:"mix", t:"What's the unit mix?", help:"Counts and post-renovation rent per unit type. Rents are prefilled by bedroom for this ZIP.",
+        type:"unitmix", src:"HUD FMR + rent AVM by bedroom · demo",
+        explain:"Rent moves more by bedroom count than by almost anything else, so we underwrite each type separately and roll them up."});
+    } else {
+      q.push({id:"rent", t:"What monthly rent can it get?", help:"Pick the bedroom count — the estimate updates from bedroom-level rent data. Override if you know better.",
+        type:"bedrent", src:"HUD FMR + rent AVM by bedroom · demo", key:"rent",
+        explain:"Use the post-renovation rent. If you're between numbers, screen with the lower one — deals should work on honest rent."});
+    }
+    q.push({id:"down", t:"How much are you putting down?", help:"Typical investor loans want 20–25% down.", type:"pctseg",
+      key:"downPct", opts:[20,25,30], explain:"More down = smaller loan and safer DSCR, but more cash locked in the deal. The screener will show the tradeoff."});
+    q.push({id:"rate", t:"Interest rate", help:"Today's typical 30-year investor rate is prefilled — edit if you've been quoted.",
+      type:"pct", src:"Rate table · this week", key:"ratePct"});
+    q.push({id:"mgmt", t:"Managing it yourself?", help:"Professional management typically runs 8% of collected rent.",
+      type:"toggle", key:"selfManage", yes:"I'll self-manage", no:"Hire management"});
+    q.push({id:"taxes", t:"Annual property taxes", help:"Not the seller’s bill — many states reassess at sale, so we start from the county’s effective rate × your price and check it against the last billed amount.",
+      type:"money", src:"County rate 1.1% × your price · vs last bill", key:"taxes", smart:"tax",
+      explain:"The seller’s current bill can be years stale. Our default = max(last billed amount, your price × county effective rate). If the two differ sharply, budget the higher one."});
+    q.push({id:"ins", t:"Annual insurance", help:"Estimated from replacement cost × your state’s rate, adjusted for flood zone. A partner quote can replace this later.",
+      type:"money", src:"Replacement cost × state rate · FEMA zone X", key:"insurance", smart:"ins",
+      explain:"Heuristic: rebuild cost (sq ft × local build cost) × rate per $1,000, plus flood/wind loadings. Real quotes come from an embedded insurance partner at the proforma stage."});
+    if(goal==="brrrr"){ q=q.filter(function(x){return x.id!=="down"&&x.id!=="frehab";}).concat(brrrrQs()); }
+    else q.push({id:"frehab", t:"Financing the rehab?", help:"Renovation loans typically cover ~85% of the work; otherwise it's your cash.",
+      type:"toggle", key:"financeRehab", yes:"Finance it", no:"Pay cash",
+      explain:"Financing rehab keeps cash in your pocket but raises the loan and lowers DSCR. The screener runs the honest math either way."});
+  } else {
+    q.push({id:"hold", t:"How long will you hold it?", help:"Purchase to sale, in months. Most flips run 4–9.",
+      type:"countseg", key:"holdMonths", opts:[4,6,9]});
+    q.push({id:"loan", t:"How will you fund it?", help:"Hard money is typical for flips: faster, pricier. Prefilled at today's typical terms.",
+      type:"loanseg", key:"loanType",
+      explain:"Hard money (demo terms): ~11% + 2 points at 85% of price+rehab. Bank bridge: ~8.5% + 1 point at 80% of price."});
+    q.push({id:"taxes", t:"Annual property taxes", help:"Carried while you hold it — defaulted from the county’s effective rate × your price, checked against the last billed amount.",
+      type:"money", src:"County rate 1.1% × your price · vs last bill", key:"taxes", smart:"tax"});
+    q.push({id:"ins", t:"Annual insurance", help:"Builder’s-risk style coverage while you renovate, from replacement cost × state rate.",
+      type:"money", src:"Replacement cost × state rate", key:"insurance", smart:"ins"});
+  }
+  return q;
+}
+
+function commitMix(){
+  var mx=S.inputs.unitMix, n=0, dollars=0;
+  Object.keys(mx).forEach(function(k){ n+=mx[k].n; dollars+=mx[k].n*mx[k].rent; });
+  S.inputs.units=Math.max(1,n);
+  S.inputs.rent= n? dollars/n : 0; /* weighted avg feeds the canonical engine */
+}
+function smartTax(){ return Math.round(S.inputs.price*0.011/10)*10; }   /* county effective rate × YOUR price (demo 1.1%) */
+function smartIns(){ return Math.round(Math.max(900, S.inputs.price*0.0058)/10)*10; } /* replacement-cost heuristic × state rate (demo) */
+
+function brrrrQs(){
+  return [
+    {id:"refiltv", t:"Refinance at what LTV?", help:"Lenders typically refinance BRRRRs at 70–80% of the appraised value.",
+     type:"pctseg", key:"refiLtv", opts:[70,75,80],
+     explain:"Higher LTV pulls more cash out but raises the payment and lowers DSCR. 75% is the market norm."},
+    {id:"refirate", t:"Refinance rate", help:"30-year DSCR-style loan on the finished property.", type:"pct", src:"Rate table · this week", key:"refiRatePct"},
+    {id:"season", t:"Seasoning before the refi?", help:"Months you\u2019ll carry the bridge loan before refinancing.", type:"countseg", key:"seasonMonths", opts:[6,9,12],
+     explain:"Most lenders want 6+ months of ownership before lending on the new appraised value. Every month adds carry cost."}
+  ];
+}
+/* ---------------- fmt ---------------- */
+function usd0(n){ var s=(n<0?"−$":"$")+Math.abs(Math.round(n)).toLocaleString("en-US"); return s; }
+function pct1(n){ return n.toFixed(1)+"%"; }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+/* ---------------- render helpers ---------------- */
+var $=function(id){return document.getElementById(id);};
+function setBar(html){ $("appbar").innerHTML=html; }
+function setScreen(html){ var sc=$("screen"); sc.innerHTML=html; sc.scrollTop=0; }
+function setDock(html){ $("dock").innerHTML=html; }
+function toast(msg){ var t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove("show");},2200); }
+function backBtn(fn){ return '<button class="back" aria-label="Back" onclick="'+fn+'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>'; }
+var BOB_MARK='<svg width="38" height="38" viewBox="0 0 48 48" aria-label="Build or Bust">'+
+  '<defs><clipPath id="bobr"><rect width="48" height="48" rx="10.8"/></clipPath></defs>'+
+  '<g clip-path="url(#bobr)"><rect width="48" height="48" fill="#D4A95A"/>'+
+  '<path d="M0 0H48L0 48Z" fill="#00D19A"/>'+
+  '<line x1="0" y1="48" x2="48" y2="0" stroke="#05131F" stroke-opacity=".24" stroke-width="1.5"/>'+
+  '<g fill="none" stroke="#05131F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'+
+  '<path d="M15.6 22.8 24 15.6 32.4 22.8"/><path d="M18.4 21.7V32.1H29.6V21.7"/></g></g></svg>';
+var ICONS={
+  home:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>',
+  tag:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12l-8 8-9-9V4h7z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg>',
+  cycle:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><polyline points="21 3 21 9 15 9"/></svg>',
+  crane:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V8l12-5v18"/><path d="M6 12h12"/><path d="M3 21h18"/></svg>',
+  map:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20 3 17V4l6 3 6-3 6 3v13l-6-3z"/><path d="M9 7v13M15 4v13"/></svg>',
+  fork:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="19" r="2.2"/><circle cx="19" cy="19" r="2.2"/><path d="M12 7.2c0 5-7 4.8-7 9.6M12 7.2c0 5 7 4.8 7 9.6"/></svg>',
+  units:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 8l9-5 9 5"/><path d="M9 21v-6h6v6"/></svg>',
+  lock:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
+  spark:'<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.5L21 11l-6.8 2.5L12 20l-2.2-6.5L3 11l6.8-2.5z"/></svg>',
+  shield:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 7.6-8 9-4.8-1.4-8-4.5-8-9V6z"/></svg>',
+  warn:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M12 3 2.5 20h19z"/><line x1="12" y1="9.5" x2="12" y2="14"/><circle cx="12" cy="17" r=".5" fill="currentColor"/></svg>'
+};
+
+/* ---------------- screens ---------------- */
+function goWelcome(){
+  S.route="welcome";
+  setBar('<span class="crumb">Build or Bust</span><span class="spacer"></span><span class="step-count">FREE TIER</span>');
+  setScreen(
+    '<div class="brandmark"><div class="bx" style="background:none;width:38px;height:38px">'+BOB_MARK+'</div>'+
+      '<span class="bob-wordmark" style="font-size:19px;letter-spacing:-.01em">Build <em style="font-style:normal;color:var(--gold)">or</em> Bust'+
+      '<small style="display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:2px">Real Estate Deal Analyzer · by ConstructFi</small></span></div>'+
+    '<div class="eyebrow">Every property. One answer.</div>'+
+    '<h1>Know in 60 seconds, before you fall in love with it.</h1>'+
+    '<p class="lede">Answer ~12 plain-English questions. Get a <b style="color:var(--emerald)">BUILD</b>, <b style="color:var(--gold)">WORK THE DEAL</b>, or <b style="color:var(--slate)">BUST</b> verdict — plus the three numbers that drove it and the price where it works.</p>'+
+    '<div class="hero-verdict">'+
+      '<div class="hv-row"><div class="hv-addr"><b>1418 Marsh Creek Rd</b>Screened 2 min ago · Buy &amp; Hold</div><div class="stamp pursue">WORK IT</div></div>'+
+      '<div class="hv-lever">Works at <b>$208,900</b> — 7.2% below asking</div>'+
+    '</div>'+
+    '<div class="free-note">'+ICONS.warn.replace('currentColor','#5E7370')+'<span>The verdict is always free. Deeper analysis, exports and packaging run on COVI — earnable in-app through the Academy. Deal breakdowns: @buildorbusted</span></div>'
+  );
+  setDock('<button class="btn btn-primary" onclick="APP.goGoal()">Screen a deal</button>');
+}
+
+var PRESETS={
+  beginner:{ coc:6, yocSpread:1.0, cfUnit:150, feq:10, dscr:1.20, mcf:0, margin:12, roi:25 },
+  experienced:{ coc:8, yocSpread:1.5, cfUnit:200, feq:15, dscr:1.25, mcf:0, margin:15, roi:30 }
+};
+function presetSheet(){
+  openSheet('<h3>Set your bar</h3><p class="lede">This tunes your default targets — every threshold stays editable on the scorecard.</p>'+
+    '<button class="card-btn" onclick="APP.setLevel(\'beginner\')"><div class="ic">'+ICONS.home+'</div><div class="tx"><b>Newer to this</b><span>Friendlier targets while you learn — 6% cash-on-cash, 1.20 DSCR</span></div></button>'+
+    '<button class="card-btn" onclick="APP.setLevel(\'experienced\')"><div class="ic">'+ICONS.crane+'</div><div class="tx"><b>Experienced</b><span>Lender-typical bar — 8% cash-on-cash, 1.25 DSCR, $200/unit</span></div></button>');
+}
+function setLevel(lv){ S.expLevel=lv; S.targets=Object.assign({},PRESETS[lv]); closeSheet(); goGoal(); toast(lv==="beginner"?"Targets set for learning — raise them anytime":"Lender-typical targets set"); }
+function goGoal(){
+  if(!S.expLevel){ presetSheet(); }
+  S.route="goal";
+  setBar(backBtn("APP.goWelcome()")+'<span class="crumb">New screen</span><span class="spacer"></span><span class="step-count">1 / 3</span>');
+  var icons={hold:ICONS.home, sell:ICONS.tag, brrrr:ICONS.cycle, build:ICONS.crane, entitle:ICONS.map, unsure:ICONS.fork};
+  var html='<div class="eyebrow">Goal first</div><h2>What are you trying to do?</h2><p class="lede" style="margin-bottom:20px">Your goal picks the engine, the metrics and the verdict language — it matters more than the property type.</p>';
+  GOALS.forEach(function(g){
+    if(g.live){
+      html+='<button class="card-btn" onclick="APP.pickGoal(\''+g.id+'\')"><div class="ic">'+icons[g.id]+'</div><div class="tx"><b>'+g.name+'</b><span>'+g.desc+'</span></div>'+(g.dual?'<span class="tag dual">Runs both</span>':'')+'</button>';
+    } else {
+      html+='<button class="card-btn dis" onclick="APP.waitlist(\''+esc(g.name)+'\',\''+g.wave+'\')"><div class="ic">'+icons[g.id]+'</div><div class="tx"><b>'+g.name+'</b><span>'+g.desc+'</span></div><span class="tag soon">'+g.wave+'</span></button>';
+    }
+  });
+  setScreen(html); setDock('');
+}
+function pickGoal(id){
+  S.goal=id;
+  if(id==="entitle"){ S.asset="land"; startQuestions(); return; }
+  goAsset();
+}
+function startQuestions(){
+  S.inputs=Object.assign({},D);
+  if(S.goal==="entitle"){ Object.assign(S.inputs,{price:600000, entBudget:120000, entMonths:18, confidence:"likely", exitValue:1350000, optionMode:false}); }
+  S.touched={}; S.qIndex=0; S.qs=questionsFor(S.goal); goQuestion();
+}
+
+function goAsset(){
+  S.route="asset";
+  setBar(backBtn("APP.goGoal()")+'<span class="crumb">New screen</span><span class="spacer"></span><span class="step-count">2 / 3</span>');
+  var html='<div class="eyebrow">The asset</div><h2>What are you looking at?</h2><p class="lede" style="margin-bottom:20px">Income-restricted units? That\u2019s a toggle inside multifamily — mixed-income is normal here.</p>';
+  ASSETS.forEach(function(a){
+    if(a.live){
+      html+='<button class="card-btn" onclick="APP.pickAsset(\''+a.id+'\')"><div class="ic">'+(a.id==="smf"?ICONS.units:ICONS.home)+'</div><div class="tx"><b>'+a.name+'</b><span>'+a.desc+'</span></div></button>';
+    } else {
+      html+='<button class="card-btn dis" onclick="APP.waitlist(\''+esc(a.name)+'\',\''+a.wave+'\')"><div class="ic">'+ICONS.units+'</div><div class="tx"><b>'+a.name+'</b><span>'+a.desc+'</span></div><span class="tag soon">'+a.wave+'</span></button>';
+    }
+  });
+  setScreen(html); setDock('');
+}
+function pickAsset(id){
+  S.asset=id;
+  S.inputs=Object.assign({},D);
+  S.inputs.units=1; S.inputs.unitMix=null;
+  if(id==="smf"){
+    S.inputs.price=520000; S.inputs.rehab=90000; S.inputs.arv=680000; S.inputs.taxes=6800; S.inputs.insurance=4200;
+    S.inputs.unitMix={st:{n:0,rent:1150}, b1:{n:2,rent:1300}, b2:{n:2,rent:1650}, b3:{n:0,rent:2200}, b4:{n:0,rent:2600}};
+    commitMix();
+  }
+  if(id==="lmf"){
+    Object.assign(S.inputs,{units:48, rent:1400, price:5800000, rehab:720000, arv:8200000, taxes:62000, insurance:38000, downPct:30});
+  }
+  if(id==="ret"){
+    Object.assign(S.inputs,{sqft:12000, rentPsf:16, price:1900000, rehab:150000, arv:2500000, downPct:30, taxes:0, insurance:0});
+  }
+  if(S.goal==="build"){
+    var hp = id==="ret"? {sqft:30000, hardPsf:135, salePsf:210, rentTotal:38000} :
+             id==="lmf"? {sqft:42000, hardPsf:175, salePsf:265, rentTotal:78000} :
+             id==="smf"? {sqft:9600, hardPsf:170, salePsf:250, rentTotal:14500} :
+                         {sqft:2400, hardPsf:165, salePsf:310, rentTotal:2600};
+    Object.assign(S.inputs,{price: id==="ret"?650000: id==="lmf"?1400000: id==="smf"?420000:120000,
+      softPct:20, buildMonths: id==="sf"?8:14, exitMode:true}, hp);
+  }
+  S.touched={}; S.pf=null;
+  S.qIndex=0; S.qs=questionsFor(S.goal==="unsure"?"hold":S.goal);
+  if(S.goal==="unsure"){
+    var sellQ=questionsFor("sell").filter(function(q){return q.id==="hold"||q.id==="loan";});
+    S.qs=S.qs.concat(sellQ);
+  }
+  goQuestion();
+}
+
+function goQuestion(){
+  S.route="question";
+  var q=S.qs[S.qIndex], n=S.qs.length;
+  setBar(backBtn(S.qIndex===0?"APP.goAsset()":"APP.prevQ()")+'<span class="crumb">'+goalName()+'</span><span class="spacer"></span><span class="step-count">'+(S.qIndex+1)+' / '+n+'</span>');
+  var html='<div class="progress"><i style="width:'+Math.round((S.qIndex)/n*100)+'%"></i></div>';
+  html+='<h2>'+q.t+'</h2><p class="q-help">'+q.help+'</p>';
+  if(q.src) html+='<div class="src-chip'+(q.src.indexOf("Covington")>-1?" gold":"")+'"><i></i>'+q.src+'</div>';
+  /* smart defaults recompute from current price unless the user overrode them */
+  if(q.smart==="tax" && !S.touched.taxes) S.inputs.taxes=smartTax();
+  if(q.smart==="ins" && !S.touched.insurance) S.inputs.insurance=smartIns();
+  var v=S.inputs[q.key];
+  if(q.type==="address"){
+    var a=S.addr;
+    html+='<div class="fld"><label>Street address</label><input id="ad_street" autocomplete="off" placeholder="1418 Marsh Creek Rd" value="'+esc(a.street)+'"></div>'+
+      '<div style="display:grid;grid-template-columns:1.5fr 1fr;gap:10px">'+
+      '<div class="fld"><label>City</label><input id="ad_city" placeholder="Pineville" value="'+esc(a.city)+'"></div>'+
+      '<div class="fld"><label>State</label><input id="ad_state" placeholder="NC" maxlength="2" style="text-transform:uppercase" value="'+esc(a.state)+'"></div></div>'+
+      '<div class="src-chip"><i></i>Autocomplete + parcel match · Places / Smarty · demo</div>';
+  } else if(q.type==="bedrent"){
+    html+='<div class="seg" style="grid-template-columns:repeat(5,1fr)">';
+    Object.keys(BR_RENTS).forEach(function(k){
+      var on=(S.inputs.beds===k)?' class="on"':'';
+      html+='<button'+on+' onclick="APP.setBeds(\''+k+'\')">'+BR_RENTS[k].label+'<small>$'+BR_RENTS[k].rent.toLocaleString()+'</small></button>';
+    });
+    html+='</div><div class="bigfield"><span class="sym">$</span><input id="qv" type="text" inputmode="numeric" value="'+Math.round(v).toLocaleString("en-US")+'"><span class="unit">/mo</span></div>';
+  } else if(q.type==="unitmix"){
+    var mx=S.inputs.unitMix;
+    html+='<div class="sc-table" style="margin-bottom:12px">'+
+      '<div class="sc-r h" style="grid-template-columns:1fr 1.2fr 1fr"><span>Type</span><span>Units</span><span>Rent /mo</span></div>';
+    Object.keys(BR_RENTS).forEach(function(k){
+      html+='<div class="sc-r" style="grid-template-columns:1fr 1.2fr 1fr"><span class="m">'+BR_RENTS[k].label+'</span>'+
+        '<span style="display:flex;align-items:center;gap:8px">'+
+        '<button class="back" style="width:30px;height:30px;border-radius:9px" aria-label="Fewer" onclick="APP.mixN(\''+k+'\',-1)">−</button>'+
+        '<b class="data" style="min-width:16px;text-align:center">'+mx[k].n+'</b>'+
+        '<button class="back" style="width:30px;height:30px;border-radius:9px" aria-label="More" onclick="APP.mixN(\''+k+'\',1)">+</button></span>'+
+        '<span><input id="mr_'+k+'" value="'+mx[k].rent+'" inputmode="numeric" onchange="APP.mixRent(\''+k+'\')" style="max-width:76px"></span></div>';
+    });
+    html+='</div><div class="src-chip"><i></i>'+S.inputs.units+' units · avg $'+Math.round(S.inputs.rent).toLocaleString()+'/unit · $'+Math.round(S.inputs.rent*S.inputs.units).toLocaleString()+'/mo gross</div>';
+  } else if(q.type==="money"){
+    html+='<div class="bigfield"><span class="sym">$</span><input id="qv" type="text" inputmode="numeric" value="'+Math.round(v).toLocaleString("en-US")+'"></div>';
+  } else if(q.type==="pct"){
+    html+='<div class="bigfield"><input id="qv" class="nosym" type="text" inputmode="decimal" value="'+v+'"><span class="unit">% APR</span></div>';
+  } else if(q.type==="count2"){
+    html+='<div class="bigfield"><input id="qv" class="nosym" type="text" inputmode="numeric" value="'+Math.round(v).toLocaleString("en-US")+'"><span class="unit">'+q.unit+'</span></div>';
+  } else if(q.type==="confseg"){
+    html+='<div class="seg">'+
+      [["byright","By-right","\u00d70.9 odds"],["likely","Likely","\u00d70.6 odds"],["uphill","Uphill","\u00d70.35 odds"]].map(function(o){
+        return '<button class="'+(S.inputs.confidence===o[0]?"on":"")+'" onclick="APP.setSegStr(\'confidence\',\''+o[0]+'\')">'+o[1]+'<small>'+o[2]+'</small></button>';
+      }).join("")+'</div>';
+  } else if(q.type==="count"){
+    html+='<div class="bigfield"><input id="qv" class="nosym" type="text" inputmode="numeric" value="'+v+'"><span class="unit">units</span></div>';
+  } else if(q.type==="rehab"){
+    html+='<div class="seg">';
+    Object.keys(REHAB_SCOPES).forEach(function(k){
+      var sc=REHAB_SCOPES[k], on=(S.inputs.rehabScope===k)?" on":"";
+      html+='<button class="'+on.trim()+'" onclick="APP.setScope(\''+k+'\')">'+sc.label+'<small>'+sc.psf+'</small></button>';
+    });
+    html+='</div><div class="bigfield"><span class="sym">$</span><input id="qv" type="text" inputmode="numeric" value="'+Math.round(v).toLocaleString("en-US")+'"></div>';
+  } else if(q.type==="pctseg"||q.type==="countseg"){
+    html+='<div class="seg">';
+    q.opts.forEach(function(o){
+      var on=(S.inputs[q.key]===o)?" class=\"on\"":"";
+      html+='<button'+on+' onclick="APP.setSeg(\''+q.key+'\','+o+')">'+o+(q.type==="pctseg"?"%":" mo")+'</button>';
+    });
+    html+='</div>';
+  } else if(q.type==="loanseg"){
+    html+='<div class="seg two">'+
+      '<button class="'+(S.inputs.loanType==="hard"?"on":"")+'" onclick="APP.setSegStr(\'loanType\',\'hard\')">Hard money<small>11% · 2 pts · 85% LTC</small></button>'+
+      '<button class="'+(S.inputs.loanType==="bank"?"on":"")+'" onclick="APP.setSegStr(\'loanType\',\'bank\')">Bank bridge<small>8.5% · 1 pt · 80% LTV</small></button></div>';
+  } else if(q.type==="toggle"){
+    html+='<div class="seg two">'+
+      '<button class="'+(S.inputs[q.key]?"on":"")+'" onclick="APP.setSegBool(\''+q.key+'\',true)">'+q.yes+'</button>'+
+      '<button class="'+(!S.inputs[q.key]?"on":"")+'" onclick="APP.setSegBool(\''+q.key+'\',false)">'+q.no+'</button></div>';
+  }
+  if(q.explain){
+    html+='<button class="whatis" onclick="this.nextElementSibling.classList.toggle(\'open\')">What does this mean?</button>'+
+          '<div class="explain">'+q.explain+'</div>';
+  }
+  setScreen(html);
+  setDock('<button class="btn btn-primary" onclick="APP.nextQ()">'+(S.qIndex===n-1?"Get the verdict":"Continue")+'</button>');
+  var inp=$("qv"); if(inp){ inp.focus(); inp.addEventListener("keydown",function(e){ if(e.key==="Enter") APP.nextQ(); });
+    if(q.type==="money"||q.type==="rehab"||q.type==="bedrent"){
+      inp.addEventListener("input",function(){ var d=this.value.replace(/[^0-9]/g,""); this.value= d? parseInt(d,10).toLocaleString("en-US"):""; });
+    }
+  }
+}
+function goalName(){ var g=GOALS.filter(function(x){return x.id===S.goal;})[0]; return g? g.name.toUpperCase(): "SCREEN"; }
+function readQ(){
+  var q=S.qs[S.qIndex];
+  if(q.type==="address"){
+    S.addr.street=($("ad_street")||{}).value||""; S.addr.city=($("ad_city")||{}).value||""; S.addr.state=(($("ad_state")||{}).value||"").toUpperCase();
+    return;
+  }
+  if(q.type==="unitmix"){ Object.keys(BR_RENTS).forEach(function(k){ var el=$("mr_"+k); if(el){ var v=parseFloat(String(el.value).replace(/[,$\s]/g,"")); if(!isNaN(v)) S.inputs.unitMix[k].rent=Math.max(0,v);} }); commitMix(); return; }
+  if(["money","pct","count","count2","rehab","bedrent"].indexOf(q.type)<0) return;
+  var inp=$("qv");
+  if(inp){
+    var raw=parseFloat(inp.value.replace(/[,$\s]/g,""));
+    if(!isNaN(raw)){
+      var nv= q.type==="count"? Math.max(1,Math.min(20,Math.round(raw))) : q.type==="count2"? Math.max(1,Math.round(raw)) : raw;
+      if(S.inputs[q.key]!==nv) S.touched[q.key]=true;
+      S.inputs[q.key]=nv;
+    }
+  }
+}
+function visibleQ(ix){ var q=S.qs[ix]; return !q.showIf || q.showIf(); }
+function nextQ(){
+  var q=S.qs[S.qIndex]; readQ();
+  if(S.fromReview){ S.fromReview=false; goReview(); return; }
+  if(q.type==="address" && (S.addr.street||S.addr.city)) toast("Parcel matched · county record + rent data prefilled (demo)");
+  var nx=S.qIndex+1;
+  while(nx<S.qs.length && !visibleQ(nx)) nx++;
+  if(nx<S.qs.length){ S.qIndex=nx; goQuestion(); } else goReview();
+}
+function answerLabel(q){
+  var i=S.inputs;
+  switch(q.type){
+    case "address": return (S.addr.street||"—")+(S.addr.city?", "+S.addr.city:"")+(S.addr.state?", "+S.addr.state:"");
+    case "money": return usd0(i[q.key]);
+    case "pct": return i[q.key]+"%";
+    case "count": return i[q.key]+" units";
+    case "count2": return Math.round(i[q.key]).toLocaleString()+" "+q.unit;
+    case "confseg": return {byright:"By-right",likely:"Likely",uphill:"Uphill"}[i.confidence];
+    case "rehab": return REHAB_SCOPES[i.rehabScope].label+" · "+usd0(i.rehab);
+    case "bedrent": return BR_RENTS[i.beds].label+" · "+usd0(i.rent)+"/mo";
+    case "unitmix": return i.units+" units · avg "+usd0(Math.round(i.rent))+"/unit";
+    case "pctseg": return i[q.key]+"%";
+    case "countseg": return i[q.key]+" months";
+    case "pct": if(q.key==="refiRatePct") return i[q.key]+"%";
+    case "loanseg": return i.loanType==="hard"?"Hard money":"Bank bridge";
+    case "toggle": return i[q.key]? q.yes: q.no;
+  }
+  return "";
+}
+function validateInputs(){
+  var i=S.inputs, errs={};
+  function put(id,msg){ errs[id]=msg; }
+  if(!(i.price>=10000 && i.price<=50000000)) put("price","This price looks off — check for a typo.");
+  if(S.goal==="entitle"){
+    if(i.exitValue < i.price*0.8) put("exitv","Entitled value below the raw-land price — one of these is off.");
+    return errs;
+  }
+  if(S.goal==="build"){
+    if(!(i.hardPsf>=40 && i.hardPsf<=600)) put("hard","Hard cost outside $40–600/SF — check against supplier pricing.");
+    if(i.exitMode && !(i.salePsf>i.hardPsf*0.8)) put("salepsf","Sale $/SF is below hard cost — that can\u2019t pencil; check both numbers.");
+    return errs;
+  }
+  if(i.arv < i.price*0.8) put("arv","Finished value is 20%+ below your price — it should usually exceed cost basis.");
+  if(i.rehab<0 || i.rehab>i.price*1.5) put("rehab","Improvement budget is over 150% of the price — double-check the scope.");
+  if(S.goal!=="sell"){
+    if(S.asset==="ret"){
+      if(!(i.rentPsf>=4 && i.rentPsf<=80)) put("psf","NNN rent outside $4–80/SF — probably a typo.");
+    } else {
+      var rp=i.rent/i.price*100*(i.units||1);
+      if(!(rp>=0.2 && rp<=2.5)) put(S.asset==="smf"?"mix":"rent","Rent-to-price is outside 0.2%–2.5% — one of these numbers is probably a typo.");
+    }
+    if(!(i.ratePct>=3 && i.ratePct<=15)) put("rate","Rate outside 3%–15% — confirm your quote.");
+  }
+  return errs;
+}
+function goReview(){
+  S.route="review";
+  var errs=S._errs||{};
+  setBar(backBtn("APP.reQuestion()")+'<span class="crumb">Review</span><span class="spacer"></span><span class="step-count">'+goalName()+'</span>');
+  var html='<div class="eyebrow">One last look</div><h2>Your answers</h2><p class="lede" style="margin-bottom:16px">Tap any line to change it — the verdict runs on exactly these numbers.</p><div class="sc-table">';
+  S.qs.forEach(function(q,ix){
+    if(q.showIf && !q.showIf()) return;
+    var err=errs[q.id];
+    html+='<div class="sc-r" style="grid-template-columns:1.2fr 1.2fr auto;cursor:pointer'+(err?';background:rgba(255,122,107,.06)':'')+'" onclick="APP.editQ('+ix+')">'+
+      '<span class="m" style="font-size:12.5px;color:var(--muted)">'+q.t.replace(/\?$/,"")+'</span>'+
+      '<span class="val" style="font-size:13px'+(err?';color:var(--danger)':'')+'">'+esc(answerLabel(q))+'</span>'+
+      '<span style="color:var(--emerald);font-size:12px;font-weight:600">Edit</span></div>';
+    if(err) html+='<div style="padding:0 14px 12px;font-size:12px;color:var(--danger);line-height:1.45;background:rgba(255,122,107,.06)">'+err+'</div>';
+  });
+  html+='</div>';
+  if(Object.keys(errs).length) html+='<div class="stress" style="margin:12px 0 0">'+ICONS.warn+'<span>Check the flagged numbers first — we hold the verdict rather than stamp a typo.</span></div>';
+  setScreen(html);
+  setDock('<button class="btn btn-primary" onclick="APP.tryVerdict()">Get the verdict</button>');
+}
+function editQ(ix){ S.qIndex=ix; S.fromReview=true; S._errs=null; goQuestion(); }
+function tryVerdict(){
+  var errs=validateInputs();
+  if(Object.keys(errs).length){ S._errs=errs; goReview(); toast("A couple of numbers need a look"); return; }
+  S._errs=null; goResults();
+}
+function prevQ(){ readQ(); var px=S.qIndex-1; while(px>0 && !visibleQ(px)) px--; S.qIndex=Math.max(0,px); goQuestion(); }
+function setScope(k){ S.inputs.rehabScope=k; var base=REHAB_SCOPES[k].amt; S.inputs.rehab= S.asset==="smf"? base*Math.max(1,S.inputs.units)*0.6 : base; goQuestion(); }
+function setSeg(key,v){ S.inputs[key]=v; goQuestion(); }
+function setSegStr(key,v){ S.inputs[key]=v; goQuestion(); }
+function setSegBool(key,v){ S.inputs[key]=v; goQuestion(); }
+function setBeds(k){ S.inputs.beds=k; S.inputs.rent=BR_RENTS[k].rent; S.touched.rent=false; goQuestion(); }
+function mixN(k,d){ readQ(); var mx=S.inputs.unitMix; mx[k].n=Math.max(0,Math.min(20,mx[k].n+d));
+  var tot=Object.keys(mx).reduce(function(a,x){return a+mx[x].n;},0); if(tot===0) mx[k].n=1; commitMix(); goQuestion(); }
+function mixRent(k){ readQ(); goQuestion(); }
+
+/* ---------------- results ---------------- */
+function kindsForGoal(){
+  if(S.goal==="unsure") return ["hold","sell"];
+  return [S.goal];
+}
+function computeAll(){
+  var t=S.targets, out={};
+  kindsForGoal().forEach(function(k){
+    var r=runEngine(k,S.inputs,t); r.verdict=verdictOf(r,S.inputs,t,k);
+    r.levers={price:r.verdict.solvedPrice,
+      rent:((k==="hold"&&S.asset!=="ret")||k==="brrrr")? solveMinRent(S.inputs,t,k):null,
+      rehab:(k==="hold"||k==="sell")? solveMaxRehab(k,S.inputs,t):null};
+    out[k]=r;
+  });
+  return out;
+}
+function goResults(){
+  S.route="results";
+  S.lastResults=computeAll();
+  S.resultTab = kindsForGoal()[0];
+  renderResults(true);
+}
+function renderResults(animate){
+  var R=S.lastResults, kind=S.resultTab, res=R[kind], v=res.verdict;
+  setBar(backBtn("APP.backToReview()")+'<span class="crumb">Build or Bust</span><span class="spacer"></span><span class="step-count">'+(S.asset==="smf"? S.inputs.units+"-UNIT":"SINGLE FAMILY")+'</span>');
+  var an=animate?" r-anim":"";
+  var html="";
+  if(S.goal==="unsure"){
+    html+='<div class="tabs'+an+'">'+
+      '<button class="'+(kind==="hold"?"on":"")+'" onclick="APP.tab(\'hold\')">Hold <span class="mini '+cls(R.hold.verdict.v)+'">'+brandShort(R.hold.verdict.v)+'</span></button>'+
+      '<button class="'+(kind==="sell"?"on":"")+'" onclick="APP.tab(\'sell\')">Sell <span class="mini '+cls(R.sell.verdict.v)+'">'+brandShort(R.sell.verdict.v)+'</span></button></div>';
+  }
+  html+=verdictCard(res,v,an);
+  html+=driversHtml(res,an);
+  html+=leverHtml(res,v,kind,an);
+  html+=numbersHtml(res,kind);
+  html+=readinessHtml(kind,res);
+  html+=scorecardHtml(res,kind);
+  if((kind==="hold"&&S.asset!=="ret")||kind==="brrrr") html+=waterfallHtml(res);
+  html+=lockedHtml();
+  html+=assumptionsHtml(kind);
+  html+='<p class="foot-disc"><b style="color:var(--muted)">Build or Bust</b> · by ConstructFi · buildorbusted.app — Deal Score is an educational screening estimate built from your inputs and targets — not investment, lending or legal advice. Verify every number before you offer.</p>';
+  setScreen(html);
+  setDock('<div style="display:flex;gap:8px">'+
+    '<button class="btn btn-ghost" style="flex:1" onclick="APP.toastMsg(\'Saved to your pipeline (1 of 5 free slots)\')">Save</button>'+
+    '<button class="btn btn-primary" style="flex:1.6" onclick="APP.goProforma()">Build full proforma</button></div>');
+  if(animate) requestAnimationFrame(function(){ requestAnimationFrame(drawArc); }); else drawArc();
+}
+function cls(v){ return v==="GO"?"go": v==="PURSUE"?"pursue":"nogo"; }
+function brandWord(v){ return v==="GO"?"BUILD": v==="PURSUE"?"WORK THE DEAL":"BUST"; }
+function brandShort(v){ return v==="GO"?"BUILD": v==="PURSUE"?"WORK IT":"BUST"; }
+function robustness(kind,res,v){
+  var i=S.inputs, t=S.targets, base=v.v;
+  function vOf(mod){ var ii=Object.assign({},i,mod); var r=runEngine(kind,ii,t); return verdictOf(r,ii,t,kind).v; }
+  if(base==="NO-GO"){
+    var up= (kind==="hold"&&S.asset!=="ret")? vOf({rent:i.rent+150}) :
+            kind==="brrrr"? vOf({rent:i.rent+150}) :
+            kind==="build"? vOf({hardPsf:i.hardPsf*0.93}) :
+            kind==="entitle"? vOf({exitValue:i.exitValue*1.05}) :
+            kind==="hold"? vOf({rentPsf:i.rentPsf+2}) : vOf({arv:i.arv*1.03});
+    return up==="NO-GO"? {tone:"warn", txt:kind==="hold"?"Stays a BUST even with $150 more rent — the price is the problem, not the income.":"Stays a BUST even 3% above your ARV — the buy price is the problem."}
+      : {tone:"mid", txt:kind==="hold"?"Close — about $150 more rent changes the verdict. Verify the rent comps.":"Close — a 3% stronger sale price changes the verdict. Comp it hard."};
+  }
+  if(kind==="brrrr"){
+    if(vOf({arv:i.arv*0.95, rent:i.rent-100})===base) return {tone:"ok", txt:"Holds even if the appraisal lands 5% light and rent misses by $100."};
+    if(vOf({arv:i.arv*0.97})!==base) return {tone:"warn", txt:"Fragile — a 3% appraisal miss changes the verdict. The refi appraisal is everything here."};
+    return {tone:"mid", txt:"Survives a 3% appraisal miss; 5% light plus soft rent changes the verdict."};
+  }
+  if(kind==="build"){
+    if(vOf({hardPsf:i.hardPsf*1.10, salePsf:(i.salePsf||0)*0.95, rentTotal:(i.rentTotal||0)*0.95})===base) return {tone:"ok", txt:"Holds even with a 10% hard-cost overrun and a 5% softer exit."};
+    if(vOf({hardPsf:i.hardPsf*1.05})!==base) return {tone:"warn", txt:"Fragile — a 5% cost overrun changes the verdict. Lock pricing before you close on the land."};
+    return {tone:"mid", txt:"Survives a 5% overrun; 10% over plus a soft exit changes the verdict."};
+  }
+  if(kind==="entitle"){
+    if(vOf({entMonths:i.entMonths+6, exitValue:i.exitValue*0.95})===base) return {tone:"ok", txt:"Holds even 6 months late and 5% under the exit value."};
+    if(vOf({exitValue:i.exitValue*0.97})!==base) return {tone:"warn", txt:"Fragile — a 3% exit miss changes the verdict. Get real entitled-land comps first."};
+    return {tone:"mid", txt:"Survives a 3% exit miss; 6 months of delay plus a soft exit changes the verdict."};
+  }
+  if(kind==="hold"){
+    if(S.asset==="ret"){
+      if(vOf({rentPsf:i.rentPsf-2})===base) return {tone:"ok", txt:"Holds even at $2/SF lower rent — cushion against a rollover."};
+      if(vOf({rentPsf:i.rentPsf-1})!==base) return {tone:"warn", txt:"Fragile — $1/SF of rent changes the verdict. Underwrite the leases, not the pro forma."};
+      return {tone:"mid", txt:"Survives $1/SF of rent softness; $2/SF changes the verdict."};
+    }
+    if(vOf({rent:i.rent-150, rehab:i.rehab*1.15})===base) return {tone:"ok", txt:"Holds even if rent comes in $150/unit lower and rehab runs 15% over."};
+    if(vOf({rent:i.rent-50})!==base) return {tone:"warn", txt:"Fragile — flips off "+brandWord(base)+" if rent misses by just $50/unit. Verify rent before anything else."};
+    return {tone:"mid", txt:"Survives a $50 rent miss; a $150 miss plus a 15% rehab overrun changes the verdict."};
+  }
+  if(vOf({rehab:i.rehab*1.15, arv:i.arv*0.95})===base) return {tone:"ok", txt:"Holds even if rehab runs 15% over and the sale lands 5% under ARV."};
+  if(vOf({arv:i.arv*0.97})!==base) return {tone:"warn", txt:"Fragile — a 3% ARV miss changes the verdict. Comp hard before you offer."};
+  return {tone:"mid", txt:"Survives a 3% ARV miss; a 15% rehab overrun plus a soft sale changes the verdict."};
+}
+function verdictCard(res,v,an){
+  var word=v.v==="PURSUE"?"PURSUE":"" || v.v;
+  var sub=v.msg;
+  var c=cls(v.v);
+  var color=c==="go"?"#00D19A":c==="pursue"?"#D4A95A":"#90A1B9";
+  return '<div class="verdict-card '+c+an+'">'+
+    '<div class="v-top">'+
+      '<div class="arc-wrap"><svg width="92" height="92" viewBox="0 0 92 92">'+
+        '<circle cx="46" cy="46" r="40" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="7"/>'+
+        '<circle id="arcFg" class="arc-fg" cx="46" cy="46" r="40" fill="none" stroke="'+color+'" stroke-width="7" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="251.3"/>'+
+      '</svg><div class="arc-num"><b class="data" id="arcNum">0</b><span>score</span></div></div>'+
+      '<div>'+(S.addr.street?'<div style="font-size:11.5px;color:var(--faint);margin-bottom:4px">'+esc(S.addr.street)+(S.addr.city?' · '+esc(S.addr.city):'')+(S.addr.state?', '+esc(S.addr.state):'')+'</div>':'')+
+      '<div class="v-word '+c+'"'+(v.v==="PURSUE"?' style="font-size:21px;line-height:1.15"':'')+'>'+brandWord(v.v)+'</div>'+
+      '<div class="v-sub">'+sub+'</div></div>'+
+    '</div>'+
+    (function(){ var rb=robustness(S.resultTab,res,v);
+      var dot= rb.tone==="ok"?"var(--emerald)": rb.tone==="warn"?"var(--danger)":"var(--gold)";
+      return '<div style="display:flex;gap:9px;align-items:flex-start;margin-top:14px;padding-top:13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.5">'+
+        '<span style="width:8px;height:8px;border-radius:4px;background:'+dot+';flex:none;margin-top:4px"></span><span><b style="color:var(--ink)">Stress check:</b> '+rb.txt+'</span></div>'; })()+
+    '</div>';
+}
+function drawArc(){
+  var res=S.lastResults[S.resultTab], score=res.score;
+  var fg=$("arcFg"), num=$("arcNum"); if(!fg) return;
+  var C=251.3;
+  fg.style.strokeDashoffset=(C*(1-score/100)).toFixed(1);
+  var t0=performance.now(), dur=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches?0:900;
+  function tick(t){ var p=dur?Math.min(1,(t-t0)/dur):1; num.textContent=Math.round(score*p);
+    if(p<1) requestAnimationFrame(tick); }
+  requestAnimationFrame(tick);
+}
+function driversHtml(res,an){
+  var all=res.gates.map(function(g){ return {name:g.name, ok:g.pass, act:g.fmt(g.val), tgt:g.fmt(g.tgt), dist:g.pass? (g.val-g.tgt): (g.tgt-g.val)+1e9, gloss:g.id==="dscr"?"Income vs the mortgage — lenders typically want 1.20+.":"What's left each month after every bill and the loan."}; })
+    .concat(res.scored.map(function(s2){ var frac=s2.pts/s2.w; return {name:s2.name, ok:frac>=0.7, act:s2.fmt(s2.val), tgt:s2.fmt(s2.tgt), dist:Math.abs(1-frac)*1e6, gloss:s2.gloss}; }));
+  all.sort(function(a,b){ return (a.ok===b.ok?0:a.ok?1:-1) || b.dist-a.dist; });
+  var top=all.slice(0,3);
+  var h='<div class="sec-label'+an+'">What drove it</div>';
+  top.forEach(function(d,ix){
+    h+='<div class="driver'+an+'" style="animation-delay:'+(0.08*ix+0.15)+'s">'+
+      '<div class="dot '+(d.ok?"ok":"bad")+'">'+(d.ok?'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>':'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>')+'</div>'+
+      '<div><b>'+d.name+'</b><div class="nums"><span class="act">'+d.act+'</span><span class="vs">vs your target</span>'+d.tgt+'</div><div class="gloss">'+d.gloss+'</div></div></div>';
+  });
+  return h;
+}
+function leverHtml(res,v,kind,an){
+  var i=S.inputs, h='<div class="sec-label'+an+'">The lever</div>';
+  var main, alt="";
+  if(v.solvedPrice===null){
+    main= kind==="brrrr"? 'No purchase price fixes this — the refinance can\u2019t carry itself at this rent and LTV. Try the rent lever, or drop the refi LTV in Pro assumptions.' :
+          kind==="build"? 'Costs outrun the exit at any land price — trim hard cost, raise the exit, or rethink the product.' :
+          kind==="entitle"? 'The exit value can\u2019t cover the pursuit at any land price — this needs stronger entitled-land comps.' :
+          'No price makes this work against your current targets — the income can\u2019t carry it. Try the rent lever or loosen a target below.';
+  } else if(v.solvedPrice>=i.price){
+    main='Already works at asking. It keeps working up to <b>'+usd0(v.solvedPrice)+'</b> — that\u2019s your negotiation ceiling.';
+  } else {
+    var off=((1-v.solvedPrice/i.price)*100).toFixed(1);
+    main='This deal works at <b>'+usd0(v.solvedPrice)+'</b> — '+off+'% below asking.';
+  }
+  if((kind==="hold"||kind==="brrrr") && res.levers.rent) alt+='Or it works at <b>'+usd0(res.levers.rent)+'/mo</b>'+(kind==="brrrr"?" avg":"")+' rent at the current price. ';
+  if(kind==="build") main=main.replace("asking","land ask").replace("This deal works","This project pencils");
+  if(kind==="entitle") main=main.replace("asking","land ask").replace("This deal works","This play works");
+  if(res.levers.rehab!==null && res.levers.rehab!==undefined && res.levers.rehab<i.rehab) alt+='Or keep rehab under <b>'+usd0(res.levers.rehab)+'</b>.';
+  return h+'<div class="lever'+an+'" style="animation-delay:.35s"><div class="lv-label">'+ICONS.spark+' What would change the answer</div>'+
+    '<div class="lv-main">'+main+'</div>'+(alt?'<div class="lv-alt">'+alt+'</div>':"")+
+    '<div class="share-row"><button class="chip" onclick="APP.shareCard()">Download share card</button>'+
+    '<button class="chip" onclick="APP.toastMsg(\'Screened at the lever price — score updates live in Pro assumptions\')">Test that price</button></div></div>';
+}
+function numbersHtml(res,kind){
+  var m=res.m, h='<div class="sec-label">The numbers</div><div class="num-grid">';
+  function cellx(l,v2,neg,hero){ return '<div class="num-cell'+(hero?" hero":"")+'"><div class="nl">'+l+'</div><div class="nv'+(neg?" neg":"")+'">'+v2+'</div></div>'; }
+  if(kind==="brrrr"){
+    h+=cellx("Cash left in deal", usd0(m.cashLeft), false, true)+cellx("Cash out at refi", usd0(m.cashOut))+
+       cellx("Post-refi cash flow", usd0(m.mcf)+"/mo", m.mcf<0)+cellx("Refi loan", usd0(m.refiLoan))+
+       cellx("Total cash in", usd0(m.cashIn))+cellx("Equity kept", pct1(m.eqCap));
+    return h+"</div>";
+  }
+  if(kind==="build"){
+    if(S.inputs.exitMode){
+      h+=cellx("Development profit", usd0(m.profit), m.profit<0, true)+cellx("Total dev cost", usd0(m.TDC))+
+         cellx("Equity required", usd0(m.cashIn))+cellx("Gross sellout", usd0(m.gross))+
+         cellx("Construction interest", usd0(m.interest))+cellx("Equity multiple", m.em.toFixed(2)+"\u00d7");
+    } else {
+      h+=cellx("Development spread", m.spread.toFixed(2)+" pts", m.spread<0, true)+cellx("Total dev cost", usd0(m.TDC))+
+         cellx("Stabilized value", usd0(m.value))+cellx("Cash left after refi", usd0(m.cashLeft))+
+         cellx("Stabilized NOI", usd0(m.noi))+cellx("Stabilized DSCR", m.dscr.toFixed(2));
+    }
+    return h+"</div>";
+  }
+  if(kind==="entitle"){
+    h+=cellx("Entitlement margin", usd0(m.margin), m.margin<0, true)+cellx("Total cash in", usd0(m.totalIn))+
+       cellx("Cash multiple", m.mult.toFixed(2)+"\u00d7")+cellx("Carry cost", usd0(m.carry))+
+       cellx("Entitled exit value", usd0(m.exit))+cellx("Risk factor", "\u00d7"+m.factor);
+    return h+"</div>";
+  }
+  if(kind==="hold"&&S.asset==="ret"){
+    h+=cellx("Monthly cash flow", usd0(m.mcf), m.mcf<0, true)+cellx("Cash needed", usd0(m.cashIn))+
+       cellx("NOI / yr", usd0(m.noi))+cellx("Price per SF", usd0(m.psf))+
+       cellx("All-in cost", usd0(m.allIn))+cellx("Forced equity", usd0(m.forcedEq), m.forcedEq<0);
+    return h+"</div>";
+  }
+  if(kind==="hold"){
+    h+=cell("Monthly cash flow", usd0(m.mcf), m.mcf<0, true)+cell("Cash needed", usd0(m.cashIn))+
+       cell("All-in cost", usd0(m.allIn))+cell("Forced equity", usd0(m.forcedEq), m.forcedEq<0)+
+       cell("NOI / yr", usd0(m.noi))+cell("Loan payment", usd0(m.pi)+"/mo");
+  } else {
+    h+=cell("Net profit", usd0(m.profit), m.profit<0, true)+cell("Cash needed", usd0(m.cashIn))+
+       cell("All-in cost", usd0(m.allIn))+cell("Carry + interest", usd0(m.carry+m.interest))+
+       cell("Selling costs", usd0(m.sellCost))+cell("Max offer (70% rule)", usd0(m.mao));
+  }
+  return h+"</div>";
+  function cell(l,v2,neg,hero){ return '<div class="num-cell'+(hero?" hero":"")+'"><div class="nl">'+l+'</div><div class="nv'+(neg?" neg":"")+'">'+v2+'</div></div>'; }
+}
+function readinessHtml(kind,res){
+  var r=readiness(kind,res,S.inputs);
+  var h='<div class="sec-label">Financing readiness · educational</div><div class="fr-card">'+
+    '<div class="fr-head"><div class="t"><b>Where you stand today</b><button class="edit" onclick="APP.profileSheet()">Edit profile</button></div>'+
+    '<p>Compared against typical lender criteria for a deal needing '+usd0(r.cashNeed)+' cash. A learning tool — not a loan decision.</p></div>';
+  r.rows.forEach(function(row){
+    var b= row.lvl==="ready"?'<span class="badge ready">READY</span>': row.lvl==="almost"?'<span class="badge almost">ALMOST THERE</span>':'<span class="badge build">KEEP BUILDING</span>';
+    h+='<div class="fr-row"><div class="nm">'+row.name+'<small>'+row.note+'</small></div>'+b+'</div>';
+    if(row.defi){
+      h+='<div class="stress">'+ICONS.warn+'<span>Typical structures at these LTVs would see liquidation if collateral fell ~'+row.drop+'%. We show this at full weight on purpose — it\u2019s the risk that matters.</span></div>';
+    }
+  });
+  h+='<div class="fr-note">Educational estimate based on typical lender requirements — not a loan decision, offer, preapproval or prequalification. Actual requirements vary by lender. Building readiness: Academy tracks earn COVI as you go.</div></div>';
+  return h;
+}
+function scorecardHtml(res,kind){
+  var h='<div class="sec-label">Scorecard · set your own targets</div><div class="sc-table">'+
+    '<div class="sc-r h"><span>Metric</span><span>Result</span><span>Your target</span><span></span></div>';
+  res.gates.forEach(function(g){
+    h+=row(g.name+"<small>hard gate</small>", g.fmt(g.val), tin("g_"+g.id,g.tgt), g.pass);
+  });
+  res.scored.forEach(function(s2){
+    var pass=s2.pts/s2.w>=0.999;
+    h+=row(s2.name+"<small>"+s2.w+" pts · scoring "+Math.round(s2.pts)+"</small>", s2.fmt(s2.val), tin("s_"+s2.id,s2.tgt), pass, s2.pts/s2.w>=0.5&&!pass);
+  });
+  if(kind==="hold"){
+    var op=res.advisory.onePct;
+    h+='<div class="sc-r"><span class="m">1% rule<small>advisory only</small></span><span class="val na">'+op.toFixed(2)+'%</span><span style="font-size:12px;color:var(--faint)">1.00%</span><span class="pf na">FLAG</span></div>';
+  }
+  return h+"</div>";
+  function row(name,val,tgt,ok,mid){
+    return '<div class="sc-r"><span class="m">'+name+'</span><span class="val '+(ok?"ok":mid?"na":"bad")+'">'+val+'</span><span>'+tgt+'</span><span class="pf '+(ok?"ok":mid?"na":"bad")+'">'+(ok?"PASS":mid?"CLOSE":"MISS")+'</span></div>';
+  }
+  function tin(id,v){ return '<input id="'+id+'" value="'+(typeof v==="number"? (Math.round(v*100)/100):v)+'" onchange="APP.retarget()">'; }
+}
+function waterfallHtml(res){
+  var m=res.m, steps=[["Rent",m.gsr,"in"],["Vacancy",m.gsr-m.egi,"out"],["OpEx",m.opex,"out"],["NOI",m.noi,"in"],["Loan",m.debt,"out"],["Cash flow",m.acf,"net"]];
+  var mx=Math.max(m.gsr,1);
+  var h='<div class="sec-label">Where the rent goes · yr 1</div><div class="wf"><div class="wf-bars">';
+  steps.forEach(function(s2){
+    var hpx=Math.max(5,Math.abs(s2[1])/mx*100);
+    h+='<div class="wf-col"><span class="wf-amt">'+(s2[2]==="out"?"−":"")+usd0(Math.abs(s2[1])).replace("−","")+'</span><div class="wf-bar '+s2[2]+'" style="height:'+hpx+'%"></div><span class="wf-lbl">'+s2[0]+'</span></div>';
+  });
+  return h+'</div></div>';
+}
+function sensitivityHtml(kind,res){
+  var i=S.inputs, t=S.targets;
+  var rows=[-10,-5,-2.5,0,2.5,5], cols=[-10,-5,0,5,10];
+  var colKey,colLbl;
+  if(kind==="hold"&&S.asset==="ret"){ colKey="rentPsf"; colLbl="Rent $/SF"; }
+  else if(kind==="hold"||kind==="brrrr"){ colKey="rent"; colLbl="Rent"; }
+  else if(kind==="build"){ colKey=S.inputs.exitMode?"salePsf":"rentTotal"; colLbl=S.inputs.exitMode?"Sale $/SF":"Rent"; }
+  else if(kind==="entitle"){ colKey="exitValue"; colLbl="Exit value"; }
+  else { colKey="arv"; colLbl="Sale (ARV)"; }
+  var h='<div class="sec-label">Sensitivity · price × '+colLbl.toLowerCase()+'</div><div class="wf" style="padding:14px">'+
+    '<div style="display:grid;grid-template-columns:64px repeat(5,1fr);gap:4px;font-family:var(--font-data);font-size:9.5px">';
+  h+='<span></span>'+cols.map(function(c){return '<span style="text-align:center;color:var(--faint)">'+(c>0?"+":"")+c+'%</span>';}).join("");
+  rows.forEach(function(rp){
+    var price=i.price*(1+rp/100);
+    h+='<span style="color:var(--faint);align-self:center">'+(rp>0?"+":"")+rp+'%<br>'+Math.round(price/1000)+'k</span>';
+    cols.forEach(function(cp){
+      var mod={price:price}; mod[colKey]=i[colKey]*(1+cp/100);
+      var ii=Object.assign({},i,mod); var r=runEngine(kind,ii,t); var vv=verdictOf(r,ii,t,kind).v;
+      var bg= vv==="GO"?"rgba(0,209,154,.28)": vv==="PURSUE"?"rgba(212,169,90,.26)":"rgba(144,161,185,.12)";
+      var fg= vv==="GO"?"var(--emerald)": vv==="PURSUE"?"var(--gold)":"var(--slate)";
+      var cur=(rp===0&&cp===0);
+      h+='<span title="'+brandWord(vv)+'" style="text-align:center;padding:8px 0;border-radius:6px;background:'+bg+';color:'+fg+';font-weight:700'+(cur?';outline:1.5px solid '+fg:'')+'">'+(vv==="GO"?"B":vv==="PURSUE"?"W":"×")+'</span>';
+    });
+  });
+  h+='</div><div style="display:flex;gap:14px;margin-top:11px;font-size:10.5px;color:var(--faint)">'+
+    '<span><b style="color:var(--emerald)">B</b> Build</span><span><b style="color:var(--gold)">W</b> Work the deal</span><span><b style="color:var(--slate)">×</b> Bust</span><span style="margin-left:auto">outlined = as entered</span></div></div>';
+  return h;
+}
+function lockedHtml(){
+  var kind=S.resultTab, res=S.lastResults[kind];
+  var sens = S.unlocked.sens? sensitivityHtml(kind,res)
+    : '<div class="locked" role="button" tabindex="0" onclick="APP.coviSheet(\'sens\')" onkeydown="if(event.key===\'Enter\')APP.coviSheet(\'sens\')">'+
+      '<div class="lk-t">'+ICONS.lock+' Sensitivity table &nbsp;<span class="covi-pill">'+ICONS.spark+' COVI</span></div>'+
+      '<p>Price × rent grid: see the verdict at every combination, spot the negotiation zone. First one\u2019s free.</p></div>';
+  return '<div class="sec-label">Go deeper</div>'+sens+
+    '<div class="locked" role="button" tabindex="0" onclick="APP.coviSheet()" onkeydown="if(event.key===\'Enter\')APP.coviSheet()">'+
+    '<div class="locked" role="button" tabindex="0" onclick="APP.coviSheet(\'excel\')" onkeydown="if(event.key===\'Enter\')APP.coviSheet(\'excel\')">'+
+    '<div class="lk-t">'+ICONS.lock+' Excel export · live formulas &nbsp;<span class="covi-pill">'+ICONS.spark+' COVI</span></div>'+
+    '<p>The full model with formulas intact — audit every number, hand it to a partner or lender.</p></div>';
+}
+function assumptionsHtml(kind){
+  var i=S.inputs;
+  var h='<details class="assume"><summary>Pro assumptions <span class="cv">tap to edit · recomputes live</span></summary><div class="a-grid">';
+  var flds;
+  if(kind==="brrrr") flds=[["price","Price",i.price],["rehab","Rehab",i.rehab],["arv","ARV / appraisal",i.arv],["rent","Avg rent /mo",Math.round(i.rent)],["refiLtv","Refi LTV %",i.refiLtv],["refiRatePct","Refi rate %",i.refiRatePct],["seasonMonths","Seasoning mo",i.seasonMonths],["taxes","Taxes /yr",i.taxes]];
+  else if(kind==="build") flds=[["price","Land price",i.price],["sqft","Buildable SF",i.sqft],["hardPsf","Hard $/SF",i.hardPsf],["softPct","Soft %",i.softPct],["buildMonths","Build months",i.buildMonths]].concat(i.exitMode?[["salePsf","Sale $/SF",i.salePsf]]:[["rentTotal","Rent /mo total",i.rentTotal],["ratePct","Refi rate %",i.ratePct]]);
+  else if(kind==="entitle") flds=[["price","Land price",i.price],["entBudget","Entitlement budget",i.entBudget],["entMonths","Months",i.entMonths],["exitValue","Entitled exit value",i.exitValue]];
+  else if(kind==="hold"&&S.asset==="ret") flds=[["price","Price",i.price],["rehab","TI budget",i.rehab],["arv","Stabilized value",i.arv],["sqft","Leasable SF",i.sqft],["rentPsf","NNN rent $/SF",i.rentPsf],["downPct","Down %",i.downPct],["ratePct","Rate %",i.ratePct]];
+  else flds= kind==="hold"?
+    [["price","Price",i.price],["rehab","Rehab",i.rehab],["arv","ARV",i.arv],["rent","Avg rent /mo"+(S.asset==="smf"?" · per unit":""),Math.round(i.rent)],["downPct","Down %",i.downPct],["ratePct","Rate %",i.ratePct],["taxes","Taxes /yr",i.taxes],["insurance","Insurance /yr",i.insurance]]:
+    [["price","Price",i.price],["rehab","Rehab",i.rehab],["arv","ARV",i.arv],["holdMonths","Hold months",i.holdMonths],["taxes","Taxes /yr",i.taxes],["insurance","Insurance /yr",i.insurance]];
+  flds.forEach(function(f){ h+='<div class="fld"><label>'+f[1]+'</label><input id="a_'+f[0]+'" value="'+f[2]+'" onchange="APP.reassume()"></div>'; });
+  return h+'</div></details>';
+}
+
+/* ---------------- v2: full proforma ---------------- */
+var TRADE_SPLIT=[["Demo & prep",5],["Framing & drywall",12],["Kitchen",20],["Bathrooms",15],["Flooring",10],["Paint & finish",8],["HVAC / electrical / plumbing",18],["Exterior & roof",7],["Contingency",5]];
+function initProforma(){
+  var i=S.inputs, kind=S.resultTab;
+  var pf={kind:kind};
+  pf.trades=TRADE_SPLIT.map(function(tr){ return {name:tr[0], amt:Math.round(i.rehab*tr[1]/100)}; });
+  var rem=i.rehab-pf.trades.reduce(function(a,x){return a+x.amt;},0); pf.trades[pf.trades.length-1].amt+=rem;
+  if(i.unitMix){ pf.roll=Object.keys(BR_RENTS).filter(function(k){return i.unitMix[k].n>0;}).map(function(k){ return {label:BR_RENTS[k].label, n:i.unitMix[k].n, rent:i.unitMix[k].rent, key:k}; }); }
+  else pf.roll=[{label:(S.asset==="lmf"? "Avg unit":"Unit"), n:i.units||1, rent:Math.round(i.rent)}];
+  pf.growth={rent:3.0, exp:2.5, appr:3.0};
+  S.pf=pf;
+}
+function irr(cfs){
+  function npv(r){ return cfs.reduce(function(a,c,t){ return a+c/Math.pow(1+r,t); },0); }
+  var lo=-0.9, hi=3.0;
+  if(npv(lo)*npv(hi)>0) return null;
+  for(var k=0;k<80;k++){ var mid=(lo+hi)/2; (npv(lo)*npv(mid)<=0)? hi=mid: lo=mid; }
+  return (lo+hi)/2*100;
+}
+function fiveYear(res){
+  var i=S.inputs, m=res.m, g=S.pf.growth, kind=S.resultTab;
+  var basis = kind==="brrrr"? Math.max(m.cashLeft,1) : m.cashIn;
+  var loan = kind==="brrrr"? m.refiLoan : (m.loan||0);
+  var rate = kind==="brrrr"? (i.refiRatePct||7.25) : i.ratePct;
+  var termY = (S.asset==="ret")?25:30;
+  var pmt=amort(loan,rate,termY), rM=rate/100/12;
+  var yrs=[];
+  var noi=m.noi, opex=m.opex, egi=m.egi;
+  for(var y=1;y<=5;y++){
+    if(y>1){ egi*=1+g.rent/100; opex*=1+g.exp/100; noi=egi-opex; }
+    var bal = rM===0? loan-pmt*12*y : loan*Math.pow(1+rM,y*12)-pmt*(Math.pow(1+rM,y*12)-1)/rM;
+    yrs.push({y:y, egi:egi, opex:opex, noi:noi, debt:pmt*12, cf:noi-pmt*12, bal:Math.max(bal,0)});
+  }
+  var value5 = (S.asset==="lmf"||S.asset==="ret")? yrs[4].noi/(S.marketCap/100) : i.arv*Math.pow(1+g.appr/100,5);
+  var proceeds = value5*0.94 - yrs[4].bal;
+  var cfs=[-basis]; for(var y2=0;y2<4;y2++) cfs.push(yrs[y2].cf); cfs.push(yrs[4].cf+proceeds);
+  var totalBack=cfs.slice(1).reduce(function(a,c){return a+c;},0);
+  return {yrs:yrs, value5:value5, proceeds:proceeds, irr:irr(cfs), em:basis? (totalBack)/basis:0, basis:basis, profit:totalBack-basis};
+}
+function goProforma(){
+  S.route="proforma";
+  if(!S.pf || S.pf.kind!==S.resultTab) initProforma();
+  var kind=S.resultTab, res=S.lastResults[kind], i=S.inputs, m=res.m;
+  setBar(backBtn("APP.backToResults()")+'<span class="crumb">Full Proforma</span><span class="spacer"></span><span class="step-count">'+brandShort(res.verdict.v)+'</span>');
+  var h='<div class="eyebrow gold">v2 · Proforma</div><h2>'+esc(S.addr.street||"Your deal")+'</h2><p class="lede" style="margin-bottom:16px">Every screener answer carried over — refine line by line, everything recomputes.</p>';
+
+  /* rent roll (income kinds) */
+  if(kind==="hold"||kind==="brrrr"){
+    if(S.asset!=="ret"){
+      h+='<div class="sec-label">Rent roll</div><div class="sc-table" style="margin-bottom:8px"><div class="sc-r h" style="grid-template-columns:1.2fr 1fr 1fr 1fr"><span>Type</span><span>Units</span><span>Rent /mo</span><span>Annual</span></div>';
+      S.pf.roll.forEach(function(r,ix){
+        h+='<div class="sc-r" style="grid-template-columns:1.2fr 1fr 1fr 1fr"><span class="m">'+r.label+'</span>'+
+          '<span><input id="rr_n_'+ix+'" value="'+r.n+'" inputmode="numeric" onchange="APP.pfRecalc()" style="max-width:56px"></span>'+
+          '<span><input id="rr_r_'+ix+'" value="'+r.rent+'" inputmode="numeric" onchange="APP.pfRecalc()" style="max-width:76px"></span>'+
+          '<span class="val">'+usd0(r.n*r.rent*12)+'</span></div>';
+      });
+      h+='<div class="sc-r" style="grid-template-columns:1.2fr 1fr 1fr 1fr"><span class="m"><b>Total</b></span><span class="val">'+ (S.pf.roll.reduce(function(a,r){return a+r.n;},0))+'</span><span></span><span class="val ok">'+usd0(S.pf.roll.reduce(function(a,r){return a+r.n*r.rent*12;},0))+'</span></div></div>';
+    } else {
+      h+='<div class="sec-label">Lease income</div><div class="num-grid">'+
+        '<div class="num-cell"><div class="nl">Leasable SF</div><div class="nv">'+Math.round(i.sqft).toLocaleString()+'</div></div>'+
+        '<div class="num-cell"><div class="nl">NNN rent</div><div class="nv">'+usd0(i.rentPsf)+'/SF</div></div></div>';
+    }
+  }
+
+  /* renovation budget by trade */
+  if(kind!=="entitle"&&kind!=="build"){
+    h+='<div class="sec-label">'+(S.asset==="ret"?"TI / improvement budget":"Renovation budget")+' · Covington-seeded</div><div class="sc-table" style="margin-bottom:8px"><div class="sc-r h" style="grid-template-columns:1.6fr 1fr"><span>Trade</span><span>Budget</span></div>';
+    S.pf.trades.forEach(function(tr,ix){
+      h+='<div class="sc-r" style="grid-template-columns:1.6fr 1fr"><span class="m" style="font-size:12.5px">'+tr.name+'</span><span><input id="td_'+ix+'" value="'+tr.amt+'" inputmode="numeric" onchange="APP.pfRecalc()" style="max-width:96px"></span></div>';
+    });
+    h+='<div class="sc-r" style="grid-template-columns:1.6fr 1fr"><span class="m"><b>Total</b></span><span class="val ok">'+usd0(S.pf.trades.reduce(function(a,x){return a+x.amt;},0))+'</span></div></div>';
+  }
+
+  /* sources & uses for build / entitle */
+  if(kind==="build"){
+    h+='<div class="sec-label">Sources & uses</div><div class="sc-table" style="margin-bottom:8px">';
+    [["Land",i.price],["Hard cost",m.hard],["Soft cost",m.soft],["Contingency",m.cont],["Construction interest",m.interest],["Total development cost",m.TDC],["Construction loan (70% LTC)",-m.cloan],["Equity required",m.cashIn]].forEach(function(r2){
+      h+='<div class="sc-r" style="grid-template-columns:1.6fr 1fr"><span class="m">'+r2[0]+'</span><span class="val'+(r2[0].indexOf("Equity")===0?" ok":"")+'">'+usd0(Math.abs(r2[1]))+(r2[1]<0?" (loan)":"")+'</span></div>';
+    });
+    h+='</div>';
+    h+='<div class="sec-label">Exit</div><div class="num-grid">'+ (i.exitMode?
+      ('<div class="num-cell hero"><div class="nl">Sellout</div><div class="nv">'+usd0(m.gross)+'</div></div><div class="num-cell"><div class="nl">Profit</div><div class="nv'+(m.profit<0?" neg":"")+'">'+usd0(m.profit)+'</div></div>'):
+      ('<div class="num-cell hero"><div class="nl">Stabilized value</div><div class="nv">'+usd0(m.value)+'</div></div><div class="num-cell"><div class="nl">Cash left after refi</div><div class="nv">'+usd0(m.cashLeft)+'</div></div>'))+'</div>';
+  }
+  if(kind==="entitle"){
+    h+='<div class="sec-label">Pursuit budget</div><div class="sc-table" style="margin-bottom:8px">';
+    [["Land",i.price],["Entitlement budget",m.budget],["Carry ("+i.entMonths+" mo)",m.carry],["Total in",m.totalIn],["Entitled exit",m.exit],["Margin",m.margin]].forEach(function(r2){
+      h+='<div class="sc-r" style="grid-template-columns:1.6fr 1fr"><span class="m">'+r2[0]+'</span><span class="val'+(r2[0]==="Margin"?(m.margin>=0?" ok":" bad"):"")+'">'+usd0(r2[1])+'</span></div>';
+    });
+    h+='</div>';
+  }
+
+  /* flip settlement */
+  if(kind==="sell"){
+    h+='<div class="sec-label">Sale settlement</div><div class="sc-table" style="margin-bottom:8px">';
+    [["Sale (ARV)",i.arv],["All-in basis",-m.allIn],["Carry + interest",-(m.carry+m.interest)],["Selling costs",-m.sellCost],["Net profit",m.profit]].forEach(function(r2){
+      h+='<div class="sc-r" style="grid-template-columns:1.6fr 1fr"><span class="m">'+r2[0]+'</span><span class="val'+(r2[0]==="Net profit"?(m.profit>=0?" ok":" bad"):"")+'">'+usd0(r2[1])+'</span></div>';
+    });
+    h+='</div>';
+  }
+
+  /* 5-year projection for income kinds */
+  if(kind==="hold"||kind==="brrrr"){
+    var fy=fiveYear(res);
+    h+='<div class="sec-label">5-year projection · rent +'+S.pf.growth.rent+'% · expenses +'+S.pf.growth.exp+'%</div>'+
+      '<div class="sc-table" style="margin-bottom:8px"><div class="sc-r h" style="grid-template-columns:.6fr 1fr 1fr 1fr"><span>Yr</span><span>NOI</span><span>Cash flow</span><span>Loan bal</span></div>';
+    fy.yrs.forEach(function(y){
+      h+='<div class="sc-r" style="grid-template-columns:.6fr 1fr 1fr 1fr"><span class="m">'+y.y+'</span><span class="val">'+usd0(y.noi)+'</span><span class="val'+(y.cf<0?" bad":"")+'">'+usd0(y.cf)+'</span><span class="val" style="color:var(--faint)">'+usd0(y.bal)+'</span></div>';
+    });
+    h+='</div><div class="num-grid">'+
+      '<div class="num-cell hero"><div class="nl">5-yr IRR'+(kind==="brrrr"?" · post-refi basis":"")+'</div><div class="nv">'+(fy.irr===null?"—":fy.irr.toFixed(1)+"%")+'</div></div>'+
+      '<div class="num-cell"><div class="nl">Equity multiple</div><div class="nv">'+fy.em.toFixed(2)+'\u00d7</div></div>'+
+      '<div class="num-cell"><div class="nl">Exit value · yr 5</div><div class="nv">'+usd0(fy.value5)+'</div></div>'+
+      '<div class="num-cell"><div class="nl">Net sale proceeds</div><div class="nv">'+usd0(fy.proceeds)+'</div></div></div>';
+  }
+
+  h+='<p class="foot-disc"><b style="color:var(--muted)">Build or Bust</b> · v2 Proforma — educational model, not investment, lending or legal advice. Verify all assumptions.</p>';
+  setScreen(h);
+  setDock('<div style="display:flex;gap:8px">'+
+    '<button class="btn btn-ghost" style="flex:1" onclick="APP.backToResults()">Verdict</button>'+
+    '<button class="btn btn-gold" style="flex:1.6" onclick="APP.lenderPackage()">Download lender summary</button></div>');
+}
+function pfRecalc(){
+  /* read edits: rent roll, trades → write back into inputs → recompute engine + rerender */
+  if(S.pf.roll){
+    S.pf.roll.forEach(function(r,ix){
+      var n=$("rr_n_"+ix), rr=$("rr_r_"+ix);
+      if(n){ var v=parseInt(String(n.value).replace(/[^0-9]/g,""),10); if(!isNaN(v)) r.n=Math.max(0,v); }
+      if(rr){ var v2=parseInt(String(rr.value).replace(/[^0-9]/g,""),10); if(!isNaN(v2)) r.rent=Math.max(0,v2); }
+      if(r.key && S.inputs.unitMix){ S.inputs.unitMix[r.key].n=r.n; S.inputs.unitMix[r.key].rent=r.rent; }
+    });
+    if(S.inputs.unitMix) commitMix();
+    else { S.inputs.units=Math.max(1,S.pf.roll[0].n); S.inputs.rent=S.pf.roll[0].rent; }
+  }
+  if(S.pf.trades){
+    S.pf.trades.forEach(function(tr,ix){ var e2=$("td_"+ix); if(e2){ var v=parseInt(String(e2.value).replace(/[^0-9]/g,""),10); if(!isNaN(v)) tr.amt=Math.max(0,v); } });
+    S.inputs.rehab=S.pf.trades.reduce(function(a,x){return a+x.amt;},0);
+  }
+  S.lastResults=computeAll();
+  goProforma(); toast("Proforma recomputed");
+}
+function backToResults(){ renderResults(false); }
+function lenderPackage(){
+  try{
+    var kind=S.resultTab, res=S.lastResults[kind], i=S.inputs, m=res.m, v=res.verdict;
+    var col= v.v==="GO"?"#0B8F6C": v.v==="PURSUE"?"#A87F2F":"#5A6B85";
+    var rows="";
+    res.gates.forEach(function(g){ rows+="<tr><td>"+g.name+" <em>(gate)</em></td><td>"+g.fmt(g.val)+"</td><td>"+g.fmt(g.tgt)+"</td><td>"+(g.pass?"PASS":"MISS")+"</td></tr>"; });
+    res.scored.forEach(function(x){ rows+="<tr><td>"+x.name+"</td><td>"+x.fmt(x.val)+"</td><td>"+x.fmt(x.tgt)+"</td><td>"+Math.round(x.pts)+"/"+x.w+"</td></tr>"; });
+    var fyHtml="";
+    if(kind==="hold"||kind==="brrrr"){
+      var fy=fiveYear(res);
+      fyHtml="<h3>5-Year Projection</h3><table><tr><th>Yr</th><th>NOI</th><th>Cash flow</th><th>Loan balance</th></tr>"+
+        fy.yrs.map(function(y){return "<tr><td>"+y.y+"</td><td>"+usd0(y.noi)+"</td><td>"+usd0(y.cf)+"</td><td>"+usd0(y.bal)+"</td></tr>";}).join("")+
+        "</table><p><b>5-yr IRR:</b> "+(fy.irr===null?"—":fy.irr.toFixed(1)+"%")+" &nbsp; <b>Equity multiple:</b> "+fy.em.toFixed(2)+"x &nbsp; <b>Exit value:</b> "+usd0(fy.value5)+"</p>";
+    }
+    var html='<!DOCTYPE html><html><head><meta charset="utf-8"><title>Build or Bust — Lender Summary</title><style>'+
+      'body{font-family:Georgia,serif;max-width:760px;margin:40px auto;color:#15242E;line-height:1.5;padding:0 20px}'+
+      'h1{font-family:Arial,sans-serif;letter-spacing:-.5px;margin-bottom:2px} .sub{color:#6B7C77;font-size:13px;letter-spacing:2px;text-transform:uppercase}'+
+      '.stamp{display:inline-block;border:3px solid '+col+';color:'+col+';font-family:Arial;font-weight:bold;padding:6px 16px;border-radius:6px;letter-spacing:2px;margin:14px 0}'+
+      'table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px} td,th{border-bottom:1px solid #DDD;padding:7px 6px;text-align:left} em{color:#999;font-style:normal;font-size:11px}'+
+      '.disc{font-size:11px;color:#8A9691;border-top:1px solid #DDD;margin-top:30px;padding-top:12px}</style></head><body>'+
+      '<h1>Build <span style="color:#A87F2F">or</span> Bust</h1><div class="sub">Real Estate Deal Analyzer &middot; by ConstructFi &middot; buildorbusted.app</div>'+
+      '<h2 style="margin-top:26px">'+esc(S.addr.street||"Screened property")+(S.addr.city?", "+esc(S.addr.city):"")+(S.addr.state?", "+esc(S.addr.state):"")+'</h2>'+
+      '<div class="stamp">'+brandWord(v.v)+' &middot; '+res.score+'/100</div>'+
+      '<p>'+v.msg+'</p><h3>Screening Metrics vs Targets</h3><table><tr><th>Metric</th><th>Result</th><th>Target</th><th></th></tr>'+rows+'</table>'+fyHtml+
+      '<div class="disc">Educational screening estimate generated by Build or Bust — not investment, lending or legal advice, and not a loan decision, offer or preapproval. All figures based on user inputs and typical-market defaults; verify independently.</div></body></html>';
+    var a=document.createElement("a");
+    a.download="buildorbust-lender-summary.html";
+    a.href="data:text/html;charset=utf-8,"+encodeURIComponent(html);
+    a.click();
+    toast("Lender summary downloaded — print to PDF from your browser");
+  }catch(e){ toast("Lender summary needs a browser to run"); }
+}
+
+/* ---------------- interactions ---------------- */
+function tab(k){ S.resultTab=k; renderResults(false); }
+function backToReview(){ goReview(); }
+function reQuestion(){ S.fromReview=false; S.qIndex=S.qs.length-1; goQuestion(); }
+function retarget(){
+  var t=S.targets;
+  var map={g_dscr:"dscr", g_mcf:"mcf", g_profit:null, s_coc:"coc", s_yoc:null, s_cfu:"cfUnit", s_feq:"feq", s_margin:"margin", s_roi:"roi"};
+  Object.keys(map).forEach(function(id){
+    var el=$(id); if(!el||!map[id]) return;
+    var v=parseFloat(String(el.value).replace(/[,$%\s]/g,"")); if(!isNaN(v)) t[map[id]]=v;
+  });
+  var yoc=$("s_yoc"); if(yoc){ var v2=parseFloat(String(yoc.value).replace(/[,$%\s]/g,"")); if(!isNaN(v2)) t.yocSpread=Math.max(0,v2-S.marketCap); }
+  S.lastResults=computeAll(); renderResults(false); toast("Targets updated — score recomputed");
+}
+function reassume(){
+  ["price","rehab","arv","rent","downPct","ratePct","taxes","insurance","holdMonths","refiLtv","refiRatePct","seasonMonths","sqft","hardPsf","softPct","buildMonths","salePsf","rentTotal","entBudget","entMonths","exitValue","rentPsf"].forEach(function(k){
+    var el=$("a_"+k); if(!el) return;
+    var v=parseFloat(String(el.value).replace(/[,$\s]/g,"")); if(!isNaN(v)) S.inputs[k]=v;
+  });
+  S.lastResults=computeAll(); renderResults(false); toast("Recomputed with your assumptions");
+}
+function waitlist(name, wave){
+  openSheet('<h3>'+esc(name)+'</h3><p class="lede">'+wave+' on the roadmap — the engine API already supports it, the guided experience is in build. Leave your email and we\u2019ll open it to you first.</p>'+
+    '<div class="fld"><label>Email</label><input id="wl_email" inputmode="email" placeholder="you@example.com"></div>'+
+    '<button class="btn btn-primary" onclick="APP.joinWaitlist(\''+esc(name)+'\')">Join the waitlist</button>'+
+    '<button class="btn btn-ghost" style="margin-top:8px" onclick="APP.closeSheet()">Not now</button>');
+}
+function joinWaitlist(name){
+  var em=($("wl_email")||{}).value||"";
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ toast("That email doesn\u2019t look right"); return; }
+  closeSheet(); toast("You\u2019re on the "+name+" list — "+em);
+}
+function coviSheet(mode){
+  S._coviMode=mode||"sens";
+  openSheet('<h3>Unlock deeper analysis</h3><p class="lede">The verdict is always free. Depth runs on COVI — pay with tokens you\u2019ve earned, or subscribe.</p>'+
+    '<div class="price-line"><span>Analyze<small>Full solver · Pro mode · sensitivity · unlimited pipeline</small></span><b>$19/mo</b></div>'+
+    '<div class="price-line"><span>Package &amp; Pro<small>+ Excel live formulas · lender PDF · commercial templates</small></span><b>$49/mo</b></div>'+
+    '<div class="price-line"><span>This action à la carte<small>'+(S._coviMode==="excel"?"Excel export of this deal":"Sensitivity table on this deal")+'</small></span><b class="data" style="color:var(--gold)">'+(S._coviMode==="excel"?"600":"300")+' COVI</b></div>'+
+    '<div style="display:flex;gap:8px;align-items:center;margin:16px 0 14px;color:var(--muted);font-size:12.5px;line-height:1.5">'+ICONS.spark.replace('width="13"','width="15"')+'<span>You\u2019ve earned <b class="data" style="color:var(--gold)">1,150</b> COVI from Academy modules. COVI is earned in-app through the Academy and spent on platform features — it is a utility token, not an investment.</span></div>'+
+    '<button class="btn btn-gold" onclick="APP.unlockCovi()">'+(S._coviMode==="excel"?"Use COVI · 600":"First one\u2019s free — unlock it")+'</button>'+
+    '<button class="btn btn-ghost" style="margin-top:8px" onclick="APP.closeSheet()">Maybe later</button>');
+}
+function unlockCovi(){
+  closeSheet();
+  if(S._coviMode==="excel"){ exportExcel(); return; }
+  S.unlocked.sens=true; renderResults(false); toast("Sensitivity unlocked — first one\u2019s on us");
+}
+function exportExcel(){
+  try{
+    var kind=S.resultTab, res=S.lastResults[kind], i=S.inputs, m=res.m;
+    function row(cells){ return "<Row>"+cells.map(function(c){
+      if(c&&c.f) return '<Cell ss:StyleID="n"><Data ss:Type="Number">'+(c.v||0)+'</Data></Cell>'.replace('<Cell ','<Cell ss:Formula="'+c.f+'" ');
+      if(typeof c==="number") return '<Cell ss:StyleID="n"><Data ss:Type="Number">'+c+'</Data></Cell>';
+      return '<Cell><Data ss:Type="String">'+String(c==null?"":c).replace(/&/g,"&amp;").replace(/</g,"&lt;")+'</Data></Cell>';
+    }).join("")+"</Row>"; }
+    var rows=[];
+    rows.push(row(["BUILD OR BUST — "+(S.addr.street||"Deal")+" ("+kind.toUpperCase()+")",""]));
+    rows.push(row(["Educational screening model · buildorbusted.app · not investment/lending/legal advice",""]));
+    rows.push(row(["",""]));
+    if(kind==="hold"&&S.asset!=="ret"){
+      rows.push(row(["INPUTS",""]));
+      rows.push(row(["Price", i.price]));                                   /* B5 */
+      rows.push(row(["Rehab", i.rehab]));                                   /* B6 */
+      rows.push(row(["ARV", i.arv]));                                       /* B7 */
+      rows.push(row(["Units", i.units||1]));                                /* B8 */
+      rows.push(row(["Avg rent /mo", Math.round(i.rent)]));                 /* B9 */
+      rows.push(row(["Down %", i.downPct/100]));                            /* B10 */
+      rows.push(row(["Rate %", i.ratePct/100]));                            /* B11 */
+      rows.push(row(["Taxes /yr", i.taxes]));                               /* B12 */
+      rows.push(row(["Insurance /yr", i.insurance]));                       /* B13 */
+      rows.push(row(["",""]));
+      rows.push(row(["MODEL (live formulas)",""]));
+      rows.push(row(["Closing", {f:"=MAX(R[-11]C*0.03,3500)", v:Math.round(Math.max(i.price*0.03,3500))}]));      /* B16 =MAX(B5*..) */
+      rows.push(row(["Loan", {f:"=R5C2*(1-R10C2)", v:Math.round(i.price*(1-i.downPct/100))}]));
+      rows.push(row(["Gross rent /yr", {f:"=R9C2*R8C2*12", v:Math.round(i.rent*(i.units||1)*12)}]));
+      rows.push(row(["EGI (5% vac)", {f:"=R[-1]C*0.95", v:Math.round(m.egi)}]));
+      rows.push(row(["OpEx", {f:"=R12C2+R13C2+0.08*R[-1]C+0.10*R[-2]C", v:Math.round(m.opex)}]));
+      rows.push(row(["NOI", {f:"=R[-2]C-R[-1]C", v:Math.round(m.noi)}]));
+      rows.push(row(["P&I /mo", {f:"=-PMT(R11C2/12,360,R17C2)", v:Math.round(m.pi)}]));
+      rows.push(row(["Cash flow /yr", {f:"=R[-2]C-R[-1]C*12", v:Math.round(m.acf)}]));
+      rows.push(row(["DSCR", {f:"=R21C2/(R22C2*12)", v:Math.round(m.dscr*100)/100}]));
+      rows.push(row(["Cash-on-cash", {f:"=R23C2/(R5C2*R10C2+R16C2+R6C2)", v:Math.round(m.coc*10)/1000}]));
+    } else {
+      rows.push(row(["INPUTS & RESULTS (values)",""]));
+      Object.keys(i).forEach(function(k){ if(typeof i[k]==="number") rows.push(row([k, Math.round(i[k]*100)/100])); });
+      rows.push(row(["",""]));
+      Object.keys(m).forEach(function(k){ if(typeof m[k]==="number") rows.push(row([k, Math.round(m[k]*100)/100])); });
+    }
+    rows.push(row(["",""]));
+    rows.push(row(["Verdict", brandWord(res.verdict.v)+" · score "+res.score+"/100"]));
+    var xml='<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?>'+
+      '<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">'+
+      '<Styles><Style ss:ID="n"><NumberFormat ss:Format="#,##0.00"/></Style></Styles>'+
+      '<Worksheet ss:Name="Build or Bust"><Table>'+rows.join("")+'</Table></Worksheet></Workbook>';
+    var a=document.createElement("a");
+    a.download="buildorbust-model-"+kind+".xls";
+    a.href="data:application/vnd.ms-excel;charset=utf-8,"+encodeURIComponent(xml);
+    a.click();
+    toast("Excel model downloaded — hold template carries live formulas");
+  }catch(e){ toast("Excel export needs a browser to run"); }
+}
+function profileSheet(){
+  var p=S.profile;
+  openSheet('<h3>Your readiness profile</h3><p class="lede">Self-reported, stored on your device in this prototype. No credit pull — ever, at this tier.</p>'+
+    '<div class="fld"><label>Credit band</label><div class="seg" style="grid-template-columns:repeat(4,1fr)">'+
+      ["excellent","good","fair","building"].map(function(c){ return '<button class="'+(p.credit===c?"on":"")+'" onclick="APP.setCred(\''+c+'\')" style="text-transform:capitalize">'+c+'</button>'; }).join("")+'</div></div>'+
+    '<div class="fld"><label>Cash available for a deal ($)</label><input id="p_cash" inputmode="numeric" value="'+p.cash+'"></div>'+
+    '<div class="fld"><label>Crypto wallet value ($ · optional)</label><input id="p_wallet" inputmode="numeric" value="'+p.wallet+'"></div>'+
+    '<div class="fld"><label>Deals completed</label><input id="p_deals" inputmode="numeric" value="'+p.deals+'"></div>'+
+    '<button class="btn btn-primary" onclick="APP.saveProfile()">Update readiness</button>');
+}
+function setCred(c){ S.profile.credit=c; profileSheet(); }
+function saveProfile(){
+  ["cash","wallet","deals"].forEach(function(k){ var el=$("p_"+k); var v=parseFloat(String(el.value).replace(/[,$\s]/g,"")); if(!isNaN(v)) S.profile[k]=v; });
+  closeSheet(); renderResults(false); toast("Readiness updated");
+}
+function shareCard(){
+  try{
+    var kind=S.resultTab, res=S.lastResults[kind], v=res.verdict;
+    var W=1000,H=1000, cv=document.createElement("canvas"); cv.width=W; cv.height=H;
+    var x=cv.getContext("2d");
+    x.fillStyle="#05131F"; x.fillRect(0,0,W,H);
+    var grd=x.createRadialGradient(W*.85,0,50,W*.85,0,700);
+    grd.addColorStop(0, v.v==="GO"?"rgba(0,209,154,.18)": v.v==="PURSUE"?"rgba(212,169,90,.16)":"rgba(144,161,185,.12)");
+    grd.addColorStop(1,"rgba(0,0,0,0)"); x.fillStyle=grd; x.fillRect(0,0,W,H);
+    /* mark */
+    function rr(a,b,w2,h2,r){ x.beginPath(); x.moveTo(a+r,b); x.arcTo(a+w2,b,a+w2,b+h2,r); x.arcTo(a+w2,b+h2,a,b+h2,r); x.arcTo(a,b+h2,a,b,r); x.arcTo(a,b,a+w2,b,r); x.closePath(); }
+    x.save(); rr(70,70,84,84,22); x.clip();
+    x.fillStyle="#00D19A"; x.fillRect(70,70,84,84);
+    x.fillStyle="#D4A95A"; x.beginPath(); x.moveTo(70,154); x.lineTo(154,70); x.lineTo(154,154); x.closePath(); x.fill();
+    x.strokeStyle="#05131F"; x.lineWidth=6; x.lineJoin="round"; x.lineCap="round";
+    x.beginPath(); x.moveTo(92,116); x.lineTo(112,99); x.lineTo(132,116); x.moveTo(97,113); x.lineTo(97,132); x.lineTo(127,132); x.lineTo(127,113); x.stroke();
+    x.restore();
+    x.fillStyle="#F2F7F5"; x.font="700 40px Poppins, Inter, sans-serif"; x.fillText("Build", 176, 112);
+    x.fillStyle="#D4A95A"; x.fillText(" or ", 176+x.measureText("Build").width, 112);
+    x.fillStyle="#F2F7F5"; x.fillText("Bust", 176+x.measureText("Build or ").width, 112);
+    x.fillStyle="#5E7370"; x.font="600 20px Inter, sans-serif"; x.fillText("REAL ESTATE DEAL ANALYZER · BY CONSTRUCTFI", 176, 142);
+    /* address */
+    x.fillStyle="#8FA6A0"; x.font="500 28px Inter, sans-serif";
+    var addr=(S.addr.street||"Screened property")+(S.addr.city?" · "+S.addr.city:"")+(S.addr.state?", "+S.addr.state:"");
+    x.fillText(addr, 80, 240);
+    /* stamp */
+    var col= v.v==="GO"?"#00D19A": v.v==="PURSUE"?"#D4A95A":"#90A1B9";
+    x.fillStyle=col; x.font="700 "+(v.v==="PURSUE"?"84":"124")+"px Poppins, Inter, sans-serif";
+    x.fillText(brandWord(v.v), 76, v.v==="PURSUE"?370:392);
+    x.strokeStyle=col; x.lineWidth=3; x.globalAlpha=.5; x.strokeRect(76,420,848,0); x.globalAlpha=1;
+    x.fillStyle="#8FA6A0"; x.font="500 26px Inter, sans-serif";
+    var kl={hold:(S.asset==="ret"?"Commercial · NNN":"Buy & Hold"), sell:"Fix & Flip", brrrr:"BRRRR", build:(S.inputs.exitMode?"Ground-Up · Sell":"Ground-Up · Hold"), entitle:"Entitle Only"}[kind]||"";
+    x.fillText("Score "+res.score+"/100 · "+kl, 80, 465);
+    /* drivers */
+    var all=res.gates.map(function(g){return {n:g.name, t:g.fmt(g.val)+"  vs  "+g.fmt(g.tgt), ok:g.pass};})
+      .concat(res.scored.map(function(sx){return {n:sx.n||sx.name, t:sx.fmt(sx.val)+"  vs  "+sx.fmt(sx.tgt), ok:sx.pts/sx.w>=0.7};})).slice(0,3);
+    var y=545;
+    all.forEach(function(d){
+      x.fillStyle=d.ok?"#00D19A":"#FF7A6B"; x.beginPath(); x.arc(96,y-9,9,0,7); x.fill();
+      x.fillStyle="#F2F7F5"; x.font="600 30px Inter, sans-serif"; x.fillText(d.n, 126, y);
+      x.fillStyle="#8FA6A0"; x.font="500 26px ui-monospace, monospace"; x.fillText(d.t, 126, y+34);
+      y+=92;
+    });
+    /* lever */
+    x.fillStyle="rgba(212,169,90,.10)"; rr(76,y-8,848,120,18); x.fill();
+    x.strokeStyle="rgba(212,169,90,.5)"; x.lineWidth=2; rr(76,y-8,848,120,18); x.stroke();
+    x.fillStyle="#D4A95A"; x.font="700 22px Inter, sans-serif"; x.fillText("WHAT WOULD CHANGE THE ANSWER", 102, y+28);
+    x.fillStyle="#F2F7F5"; x.font="600 30px Inter, sans-serif";
+    var lv = v.solvedPrice===null? "Income can\u2019t carry this one at any price" :
+      v.solvedPrice>=S.inputs.price? "Works up to "+usd0(v.solvedPrice)+" — ceiling above asking" :
+      "Works at "+usd0(v.solvedPrice)+" ("+((1-v.solvedPrice/S.inputs.price)*100).toFixed(1)+"% below asking)";
+    x.fillText(lv, 102, y+72);
+    /* footer */
+    x.fillStyle="#5E7370"; x.font="600 24px Inter, sans-serif";
+    x.fillText("buildorbusted.app", 80, 952);
+    x.textAlign="right"; x.fillText("@buildorbusted", 924, 952); x.textAlign="left";
+    x.fillStyle="#41544F"; x.font="400 15px Inter, sans-serif";
+    x.fillText("Educational screening estimate — not investment, lending or legal advice.", 80, 980);
+    var a=document.createElement("a");
+    a.download="buildorbust-"+(S.addr.street||"deal").toLowerCase().replace(/[^a-z0-9]+/g,"-")+".png";
+    a.href=cv.toDataURL("image/png"); a.click();
+    toast("Card downloaded — post it, tag @buildorbusted");
+  }catch(e){ toast("Share card needs a browser to render"); }
+}
+function openSheet(html){ $("sheet").innerHTML='<div class="grab"></div>'+html; $("veil").classList.add("open"); }
+function closeSheet(){ $("veil").classList.remove("open"); }
+$("veil").addEventListener("click",function(e){ if(e.target===this) closeSheet(); });
+
+/* ---------------- boot ---------------- */
+window.APP={ goWelcome:goWelcome, goGoal:goGoal, pickGoal:pickGoal, goAsset:goAsset, pickAsset:pickAsset,
+  nextQ:nextQ, prevQ:prevQ, setScope:setScope, setSeg:setSeg, setSegStr:setSegStr, setSegBool:setSegBool,
+  setBeds:setBeds, mixN:mixN, mixRent:mixRent,
+  tab:tab, reQuestion:reQuestion, retarget:retarget, reassume:reassume,
+  setLevel:setLevel, editQ:editQ, tryVerdict:tryVerdict, backToReview:backToReview,
+  goProforma:goProforma, pfRecalc:pfRecalc, backToResults:backToResults, lenderPackage:lenderPackage,
+  waitlist:waitlist, joinWaitlist:joinWaitlist, coviSheet:coviSheet, unlockCovi:unlockCovi, shareCard:shareCard, exportExcel:exportExcel,
+  profileSheet:profileSheet, setCred:setCred, saveProfile:saveProfile,
+  closeSheet:closeSheet, toastMsg:toast };
+goWelcome();
+})();
+
+</script>
+</body>
+</html>

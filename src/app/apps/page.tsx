@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Gamepad2,
-  Store,
-  LineChart,
-  Boxes,
-  Wallet,
-  Building2,
-  ArrowRight,
-} from "lucide-react";
+import { LineChart, Smartphone, Building2, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,80 +8,48 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { StoreBadges } from "@/components/store-badges";
+import { ProductCard } from "@/components/product-card";
+import { PRODUCTS } from "@/lib/products";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Apps",
+  title: "All apps & roadmap",
   description:
-    "The ConstructFi app surface: Build or Bust, the verified supplier marketplace, the participant dashboard, and the products sequenced behind them.",
+    "Every ConstructFi product and the order it ships in: Build or Bust, the supplier marketplace, the wallet, the readiness tracker, and what follows in Phase 2.",
   openGraph: {
-    title: "ConstructFi Apps",
+    title: "ConstructFi apps & roadmap",
     description:
-      "Build or Bust, the marketplace, the participant dashboard, and what ships next.",
+      "Every product, the order it ships in, and what is still sequenced behind it.",
     url: `${SITE.url}/apps`,
     images: [{ url: "/img/readiness.png", width: 1200, height: 630 }],
   },
   alternates: { canonical: "/apps" },
 };
 
-type App = {
-  icon: typeof Gamepad2;
-  title: string;
-  body: string;
-  badge: string;
-  badgeVariant: "default" | "gold" | "outline";
-  href?: string;
-  cta?: string;
-};
-
-const APPS: App[] = [
-  {
-    icon: Gamepad2,
-    title: "Build or Bust",
-    body: "Gamified financial education and readiness. Complete lessons and property analyses, earn COVI participation rewards, and mint soulbound ELUV milestones for verified progress.",
-    badge: "Phase 1 · At launch",
-    badgeVariant: "default",
-    href: "/app",
-    cta: "Explore Build or Bust",
-  },
-  {
-    icon: Store,
-    title: "Marketplace",
-    body: "A verified supplier network wired to real procurement across six markets. A share of transaction fees recycles into the rewards pool, so rewards are funded by commerce.",
-    badge: "Phase 1 · At launch",
-    badgeVariant: "default",
-    href: "/marketplace",
-    cta: "Explore the marketplace",
-  },
+// Platform surfaces that are not marketplace listings — they have no store page.
+const PLATFORM = [
   {
     icon: LineChart,
     title: "Participant dashboard",
-    body: "One view of your COVI activity, verified ELUV milestones, and readiness progression. A static preview with illustrative data is available today.",
+    body: "One view of your COVI activity, verified ELUV milestones, and readiness progression. A static preview with demonstration data is available today.",
     badge: "Preview available",
-    badgeVariant: "gold",
+    badgeVariant: "gold" as const,
     href: "/dashboard",
     cta: "View the preview",
-  },
-  {
-    icon: Boxes,
-    title: "Collectibles & credentials layer",
-    body: "The NFT layer that carries ELUV milestones and commemorative collections issued through platform activity. Distribution happens inside ConstructFi — never through third-party listings.",
-    badge: "Phase 2 · Coming soon",
-    badgeVariant: "outline",
   },
   {
     icon: Building2,
     title: "Procurement workspace",
     body: "Bulk ordering, subcontractor coordination, and supply-chain provenance for teams running real jobs across the six active markets.",
-    badge: "Phase 2 · Coming soon",
-    badgeVariant: "outline",
+    badge: "Phase 2",
+    badgeVariant: "outline" as const,
   },
   {
-    icon: Wallet,
+    icon: Smartphone,
     title: "Mobile companion",
     body: "Build or Bust and dashboard access on iOS and Android, so participation and milestone submission work from the job site.",
-    badge: "Phase 2 · Coming soon",
-    badgeVariant: "outline",
+    badge: "Phase 2",
+    badgeVariant: "outline" as const,
   },
 ];
 
@@ -97,9 +57,9 @@ export default function AppsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Platform · Apps"
+        eyebrow="Platform · Apps & roadmap"
         title="One platform, sequenced deliberately"
-        lede="ConstructFi ships as a small set of products that reinforce each other: learn and prove in Build or Bust, transact in the marketplace, and watch it compound on your dashboard."
+        lede="ConstructFi ships as a small set of products that reinforce each other: screen deals in Build or Bust, procure in the marketplace, and watch it compound on your dashboard."
       >
         <Badge className="bg-white/10 text-white">
           Phase 1 launches {SITE.launchDate}
@@ -108,12 +68,38 @@ export default function AppsPage() {
 
       <Section>
         <SectionHeading
-          eyebrow="The surface"
-          title="What you can use, and what comes next"
-          lede="Nothing here is presented as shipped before it is. Phase 2 items are honest placeholders, not download links."
+          eyebrow="In the store"
+          title="Every product, in one place"
+          lede="These all live in the marketplace — the ConstructFi app store. Nothing here is presented as shipped before it is; dates and phases are honest labels, not download links."
+        />
+        <div className="mt-12 apps-row store-grid">
+          {PRODUCTS.map((p, i) => (
+            <Reveal key={p.slug} delay={i * 0.04}>
+              <ProductCard product={p} />
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <Button asChild>
+            <Link href="/marketplace">
+              Browse the app store
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/app">Try Build or Bust</Link>
+          </Button>
+        </div>
+      </Section>
+
+      <Section className="bg-wash dark:bg-ink-2/30">
+        <SectionHeading
+          eyebrow="Also on the platform"
+          title="Surfaces that are not store listings"
+          lede="These support the products above rather than standing alone as marketplace items."
         />
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {APPS.map((a, i) => {
+          {PLATFORM.map((a, i) => {
             const inner = (
               <Card
                 className={
@@ -164,7 +150,8 @@ export default function AppsPage() {
             </h2>
             <p className="mt-4 max-w-xl text-white/70">
               The mobile builds are in development. Store listings go live at
-              release — until then these badges are labels, not links.
+              release — until then these badges are labels, not links. You can try
+              the Build or Bust prototype in your browser today.
             </p>
           </div>
           <StoreBadges />

@@ -1,0 +1,73 @@
+import Link from "next/link";
+import { ProductIcon } from "@/components/product-icon";
+import { StatusPill } from "@/components/status-pill";
+import { TagChip } from "@/components/tag-chip";
+import { BobMark } from "@/components/jul16/coins";
+import { CATEGORIES, type Product } from "@/lib/products";
+
+function categoryLabel(key: Product["category"]) {
+  return CATEGORIES.find((c) => c.key === key)?.label ?? key;
+}
+
+/** Standard app-store tile. Used on /marketplace, /apps, and the homepage. */
+export function ProductCard({ product }: { product: Product }) {
+  return (
+    <Link
+      href={`/marketplace/${product.slug}`}
+      className="app-card prod-card"
+      data-testid={`product-card-${product.slug}`}
+      data-category={product.category}
+    >
+      <div className="pc-top">
+        <span className="pc-ic" aria-hidden>
+          <ProductIcon icon={product.icon} />
+        </span>
+        <StatusPill status={product.status} />
+      </div>
+      <span className="a-n">{product.name}</span>
+      <div className="a-d">{product.tagline}</div>
+      <div className="tag-row">
+        {product.tags.slice(0, 3).map((t) => (
+          <TagChip key={t} tag={t} />
+        ))}
+      </div>
+      <div className="a-m">
+        <span>{categoryLabel(product.category)}</span>
+        <span className="pc-view">View →</span>
+      </div>
+    </Link>
+  );
+}
+
+/** Larger hero tile for the flagship product. */
+export function FeaturedProductCard({ product }: { product: Product }) {
+  return (
+    <div className="feat-card" data-testid={`featured-${product.slug}`}>
+      <div className="fc-mark" aria-hidden>
+        <BobMark />
+      </div>
+      <div className="fc-body">
+        <div className="fc-head">
+          <span className="chip">Featured</span>
+          <StatusPill status={product.status} />
+        </div>
+        <h3 className="fc-name">{product.name}</h3>
+        <p className="fc-tag">{product.tagline}</p>
+        <p className="fc-desc">{product.shortDescription}</p>
+        <div className="tag-row">
+          {product.tags.map((t) => (
+            <TagChip key={t} tag={t} />
+          ))}
+        </div>
+        <div className="fc-ctas">
+          <Link className="btn btn-primary" href="/app" data-testid="featured-cta-demo">
+            Try the interactive demo
+          </Link>
+          <Link className="btn btn-ghost" href={`/marketplace/${product.slug}`}>
+            Product details →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
