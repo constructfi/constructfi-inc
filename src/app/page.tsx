@@ -14,7 +14,7 @@ import {
 import { LaunchStatusStrip } from "@/components/launch-status-strip";
 import { ProductCard, FeaturedProductCard } from "@/components/product-card";
 import { FEATURED_PRODUCT, PRODUCTS } from "@/lib/products";
-import { COVI, ELUV, APP_URL } from "@/lib/site";
+import { COVI, ELUV, APP_URL, APP_URL_EXTERNAL } from "@/lib/site";
 
 // The homepage teases three products next to the flagship; the store has the rest.
 const HOME_PRODUCTS = PRODUCTS.filter((p) =>
@@ -56,7 +56,12 @@ export default function HomePage() {
               bought, sold, or transferred.
             </p>
             <div className="hero-ctas">
-              <Link className="btn btn-primary" href={APP_URL} data-testid="button-hero-launch">
+              <Link
+                className="btn btn-primary"
+                href={APP_URL}
+                data-testid="button-hero-launch"
+                {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
                 Launch app
               </Link>
               <Link className="btn btn-ghost" href="/whitepaper">
@@ -717,7 +722,11 @@ export default function HomePage() {
             <h2>Own a share of what you help build.</h2>
             <p>Connect a wallet to start participating, or read the whitepaper first.</p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-              <Link className="btn btn-primary" href={APP_URL}>
+              <Link
+                className="btn btn-primary"
+                href={APP_URL}
+                {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
                 Launch app
               </Link>
               <Link className="btn btn-ghost" href="/whitepaper">

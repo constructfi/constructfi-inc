@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/logo";
 import { Jul16ThemeToggle } from "@/components/theme-toggle";
 import { WalletConnect } from "@/components/wallet-connect";
-import { NAV_GROUPS, MOBILE_NAV, APP_URL } from "@/lib/site";
+import { NAV_GROUPS, MOBILE_NAV, APP_URL, APP_URL_EXTERNAL } from "@/lib/site";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -65,7 +65,12 @@ export function SiteHeader() {
           <div className="nav-wallet">
             <WalletConnect />
           </div>
-          <Link className="btn btn-primary" href={APP_URL} data-testid="button-launch-app">
+          <Link
+            className="btn btn-primary"
+            href={APP_URL}
+            data-testid="button-launch-app"
+            {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
             Launch app
           </Link>
           <Jul16ThemeToggle />
@@ -101,7 +106,12 @@ export function SiteHeader() {
           </Link>
         ))}
         <div className="mm-actions">
-          <Link className="btn btn-primary" href={APP_URL} onClick={() => setOpen(false)}>
+          <Link
+            className="btn btn-primary"
+            href={APP_URL}
+            onClick={() => setOpen(false)}
+            {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
             Launch app
           </Link>
           <WalletConnect />

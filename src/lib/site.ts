@@ -154,7 +154,18 @@ export const ON_THIS_PAGE = [
   { href: "#s-trust", label: "Trust" },
 ] as const;
 
-export const APP_URL = "/app";
+// The real interactive app is deploying to its own origin at constructfi.app.
+// Until it goes live, the "Launch app" / demo CTAs point at the in-site
+// prototype (/app) so nothing links to a dead domain. Flip APP_LIVE to true
+// once constructfi.app is serving, and every launch CTA switches over.
+export const APP_ORIGIN = "https://constructfi.app";
+export const APP_LIVE = false;
+
+/** Where every "Launch app" / "Try the demo" CTA points. */
+export const APP_URL = APP_LIVE ? APP_ORIGIN : "/app";
+
+/** True when APP_URL is an external origin — callers should open in a new tab. */
+export const APP_URL_EXTERNAL = APP_LIVE;
 
 export const FOOTER_LINKS = {
   Platform: [
