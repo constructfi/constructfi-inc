@@ -76,7 +76,7 @@ export const WP_CHAPTERS: WPChapter[] = [
     title: "Marketplace, procurement & commerce",
     dek: "Verified suppliers, transparent transactions, and coordinated supply chains.",
     blocks: [
-      { type: "p", text: "The marketplace is where commerce becomes infrastructure. Educational apps, NFTs, supply & procurement, and a partner marketplace all transact on shared rails. Every purchase earns approximately 2% back in COVI, and marketplace fees fund the rewards loop." },
+      { type: "p", text: "The marketplace is where commerce becomes infrastructure. Educational apps, NFTs, supply & procurement, and a partner marketplace all transact on shared rails. Eligible activity earns COVI, and marketplace fees fund the rewards loop." },
       { type: "p", text: "Gaming and DeFi capabilities follow, deliberately sequenced and compliance-reviewed. The marketplace draws on real procurement relationships from Covington Supply Co., giving the platform genuine transaction volume from day one rather than synthetic demand." },
       { type: "callout", variant: "teal", title: "Consistency note", text: "COVI spend use-cases reference partner programs (nonprofit, banking, and public partners) consistently across all materials." },
     ],
