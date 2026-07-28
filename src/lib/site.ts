@@ -142,12 +142,12 @@ export const MOBILE_NAV: NavItem[] = [
 
 // Secondary in-page anchor bar shown on the homepage (older design).
 export const ON_THIS_PAGE = [
-  { href: "#s-platform", label: "Platform" },
+  { href: "#s-how", label: "How it works" },
   { href: "#s-app", label: "The app" },
   { href: "#s-market", label: "Marketplace" },
+  { href: "#s-tokens", label: "Tokenomics" },
   { href: "#s-build", label: "Build on ConstructFi" },
   { href: "#s-founder", label: "Team" },
-  { href: "#s-tokens", label: "Tokenomics" },
   { href: "#s-roadmap", label: "Roadmap" },
   { href: "#s-trust", label: "Trust" },
 ] as const;

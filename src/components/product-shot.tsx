@@ -30,8 +30,14 @@ export function ProductShot({ product }: { product: Product }) {
   );
 }
 
-/** Card thumbnail: cropped banner that sits above the card body. */
-export function ProductThumb({ product }: { product: Product }) {
+/**
+ * Card thumbnail: cropped banner that sits above the card body.
+ *
+ * `eager` opts a card out of lazy loading. Cards sitting thousands of pixels
+ * down a page can be scrolled past before the lazy loader resolves them, and an
+ * unresolved thumbnail paints as a bare dark frame that reads as a broken card.
+ */
+export function ProductThumb({ product, eager }: { product: Product; eager?: boolean }) {
   if (!product.image) return null;
   return (
     <span className="pc-shot" aria-hidden>
@@ -40,6 +46,7 @@ export function ProductThumb({ product }: { product: Product }) {
         alt=""
         fill
         sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
+        loading={eager ? "eager" : undefined}
         style={product.imageFocus ? { objectPosition: product.imageFocus } : undefined}
       />
     </span>

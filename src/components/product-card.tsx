@@ -10,7 +10,13 @@ function categoryLabel(key: Product["category"]) {
 }
 
 /** Standard app-store tile. Used on /marketplace, /apps, and the homepage. */
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({
+  product,
+  eagerImage,
+}: {
+  product: Product;
+  eagerImage?: boolean;
+}) {
   return (
     <Link
       href={`/marketplace/${product.slug}`}
@@ -18,7 +24,7 @@ export function ProductCard({ product }: { product: Product }) {
       data-testid={`product-card-${product.slug}`}
       data-category={product.category}
     >
-      <ProductThumb product={product} />
+      <ProductThumb product={product} eager={eagerImage} />
       <div className="pc-top">
         <span className="pc-ic" aria-hidden>
           <ProductIcon icon={product.icon} />

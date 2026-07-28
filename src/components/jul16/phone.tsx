@@ -50,22 +50,18 @@ export function PhoneShell({
 /** Hero phone — the Marketplace app screen from the Jul 16 design. */
 export function PhoneMarketplace({ className }: { className?: string }) {
   return (
-    <PhoneShell className={className} label="ConstructFi app — marketplace screen (demonstration data)">
+    <PhoneShell className={className} label="ConstructFi app — marketplace screen (illustrative mockup)">
       <StatusBar />
       <div className="ph-body">
         <div className="ph-title">Marketplace</div>
-        <div className="ph-stats">
+        <div className="ph-stats two">
           <div>
-            <span className="k">Wallet</span>
-            <span className="v">12,480</span>
+            <span className="k">COVI</span>
+            <span className="v">•••</span>
           </div>
           <div>
-            <span className="k">Soulbound</span>
-            <span className="v gold">1,050</span>
-          </div>
-          <div>
-            <span className="k">Cashback</span>
-            <span className="v">−2%</span>
+            <span className="k">ELUV</span>
+            <span className="v gold">•••</span>
           </div>
         </div>
         <div className="ph-tabs">
@@ -113,7 +109,7 @@ export function PhoneMarketplace({ className }: { className?: string }) {
 /** "See ConstructFi in action" — participation dashboard screen. */
 export function PhoneDashboard({ className }: { className?: string }) {
   return (
-    <PhoneShell className={className} label="ConstructFi app — participation dashboard (demonstration data)">
+    <PhoneShell className={className} label="ConstructFi app — participation dashboard (illustrative mockup)">
       <StatusBar />
       <div className="ph-body">
         <div className="ph-title">Your progress</div>
@@ -123,25 +119,25 @@ export function PhoneDashboard({ className }: { className?: string }) {
           <div className="ph-bar">
             <i style={{ width: "68%" }} />
           </div>
-          <span className="s">4 of 6 milestones minted as soulbound ELUV</span>
+          <span className="s">Milestones minted as soulbound ELUV</span>
         </div>
         <div className="ph-stats two">
           <div>
             <span className="k">COVI earned</span>
-            <span className="v">12,480</span>
+            <span className="v">•••</span>
           </div>
           <div>
             <span className="k">ELUV milestones</span>
-            <span className="v gold">4</span>
+            <span className="v gold">•••</span>
           </div>
         </div>
         <div className="ph-sub">Recent activity</div>
         <div className="ph-list">
           {[
-            { n: "Deal analysis completed", s: "Build or Bust", a: "+250" },
-            { n: "Budgeting module", s: "Learn track", a: "+120" },
+            { n: "Deal analysis completed", s: "Build or Bust", a: "COVI" },
+            { n: "Budgeting module", s: "Learn track", a: "COVI" },
             { n: "Milestone minted", s: "Readiness · Tier 3", a: "ELUV" },
-            { n: "Marketplace purchase", s: "Covington Supply", a: "+2%" },
+            { n: "Marketplace purchase", s: "Covington Supply", a: "COVI" },
           ].map((r) => (
             <div className="ph-row" key={r.n}>
               <i className="ph-ico" />
@@ -162,7 +158,7 @@ export function PhoneDashboard({ className }: { className?: string }) {
 /** Marketplace side rail — Covi Wallet screen. */
 export function PhoneWallet({ className }: { className?: string }) {
   return (
-    <div className={cn("side-phone", className)} role="img" aria-label="Covi Wallet screen (demonstration data)">
+    <div className={cn("side-phone", className)} role="img" aria-label="Covi Wallet screen (illustrative mockup)">
       <div className="sp-notch" />
       <div className="sp-screen ph-screen">
         <StatusBar />
@@ -170,19 +166,19 @@ export function PhoneWallet({ className }: { className?: string }) {
           <div className="ph-title">Covi Wallet</div>
           <div className="ph-asset covi">
             <span className="n">COVI</span>
-            <span className="v">12,480</span>
+            <span className="v">•••</span>
             <span className="s">Commerce &amp; rewards · ERC-20</span>
           </div>
           <div className="ph-asset eluv">
             <span className="n">ELUV</span>
-            <span className="v">4 milestones</span>
-            <span className="s">Soulbound · non-transferable</span>
+            <span className="v">•••</span>
+            <span className="s">Soulbound milestones · non-transferable</span>
           </div>
           <div className="ph-sub">Activity</div>
           <div className="ph-list">
             {[
-              { n: "Cashback · materials", a: "+2%" },
-              { n: "Module completed", a: "+120" },
+              { n: "Materials purchase", a: "COVI" },
+              { n: "Module completed", a: "COVI" },
               { n: "Milestone minted", a: "ELUV" },
             ].map((r) => (
               <div className="ph-row slim" key={r.n}>
