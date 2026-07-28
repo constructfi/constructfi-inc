@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ProductIcon } from "@/components/product-icon";
 import { StatusPill } from "@/components/status-pill";
 import { TagChip } from "@/components/tag-chip";
-import { BobMark } from "@/components/jul16/coins";
+import { ProductShot, ProductThumb } from "@/components/product-shot";
 import { CATEGORIES, type Product } from "@/lib/products";
 
 function categoryLabel(key: Product["category"]) {
@@ -18,6 +18,7 @@ export function ProductCard({ product }: { product: Product }) {
       data-testid={`product-card-${product.slug}`}
       data-category={product.category}
     >
+      <ProductThumb product={product} />
       <div className="pc-top">
         <span className="pc-ic" aria-hidden>
           <ProductIcon icon={product.icon} />
@@ -43,8 +44,8 @@ export function ProductCard({ product }: { product: Product }) {
 export function FeaturedProductCard({ product }: { product: Product }) {
   return (
     <div className="feat-card" data-testid={`featured-${product.slug}`}>
-      <div className="fc-mark" aria-hidden>
-        <BobMark />
+      <div className="fc-mark">
+        <ProductShot product={product} />
       </div>
       <div className="fc-body">
         <div className="fc-head">
@@ -60,7 +61,7 @@ export function FeaturedProductCard({ product }: { product: Product }) {
           ))}
         </div>
         <div className="fc-ctas">
-          <Link className="btn btn-primary" href="/app" data-testid="featured-cta-demo">
+          <Link className="btn btn-primary" href="/app#demo" data-testid="featured-cta-demo">
             Try the interactive demo
           </Link>
           <Link className="btn btn-ghost" href={`/marketplace/${product.slug}`}>

@@ -30,8 +30,23 @@ export type Product = {
   coviEluvNote: string;
   /** Key into PRODUCT_ICONS in src/components/product-icon.tsx. */
   icon: string;
+  /**
+   * Illustrative 900x1350 preview render in public/products/. These are brand
+   * artwork, not screenshots of a shipped app, so every surface that shows one
+   * labels it as an illustrative preview.
+   */
+  image?: string;
+  /**
+   * `object-position` for the cropped card thumbnail. The renders differ in where
+   * the meaningful artwork sits, and the crop must not frame a product around
+   * money imagery — see the House Hackers entry.
+   */
+  imageFocus?: string;
   featured?: boolean;
 };
+
+/** Intrinsic size of every file in public/products/ — set on <Image> to reserve space. */
+export const PRODUCT_IMAGE_SIZE = { width: 900, height: 1350 } as const;
 
 export const CATEGORIES: { key: ProductCategory | "all"; label: string }[] = [
   { key: "all", label: "All" },
@@ -59,6 +74,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     tags: ["Free verdict", "Earn COVI", "Earn ELUV"],
     icon: "gauge",
+    image: "/products/build-or-bust.webp",
     featured: true,
     shortDescription:
       "Real-estate deal analyzer. Answer ~12 plain-English questions, get a BUILD / WORK THE DEAL / BUST verdict plus the three numbers that drove it and the price where the deal works.",
@@ -85,6 +101,7 @@ export const PRODUCTS: Product[] = [
     status: "coming-soon",
     tags: ["Spend COVI", "Supplier network"],
     icon: "ruler",
+    image: "/products/covi-estimator.webp",
     shortDescription:
       "Build fast, accurate takeoffs and bids using Covington supplier pricing. Scope materials, price them against the verified supplier network, and export.",
     longDescription:
@@ -106,6 +123,7 @@ export const PRODUCTS: Product[] = [
     status: "coming-soon",
     tags: ["Earn ELUV"],
     icon: "target",
+    image: "/products/readiness-tracker.webp",
     shortDescription:
       "Track verified readiness milestones across knowledge, procurement, and participation. Each completed milestone can mint a soulbound ELUV credential.",
     longDescription:
@@ -127,6 +145,7 @@ export const PRODUCTS: Product[] = [
     status: "coming-soon",
     tags: ["COVI & ELUV", "Non-custodial"],
     icon: "wallet",
+    image: "/products/covi-wallet.webp",
     shortDescription:
       "Manage COVI and view soulbound ELUV credentials. Non-custodial — your keys, always. Reown · WalletConnect · MetaMask.",
     longDescription:
@@ -148,6 +167,12 @@ export const PRODUCTS: Product[] = [
     status: "coming-soon",
     tags: ["Earn COVI", "Learn-to-earn"],
     icon: "gamepad",
+    image: "/products/house-hackers.webp",
+    // The lower third of this render is a money bag and coin piles. A centred crop
+    // put that directly above the "Earn COVI" tag, which reads as a promise of
+    // financial return — the one thing this product's copy explicitly disclaims.
+    // Aim the thumbnail at the house and progress dial instead.
+    imageFocus: "center 34%",
     shortDescription:
       "A learn-to-earn game that teaches real-estate and readiness concepts through play. Progress engages game mechanics — no promise of return.",
     longDescription:
@@ -169,6 +194,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     tags: ["Supplier network", "Earn ELUV", "Spend/Earn COVI"],
     icon: "boxes",
+    image: "/products/supplier-marketplace.webp",
     shortDescription:
       "Procure materials and services from a vetted supplier network. A portion of transaction fees recycles into the COVI rewards pool; verified activity can earn ELUV.",
     longDescription:
@@ -191,6 +217,7 @@ export const PRODUCTS: Product[] = [
     status: "phase-2",
     tags: ["Earn ELUV", "Distributed in-app"],
     icon: "gem",
+    image: "/products/collectibles.webp",
     shortDescription:
       "The NFT layer that carries ELUV milestones and commemorative collections issued through platform activity. Distribution happens inside ConstructFi — never through third-party listings.",
     longDescription:

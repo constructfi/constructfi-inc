@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductIcon } from "@/components/product-icon";
 import { ProductCard } from "@/components/product-card";
+import { ProductShot } from "@/components/product-shot";
 import { StatusPill } from "@/components/status-pill";
 import { TagChips } from "@/components/tag-chip";
 import { BobDemo } from "@/components/bob-demo";
@@ -90,6 +91,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 )}
               </div>
             </div>
+            <ProductShot product={product} />
           </div>
         </div>
       </header>
