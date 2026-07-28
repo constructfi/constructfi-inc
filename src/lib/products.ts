@@ -168,11 +168,6 @@ export const PRODUCTS: Product[] = [
     tags: ["Earn COVI", "Learn-to-earn"],
     icon: "gamepad",
     image: "/products/house-hackers.webp",
-    // The lower third of this render is a money bag and coin piles. A centred crop
-    // put that directly above the "Earn COVI" tag, which reads as a promise of
-    // financial return — the one thing this product's copy explicitly disclaims.
-    // Aim the thumbnail at the house and progress dial instead.
-    imageFocus: "center 34%",
     shortDescription:
       "A learn-to-earn game that teaches real-estate and readiness concepts through play. Progress engages game mechanics — no promise of return.",
     longDescription:
