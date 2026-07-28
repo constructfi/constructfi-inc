@@ -226,6 +226,73 @@ export const PRODUCTS: Product[] = [
     coviEluvNote:
       "ELUV credentials are ERC-5192 soulbound tokens: earned through verified milestones, never sold, and never transferable. Commemorative collectibles are distributed inside the platform, so there is nothing to bid on elsewhere.",
   },
+  {
+    slug: "revenueos",
+    name: "ConstructFi RevenueOS",
+    tagline: "The revenue OS for construction.",
+    category: "apps",
+    status: "live",
+    tags: ["Business operations", "Spend COVI"],
+    icon: "briefcase",
+    shortDescription:
+      "An AI-assisted revenue and business-development workspace that connects sales, estimating, procurement, logistics, and executive reporting into one system.",
+    longDescription:
+      "RevenueOS is the business-operations app for contractors and suppliers who are running a real book of work. It connects sales, estimating, procurement, logistics, and executive reporting into a single workspace, so a bid, the materials behind it, and the job it becomes stay attached to the same record. Every module shares the platform's identity, AI, and reporting layer, which is why a number on the executive dashboard traces back to the workflow that produced it rather than to a manual reconciliation.",
+    features: [
+      "Executive Command Center — one operating view across pipeline, jobs, and reporting",
+      "Construction CRM for contacts, bids, and job history",
+      "Business Development Intelligence for opportunity discovery and scoring",
+      "Estimating and Procurement hubs wired to the verified supplier network",
+      "Logistics Hub for scheduling, dispatch, and delivery tracking",
+      "Executive AI Advisor for natural-language reporting across your own data",
+    ],
+    coviEluvNote:
+      "Advanced automation and exports run on COVI, the platform's utility token — earned through platform activity and spent on platform features. COVI is transfer-paused and earn-only before listing, and it is not an investment.",
+  },
+  {
+    slug: "sales-academy",
+    name: "Covington Sales Academy",
+    tagline: "Certification-grade sales onboarding.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Education", "Earn ELUV"],
+    icon: "graduation",
+    shortDescription:
+      "A structured sales onboarding, coaching, and performance program that runs on RevenueOS. Verified completions can mint soulbound ELUV credentials.",
+    longDescription:
+      "The Academy is how someone new to construction sales gets to competent on a schedule rather than by osmosis. It runs on RevenueOS, so onboarding tracks, role-play coaching, and scorecards read from the same records a rep works in every day. Completions are reviewed rather than self-reported, and a verified certification milestone can mint one soulbound ELUV credential — a record of work that was actually done and checked.",
+    features: [
+      "Guided onboarding tracks that sequence what to learn and when",
+      "AI role-play coaching against realistic buyer objections",
+      "Performance scorecards drawn from RevenueOS activity",
+      "Certification milestones reviewed before they count",
+      "Verified completion can mint a soulbound ELUV credential",
+    ],
+    coviEluvNote:
+      "Verified completions can mint ELUV, an ERC-5192 soulbound credential that is earned only, never transferable, and never sold. Any COVI involved is a utility token for platform activity — transfer-paused and earn-only before listing, and not an investment.",
+  },
+  {
+    slug: "material-marketplace",
+    name: "Material Marketplace",
+    tagline: "Division-based material packages from vetted manufacturers.",
+    category: "materials",
+    status: "live",
+    tags: ["Supplier network", "Spend/Earn COVI"],
+    icon: "package",
+    shortDescription:
+      "A sourcing exchange for division-organized material packages from vetted manufacturers, connected to the same verified supplier operations behind the Supplier Marketplace.",
+    longDescription:
+      "Material Marketplace organizes sourcing the way a construction schedule already does: by division. Instead of hunting line items one at a time, you work from curated packages assembled with vetted manufacturers, so a division's materials arrive as a coherent scope. It sits alongside the Supplier Marketplace rather than replacing it — Material Marketplace is the curated manufacturer-package layer, while the Supplier Marketplace is the broader procurement and settlement engine those packages flow through.",
+    features: [
+      "Packages organized by construction division rather than loose line items",
+      "Vetted manufacturers reviewed before their packages are listed",
+      "Package-level bulk pricing for repeat scopes",
+      "Connects straight through to procurement and settlement",
+      "Provenance surfaced at the point of purchase",
+    ],
+    coviEluvNote:
+      "Eligible activity can involve COVI, the platform's utility token — transfer-paused and earn-only before listing, and not an investment. Verified contract addresses are published only after independent audit.",
+  },
 ];
 
 export const FEATURED_PRODUCT =

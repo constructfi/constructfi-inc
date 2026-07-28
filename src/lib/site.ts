@@ -98,6 +98,7 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     label: "Platform",
     items: [
+      { href: "/platform", label: "Platform overview" },
       { href: "/whitepaper", label: "Whitepaper" },
       { href: "/developers", label: "Developers" },
       { href: "/security", label: "Security & compliance" },
@@ -125,6 +126,7 @@ export const NAV_GROUPS: NavGroup[] = [
 // Flat mobile drawer, mirroring the Jul 16 mobile menu order.
 export const MOBILE_NAV: NavItem[] = [
   { href: "/", label: "Overview" },
+  { href: "/platform", label: "Platform overview" },
   { href: "/whitepaper", label: "Whitepaper" },
   { href: "/marketplace", label: "Marketplace (app store)" },
   { href: "/app", label: "Build or Bust" },

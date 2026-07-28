@@ -1147,6 +1147,8 @@ html:not(.dark) .cat-tab.on{background:#00336B;color:#FFFFFF}
    backdrop and the crop stays centred on the device screen. */
 .prod-card .pc-shot{display:block;position:relative;aspect-ratio:16/10;margin:-20px -20px 4px;border-radius:11px 11px 0 0;overflow:hidden;background:#070B1F;border-bottom:1px solid var(--line)}
 .prod-card .pc-shot img{object-fit:cover;object-position:center 46%}
+/* No render yet: keep the banner's footprint, fill it with the product mark. */
+.prod-card .pc-shot-blank{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0A1B33,#070B1F 60%);color:#00D19A}
 
 /* Featured flagship card */
 .feat-card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:26px;align-items:start;background:linear-gradient(135deg,rgba(0,209,154,.07),var(--panel) 55%);border:1px solid rgba(0,209,154,.4);border-radius:18px;padding:30px}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ProductIcon } from "@/components/product-icon";
 import { PRODUCT_IMAGE_SIZE, type Product } from "@/lib/products";
 
 /**
@@ -38,7 +39,15 @@ export function ProductShot({ product }: { product: Product }) {
  * unresolved thumbnail paints as a bare dark frame that reads as a broken card.
  */
 export function ProductThumb({ product, eager }: { product: Product; eager?: boolean }) {
-  if (!product.image) return null;
+  // Products without a render still need the banner, or they collapse to a
+  // shorter tile and break the grid's rhythm next to products that have one.
+  if (!product.image) {
+    return (
+      <span className="pc-shot pc-shot-blank" aria-hidden>
+        <ProductIcon icon={product.icon} size={34} />
+      </span>
+    );
+  }
   return (
     <span className="pc-shot" aria-hidden>
       <Image

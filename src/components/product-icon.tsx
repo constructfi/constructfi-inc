@@ -1,8 +1,11 @@
 import {
   Boxes,
+  Briefcase,
   Gamepad2,
   Gauge,
   Gem,
+  GraduationCap,
+  Package,
   Ruler,
   Target,
   Wallet,
@@ -19,6 +22,9 @@ const PRODUCT_ICONS: Record<string, LucideIcon> = {
   gamepad: Gamepad2,
   boxes: Boxes,
   gem: Gem,
+  briefcase: Briefcase,
+  graduation: GraduationCap,
+  package: Package,
 };
 
 export function ProductIcon({
