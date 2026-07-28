@@ -37,9 +37,9 @@ const SUMMARY = [
   {
     icon: Coins,
     label: "COVI balance",
-    value: "12,480",
+    value: "•••",
     unit: "COVI",
-    sub: "Earned · demo",
+    sub: "Earned · illustrative",
   },
   {
     icon: Award,
@@ -75,19 +75,19 @@ const ACTIVITY = [
     date: "Jul 14",
     event: "Property analysis completed (Build or Bust)",
     type: "Participation reward",
-    amount: "+320 COVI",
+    amount: "+ COVI",
   },
   {
     date: "Jul 09",
     event: "Marketplace procurement — sustainable lumber",
     type: "Commerce reward",
-    amount: "+185 COVI",
+    amount: "+ COVI",
   },
   {
     date: "Jul 02",
     event: "Education module — construction cost basics",
     type: "Participation reward",
-    amount: "+90 COVI",
+    amount: "+ COVI",
   },
   {
     date: "Jun 26",
