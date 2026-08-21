@@ -90,6 +90,13 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   </>
                 )}
               </div>
+              {product.slug === "collectibles" && (
+                <div className="mt-5 rounded-2xl border border-dashed border-gold/35 bg-gold/5 p-4 text-sm text-muted-foreground">
+                  Transferable collectibles can use OpenSea collection links once a real
+                  collection is published. ELUV never does: it is non-transferable and
+                  stays in the readiness and wallet experience only.
+                </div>
+              )}
             </div>
             <ProductShot product={product} />
           </div>

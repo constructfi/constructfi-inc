@@ -54,10 +54,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
-        sans: ["var(--font-plex-sans)", "IBM Plex Sans", "system-ui", "sans-serif"],
+        display: ["var(--font-fraunces)", "Fraunces", "Georgia", "serif"],
+        sans: ["var(--font-manrope)", "Manrope", "system-ui", "sans-serif"],
         mono: ["var(--font-plex-mono)", "IBM Plex Mono", "ui-monospace", "monospace"],
-        signature: ["var(--font-lora)", "Georgia", "serif"],
+        signature: ["var(--font-fraunces)", "Fraunces", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
