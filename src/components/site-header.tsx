@@ -11,45 +11,104 @@ import { NAV_GROUPS, MOBILE_NAV, APP_URL, APP_URL_EXTERNAL } from "@/lib/site";
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
+  const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
+  const navRef = React.useRef<HTMLElement | null>(null);
 
   React.useEffect(() => {
     setOpen(false);
+    setOpenDropdown(null);
   }, [pathname]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  React.useEffect(() => {
+    const onPointerDown = (event: MouseEvent) => {
+      if (!navRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    return () => document.removeEventListener("mousedown", onPointerDown);
+  }, []);
+
+  const isActive = (href: string) => {
+    const baseHref = href.split("#")[0] || "/";
+    return baseHref === "/" ? pathname === "/" : pathname.startsWith(baseHref);
+  };
+
+  const isChildActive = (href: string) => !href.includes("#") && isActive(href);
 
   return (
-    <nav className="nav">
+    <nav className="nav" ref={navRef}>
       <div className="wrap nav-inner">
         <Link className="logo" href="/" aria-label="ConstructFi home" data-testid="link-home">
           <Logo />
         </Link>
 
         <div className="nav-links">
-          {NAV_GROUPS.map((group) =>
-            group.href ? (
-              <Link
-                key={group.label}
-                href={group.href}
-                data-testid={`nav-${group.label.toLowerCase()}`}
-                className={isActive(group.href) ? "nd-link active" : "nd-link"}
-              >
-                {group.label}
-              </Link>
-            ) : (
-              <div className="nav-drop" key={group.label}>
-                <button className="nd-btn" type="button">
+          {NAV_GROUPS.map((group) => {
+            if (!group.items?.length) {
+              return (
+                <Link
+                  key={group.label}
+                  href={group.href ?? "/"}
+                  data-testid={`nav-${group.label.toLowerCase()}`}
+                  className={group.href && isActive(group.href) ? "nd-link active" : "nd-link"}
+                  onClick={() => {
+                    setOpen(false);
+                    setOpenDropdown(null);
+                  }}
+                >
                   {group.label}
+                </Link>
+              );
+            }
+
+            const activeChild = group.items.find((item) => isChildActive(item.href));
+            const displayLabel = activeChild?.label ?? group.label;
+            const groupActive =
+              (group.href ? isActive(group.href) : false) ||
+              group.items.some((item) => isChildActive(item.href));
+
+            return (
+              <div
+                className={openDropdown === group.label ? "nav-drop open" : "nav-drop"}
+                key={group.label}
+              >
+                <button
+                  className={groupActive ? "nd-btn active" : "nd-btn"}
+                  type="button"
+                  aria-expanded={openDropdown === group.label}
+                  onClick={() =>
+                    setOpenDropdown((current) => (current === group.label ? null : group.label))
+                  }
+                >
+                  {displayLabel}
                 </button>
                 <div className="nd-menu">
                   <div className="nd-menu-in">
-                    {group.items?.map((item) => (
+                    {group.href && (
+                      <Link
+                        href={group.href}
+                        className={isActive(group.href) ? "active" : undefined}
+                        data-testid={`nav-${group.label.toLowerCase()}`}
+                        onClick={() => {
+                          setOpen(false);
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        {group.label}
+                      </Link>
+                    )}
+                    {group.items.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className={isActive(item.href) ? "active" : undefined}
+                        className={isChildActive(item.href) ? "active" : undefined}
                         data-testid={`nav-item-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
+                        onClick={() => {
+                          setOpen(false);
+                          setOpenDropdown(null);
+                        }}
                       >
                         {item.label}
                       </Link>
@@ -57,8 +116,8 @@ export function SiteHeader() {
                   </div>
                 </div>
               </div>
-            )
-          )}
+            );
+          })}
         </div>
 
         <div className="nav-cta">
@@ -100,7 +159,10 @@ export function SiteHeader() {
             role="menuitem"
             className={isActive(item.href) ? "active" : undefined}
             data-testid={`mnav-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false);
+              setOpenDropdown(null);
+            }}
           >
             {item.label}
           </Link>
@@ -109,7 +171,10 @@ export function SiteHeader() {
           <Link
             className="btn btn-primary"
             href={APP_URL}
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false);
+              setOpenDropdown(null);
+            }}
             {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             Launch app

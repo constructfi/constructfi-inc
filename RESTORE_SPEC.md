@@ -13,7 +13,7 @@ Restore 4 feature areas the rebuild dropped, matching the EXISTING design system
 - Components: `PageHero` (eyebrow/title/lede/children), `Section` + `SectionHeading` (eyebrow/title/lede/align), `Card`/`CardContent`, `Badge`, `Button`, `Accordion` from `@/components/ui/*`.
 - Colors (tailwind): ink `#0B1930`, ink-2 `#10233F`, navy `#14325A`, teal `#0E9F8A`, mint `#2BC5A0`, sky `#1E9FC9`, gold `#B9903B`, wash `#F2F7F6`, line `#DDE7E5`. Dark mode is supported (next-themes). Use existing patterns: `bg-wash dark:bg-ink-2/30` for alt sections, `text-navy dark:text-white` for headings, `text-muted-foreground` for body, mint accent dots, `rounded-2xl border border-line dark:border-border`.
 - Icons: lucide-react.
-- Fonts: display/sans = Poppins var, mono = IBM Plex var (already configured).
+- Fonts: display/sans/mono should follow the active Fraunces + Manrope system.
 - Every page = `export const metadata` with title/description/openGraph/canonical (copy the marketplace page pattern).
 - Reveal/animation: use existing `Reveal` and `CountUp` components where the homepage uses them.
 

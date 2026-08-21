@@ -7,7 +7,7 @@ This bundle documents design changes made against the `constructfi/constructfi-i
 `ConstructFi_Site_v2_design_reference.dc.html` and the `_standalone.html` copy are **HTML design references** — built in a design tool to prototype layout, copy, and visual language. They are NOT React components and must not be copied into the Next.js app as-is. Recreate each screen below as real `.tsx` using the repo's existing components (`PageHero`, `Section`, `SectionHeading`, `Card`, `Button`, `Badge`, etc. from `src/components/ui/*`) and Tailwind classes/tokens already defined in `tailwind.config.ts` / `src/app/globals.css`.
 
 ## Fidelity
-**High-fidelity.** Copy is final (do not rewrite), section order and structure are final, colors/type are meant to match the repo's existing design tokens (teal/mint/navy/gold, IBM Plex family) — pull exact token values from `tailwind.config.ts` rather than the hex values baked into the HTML reference, since the reference predates some token names.
+**High-fidelity.** Copy is final (do not rewrite), section order and structure are final, colors/type are meant to match the repo's existing design tokens (teal/mint/navy/gold) — pull exact token values from `tailwind.config.ts` rather than the hex values baked into the HTML reference, since the reference predates some token names.
 
 ## What changed, mapped to repo files
 
@@ -50,7 +50,7 @@ This bundle documents design changes made against the `constructfi/constructfi-i
 
 ### 8. Typography update (supersedes the type line below)
 - **Target**: `tailwind.config.ts` font families, `src/app/globals.css`
-- Headline family is now **Fraunces** (serif, high-contrast) applied to `h1`/`h2` **only**. `h3` and all body/label/eyebrow text set in **Manrope**. IBM Plex Mono is no longer used for eyebrows/labels — those are Manrope semibold, uppercase, letter-spaced.
+- Headline family is now **Fraunces** (serif, high-contrast) applied to `h1`/`h2` **only**. `h3` and all body/label/eyebrow text set in **Manrope**.
 - Rationale: Fraunces at h3 sizes read fussy; restricting it to h1/h2 keeps the editorial voice while card titles stay clean.
 
 ### 9. Nav grouping + overflow dropdowns
@@ -75,7 +75,7 @@ This bundle documents design changes made against the `constructfi/constructfi-i
 - Wash: `#f2f7fb` (light section background), `#dee6ee` (hairline borders)
 - Gold/warning: `#d4a95a` / `#e4b95b` (badges, "preview" and "draft" states)
 - Category colors: teal `#019599`, mint `#00d19a`, sky `#1bb6fd`, indigo `#4a67ce`, periwinkle `#8298fc`, gold `#e4b95b`
-- Type: **Fraunces** (h1/h2 only), **Manrope** (h3, body, labels, eyebrows), Space Grotesk (Build or Busted product-specific type only). IBM Plex is no longer in use.
+- Type: **Fraunces** (h1/h2 only), **Manrope** (h3, body, labels, eyebrows), Space Grotesk (Build or Busted product-specific type only).
 
 ## Assets
 - Product photography (Build or Busted, House Hackers, Supplier Marketplace) and brand logo SVGs were sourced from `public/` in the repo during this project — reuse those existing files rather than the base64 copies embedded in the HTML reference.
