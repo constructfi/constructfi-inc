@@ -122,7 +122,7 @@ export function SiteHeader() {
 
         <div className="nav-cta">
           <div className="nav-wallet">
-            <WalletConnect />
+            <WalletConnect disconnectedLabel="Wallet" />
           </div>
           <Link
             className="btn btn-primary"
