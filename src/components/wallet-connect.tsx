@@ -15,9 +15,11 @@ function shortAddr(addr?: string) {
 export function WalletConnect({
   className,
   size = "sm",
+  disconnectedLabel = "Connect wallet",
 }: {
   className?: string;
   size?: "sm" | "default" | "lg";
+  disconnectedLabel?: string;
 }) {
   const { open } = useAppKit();
   const { address, isConnected, chainId } = useAccount();
@@ -32,7 +34,7 @@ export function WalletConnect({
         data-testid="button-connect-wallet"
       >
         <Wallet className="h-4 w-4" />
-        Connect wallet
+        {disconnectedLabel}
       </Button>
     );
   }
