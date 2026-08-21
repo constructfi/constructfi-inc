@@ -12,8 +12,8 @@ export function SiteFooter() {
               <Logo />
             </Link>
             <p style={{ fontSize: "13.5px", color: "var(--ink3)", maxWidth: 280 }}>
-              A programmable economic-participation platform. Built on Ethereum. Verified
-              contract addresses will be published after independent audit.
+              The ecosystem for people who build. Marketplace discovery, usable products,
+              partner infrastructure, and optional participation on audit-gated rails.
             </p>
             <p style={{ fontSize: "13.5px", color: "var(--ink3)", marginTop: 12 }}>
               <a

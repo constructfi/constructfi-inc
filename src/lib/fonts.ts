@@ -1,17 +1,16 @@
-import { Poppins, IBM_Plex_Sans, IBM_Plex_Mono, Lora } from "next/font/google";
+import { Fraunces, Manrope, IBM_Plex_Mono } from "next/font/google";
 
-// Jul 16 type system: Poppins display, IBM Plex Sans body, IBM Plex Mono data.
-export const poppins = Poppins({
+export const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
+  weight: ["600", "700"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
-export const plexSans = IBM_Plex_Sans({
+export const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-plex-sans",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -19,13 +18,5 @@ export const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-plex-mono",
-  display: "swap",
-});
-
-export const lora = Lora({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["italic", "normal"],
-  variable: "--font-lora",
   display: "swap",
 });

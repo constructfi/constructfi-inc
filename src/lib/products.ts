@@ -8,7 +8,8 @@
 //   - ELUV is an ERC-5192 soulbound credential: earned only, non-transferable, never sold.
 //   - Nothing ships before the September 9, 2026 launch, so no product is described
 //     as already downloadable and no status renders as "Live" (see STATUS below).
-//   - NFT distribution happens in-app only — no third-party marketplace links.
+//   - Transferable collectibles belong in the Own lane and may link to OpenSea
+//     once a real collection is listed. ELUV never does because it is soulbound.
 
 export type ProductCategory = "apps" | "games" | "materials" | "nfts";
 
@@ -48,12 +49,24 @@ export type Product = {
 /** Intrinsic size of every file in public/products/ — set on <Image> to reserve space. */
 export const PRODUCT_IMAGE_SIZE = { width: 900, height: 1350 } as const;
 
-export const CATEGORIES: { key: ProductCategory | "all"; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "apps", label: "Apps" },
-  { key: "games", label: "Games" },
-  { key: "materials", label: "Materials" },
-  { key: "nfts", label: "NFTs" },
+export const CATEGORIES: {
+  key: ProductCategory | "all";
+  label: string;
+  description: string;
+}[] = [
+  { key: "all", label: "All", description: "Everything in the marketplace." },
+  { key: "apps", label: "Apps", description: "Usable software products." },
+  { key: "games", label: "Games", description: "Participation-first learning and play." },
+  {
+    key: "materials",
+    label: "Materials",
+    description: "Verified supplier and procurement workflows.",
+  },
+  {
+    key: "nfts",
+    label: "Own",
+    description: "Transferable digital collectibles, distinct from ELUV credentials.",
+  },
 ];
 
 // Status labels are deliberately not "Live". The platform launches September 9,
@@ -214,17 +227,17 @@ export const PRODUCTS: Product[] = [
     icon: "gem",
     image: "/products/collectibles.webp",
     shortDescription:
-      "The NFT layer that carries ELUV milestones and commemorative collections issued through platform activity. Distribution happens inside ConstructFi — never through third-party listings.",
+      "Transferable digital collectibles and commemorative collections that sit beside — not inside — the ELUV credential layer.",
     longDescription:
-      "The collectibles layer is how ELUV milestones and commemorative collections are represented on-chain. Everything here is issued through activity on the platform: you receive a collectible because you did something the platform verified. Distribution happens inside ConstructFi only — there are no third-party marketplace listings, and ELUV credentials themselves remain non-transferable.",
+      "The Own lane covers transferable digital collectibles and commemorative collections tied to platform activity. If a collection is listed externally, ConstructFi uses OpenSea-only language and links to the real collection page once it exists. ELUV stays separate: it is a non-transferable milestone credential that never appears in the Own lane and is never listed for sale.",
     features: [
-      "Milestone-linked collectibles tied to verified progress",
-      "Commemorative drops for platform milestones",
-      "In-app distribution only — no third-party marketplace listings",
+      "Transferable digital collectibles tied to verified platform activity",
+      "Commemorative drops for ecosystem milestones",
+      "OpenSea-ready collection language when real listings exist",
       "ELUV credentials remain soulbound and non-transferable",
     ],
     coviEluvNote:
-      "ELUV credentials are ERC-5192 soulbound tokens: earned through verified milestones, never sold, and never transferable. Commemorative collectibles are distributed inside the platform, so there is nothing to bid on elsewhere.",
+      "Transferable collectibles in Own are separate from ELUV. ELUV credentials are ERC-5192 soulbound tokens: earned through verified milestones, never sold, never transferable, and never presented as OpenSea listings.",
   },
   {
     slug: "revenueos",

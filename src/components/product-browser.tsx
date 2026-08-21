@@ -38,6 +38,7 @@ export function ProductBrowser() {
   const visible = PRODUCTS.filter(
     (p) => matchesCategory(p, tab) && matchesQuery(p, query)
   );
+  const activeCategory = CATEGORIES.find((category) => category.key === tab);
 
   return (
     <div>
@@ -70,6 +71,21 @@ export function ProductBrowser() {
             onChange={(e) => setQuery(e.target.value)}
           />
         </div>
+      </div>
+
+      <div className="mb-4 rounded-2xl border border-line bg-card px-5 py-4 dark:border-border">
+        <p className="text-sm font-semibold text-navy dark:text-white">
+          {activeCategory?.label ?? "All"}
+        </p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          {activeCategory?.description}
+        </p>
+        {tab === "nfts" && (
+          <p className="mt-2 text-sm text-muted-foreground">
+            Own contains transferable digital collectibles only. ELUV credentials stay
+            out of this tab because they are non-transferable and never listed for sale.
+          </p>
+        )}
       </div>
 
       <p className="store-count" data-testid="product-count" aria-live="polite">

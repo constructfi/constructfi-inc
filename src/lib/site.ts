@@ -3,10 +3,10 @@
 
 export const SITE = {
   name: "ConstructFi",
-  tagline: "COVI moves. ELUV proves.",
-  subtagline: "From participation to ownership.",
+  tagline: "The ecosystem for people who build.",
+  subtagline: "Marketplace for discovery. Products for use. Partner Solutions for scale.",
   description:
-    "A programmable economic-participation platform built on real operations. COVI moves. ELUV proves.",
+    "ConstructFi is the ecosystem for people who build: marketplace discovery, usable products, partner solutions, and an optional participation layer built on real operations.",
   url: "https://constructfi.co",
   launchDate: "September 9, 2026",
   founder: "DaBrielle Goodwin",
@@ -69,14 +69,10 @@ export const COVI_ALLOCATION = [
 ] as const;
 
 export const NAV_LINKS = [
-  { href: "/whitepaper", label: "Whitepaper" },
+  { href: "/", label: "Ecosystem" },
+  { href: "/about", label: "About" },
   { href: "/marketplace", label: "Marketplace" },
-  { href: "/app", label: "Build or Bust" },
-  { href: "/apps", label: "Apps" },
-  { href: "/developers", label: "Developers" },
-  { href: "/security", label: "Security" },
-  { href: "/partners", label: "Partners" },
-  { href: "/funders", label: "Funders" },
+  { href: "/partners", label: "Partner Solutions" },
 ] as const;
 
 // Grouped dropdown navigation (older design). Every existing page is mapped
@@ -85,39 +81,31 @@ export type NavItem = { href: string; label: string; desc?: string };
 export type NavGroup = { label: string; href?: string; items?: NavItem[] };
 
 export const NAV_GROUPS: NavGroup[] = [
-  { label: "Overview", href: "/" },
+  { label: "Ecosystem", href: "/" },
   {
-    label: "Products",
+    label: "About",
     items: [
-      { href: "/marketplace", label: "Marketplace (app store)" },
-      { href: "/app", label: "Build or Bust" },
-      { href: "/marketplace/supplier-marketplace", label: "Supplier marketplace" },
-      { href: "/apps", label: "All apps & roadmap" },
-    ],
-  },
-  {
-    label: "Platform",
-    items: [
-      { href: "/platform", label: "Platform overview" },
+      { href: "/about", label: "About ConstructFi" },
       { href: "/whitepaper", label: "Whitepaper" },
-      { href: "/developers", label: "Developers" },
       { href: "/security", label: "Security & compliance" },
-      { href: "/dashboard", label: "Dashboard preview" },
-    ],
-  },
-  {
-    label: "Partners",
-    items: [
-      { href: "/partners", label: "Partner program" },
-      { href: "/funders", label: "For funders" },
-      { href: "/admin", label: "Admin dashboard" },
-    ],
-  },
-  {
-    label: "Resources",
-    items: [
-      { href: "/resources", label: "Resources" },
       { href: "/getting-started", label: "Getting started" },
+    ],
+  },
+  {
+    label: "Marketplace",
+    items: [
+      { href: "/marketplace", label: "Marketplace overview" },
+      { href: "/app", label: "Build or Bust" },
+      { href: "/apps", label: "Featured products" },
+      { href: "/marketplace#participation", label: "COVI & ELUV" },
+    ],
+  },
+  {
+    label: "Partner Solutions",
+    items: [
+      { href: "/partners", label: "Partner Solutions overview" },
+      { href: "/developers", label: "Developers" },
+      { href: "/funders", label: "Funders & frameworks" },
       { href: "/contact", label: "Contact" },
     ],
   },
@@ -125,19 +113,17 @@ export const NAV_GROUPS: NavGroup[] = [
 
 // Flat mobile drawer, mirroring the Jul 16 mobile menu order.
 export const MOBILE_NAV: NavItem[] = [
-  { href: "/", label: "Overview" },
-  { href: "/platform", label: "Platform overview" },
+  { href: "/", label: "Ecosystem" },
+  { href: "/about", label: "About" },
   { href: "/whitepaper", label: "Whitepaper" },
-  { href: "/marketplace", label: "Marketplace (app store)" },
+  { href: "/marketplace", label: "Marketplace" },
+  { href: "/marketplace#participation", label: "COVI & ELUV" },
   { href: "/app", label: "Build or Bust" },
-  { href: "/apps", label: "All apps & roadmap" },
-  { href: "/partners", label: "Partners" },
-  { href: "/funders", label: "For Funders" },
+  { href: "/apps", label: "Featured products" },
+  { href: "/partners", label: "Partner Solutions" },
   { href: "/developers", label: "Developers" },
+  { href: "/funders", label: "Funders & frameworks" },
   { href: "/security", label: "Security & compliance" },
-  { href: "/resources", label: "Resources" },
-  { href: "/admin", label: "Admin dashboard" },
-  { href: "/dashboard", label: "Dashboard" },
   { href: "/getting-started", label: "Getting started" },
   { href: "/contact", label: "Contact" },
 ];
@@ -168,17 +154,22 @@ export const APP_URL = APP_LIVE ? APP_ORIGIN : "/app";
 export const APP_URL_EXTERNAL = APP_LIVE;
 
 export const FOOTER_LINKS = {
-  Platform: [
-    { href: "/marketplace", label: "Marketplace (app store)" },
-    { href: "/app", label: "Build or Bust" },
-    { href: "/apps", label: "All apps & roadmap" },
-    { href: "/dashboard", label: "Dashboard preview" },
-  ],
   Ecosystem: [
+    { href: "/", label: "Homepage" },
+    { href: "/about", label: "About ConstructFi" },
     { href: "/whitepaper", label: "Whitepaper" },
-    { href: "/resources", label: "Resources" },
-    { href: "/partners", label: "Institutions & partners" },
-    { href: "/getting-started", label: "Getting started guide" },
+    { href: "/getting-started", label: "Getting started" },
+  ],
+  Marketplace: [
+    { href: "/marketplace", label: "Marketplace" },
+    { href: "/app", label: "Build or Bust" },
+    { href: "/apps", label: "Featured products" },
+    { href: "/marketplace#participation", label: "COVI & ELUV" },
+  ],
+  "Partner Solutions": [
+    { href: "/partners", label: "Partner Solutions" },
+    { href: "/developers", label: "Developers" },
+    { href: "/funders", label: "Funders & frameworks" },
     { href: "/contact", label: "Contact" },
   ],
   Legal: [

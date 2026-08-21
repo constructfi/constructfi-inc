@@ -1,741 +1,365 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { SubNav } from "@/components/jul16/subnav";
-import { CoviCoin, EluvCoin, BobMark } from "@/components/jul16/coins";
-import { PhoneMarketplace, PhoneDashboard, PhoneWallet } from "@/components/jul16/phone";
 import {
-  IconApple,
-  IconGrid,
-  IconPen,
-  IconPhone,
-  IconPlay,
-  IconStar,
-  IconTarget,
-} from "@/components/jul16/icons";
-import { LaunchStatusStrip } from "@/components/launch-status-strip";
-import { ProductCard, FeaturedProductCard } from "@/components/product-card";
+  ArrowRight,
+  BadgeCheck,
+  Blocks,
+  Building2,
+  BriefcaseBusiness,
+  GraduationCap,
+  Landmark,
+  LayoutGrid,
+  Store,
+  Wallet,
+} from "lucide-react";
+import { FeaturedProductCard, ProductCard } from "@/components/product-card";
+import { Section, SectionHeading } from "@/components/section";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { FEATURED_PRODUCT, PRODUCTS } from "@/lib/products";
-import { COVI, ELUV, APP_URL, APP_URL_EXTERNAL } from "@/lib/site";
+import { COVI, ELUV, MARKETS, SITE, STATS } from "@/lib/site";
 
-// The homepage teases three products next to the flagship; the store has the rest.
-const HOME_PRODUCTS = PRODUCTS.filter((p) =>
-  ["supplier-marketplace", "covi-wallet", "collectibles"].includes(p.slug)
+export const metadata: Metadata = {
+  title: "Ecosystem",
+  description: SITE.description,
+  alternates: { canonical: "/" },
+};
+
+const PILLARS = [
+  {
+    icon: Blocks,
+    title: "ConstructFi is the ecosystem",
+    body: "A coordinated system for people who build: discovery, usable products, partner infrastructure, and an optional participation layer built on real operations.",
+  },
+  {
+    icon: Store,
+    title: "Marketplace is discovery",
+    body: "Browse the products, supplier infrastructure, and collectible experiences that sit on shared rails without implying everything is already live.",
+  },
+  {
+    icon: LayoutGrid,
+    title: "Products are for use",
+    body: "Use Build or Bust, procurement tools, readiness tracking, and operating software because they solve work — not because they promise financial upside.",
+  },
+  {
+    icon: Building2,
+    title: "Partner Solutions are the build path",
+    body: "Organizations launch branded web and mobile programs on maintained infrastructure, with token-free public-sector options by default.",
+  },
+];
+
+const CATEGORY_CARDS = [
+  {
+    title: "Apps",
+    body: "Decision tools, readiness tracking, wallet access, and operating software.",
+  },
+  {
+    title: "Materials",
+    body: "Verified supplier and material marketplaces tied to genuine procurement activity.",
+  },
+  {
+    title: "Games",
+    body: "Participation-first experiences that teach workflows and reward verified engagement.",
+  },
+  {
+    title: "Own",
+    body: "Transferable digital collectibles live separately from ELUV, which remains a non-transferable credential.",
+  },
+];
+
+const PARTNER_AUDIENCES = [
+  { icon: Landmark, label: "Public agencies" },
+  { icon: BriefcaseBusiness, label: "Private enterprises" },
+  { icon: GraduationCap, label: "Educational institutions" },
+  { icon: Building2, label: "Nonprofits" },
+  { icon: BadgeCheck, label: "Industry organizations" },
+];
+
+const SOLUTION_CARDS = [
+  "Custom web and mobile apps for targeted member or workforce journeys",
+  "Program platforms for workforce, education, and economic-development outcomes",
+  "Marketplace and procurement workflows that connect to verified supply activity",
+  "Program, case, and reporting tools that map to funder and compliance frameworks",
+];
+
+const PARTICIPATION_STEPS = [
+  "Connect a non-custodial wallet when you want on-chain participation. You keep your keys; ConstructFi does not custody them.",
+  "Use products and partner programs first. Token participation is optional, and government or public-interest programs can stay token-free by default.",
+  "Wait for audited contract publishing before trusting any COVI or ELUV address. Official addresses publish only after independent review.",
+];
+
+const HOME_PRODUCTS = PRODUCTS.filter((product) =>
+  ["supplier-marketplace", "revenueos", "collectibles"].includes(product.slug)
 );
-
-/** "Build or Bust" wordmark — green / muted / red, per the Jul 16 design. */
-function BobWord() {
-  return (
-    <>
-      <span style={{ color: "var(--green)" }}>Build</span>{" "}
-      <span style={{ color: "var(--ink3)" }}>or</span>{" "}
-      <span style={{ color: "var(--red)" }}>Bust</span>
-    </>
-  );
-}
 
 export default function HomePage() {
   return (
     <>
-      <SubNav />
-
-      <header className="hero">
-        <div className="wrap hero-grid">
-          <div>
-            <span className="eyebrow">Platform launches September 9, 2026</span>
-            <h1>
-              From participation
-              <br />
-              to <em>ownership.</em>
-            </h1>
-            <p className="lede">
-              ConstructFi is an app store for real-estate and construction work — screen a
-              deal, price a job, and build a verified track record in one place.
-            </p>
-            <p className="lede-sub">
-              The work you actually complete earns COVI, a utility token you spend on platform
-              features, and mints ELUV, a soulbound credential that can only be earned — never
-              bought, sold, or transferred.
-            </p>
-            <div className="hero-ctas">
-              <Link
-                className="btn btn-primary"
-                href={APP_URL}
-                data-testid="button-hero-launch"
-                {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                Launch app
-              </Link>
-              <Link className="btn btn-ghost" href="/whitepaper">
-                Read the whitepaper
-              </Link>
-            </div>
-            <div className="router" aria-label="Choose your path">
-              <Link href="/marketplace">
-                <span className="r-k">Individuals</span>
-                <span className="r-v">Start earning →</span>
-              </Link>
-              <Link href="/marketplace">
-                <span className="r-k">Suppliers &amp; contractors</span>
-                <span className="r-v">Join the marketplace →</span>
-              </Link>
-              <Link href="/resources">
-                <span className="r-k">Institutions</span>
-                <span className="r-v">Run readiness programs →</span>
-              </Link>
-            </div>
-          </div>
-          <div className="hero-shot phone-float">
-            <PhoneMarketplace />
-          </div>
-        </div>
-      </header>
-
-      <section className="section alt" id="s-primer">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">New here? Start with these four</span>
-            <h2>ConstructFi in ninety seconds</h2>
-            <p>
-              A plain-English orientation before the detail: what this is, what you can
-              actually use, how the two tokens differ, and where to begin.
-            </p>
-          </div>
-          <div className="primer">
-            <div className="pr">
-              <div className="pr-n">01 · WHAT IT IS</div>
-              <div className="pr-t">A platform built on real operations</div>
-              <p className="pr-d">
-                ConstructFi runs on top of two operating businesses — $60M+ of development
-                activity and ~$7M/year of supply operations across six markets. The
-                platform turns that real commerce into participation anyone can join.
-              </p>
-            </div>
-            <div className="pr">
-              <div className="pr-n">02 · THE PRODUCTS</div>
-              <div className="pr-t">One app store, {PRODUCTS.length} products</div>
-              <p className="pr-d">
-                Apps, games, materials, and collectibles all live in the marketplace.
-                Build or Bust — a real-estate deal analyzer with a free 60-second verdict
-                — is the flagship, and you can try it right now.
-              </p>
-            </div>
-            <div className="pr">
-              <div className="pr-n">03 · THE TWO TOKENS</div>
-              <div className="pr-t">COVI moves. ELUV proves.</div>
-              <p className="pr-d">
-                COVI is the utility token you earn and spend on platform features — not an
-                investment. ELUV is a soulbound credential minted by verified milestones:
-                earned only, never sold, never transferable.
-              </p>
-            </div>
-            <div className="pr">
-              <div className="pr-n">04 · HOW TO START</div>
-              <div className="pr-t">Try the demo, then connect a wallet</div>
-              <p className="pr-d">
-                Screening a deal costs nothing and needs no account. When you are ready,
-                the getting-started guide covers wallet setup on Base and how your first
-                milestone gets minted.
-              </p>
-            </div>
-          </div>
-          <div className="store-line">
-            <Link className="btn btn-primary" href="/app#demo">
-              Try Build or Bust
-            </Link>
-            <Link className="btn btn-ghost" href="/marketplace">
-              Browse the app store →
-            </Link>
-            <Link className="btn btn-ghost" href="/getting-started">
-              Getting started
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="s-status">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">Current state</span>
-            <h2>Where things stand</h2>
-            <p>
-              What you can use right now, what opens at launch, and what stays gated
-              behind an independent audit.
-            </p>
-          </div>
-          <LaunchStatusStrip />
-        </div>
-      </section>
-
-      <section className="section dkband" id="s-how">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">How it works</span>
-            <h2>How ConstructFi works</h2>
-            <p>
-              Five connected layers turn everyday construction and real-estate activity into
-              a record you own — coordinated end to end by COVI and ELUV.
-            </p>
-          </div>
-          <div className="layers">
-            <div className="layer">
-              <div className="ic">
-                <IconTarget width={18} height={18} />
-              </div>
-              <div className="l-t">Participate</div>
-              <p>Join as a verified member and take part in real economic activity.</p>
-            </div>
-            <div className="layer">
-              <div className="ic">
-                <IconGrid width={18} height={18} />
-              </div>
-              <div className="l-t">Transact</div>
-              <p>Procure materials and services from a vetted supplier network.</p>
-            </div>
-            <div className="layer">
-              <div className="ic">
-                <IconStar width={18} height={18} />
-              </div>
-              <div className="l-t">Earn</div>
-              <p>Contribution earns COVI, the utility token you spend on platform features.</p>
-            </div>
-            <div className="layer">
-              <div className="ic">
-                <IconPen width={18} height={18} />
-              </div>
-              <div className="l-t">Build readiness</div>
-              <p>Learning and verified milestones mint your soulbound ELUV record.</p>
-            </div>
-            <div className="layer">
-              <div className="ic">
-                <IconPhone width={18} height={18} />
-              </div>
-              <div className="l-t">Access</div>
-              <p>Readiness opens entry to verified opportunities across the ecosystem.</p>
-            </div>
-          </div>
-          <div className="arch-list" style={{ marginTop: 30, marginBottom: 0 }}>
-            {[
-              "Non-custodial throughout — Reown, WalletConnect, or MetaMask; your keys never leave your control",
-              "Transparent rules — rewards and eligibility are on-chain, visible, and verifiable",
-              "Measurable pathways — every milestone is earned, auditable, and yours to keep",
-              "Built for the long term — responsible development and community-aligned growth",
-            ].map((t) => (
-              <div className="arch-item" key={t}>
-                <span className="tick">✓</span>
-                <span>{t}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="s-app">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">The app</span>
-            <h2>See ConstructFi in action</h2>
-            <p>
-              One app to participate, build readiness, transact in the marketplace, and earn — all
-              coordinated by COVI and ELUV.
-            </p>
-          </div>
-          <div className="app-show">
-            <div className="phone-float">
-              <PhoneDashboard />
-            </div>
+      <section className="ink-surface relative overflow-hidden text-white">
+        <div className="bg-grid absolute inset-0 opacity-25" aria-hidden />
+        <div className="container relative py-16 sm:py-24">
+          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
-              <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 16 }}>
-                <BobMark />
-                <div>
-                  <div
-                    style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 20 }}
+              <Badge className="bg-white/10 text-white">{SITE.tagline}</Badge>
+              <h1 className="mt-5 max-w-4xl text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                The ecosystem for people who build
+              </h1>
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+                ConstructFi brings together marketplace discovery, products people can
+                use, and Partner Solutions organizations can build on. COVI and ELUV
+                add an optional participation layer on top of real construction,
+                housing, procurement, and readiness activity.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                <Badge className="bg-white/10 text-white">Optional participation layer</Badge>
+                <Badge className="bg-white/10 text-white">Non-custodial wallet support</Badge>
+                <Badge className="bg-white/10 text-white">Audit-gated contracts</Badge>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <Link href="/marketplace">
+                    Explore the marketplace
+                    <ArrowRight className="ml-1.5 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/partners">See Partner Solutions</Link>
+                </Button>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-2" aria-label="Active markets">
+                {MARKETS.map((market) => (
+                  <span
+                    key={market}
+                    className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm font-medium text-white/80"
                   >
-                    <BobWord />
-                  </div>
-                  <div style={{ fontSize: 13, color: "var(--ink3)" }}>
-                    The platform&apos;s first mobile app — real-estate deal screening
-                  </div>
-                </div>
-              </div>
-              <p style={{ color: "var(--ink2)", fontSize: "15.5px", marginBottom: 6 }}>
-                Answer a few questions about a property and get a clear verdict — with the numbers,
-                the gates it cleared, and a financing readiness read. Every completed analysis
-                earns COVI and builds your soulbound ELUV record.
-              </p>
-              <p style={{ color: "var(--ink)", fontWeight: 600, fontSize: 15, marginTop: 12 }}>
-                Coming to the Apple App Store and Google Play.
-              </p>
-              <div className="store-line">
-                <div className="store-badge" role="img" aria-label="Apple App Store — coming soon">
-                  <IconApple width={20} height={20} />
-                  <div>
-                    <div className="sb-s">Coming soon to the</div>
-                    <div className="sb-b">Apple App Store</div>
-                  </div>
-                </div>
-                <div className="store-badge" role="img" aria-label="Google Play — coming soon">
-                  <IconPlay width={18} height={20} />
-                  <div>
-                    <div className="sb-s">Coming soon on</div>
-                    <div className="sb-b">Google Play</div>
-                  </div>
-                </div>
-                <Link className="btn btn-ghost" href="/app">
-                  Explore the app →
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section alt" id="s-market">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">The app store</span>
-            <h2>One marketplace. Many products.</h2>
-            <p>
-              The marketplace is the ConstructFi app store — apps, games, materials, and
-              collectibles in one place. Eligible activity earns COVI, and a share of
-              marketplace fees funds the rewards loop.
-            </p>
-          </div>
-          <div className="store-layout">
-            <div className="store-main">
-              <FeaturedProductCard product={FEATURED_PRODUCT} />
-              <div className="apps-row store-grid" style={{ marginTop: 18 }}>
-                {HOME_PRODUCTS.map((p) => (
-                  <ProductCard key={p.slug} product={p} eagerImage />
+                    {market}
+                  </span>
                 ))}
               </div>
-              <div className="store-line">
-                <Link className="btn btn-primary" href="/marketplace">
-                  Browse the app store
-                </Link>
-                <span style={{ fontSize: "13px", color: "var(--ink3)" }}>
-                  {PRODUCTS.length} products · apps, games, materials &amp; collectibles
-                </span>
-              </div>
             </div>
-            <aside className="store-side">
-              <PhoneWallet />
-              <div className="side-cap">
-                <div
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: "14.5px",
-                  }}
-                >
-                  Covi Wallet
-                </div>
-                <p style={{ fontSize: "12.5px", color: "var(--ink3)", marginTop: 3 }}>
-                  COVI &amp; ELUV side by side — non-custodial, your keys always. Illustrative
-                  screen; no balances shown.
+            <div className="rounded-[28px] border border-white/10 bg-white/5 p-4 shadow-2xl shadow-black/20">
+              <Image
+                src="/img/hero.png"
+                alt="ConstructFi ecosystem preview spanning marketplace, readiness, and partner infrastructure"
+                width={1200}
+                height={630}
+                className="h-auto w-full rounded-[20px] border border-white/10"
+                priority
+              />
+            </div>
+          </div>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {STATS.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-2xl border border-white/10 bg-white/5 p-5"
+              >
+                <p className="text-2xl font-bold text-mint">{stat.value}</p>
+                <p className="mt-1 text-sm font-semibold text-white">{stat.label}</p>
+                <p className="mt-1 text-sm text-white/65">{stat.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Section>
+        <SectionHeading
+          eyebrow="How the ecosystem is organized"
+          title="One ecosystem, four jobs"
+          lede="ConstructFi works best when discovery, product usage, partner infrastructure, and participation stay clear about what each layer does."
+        />
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {PILLARS.map((pillar) => (
+            <div
+              key={pillar.title}
+              className="card-lift rounded-2xl border border-line bg-card p-6 shadow-sm dark:border-border"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal/10 text-teal dark:text-mint">
+                <pillar.icon className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-navy dark:text-white">
+                {pillar.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {pillar.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="bg-wash dark:bg-ink-2/30" id="discover">
+        <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <SectionHeading
+            eyebrow="Marketplace"
+            title="Discovery starts with categories people recognize"
+            lede="Browse by function, not hype: apps, materials, games, and an Own lane for transferable digital collectibles."
+          />
+          <div className="grid gap-5 sm:grid-cols-2">
+            {CATEGORY_CARDS.map((category) => (
+              <div
+                key={category.title}
+                className="card-lift rounded-2xl border border-line bg-card p-6 shadow-sm dark:border-border"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal dark:text-mint">
+                  {category.title}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {category.body}
                 </p>
               </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section className="section dkband" id="s-tokens">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">Tokenomics</span>
-            <h2>Two tokens. Two clear roles.</h2>
-            <p>
-              ConstructFi deliberately separates transaction infrastructure from progression
-              infrastructure.
-            </p>
-          </div>
-          <p
-            className="motto"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 10,
-              flexWrap: "wrap",
-            }}
-          >
-            <CoviCoin />
-            <span className="m1">COVI moves.</span>
-            <span style={{ width: 10 }} />
-            <EluvCoin />
-            <span className="m2">ELUV proves.</span>
-          </p>
-          <div className="tok-grid">
-            <div className="tok covi">
-              <div
-                style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}
-              >
-                <div className="t-name" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <CoviCoin />
-                  COVI
-                </div>
-                <span className="chip">Utility token</span>
-              </div>
-              <div className="t-role">
-                The commerce &amp; rewards layer — earned through participation and learning, spent
-                across gaming, NFTs, partner programs, and developer fees.
-              </div>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>Fixed supply</td>
-                    <td>{COVI.supply}</td>
-                  </tr>
-                  <tr>
-                    <td>Standard</td>
-                    <td>{COVI.standard}</td>
-                  </tr>
-                  <tr>
-                    <td>How you get it</td>
-                    <td>{COVI.howObtained}</td>
-                  </tr>
-                  <tr>
-                    <td>Largest allocation</td>
-                    <td>{COVI.largestAllocation}</td>
-                  </tr>
-                  <tr>
-                    <td>Reward funding</td>
-                    <td>{COVI.rewardFunding}</td>
-                  </tr>
-                </tbody>
-              </table>
-              <div className="t-foot">
-                COVI is a consumption token for ecosystem activity — not an investment. Any sale
-                will be conducted under a compliant exemption with KYC/AML screening.
-              </div>
-            </div>
-            <div className="tok eluv">
-              <div
-                style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}
-              >
-                <div className="t-name" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <EluvCoin />
-                  ELUV
-                </div>
-                <span className="chip earned">Earned only — never sold</span>
-              </div>
-              <div className="t-role">
-                The soulbound readiness &amp; governance credential — minted against verified
-                milestones. It cannot be bought, transferred, or traded.
-              </div>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>Supply</td>
-                    <td>{ELUV.supply}</td>
-                  </tr>
-                  <tr>
-                    <td>Standard</td>
-                    <td>{ELUV.standard}</td>
-                  </tr>
-                  <tr>
-                    <td>How you get it</td>
-                    <td>Earned through verified progression</td>
-                  </tr>
-                  <tr>
-                    <td>Issuance</td>
-                    <td>{ELUV.supplyNote}</td>
-                  </tr>
-                  <tr>
-                    <td>What it does</td>
-                    <td>{ELUV.whatItDoes}</td>
-                  </tr>
-                </tbody>
-              </table>
-              <div className="t-foot">
-                Because ELUV can&apos;t be sold, readiness and governance can&apos;t be bought or
-                Sybil-farmed. Your record can only be earned.
-              </div>
+            ))}
+            <div className="rounded-2xl border border-line bg-background p-6 dark:border-border sm:col-span-2">
+              <p className="text-sm font-semibold text-navy dark:text-white">
+                Own is separate from ELUV.
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Transferable collectibles use OpenSea-style language and appear in the
+                Own tab when collections are ready. ELUV never appears there because it
+                is a non-transferable milestone credential that stays in your wallet and
+                readiness record.
+              </p>
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section" id="s-build">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">Build on ConstructFi</span>
-            <h2>
-              Your brand. Your content. Your users.
-              <br />
-              Powered and maintained by ConstructFi.
-            </h2>
-            <p>
-              We build educational apps for nonprofits, banks, and institutional &amp; public
-              partners on shared platform infrastructure — so every partner app launches with
-              rewards, readiness, and reporting already wired in.
-            </p>
-          </div>
-          <div className="own-stack" aria-label="Who owns what">
-            <div className="own-layer yours">
-              <span className="ol-who">Yours — guaranteed</span>
-              <span className="ol-what">
-                <b>Your app layer:</b> brand, curriculum &amp; content, user relationships, and
-                program data — with a perpetual license to your app instance, full data-export
-                rights, and source-code escrow available for regulated partners.
-              </span>
-              <span className="chip earned">Partner-owned</span>
+      <Section>
+        <SectionHeading
+          eyebrow="Featured products"
+          title="Use what the ecosystem ships"
+          lede="Marketplace discovery should lead into usable products: deal analysis, procurement, operating systems, and collectibles that support participation without replacing the work."
+        />
+        <div className="mt-12">
+          <FeaturedProductCard product={FEATURED_PRODUCT} />
+        </div>
+        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {HOME_PRODUCTS.map((product, index) => (
+            <ProductCard key={product.slug} product={product} eagerImage={index === 0} />
+          ))}
+        </div>
+      </Section>
+
+      <Section className="bg-wash dark:bg-ink-2/30">
+        <SectionHeading
+          eyebrow="Partner Solutions"
+          title="Build programs for the people and organizations you serve"
+          lede="ConstructFi helps nonprofits, public agencies, educational institutions, industry organizations, and private enterprises launch branded experiences on maintained infrastructure."
+        />
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+          {PARTNER_AUDIENCES.map((audience) => (
+            <div
+              key={audience.label}
+              className="card-lift rounded-2xl border border-line bg-card p-5 text-sm font-semibold text-navy shadow-sm dark:border-border dark:text-white"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal/10 text-teal dark:text-mint">
+                <audience.icon className="h-5 w-5" />
+              </div>
+              <p className="mt-4">{audience.label}</p>
             </div>
-            <div className="own-layer ours">
-              <span className="ol-who">Ours — so it compounds</span>
-              <span className="ol-what">
-                <b>The platform engine:</b> rewards rails, readiness engine, wallets, templates,
-                and hosting — continuously maintained, audited, and improved by ConstructFi across
-                every partner app at once.
-              </span>
-              <span className="chip live">Maintained for you</span>
+          ))}
+        </div>
+        <div className="mt-8 grid gap-5 lg:grid-cols-2">
+          {SOLUTION_CARDS.map((solution) => (
+            <div
+              key={solution}
+              className="card-lift rounded-2xl border border-line bg-background p-6 shadow-sm dark:border-border"
+            >
+              <p className="text-sm leading-relaxed text-muted-foreground">{solution}</p>
             </div>
-            <div className="own-layer">
-              <span className="ol-who" style={{ color: "var(--blue)" }}>
-                Shared — the flywheel
-              </span>
-              <span className="ol-what">
-                <b>Your users&apos; progress:</b> participation in your app earns COVI and mints
-                soulbound ELUV milestones — a portable readiness record your programs can report
-                on, audit, and build eligibility around.
-              </span>
-              <span className="chip soon">COVI + ELUV</span>
-            </div>
-          </div>
-          <div className="seg-grid">
-            <div className="card">
-              <h3>Nonprofits</h3>
-              <p>
-                Deliver readiness and financial-literacy programs with measurable, auditable
-                outcomes — completion rates, milestone progression, and impact reporting built for
-                funders.
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Button asChild>
+            <Link href="/partners">
+              Explore Partner Solutions
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/developers">Developer overview</Link>
+          </Button>
+        </div>
+      </Section>
+
+      <Section id="participation">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr]">
+          <SectionHeading
+            eyebrow="Participation"
+            title="COVI moves utility. ELUV proves progress."
+            lede="ConstructFi treats COVI and ELUV as an optional participation layer, not as an investment proposition. They exist to support construction, readiness, and real-estate progress workflows."
+          />
+          <div className="space-y-5">
+            <div className="card-lift rounded-2xl border border-line bg-card p-6 shadow-sm dark:border-border">
+              <div className="flex items-center gap-3 text-teal dark:text-mint">
+                <Wallet className="h-5 w-5" />
+                <p className="text-base font-semibold text-navy dark:text-white">
+                  {COVI.name} is construction ecosystem utility
+                </p>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Spend or earn {COVI.name} inside marketplace and product workflows where
+                platform utility is appropriate. It is a utility token for ecosystem
+                activity, not a promise of yield, income, or appreciation.
               </p>
             </div>
-            <div className="card">
-              <h3>Banking &amp; financial institutions</h3>
-              <p>
-                Branded financial-education apps with engagement your CRA and community teams can
-                actually measure. Educational only — non-lending positioning throughout.
+            <div className="card-lift rounded-2xl border border-line bg-card p-6 shadow-sm dark:border-border">
+              <div className="flex items-center gap-3 text-gold">
+                <BadgeCheck className="h-5 w-5" />
+                <p className="text-base font-semibold text-navy dark:text-white">
+                  {ELUV.name} is a progress and credential record
+                </p>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {ELUV.name} is earned through verified readiness, housing, workforce, and
+                procurement milestones. It is non-transferable, never sold, and exists to
+                prove progress rather than to trade.
               </p>
             </div>
-            <div className="card">
-              <h3>Institutional &amp; public partners</h3>
-              <p>
-                Workforce, housing-readiness, and resident-engagement tools for agencies and
-                municipalities — eligibility credentials without re-verifying participants from
-                scratch.
+            <div className="rounded-2xl border border-dashed border-teal/30 bg-teal/5 p-6">
+              <p className="text-sm font-semibold text-navy dark:text-white">
+                Optional by design
               </p>
+              <ul className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
+                {PARTICIPATION_STEPS.map((step) => (
+                  <li key={step} className="flex gap-3">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-mint" aria-hidden />
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          <div className="flow-line">
-            <span>How engagements work:</span>
-            <b>Build</b>
-            <span className="fx">→ scoped build of your app layer</span>
-            <b>Run</b>
-            <span className="fx">→ platform &amp; maintenance subscription</span>
-            <b>Grow</b>
-            <span className="fx">
-              → your users participate, earn, and progress across the ecosystem
+        </div>
+      </Section>
+
+      <Section className="ink-surface relative text-white">
+        <div className="bg-grid-fine absolute inset-0 opacity-25" aria-hidden />
+        <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-mint">
+              Keep going
             </span>
-          </div>
-          <div style={{ marginTop: 26, display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <Link className="btn btn-primary" href="/partners">
-              Start a partner conversation
-            </Link>
-            <Link className="btn btn-ghost" href="/resources">
-              Institutional overview →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section alt" id="s-founder">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">Operating foundation</span>
-            <h2>Built on real operations</h2>
-            <p>
-              ConstructFi launches on top of two operating businesses — real transactions, real
-              counterparties, real fee revenue — founded and led by Dabrielle Goodwin, a licensed
-              real-estate broker in Washington, DC since 2014.
+            <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+              Start with the marketplace, then decide how deeply you want to participate
+            </h2>
+            <p className="mt-4 max-w-2xl text-white/70">
+              Read the whitepaper for the full architecture, explore Partner Solutions
+              if you run programs, and visit Developers if you need integration context.
             </p>
           </div>
-          <div className="grid2">
-            <div className="card">
-              <h3>Eluvial Enterprise Inc. — housing &amp; development</h3>
-              <p>
-                Real-estate development, housing, sustainability, and ownership infrastructure —{" "}
-                <b className="mono" style={{ color: "var(--green)" }}>
-                  $60M+
-                </b>{" "}
-                in supported development activity across multiple regional markets.
-              </p>
-            </div>
-            <div className="card">
-              <h3>Covington Supply Co. — procurement &amp; materials</h3>
-              <p>
-                Procurement, logistics, and materials sourcing supporting{" "}
-                <b className="mono" style={{ color: "var(--green)" }}>
-                  ~$7M
-                </b>{" "}
-                in annual supply operations across the DMV, North Carolina, Florida, and Missouri.
-              </p>
-            </div>
-          </div>
-          <div className="cred-row">
-            <span className="chip">Licensed · Owner&apos;s representation</span>
-            <span className="chip">LEED · Certified sustainability</span>
-            <span className="chip">Multi-state · Operating footprint</span>
-            <span className="chip">Web3 · On-chain infrastructure</span>
-          </div>
-          <div className="stat-band cols3" style={{ marginTop: 30 }}>
-            {[
-              { v: "$60M+", k: "Development activity supported" },
-              { v: "~$7M", k: "Annual supply operations" },
-              { v: "$2.1M+", k: "Sustainable materials" },
-              { v: "8", k: "Ecosystem verticals" },
-              { v: "6 markets", k: "DC · VA · MD · NC · FL · MO footprint" },
-              { v: "2014", k: "Licensed broker, Washington DC" },
-            ].map((s) => (
-              <div className="sb" key={s.k}>
-                <div className="sb-v">{s.v}</div>
-                <div className="sb-k">{s.k}</div>
-              </div>
-            ))}
-          </div>
-          <div className="team-row" aria-label="Team">
-            {[
-              { i: "DG", n: "Dabrielle Goodwin", r: "Founder" },
-              { i: "TR", n: "Terry Riley", r: "Board of Directors" },
-              { i: "AS", n: "Anwar Saleem", r: "Board of Directors" },
-              { i: "EW", n: "Ernest Williams", r: "Board of Directors" },
-            ].map((m) => (
-              <div className="tm" key={m.n}>
-                <span className="av">{m.i}</span>
-                <div>
-                  <div className="tn">{m.n}</div>
-                  <div style={{ fontSize: "11.5px", color: "var(--ink3)" }}>{m.r}</div>
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-wrap gap-3">
+            <Button asChild size="lg">
+              <Link href="/whitepaper">Read the whitepaper</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/developers">Visit Developers</Link>
+            </Button>
           </div>
         </div>
-      </section>
-
-      <section className="section dkband" id="s-roadmap">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">Roadmap</span>
-            <h2>Ecosystem evolution roadmap</h2>
-            <p>
-              Sequenced by capability milestone; timing is subject to development, partnerships,
-              and regulatory readiness.
-            </p>
-          </div>
-          <div className="road5">
-            {[
-              {
-                chip: "In build",
-                cls: "chip live",
-                t: "Build the foundation",
-                d: "Establish the core protocol, verification, and wallet — plus the marketplace and readiness track.",
-              },
-              {
-                chip: "In progress",
-                cls: "chip live",
-                t: "Expand partnerships",
-                d: "Expand through strategic partnerships and institutional participation — nonprofit, banking, and public programs.",
-              },
-              {
-                chip: "Next",
-                cls: "chip soon",
-                t: "Automate coordination",
-                d: "Introduce intelligence, automation, and cross-platform coordination.",
-              },
-              {
-                chip: "Planned",
-                cls: "chip",
-                t: "Scale financial tools",
-                d: "Build financial rails, liquidity layers, and sustainable incentive models — compliance-reviewed and deliberately sequenced.",
-              },
-              {
-                chip: "Future",
-                cls: "chip",
-                t: "Global growth",
-                d: "Scale globally with localized systems, interoperability, and mass participation.",
-              },
-            ].map((r) => (
-              <div className="card" key={r.t}>
-                <span className={r.cls}>{r.chip}</span>
-                <h3 style={{ marginTop: 14, fontSize: "15.5px" }}>{r.t}</h3>
-                <p style={{ fontSize: 13 }}>{r.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="s-trust">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">Trust layer</span>
-            <h2>Building trust into every transaction</h2>
-          </div>
-          <div className="grid3">
-            {[
-              {
-                t: "Non-custodial participation",
-                d: "Assets and permissions stay under user-controlled keys at all times.",
-              },
-              {
-                t: "Transparent incentives",
-                d: "Rewards and rules are on-chain, visible, and verifiable.",
-              },
-              {
-                t: "User-controlled systems",
-                d: "Self-sovereign, wallet-controlled access across every layer.",
-              },
-              {
-                t: "Risk-aware participation",
-                d: "Guardrails and clear disclosures protect participants.",
-              },
-              {
-                t: "Audit-focused architecture",
-                d: "OpenZeppelin-based contracts and independent audits before launch; verified addresses published after audit — not before.",
-              },
-              {
-                t: "Compliance-aware development",
-                d: "Built with regulatory alignment as a first-class requirement — KYC/AML on any sale, lockups, utility-first positioning.",
-              },
-            ].map((c) => (
-              <div className="card" key={c.t}>
-                <h3>{c.t}</h3>
-                <p>{c.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section alt">
-        <div className="wrap">
-          <div className="cta-band">
-            <h2>Own a share of what you help build.</h2>
-            <p>Connect a wallet to start participating, or read the whitepaper first.</p>
-            <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-              <Link
-                className="btn btn-primary"
-                href={APP_URL}
-                {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                Launch app
-              </Link>
-              <Link className="btn btn-ghost" href="/whitepaper">
-                Read the whitepaper
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      </Section>
     </>
   );
 }

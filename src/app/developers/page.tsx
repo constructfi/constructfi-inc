@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
-import { Github, ArrowUpRight, Code2, Boxes, FileCode2, Webhook } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Blocks,
+  Code2,
+  FileCode2,
+  Github,
+  Webhook,
+} from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,11 +19,11 @@ import { SITE, COVI, ELUV } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Developers",
   description:
-    "Build on ConstructFi. Two audited token standards — COVI (ERC-20) and ELUV (ERC-5192 soulbound) — with white-label infrastructure and open documentation.",
+    "Developer overview for ConstructFi ecosystem and Partner Solutions integrations, including COVI, ELUV, and audit-gated contract publishing.",
   openGraph: {
-    title: "ConstructFi for Developers",
+    title: "ConstructFi Developers",
     description:
-      "Two audited token standards and white-label infrastructure for real-world participation.",
+      "Build for ecosystem products and partner programs on transparent, audit-gated rails.",
     url: `${SITE.url}/developers`,
   },
   alternates: { canonical: "/developers" },
@@ -23,23 +32,23 @@ export const metadata: Metadata = {
 const BLOCKS = [
   {
     icon: Code2,
-    title: "COVI — ERC-20 utility",
-    body: `${COVI.composition}. Fixed cap of ${COVI.supply}, ${COVI.chain.toLowerCase()}.`,
+    title: "COVI utility rails",
+    body: `${COVI.standard} utility token support for ecosystem activity, with ${COVI.chain.toLowerCase()} and no investment framing.`,
   },
   {
     icon: FileCode2,
-    title: "ELUV — ERC-5192 soulbound",
-    body: `${ELUV.standard}. One non-transferable credential per verified milestone; consent-based issuance and revocation.`,
+    title: "ELUV credential rails",
+    body: `${ELUV.standard} milestone credentials: non-transferable, consent-based, and separate from collectible or marketplace listings.`,
   },
   {
-    icon: Boxes,
-    title: "White-label infrastructure",
-    body: "Institutions can deploy branded programs — curriculum, milestones, and credentialing — on shared, transparent rails.",
+    icon: Blocks,
+    title: "Partner program infrastructure",
+    body: "Branded program instances for workforce, education, procurement, and operating workflows on maintained shared infrastructure.",
   },
   {
     icon: Webhook,
-    title: "Attestation & webhooks",
-    body: "Off-chain attestations reference on-chain hashes. Integration surfaces publish alongside audited contracts.",
+    title: "Integrations and webhooks",
+    body: "Hook partner systems, reporting pipelines, and product workflows into shared rails once audited contracts and interfaces publish.",
   },
 ];
 
@@ -47,37 +56,45 @@ export default function DevelopersPage() {
   return (
     <>
       <PageHero
-        eyebrow="Platform · Developers"
-        title="Build on transparent, audited rails"
-        lede="ConstructFi separates transaction infrastructure (COVI) from progression infrastructure (ELUV). Both are open, documented, and audit-gated."
+        eyebrow="Developers"
+        title="Build for ecosystem products and partner programs"
+        lede="ConstructFi separates utility, credentials, and partner delivery concerns so developers can integrate the right layer without blurring what each part is for."
       >
-        <Button asChild>
-          <a href={SITE.githubRepo} target="_blank" rel="noopener noreferrer">
-            <Github className="mr-1.5 h-4 w-4" />
-            View the GitHub organization
-            <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
-          </a>
-        </Button>
+        <div className="flex flex-wrap gap-3">
+          <Button asChild>
+            <a href={SITE.githubRepo} target="_blank" rel="noopener noreferrer">
+              <Github className="mr-1.5 h-4 w-4" />
+              View the GitHub repository
+              <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
+            </a>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/partners">Partner Solutions</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/whitepaper">Whitepaper</Link>
+          </Button>
+        </div>
       </PageHero>
 
       <Section>
         <SectionHeading
           eyebrow="Architecture"
-          title="Two standards, two jobs"
-          lede="Conflating commerce and credentials is a common failure mode in token design. ConstructFi keeps them cleanly separate."
+          title="Four integration surfaces"
+          lede="Use the layer that matches the problem: utility rails, credential rails, partner infrastructure, or workflow/event integrations."
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {BLOCKS.map((b) => (
-            <Card key={b.title} className="h-full">
+          {BLOCKS.map((block) => (
+            <Card key={block.title} className="h-full">
               <CardContent className="pt-6">
                 <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-teal/10 text-teal dark:text-mint">
-                  <b.icon className="h-5 w-5" />
+                  <block.icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-navy dark:text-white">
-                  {b.title}
+                  {block.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {b.body}
+                  {block.body}
                 </p>
               </CardContent>
             </Card>
@@ -86,24 +103,53 @@ export default function DevelopersPage() {
       </Section>
 
       <Section className="bg-wash dark:bg-ink-2/30">
-        <div className="mx-auto max-w-2xl text-center">
-          <Badge className="bg-gold/15 text-gold dark:text-gold-2">
-            Contracts publishing after audit
-          </Badge>
-          <h2 className="mt-4 text-2xl font-bold text-navy dark:text-white">
-            Documentation & addresses on the way
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            Verified contract addresses, ABIs, and integration guides publish here
-            once independent audits complete. Any address circulated before then is
-            not official. Follow the GitHub organization for release updates.
-          </p>
-          <div className="mt-6">
-            <Button variant="outline" asChild>
-              <a href={SITE.githubRepo} target="_blank" rel="noopener noreferrer">
-                <Github className="mr-1.5 h-4 w-4" />
-                {SITE.githubRepo.replace("https://", "")}
-              </a>
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr]">
+          <SectionHeading
+            eyebrow="Publishing posture"
+            title="Audit first, addresses after"
+            lede="Wallet-connect is real today, but contract addresses, ABIs, and production integration details publish only after independent audit."
+          />
+          <div className="rounded-2xl border border-line bg-card p-6 shadow-sm dark:border-border">
+            <Badge className="bg-gold/15 text-gold dark:text-gold-2">
+              Contracts publishing after audit
+            </Badge>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Verified contract addresses, ABIs, and integration notes will publish
+              through official ConstructFi channels after the audit is complete. Until
+              then, treat any claimed address as unofficial and avoid hard-coding
+              speculative values into downstream integrations.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild>
+                <a href={SITE.githubRepo} target="_blank" rel="noopener noreferrer">
+                  <Github className="mr-1.5 h-4 w-4" />
+                  Follow release activity
+                </a>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/security">Security posture</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <SectionHeading
+            eyebrow="Partner Solutions teaser"
+            title="Most integrations start with a program or workflow need"
+            lede="If you are building for a nonprofit, public agency, educational institution, industry organization, or enterprise, start with Partner Solutions so the technical shape follows the operating shape."
+          />
+          <div className="flex flex-wrap gap-3">
+            <Button asChild>
+              <Link href="/partners">
+                Explore Partner Solutions
+                <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/contact">Talk to ConstructFi</Link>
             </Button>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./jul16.css";
-import { poppins, plexSans, plexMono, lora } from "@/lib/fonts";
+import { fraunces, manrope, plexMono } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Web3Provider } from "@/components/web3-provider";
 import { SiteHeader } from "@/components/site-header";
@@ -11,7 +11,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "ConstructFi — From participation to ownership",
+    default: "ConstructFi — The ecosystem for people who build",
     template: "%s · ConstructFi",
   },
   description: SITE.description,
@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE.url,
-    title: "ConstructFi — From participation to ownership",
+    title: "ConstructFi — The ecosystem for people who build",
     description: SITE.description,
     siteName: SITE.name,
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "ConstructFi" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ConstructFi — From participation to ownership",
+    title: "ConstructFi — The ecosystem for people who build",
     description: SITE.description,
     images: ["/og/home.png"],
   },
@@ -53,7 +53,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.variable} ${plexSans.variable} ${plexMono.variable} ${lora.variable}`}
+      className={`${fraunces.variable} ${manrope.variable} ${plexMono.variable}`}
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Download, Github, ArrowUpRight } from "lucide-react";
+import { Download, Github, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { WP_CHAPTERS, WP_META } from "@/lib/whitepaper";
@@ -64,6 +64,26 @@ export default function WhitepaperPage() {
                 <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
               </a>
             </Button>
+            <Button
+              variant="outline"
+              className="border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+              asChild
+            >
+              <Link href="/developers">
+                Developers
+                <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              className="border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+              asChild
+            >
+              <Link href="/partners">
+                Partner Solutions
+                <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -94,6 +114,24 @@ export default function WhitepaperPage() {
           {/* Chapters */}
           <div className="min-w-0 max-w-3xl">
             <WhitepaperBody chapters={WP_CHAPTERS} />
+            <div className="mt-14 rounded-2xl border border-line bg-card p-6 shadow-sm dark:border-border">
+              <h2 className="text-2xl font-bold text-navy dark:text-white">
+                Want the implementation paths too?
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                The whitepaper covers thesis and architecture. The Developers and
+                Partner Solutions pages show how those ideas map to integrations,
+                branded programs, and maintained operating infrastructure.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button asChild>
+                  <Link href="/developers">Visit Developers</Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link href="/partners">Partner Solutions</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
