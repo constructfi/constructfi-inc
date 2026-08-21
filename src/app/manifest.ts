@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "ConstructFi",
     short_name: "ConstructFi",
-    description: "From participation to ownership.",
+    description: "From participation to progress.",
     start_url: "/",
     display: "standalone",
     background_color: "#041428",

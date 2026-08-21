@@ -1,6 +1,6 @@
 // Single source of truth for every product in the ConstructFi marketplace.
-// The marketplace is an app store: this array drives /marketplace, the
-// /marketplace/[slug] detail pages, the home app-store section, and /apps.
+// The marketplace is an ecosystem discovery layer: this array drives /marketplace,
+// the /marketplace/[slug] detail pages, the home app-store section, and /apps.
 //
 // Compliance rules that shape the copy in this file:
 //   - COVI is an ERC-20 utility token, 10B fixed cap, transfer-paused / earn-only.
@@ -8,9 +8,9 @@
 //   - ELUV is an ERC-5192 soulbound credential: earned only, non-transferable, never sold.
 //   - Nothing ships before the September 9, 2026 launch, so no product is described
 //     as already downloadable and no status renders as "Live" (see STATUS below).
-//   - NFT distribution happens in-app only — no third-party marketplace links.
+//   - No external NFT/collectible marketplace links (OpenSea etc.) anywhere.
 
-export type ProductCategory = "apps" | "games" | "materials" | "nfts";
+export type ProductCategory = "apps" | "games" | "materials";
 
 /** `live` means "ships at launch" — see STATUS for the label actually rendered. */
 export type ProductStatus = "live" | "coming-soon" | "phase-2";
@@ -53,7 +53,6 @@ export const CATEGORIES: { key: ProductCategory | "all"; label: string }[] = [
   { key: "apps", label: "Apps" },
   { key: "games", label: "Games" },
   { key: "materials", label: "Materials" },
-  { key: "nfts", label: "NFTs" },
 ];
 
 // Status labels are deliberately not "Live". The platform launches September 9,
@@ -205,26 +204,139 @@ export const PRODUCTS: Product[] = [
       "Eligible purchases can settle in COVI and a share of marketplace fees recycles into the rewards pool. Verified procurement activity can earn ELUV milestones. Contract addresses publish only after independent audit.",
   },
   {
-    slug: "collectibles",
-    name: "Digital Collectibles",
-    tagline: "Listed on OpenSea, not in-app.",
-    category: "nfts",
-    status: "phase-2",
-    tags: ["NFT", "OpenSea"],
-    icon: "gem",
-    image: "/products/collectibles.webp",
+    slug: "constructos",
+    name: "ConstructOS",
+    tagline: "The operating system for your construction business.",
+    category: "apps",
+    status: "live",
+    tags: ["Business operations", "Spend COVI"],
+    icon: "briefcase",
     shortDescription:
-      "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
+      "An integrated workspace connecting project management, procurement, logistics, and reporting for contractors and suppliers running a real book of work.",
     longDescription:
-      "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
+      "ConstructOS is the core operating platform for contractors and suppliers. It brings project management, procurement, logistics, and executive reporting into a single workspace—so the bid, the materials, and the job all stay in the same record. Every module shares the platform's identity, AI, and reporting layer.",
     features: [
-      "All ConstructFi NFT collections are minted and traded on OpenSea",
-      "NFT collections are not sold directly through this marketplace",
-      "ELUV credentials are a separate, non-transferable category",
-      "ELUV credentials are never listed here",
+      "Project and job management across your full pipeline",
+      "Procurement hub wired to the verified supplier network",
+      "Logistics and dispatch coordination",
+      "Executive reporting across your own operating data",
+      "Integrates with RevenueOS for sales and business development",
     ],
     coviEluvNote:
-      "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
+      "Advanced automation and exports run on COVI, the platform's utility token — earned through platform activity and spent on platform features. COVI is transfer-paused and earn-only before listing, and it is not an investment.",
+  },
+  {
+    slug: "pactpilot",
+    name: "PactPilot",
+    tagline: "Analyze deals. Structure terms. Move with confidence.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Deal analysis", "Earn COVI"],
+    icon: "gauge",
+    shortDescription:
+      "A deal structuring and analysis tool for real-estate investors and developers — layered on top of Build or Bust's screening engine.",
+    longDescription:
+      "PactPilot extends the Build or Bust verdict into full deal structure: term sheets, joint-venture splits, capital stack modeling, and lender-ready packages. It is designed for investors and developers who need more than a screening verdict and are ready to build a deal they can present.",
+    features: [
+      "Capital stack builder — equity, debt, and mezzanine layers",
+      "Joint-venture split modeling with waterfall calculator",
+      "Lender-ready proforma export",
+      "Term-sheet generator with deal-specific conditions",
+      "Integrates directly with Build or Bust screening data",
+    ],
+    coviEluvNote:
+      "Advanced exports and deal packaging run on COVI, the platform's utility token — earned in-app through the Academy and spent on platform features. Not an investment.",
+  },
+  {
+    slug: "eluvial-academy",
+    name: "Eluvial Academy",
+    tagline: "Verified progress in real estate.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Education", "Earn ELUV"],
+    icon: "graduation",
+    image: "/products/readiness-tracker.webp",
+    shortDescription:
+      "A structured real-estate learning program that earns verified ELUV credentials at each milestone — designed for readiness, not certificates that gather dust.",
+    longDescription:
+      "Eluvial Academy teaches real-estate fundamentals, deal analysis, and ownership readiness through a structured, milestone-based curriculum. Each verified completion can mint an ELUV credential — a soulbound, non-transferable record of what you actually learned and demonstrated. The curriculum connects directly to Build or Bust, Readiness Tracker, and the broader ConstructFi ecosystem.",
+    features: [
+      "Structured curriculum from fundamentals to deal analysis",
+      "Verified milestone completions reviewed before they count",
+      "Soulbound ELUV credential minted per verified milestone",
+      "Connects to Readiness Tracker for a unified progress view",
+      "Scenario-based learning aligned with Build or Bust analysis flow",
+    ],
+    coviEluvNote:
+      "Verified completions can mint ELUV, an ERC-5192 soulbound credential that is earned only, never transferable, and never sold. COVI involved in participation is a utility token for platform activity — not an investment.",
+  },
+  {
+    slug: "builderbae",
+    name: "BuilderBae Material Marketplace",
+    tagline: "The material exchange built for builders.",
+    category: "materials",
+    status: "coming-soon",
+    tags: ["Materials", "Supplier network", "Spend/Earn COVI"],
+    icon: "package",
+    image: "/products/supplier-marketplace.webp",
+    shortDescription:
+      "A curated material marketplace for builders — organized by project type, not catalogue number. Find, compare, and source from vetted suppliers in one place.",
+    longDescription:
+      "BuilderBae is the buyer-facing layer of the ConstructFi material supply chain. It organizes materials the way a builder thinks — by project type, scope, and phase — rather than by raw catalogue line item. Each listing connects back to a vetted manufacturer or supplier reviewed before listing, so you can source with confidence and track provenance at the point of purchase.",
+    features: [
+      "Materials organized by project type and construction phase",
+      "Vetted supplier and manufacturer listings",
+      "Bulk procurement for repeat scopes",
+      "Provenance surfaced at point of purchase",
+      "Connects to Covi Estimator for integrated scoping and sourcing",
+    ],
+    coviEluvNote:
+      "Eligible activity can involve COVI, the platform's utility token — transfer-paused and earn-only before listing, and not an investment. Verified contract addresses are published only after independent audit.",
+  },
+  {
+    slug: "covi-buildsim",
+    name: "Covi BuildSim",
+    tagline: "Simulate a build. Learn what it really costs.",
+    category: "games",
+    status: "coming-soon",
+    tags: ["Learn-to-earn", "Earn COVI"],
+    icon: "gamepad",
+    image: "/products/house-hackers.webp",
+    shortDescription:
+      "A construction simulation game that teaches real project economics through play — scope creep, cost overruns, subcontractor management, and all.",
+    longDescription:
+      "Covi BuildSim puts you in the seat of a GC managing a real build scenario. You'll face scope changes, material delays, subcontractor negotiations, and budget pressure — the same variables that determine whether a job makes money or bleeds it. Learning happens through realistic consequence, not lecture.",
+    features: [
+      "Multi-phase build scenarios with real construction variables",
+      "Budget management, scope changes, and subcontractor events",
+      "Progress feeds Readiness Tracker milestone map",
+      "Learn-to-earn COVI participation for completed scenarios",
+      "Connects to Eluvial Academy curriculum for deeper context",
+    ],
+    coviEluvNote:
+      "Participation can earn COVI, the platform's utility token. Game mechanics are for engagement and education only — nothing here is a game of chance, and no outcome implies a financial return.",
+  },
+  {
+    slug: "brick-by-brick",
+    name: "Brick by Brick",
+    tagline: "Real-estate fundamentals. One concept at a time.",
+    category: "games",
+    status: "coming-soon",
+    tags: ["Education", "Earn COVI", "Learn-to-earn"],
+    icon: "gamepad",
+    shortDescription:
+      "A bite-sized real-estate learning game that builds foundational concepts through short, engaging daily lessons. Earn COVI for verified progress.",
+    longDescription:
+      "Brick by Brick is the entry point for anyone who is new to real estate or wants to reinforce the fundamentals. Each session covers one concept — deal mechanics, financing basics, property types, market analysis — through short interactive scenarios that take less than ten minutes. Progress integrates with Readiness Tracker and the broader Eluvial Academy curriculum.",
+    features: [
+      "Daily concept lessons in under ten minutes",
+      "Interactive scenarios built from real deal types",
+      "Tracks to Eluvial Academy curriculum and Readiness Tracker",
+      "Learn-to-earn COVI participation for verified progress",
+      "Streak-based engagement without gambling mechanics",
+    ],
+    coviEluvNote:
+      "Participation can earn COVI, the platform's utility token for ecosystem activity. Game mechanics are for education and engagement — no outcome implies financial return.",
   },
   {
     slug: "revenueos",

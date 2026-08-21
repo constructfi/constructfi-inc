@@ -16,7 +16,7 @@ createAppKit({
   defaultNetwork: base,
   metadata: {
     name: "ConstructFi",
-    description: "COVI moves. ELUV proves. From participation to ownership.",
+    description: "COVI moves. ELUV proves. From participation to progress.",
     url: "https://constructfi.co",
     icons: ["https://constructfi.co/icon.png"],
   },
