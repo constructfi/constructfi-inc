@@ -6,6 +6,11 @@ import { Section, SectionHeading } from "@/components/section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SITE, MARKETS } from "@/lib/site";
+import { WP_CHAPTERS } from "@/lib/whitepaper";
+
+const ch9 = WP_CHAPTERS[8];
+const ch9Lead = (ch9.blocks[0] as { type: "p"; text: string }).text;
+const ch9Table = ch9.blocks[1] as { type: "table"; headers: string[]; rows: string[][] };
 
 export const metadata: Metadata = {
   title: "Partners",
@@ -81,6 +86,32 @@ export default function PartnersPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+      </Section>
+
+      <Section className="bg-wash dark:bg-ink-2/30">
+        <div className="mx-auto max-w-4xl">
+          <p className="text-[10.5px] font-semibold uppercase tracking-[.16em] text-muted-foreground">
+            Mapped to funder frameworks
+          </p>
+          <p className="mt-3.5 max-w-[72ch] text-[16.5px] leading-[1.7] text-navy/75 dark:text-white/70">
+            {ch9Lead}
+          </p>
+          <div className="mt-5 max-w-[62.5rem] border-t border-line">
+            {ch9Table.rows.map(([name, mapping]) => (
+              <div
+                key={name}
+                className="grid gap-7 border-b border-line py-5 sm:grid-cols-[minmax(10rem,.6fr)_minmax(16rem,1.4fr)]"
+              >
+                <span className="text-base font-semibold leading-snug tracking-[-0.012em] text-navy dark:text-white">
+                  {name}
+                </span>
+                <span className="text-[15px] leading-[1.65] text-navy/70 dark:text-white/65">
+                  {mapping}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
