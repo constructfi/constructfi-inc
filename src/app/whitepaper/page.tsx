@@ -7,6 +7,8 @@ import { WP_CHAPTERS, WP_META } from "@/lib/whitepaper";
 import { SITE } from "@/lib/site";
 import { WhitepaperBody } from "@/components/whitepaper-body";
 
+const WHITEPAPER_CHAPTERS = WP_CHAPTERS.slice(0, 10);
+
 export const metadata: Metadata = {
   title: "Whitepaper",
   description:
@@ -64,6 +66,20 @@ export default function WhitepaperPage() {
                 <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
               </a>
             </Button>
+            <Button
+              variant="outline"
+              className="border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+              asChild
+            >
+              <Link href="/developers">Developers</Link>
+            </Button>
+            <Button
+              variant="outline"
+              className="border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+              asChild
+            >
+              <Link href="/partners">Partner Solutions</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -76,7 +92,7 @@ export default function WhitepaperPage() {
               Contents
             </h2>
             <nav className="mt-4 space-y-1" aria-label="Whitepaper chapters">
-              {WP_CHAPTERS.map((c) => (
+              {WHITEPAPER_CHAPTERS.map((c) => (
                 <Link
                   key={c.id}
                   href={`#${c.id}`}
@@ -93,7 +109,7 @@ export default function WhitepaperPage() {
 
           {/* Chapters */}
           <div className="min-w-0 max-w-3xl">
-            <WhitepaperBody chapters={WP_CHAPTERS} />
+            <WhitepaperBody chapters={WHITEPAPER_CHAPTERS} />
           </div>
         </div>
       </div>
