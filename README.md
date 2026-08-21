@@ -50,7 +50,7 @@ This bundle documents design changes made against the `constructfi/constructfi-i
 
 ### 8. Typography update (supersedes the type line below)
 - **Target**: `tailwind.config.ts` font families, `src/app/globals.css`
-- Headline family is now **Fraunces** (serif, high-contrast) applied to `h1`/`h2` **only**. `h3` and all body/label/eyebrow text set in **Manrope**. IBM Plex Mono is no longer used for eyebrows/labels — those are Manrope semibold, uppercase, letter-spaced.
+- Headline family is now **Fraunces** (serif, high-contrast) applied to `h1`/`h2` **only**. `h3` and all body/label/eyebrow text set in **Manrope**.
 - Rationale: Fraunces at h3 sizes read fussy; restricting it to h1/h2 keeps the editorial voice while card titles stay clean.
 
 ### 9. Nav grouping + overflow dropdowns
