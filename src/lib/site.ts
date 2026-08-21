@@ -31,7 +31,7 @@ export const MARKETS = ["DC", "VA", "MD", "NC", "FL", "MO"] as const;
 export const COVI = {
   name: "COVI",
   role: "Commerce & rewards — spendable",
-  standard: "Ethereum ERC-20",
+  standard: "ERC-20",
   chain: "Built on Base, settled to Ethereum",
   supply: "10,000,000,000",
   supplyNote: "Fixed cap",

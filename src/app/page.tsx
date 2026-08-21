@@ -13,6 +13,8 @@ import {
 } from "@/components/jul16/icons";
 import { LaunchStatusStrip } from "@/components/launch-status-strip";
 import { ProductCard, FeaturedProductCard } from "@/components/product-card";
+import { WalletConnect } from "@/components/wallet-connect";
+import { STEPS } from "@/app/getting-started/page";
 import { FEATURED_PRODUCT, PRODUCTS } from "@/lib/products";
 import { COVI, ELUV, APP_URL, APP_URL_EXTERNAL } from "@/lib/site";
 
@@ -379,6 +381,17 @@ export default function HomePage() {
                 The commerce &amp; rewards layer — earned through participation and learning, spent
                 across gaming, NFTs, partner programs, and developer fees.
               </div>
+              <div
+                style={{
+                  marginTop: 10,
+                  fontSize: 13,
+                  fontWeight: 600,
+                  letterSpacing: ".02em",
+                  color: "rgba(255,255,255,.72)",
+                }}
+              >
+                {`${COVI.standard} · ${COVI.chain} · ${COVI.supplyNote.toLowerCase()} ${COVI.supply}`}
+              </div>
               <table>
                 <tbody>
                   <tr>
@@ -450,6 +463,86 @@ export default function HomePage() {
                 Because ELUV can&apos;t be sold, readiness and governance can&apos;t be bought or
                 Sybil-farmed. Your record can only be earned.
               </div>
+            </div>
+          </div>
+          <div style={{ marginTop: 80, maxWidth: 980 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                borderBottom: "1px solid rgba(222,230,238,.18)",
+                paddingBottom: 10,
+              }}
+            >
+              <span style={{ fontSize: 11, fontWeight: 600, color: "var(--mint)" }}>02</span>
+              <span
+                style={{
+                  fontSize: 11,
+                  fontWeight: 500,
+                  textTransform: "uppercase",
+                  letterSpacing: ".18em",
+                  color: "rgba(255,255,255,.58)",
+                }}
+              >
+                Wallets
+              </span>
+            </div>
+            <h3
+              style={{
+                margin: "24px 0 0",
+                fontSize: "clamp(28px,3vw,38px)",
+                fontWeight: 700,
+                letterSpacing: "-.03em",
+                lineHeight: 1.08,
+                color: "#fff",
+              }}
+            >
+              Non-custodial by default
+            </h3>
+            <p
+              style={{
+                margin: "16px 0 0",
+                maxWidth: "70ch",
+                fontSize: "16.5px",
+                lineHeight: 1.65,
+                color: "rgba(255,255,255,.72)",
+              }}
+            >
+              COVI and ELUV live in a wallet you control — MetaMask and WalletConnect on Base.
+              ConstructFi never holds keys or funds.
+            </p>
+            <WalletConnect className="mt-6" size="default" disconnectedLabel="Wallet" />
+            <div style={{ marginTop: 36, borderTop: "1px solid rgba(222,230,238,.18)" }}>
+              {STEPS.map((step) => (
+                <div
+                  key={step.n}
+                  className="grid gap-4 border-b border-white/10 py-5 md:grid-cols-[56px_minmax(200px,1fr)_minmax(260px,1.6fr)] md:gap-6"
+                >
+                  <span style={{ fontSize: 11, fontWeight: 600, color: "var(--mint)" }}>
+                    {step.n}
+                  </span>
+                  <span style={{ fontSize: 16.5, fontWeight: 600, letterSpacing: "-.012em" }}>
+                    {step.title}
+                  </span>
+                  <span style={{ fontSize: 15, lineHeight: 1.6, color: "rgba(255,255,255,.72)" }}>
+                    {step.body}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div
+              style={{
+                marginTop: 28,
+                border: "1px solid rgba(222,230,238,.18)",
+                padding: 24,
+                maxWidth: 900,
+                background: "rgba(255,255,255,.04)",
+              }}
+            >
+              <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.7, color: "rgba(255,255,255,.72)" }}>
+                Contract addresses publish only after audit.
+              </p>
             </div>
           </div>
         </div>
