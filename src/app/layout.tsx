@@ -1,12 +1,33 @@
 import type { Metadata } from "next";
+import { Fraunces, Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import "./jul16.css";
-import { poppins, plexSans, plexMono, lora } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Web3Provider } from "@/components/web3-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SITE } from "@/lib/site";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -53,7 +74,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.variable} ${plexSans.variable} ${plexMono.variable} ${lora.variable}`}
+      className={`${fraunces.variable} ${manrope.variable} ${spaceGrotesk.variable}`}
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>

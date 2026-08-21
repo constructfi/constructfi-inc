@@ -85,61 +85,20 @@ export type NavItem = { href: string; label: string; desc?: string };
 export type NavGroup = { label: string; href?: string; items?: NavItem[] };
 
 export const NAV_GROUPS: NavGroup[] = [
-  { label: "Overview", href: "/" },
-  {
-    label: "Products",
-    items: [
-      { href: "/marketplace", label: "Marketplace (app store)" },
-      { href: "/app", label: "Build or Bust" },
-      { href: "/marketplace/supplier-marketplace", label: "Supplier marketplace" },
-      { href: "/apps", label: "All apps & roadmap" },
-    ],
-  },
-  {
-    label: "Platform",
-    items: [
-      { href: "/platform", label: "Platform overview" },
-      { href: "/whitepaper", label: "Whitepaper" },
-      { href: "/developers", label: "Developers" },
-      { href: "/security", label: "Security & compliance" },
-      { href: "/dashboard", label: "Dashboard preview" },
-    ],
-  },
-  {
-    label: "Partners",
-    items: [
-      { href: "/partners", label: "Partner program" },
-      { href: "/funders", label: "For funders" },
-      { href: "/admin", label: "Admin dashboard" },
-    ],
-  },
-  {
-    label: "Resources",
-    items: [
-      { href: "/resources", label: "Resources" },
-      { href: "/getting-started", label: "Getting started" },
-      { href: "/contact", label: "Contact" },
-    ],
-  },
+  { label: "Ecosystem", href: "/" },
+  { label: "About", href: "/platform" },
+  { label: "Marketplace", href: "/marketplace", items: [{ href: "/#s-tokens", label: "COVI & ELUV" }] },
+  { label: "Partner Solutions", href: "/partners", items: [{ href: "/developers", label: "Developers" }] },
 ];
 
 // Flat mobile drawer, mirroring the Jul 16 mobile menu order.
 export const MOBILE_NAV: NavItem[] = [
-  { href: "/", label: "Overview" },
-  { href: "/platform", label: "Platform overview" },
-  { href: "/whitepaper", label: "Whitepaper" },
-  { href: "/marketplace", label: "Marketplace (app store)" },
-  { href: "/app", label: "Build or Bust" },
-  { href: "/apps", label: "All apps & roadmap" },
-  { href: "/partners", label: "Partners" },
-  { href: "/funders", label: "For Funders" },
+  { href: "/", label: "Ecosystem" },
+  { href: "/platform", label: "About" },
+  { href: "/marketplace", label: "Marketplace" },
+  { href: "/#s-tokens", label: "COVI & ELUV" },
+  { href: "/partners", label: "Partner Solutions" },
   { href: "/developers", label: "Developers" },
-  { href: "/security", label: "Security & compliance" },
-  { href: "/resources", label: "Resources" },
-  { href: "/admin", label: "Admin dashboard" },
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/getting-started", label: "Getting started" },
-  { href: "/contact", label: "Contact" },
 ];
 
 // Secondary in-page anchor bar shown on the homepage (older design).
@@ -169,15 +128,21 @@ export const APP_URL_EXTERNAL = APP_LIVE;
 
 export const FOOTER_LINKS = {
   Platform: [
-    { href: "/marketplace", label: "Marketplace (app store)" },
     { href: "/app", label: "Build or Bust" },
     { href: "/apps", label: "All apps & roadmap" },
     { href: "/dashboard", label: "Dashboard preview" },
+    { href: "/admin", label: "Admin dashboard" },
   ],
   Ecosystem: [
     { href: "/whitepaper", label: "Whitepaper" },
+    { href: "/marketplace", label: "Marketplace" },
+    { href: "/developers", label: "Developers" },
+    { href: "/partners", label: "Partner solutions" },
+    { href: "/funders", label: "For funders" },
+  ],
+  Resources: [
+    { href: "/security", label: "Security & compliance" },
     { href: "/resources", label: "Resources" },
-    { href: "/partners", label: "Institutions & partners" },
     { href: "/getting-started", label: "Getting started guide" },
     { href: "/contact", label: "Contact" },
   ],
