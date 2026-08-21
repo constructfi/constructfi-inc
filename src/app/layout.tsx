@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./jul16.css";
-import { fraunces, manrope, plexMono } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Web3Provider } from "@/components/web3-provider";
 import { SiteHeader } from "@/components/site-header";
@@ -50,11 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${fraunces.variable} ${manrope.variable} ${plexMono.variable}`}
-    >
+    <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <Web3Provider>

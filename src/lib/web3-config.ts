@@ -12,7 +12,7 @@ export const projectId =
 export const networks: [AppKitNetwork, ...AppKitNetwork[]] = [base, mainnet];
 
 export const wagmiAdapter = new WagmiAdapter({
-  ssr: true,
+  ssr: false,
   projectId,
   networks,
 });
