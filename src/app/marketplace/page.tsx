@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ProductBrowser } from "@/components/product-browser";
-import { FeaturedProductCard } from "@/components/product-card";
-import { FEATURED_PRODUCT } from "@/lib/products";
+import { FeaturedProductCard, ProductCard } from "@/components/product-card";
+import { FEATURED_PRODUCT, PRODUCTS, type Product } from "@/lib/products";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -42,7 +41,67 @@ const ECONOMICS = [
   },
 ];
 
-export default function MarketplacePage() {
+type MarketplaceTab = "all" | "run" | "source" | "analyze" | "learn" | "play" | "own";
+
+const MARKETPLACE_TABS: { key: MarketplaceTab; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "run", label: "Run Your Business" },
+  { key: "source", label: "Source" },
+  { key: "analyze", label: "Analyze" },
+  { key: "learn", label: "Learn" },
+  { key: "play", label: "Play" },
+  { key: "own", label: "Own" },
+];
+
+const NFT_SWATCHES = [
+  "#e4b95b",
+  "#00d19a",
+  "#1bb6fd",
+  "#8298fc",
+  "#386641",
+  "#ff5a1f",
+  "#d3dfe9",
+  "#eef3f8",
+  "#00a87c",
+];
+
+const DIGITAL_COLLECTIBLES = PRODUCTS.find((product) => product.slug === "collectibles");
+
+function marketplaceTabForProduct(product: Product): Exclude<MarketplaceTab, "all" | "own"> {
+  switch (product.slug) {
+    case "revenueos":
+    case "sales-academy":
+      return "run";
+    case "supplier-marketplace":
+    case "material-marketplace":
+    case "covi-estimator":
+      return "source";
+    case "build-or-bust":
+      return "analyze";
+    case "house-hackers":
+      return "play";
+    case "readiness-tracker":
+    case "covi-wallet":
+    default:
+      return "learn";
+  }
+}
+
+function isMarketplaceTab(value: string | undefined): value is MarketplaceTab {
+  return MARKETPLACE_TABS.some((tab) => tab.key === value);
+}
+
+export default function MarketplacePage({
+  searchParams,
+}: {
+  searchParams?: { tab?: string };
+}) {
+  const activeTab = isMarketplaceTab(searchParams?.tab) ? searchParams.tab : "all";
+  const visibleProducts = PRODUCTS.filter((product) => product.slug !== "collectibles").filter(
+    (product) => activeTab === "all" || marketplaceTabForProduct(product) === activeTab
+  );
+  const visibleCount = activeTab === "own" ? 1 : visibleProducts.length;
+
   return (
     <>
       <header className="section" style={{ borderTop: "none", paddingBottom: 44 }}>
@@ -79,7 +138,212 @@ export default function MarketplacePage() {
               honest labels, not download links.
             </p>
           </div>
-          <ProductBrowser />
+          <div style={{ border: "1px solid #d3dfe9", background: "#fff" }}>
+            <div
+              className="store-bar"
+              style={{
+                maxWidth: "1280px",
+                margin: "0 auto",
+                padding: "14px 32px",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              <div className="cat-tabs" role="tablist" aria-label="Product categories">
+                {MARKETPLACE_TABS.map((tab) => {
+                  const isActive = activeTab === tab.key;
+
+                  return (
+                    <Link
+                      key={tab.key}
+                      href={tab.key === "all" ? "/marketplace" : `/marketplace?tab=${tab.key}`}
+                      role="tab"
+                      aria-selected={isActive}
+                      data-testid={`tab-${tab.key}`}
+                      style={{
+                        cursor: "pointer",
+                        padding: "8px 15px",
+                        fontFamily: "'Manrope', sans-serif",
+                        fontSize: "11.5px",
+                        fontWeight: isActive ? 600 : 500,
+                        textTransform: "uppercase",
+                        letterSpacing: ".1em",
+                        textDecoration: "none",
+                        background: isActive ? "#041428" : "#fff",
+                        border: isActive ? "none" : "1px solid #dee6ee",
+                        color: isActive ? "#fff" : "rgba(0,51,107,.7)",
+                      }}
+                    >
+                      {tab.label}
+                    </Link>
+                  );
+                })}
+              </div>
+              <span
+                style={{
+                  marginLeft: "auto",
+                  fontFamily: "'Manrope', sans-serif",
+                  fontSize: 11,
+                  letterSpacing: ".1em",
+                  textTransform: "uppercase",
+                  color: "rgba(0,51,107,.45)",
+                }}
+                data-testid="product-count"
+                aria-live="polite"
+              >
+                {visibleCount} {visibleCount === 1 ? "product" : "products"}
+              </span>
+            </div>
+          </div>
+
+          <section style={{ padding: "36px 0 96px" }}>
+            {activeTab === "own" && DIGITAL_COLLECTIBLES ? (
+              <div
+                className="store-grid"
+                data-testid="product-grid"
+                style={{
+                  display: "grid",
+                  gap: 18,
+                  gridTemplateColumns: "repeat(auto-fill,minmax(292px,1fr))",
+                }}
+              >
+                <a
+                  href="https://opensea.io/collection/constructfi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="own-card"
+                  style={{
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    border: "1px dashed #b7c6d3",
+                    background: "#fbfdff",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <div style={{ height: 5, background: "#e4b95b" }} />
+                  <div
+                    style={{
+                      position: "relative",
+                      height: 190,
+                      background: "#041428",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(3,1fr)",
+                        gap: 6,
+                        width: 120,
+                      }}
+                    >
+                      {NFT_SWATCHES.map((swatch, index) => (
+                        <div
+                          key={`${swatch}-${index}`}
+                          style={{ aspectRatio: "1", background: swatch }}
+                        />
+                      ))}
+                    </div>
+                    <span
+                      style={{
+                        position: "absolute",
+                        left: 16,
+                        top: 14,
+                        fontFamily: "'Manrope', sans-serif",
+                        fontSize: 10,
+                        letterSpacing: ".14em",
+                        textTransform: "uppercase",
+                        color: "rgba(255,255,255,.5)",
+                      }}
+                    >
+                      NFT
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      padding: 22,
+                      display: "flex",
+                      flexDirection: "column",
+                      flex: 1,
+                      borderTop: "1px solid #dee6ee",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: "'Manrope', sans-serif",
+                        fontSize: "10.5px",
+                        letterSpacing: ".12em",
+                        textTransform: "uppercase",
+                        color: "rgba(0,51,107,.5)",
+                      }}
+                    >
+                      Participate in the Ecosystem
+                    </div>
+                    <h3
+                      style={{
+                        margin: "12px 0 0",
+                        fontSize: 19.5,
+                        fontWeight: 600,
+                        letterSpacing: "-.012em",
+                      }}
+                    >
+                      {DIGITAL_COLLECTIBLES.name}
+                    </h3>
+                    <p
+                      style={{
+                        margin: "8px 0 0",
+                        fontSize: 15,
+                        lineHeight: 1.5,
+                        fontWeight: 500,
+                        color: "#00a87c",
+                      }}
+                    >
+                      {DIGITAL_COLLECTIBLES.tagline}
+                    </p>
+                    <p
+                      style={{
+                        margin: "14px 0 0",
+                        fontSize: 14.5,
+                        lineHeight: 1.6,
+                        color: "rgba(0,51,107,.65)",
+                        flex: 1,
+                        textWrap: "pretty",
+                      }}
+                    >
+                      {DIGITAL_COLLECTIBLES.shortDescription}
+                    </p>
+                    <div
+                      style={{
+                        marginTop: 18,
+                        paddingTop: 14,
+                        borderTop: "1px solid #eef3f8",
+                        fontSize: 13,
+                        lineHeight: 1.5,
+                        color: "#00a87c",
+                      }}
+                    >
+                      View collections on OpenSea ↗
+                    </div>
+                  </div>
+                </a>
+              </div>
+            ) : visibleProducts.length > 0 ? (
+              <div className="apps-row store-grid" data-testid="product-grid">
+                {visibleProducts.map((product) => (
+                  <ProductCard key={product.slug} product={product} />
+                ))}
+              </div>
+            ) : (
+              <p className="store-empty" data-testid="product-empty">
+                No products in this view yet.
+              </p>
+            )}
+          </section>
         </div>
       </section>
 

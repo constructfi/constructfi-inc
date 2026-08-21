@@ -206,25 +206,25 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "collectibles",
-    name: "Collectibles & Credentials Layer",
-    tagline: "Commemorative collections from real activity.",
+    name: "Digital Collectibles",
+    tagline: "Listed on OpenSea, not in-app.",
     category: "nfts",
     status: "phase-2",
-    tags: ["Earn ELUV", "Distributed in-app"],
+    tags: ["NFT", "OpenSea"],
     icon: "gem",
     image: "/products/collectibles.webp",
     shortDescription:
-      "The NFT layer that carries ELUV milestones and commemorative collections issued through platform activity. Distribution happens inside ConstructFi — never through third-party listings.",
+      "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
     longDescription:
-      "The collectibles layer is how ELUV milestones and commemorative collections are represented on-chain. Everything here is issued through activity on the platform: you receive a collectible because you did something the platform verified. Distribution happens inside ConstructFi only — there are no third-party marketplace listings, and ELUV credentials themselves remain non-transferable.",
+      "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
     features: [
-      "Milestone-linked collectibles tied to verified progress",
-      "Commemorative drops for platform milestones",
-      "In-app distribution only — no third-party marketplace listings",
-      "ELUV credentials remain soulbound and non-transferable",
+      "All ConstructFi NFT collections are minted and traded on OpenSea",
+      "NFT collections are not sold directly through this marketplace",
+      "ELUV credentials are a separate, non-transferable category",
+      "ELUV credentials are never listed here",
     ],
     coviEluvNote:
-      "ELUV credentials are ERC-5192 soulbound tokens: earned through verified milestones, never sold, and never transferable. Commemorative collectibles are distributed inside the platform, so there is nothing to bid on elsewhere.",
+      "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
   },
   {
     slug: "revenueos",
