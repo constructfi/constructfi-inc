@@ -169,15 +169,21 @@ export const APP_URL_EXTERNAL = APP_LIVE;
 
 export const FOOTER_LINKS = {
   Platform: [
+    { href: "/platform", label: "Platform overview" },
     { href: "/marketplace", label: "Marketplace (app store)" },
     { href: "/app", label: "Build or Bust" },
     { href: "/apps", label: "All apps & roadmap" },
     { href: "/dashboard", label: "Dashboard preview" },
   ],
-  Ecosystem: [
+  Developers: [
+    { href: "/developers", label: "Developers" },
+    { href: "/security", label: "Security & compliance" },
     { href: "/whitepaper", label: "Whitepaper" },
+  ],
+  Ecosystem: [
     { href: "/resources", label: "Resources" },
     { href: "/partners", label: "Institutions & partners" },
+    { href: "/funders", label: "For funders" },
     { href: "/getting-started", label: "Getting started guide" },
     { href: "/contact", label: "Contact" },
   ],
