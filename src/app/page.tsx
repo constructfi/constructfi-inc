@@ -39,7 +39,8 @@ export default function HomePage() {
     <>
       <SubNav />
 
-      <header className="hero">
+      <header className="hero ink-surface">
+        <div className="bg-grid-fine hero-gridwash" aria-hidden />
         <div className="wrap hero-grid">
           <div>
             <span className="eyebrow">Construction. Real estate. Opportunity. Connected.</span>
@@ -66,6 +67,20 @@ export default function HomePage() {
                 Build With ConstructFi
               </Link>
             </div>
+            <div className="hero-kpis" aria-label="ConstructFi overview">
+              <div className="hero-kpi">
+                <span className="hero-kpi-v">8</span>
+                <span className="hero-kpi-k">connected verticals</span>
+              </div>
+              <div className="hero-kpi">
+                <span className="hero-kpi-v">6</span>
+                <span className="hero-kpi-k">active markets</span>
+              </div>
+              <div className="hero-kpi">
+                <span className="hero-kpi-v">2</span>
+                <span className="hero-kpi-k">clear token roles</span>
+              </div>
+            </div>
             <div className="router" aria-label="Choose your path">
               <Link href="/marketplace">
                 <span className="r-k">Contractors &amp; builders</span>
@@ -82,6 +97,16 @@ export default function HomePage() {
             </div>
           </div>
           <div className="hero-shot phone-float">
+            <div className="hero-coins" aria-hidden>
+              <span className="hero-coin hero-coin-covi">
+                <CoviCoin />
+              </span>
+              <span className="hero-coin hero-coin-eluv">
+                <EluvCoin />
+              </span>
+              <span className="hero-chip-float hero-chip-top">Marketplaces, tools, and learning</span>
+              <span className="hero-chip-float hero-chip-bottom">COVI moves · ELUV proves</span>
+            </div>
             <PhoneMarketplace />
           </div>
         </div>
