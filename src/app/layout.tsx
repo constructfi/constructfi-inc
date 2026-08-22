@@ -61,11 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className="font-sans"
-    >
+    <html lang="en" suppressHydrationWarning className="font-sans">
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <Web3Provider>

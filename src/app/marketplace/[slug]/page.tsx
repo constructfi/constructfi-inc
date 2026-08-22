@@ -57,8 +57,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <header className="section" style={{ borderTop: "none", paddingBottom: 40 }}>
-        <div className="wrap">
+      <header className="section dkband detail-hero" style={{ borderTop: "none", paddingBottom: 40 }}>
+        <div className="bg-grid-fine market-hero-grid" aria-hidden />
+        <div className="wrap detail-hero-wrap">
           <nav className="crumb" aria-label="Breadcrumb">
             <Link href="/marketplace">Marketplace</Link>
             <span aria-hidden>/</span>

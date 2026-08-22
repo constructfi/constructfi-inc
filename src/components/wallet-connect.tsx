@@ -24,6 +24,63 @@ export function WalletConnect({
   disconnectedLabel?: string;
   variant?: "default" | "header";
 }) {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    if (variant === "header") {
+      return (
+        <button
+          type="button"
+          className={cn(
+            "inline-flex items-center gap-2 border px-4 py-2 text-sm font-medium transition-colors",
+            "border-white/24 text-white hover:border-white/40 hover:bg-white/10",
+            className
+          )}
+          data-testid="button-connect-wallet"
+        >
+          <Wallet className="h-4 w-4" />
+          {disconnectedLabel}
+        </button>
+      );
+    }
+
+    return (
+      <Button
+        size={size}
+        className={cn("gap-2", className)}
+        data-testid="button-connect-wallet"
+      >
+        <Wallet className="h-4 w-4" />
+        {disconnectedLabel}
+      </Button>
+    );
+  }
+
+  return (
+    <WalletConnectReady
+      className={className}
+      size={size}
+      disconnectedLabel={disconnectedLabel}
+      variant={variant}
+    />
+  );
+}
+
+function WalletConnectReady({
+  className,
+  size = "sm",
+  disconnectedLabel = "Connect wallet",
+  variant = "default",
+}: {
+  className?: string;
+  size?: "sm" | "default" | "lg";
+  disconnectedLabel?: string;
+  variant?: "default" | "header";
+}) {
   const { open } = useAppKit();
   const { address, isConnected, chainId } = useAccount();
   const { disconnect } = useDisconnect();

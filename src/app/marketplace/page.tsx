@@ -81,21 +81,36 @@ export default function MarketplacePage({
 
   return (
     <>
-      <header className="section" style={{ borderTop: "none", paddingBottom: 44 }}>
-        <div className="wrap">
-          <span className="eyebrow">The app store</span>
-          <h1 style={{ fontSize: 44, fontWeight: 800, margin: "0 0 14px", maxWidth: 760 }}>
-            Every ConstructFi product, in one place.
-          </h1>
-          <p style={{ fontSize: 18, color: "var(--ink2)", maxWidth: 620 }}>
-            Explore apps, services, materials, learning platforms, AI tools, and
-            interactive experiences. Use products independently or discover how they
-            connect through the ConstructFi ecosystem.
-          </p>
-          <div className="store-line">
-            <span className="chip soon">Launching {SITE.launchDate}</span>
-            <span className="chip">Free to browse</span>
-            <span className="chip covi">Rewards funded by real commerce</span>
+      <header className="section dkband market-hero" style={{ borderTop: "none" }}>
+        <div className="bg-grid-fine market-hero-grid" aria-hidden />
+        <div className="wrap market-hero-gridwrap">
+          <div>
+            <span className="eyebrow">The app store</span>
+            <h1 style={{ fontSize: 44, fontWeight: 800, margin: "0 0 14px", maxWidth: 760 }}>
+              Every ConstructFi product, in one place.
+            </h1>
+            <p style={{ fontSize: 18, color: "var(--ink2)", maxWidth: 620 }}>
+              Explore apps, services, materials, learning platforms, AI tools, and
+              interactive experiences. Use products independently or discover how they
+              connect through the ConstructFi ecosystem.
+            </p>
+            <div className="store-line">
+              <span className="chip soon">Launching {SITE.launchDate}</span>
+              <span className="chip free">Free to browse</span>
+              <span className="chip covi">Rewards funded by real commerce</span>
+            </div>
+          </div>
+          <div className="market-hero-aside">
+            <div className="market-mini-card">
+              <span className="market-mini-k">What ships at launch</span>
+              <strong>{PRODUCTS.filter((product) => product.status === "live").length} products</strong>
+              <p>Flagship apps, verified supplier workflows, and marketplace discovery.</p>
+            </div>
+            <div className="market-mini-card">
+              <span className="market-mini-k">Why the marketplace matters</span>
+              <strong>Commerce first</strong>
+              <p>Supplier activity funds the rewards loop instead of synthetic emissions.</p>
+            </div>
           </div>
         </div>
       </header>
@@ -115,19 +130,8 @@ export default function MarketplacePage({
               it. The products are how people use it.
             </p>
           </div>
-          <div style={{ border: "1px solid #d3dfe9", background: "#fff" }}>
-            <div
-              className="store-bar"
-              style={{
-                maxWidth: "1280px",
-                margin: "0 auto",
-                padding: "14px 32px",
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
+          <div className="card market-toolbar">
+            <div className="store-bar" style={{ marginBottom: 0 }}>
               <div className="cat-tabs" role="tablist" aria-label="Product categories">
                 {MARKETPLACE_TABS.map((tab) => {
                   const isActive = activeTab === tab.key;
@@ -139,37 +143,14 @@ export default function MarketplacePage({
                       role="tab"
                       aria-selected={isActive}
                       data-testid={`tab-${tab.key}`}
-                      style={{
-                        cursor: "pointer",
-                        padding: "8px 15px",
-                        fontFamily: "'Manrope', sans-serif",
-                        fontSize: "11.5px",
-                        fontWeight: isActive ? 600 : 500,
-                        textTransform: "uppercase",
-                        letterSpacing: ".1em",
-                        textDecoration: "none",
-                        background: isActive ? "#041428" : "#fff",
-                        border: isActive ? "none" : "1px solid #dee6ee",
-                        color: isActive ? "#fff" : "rgba(0,51,107,.7)",
-                      }}
+                      className={isActive ? "cat-tab on" : "cat-tab"}
                     >
                       {tab.label}
                     </Link>
                   );
                 })}
               </div>
-              <span
-                style={{
-                  marginLeft: "auto",
-                  fontFamily: "'Manrope', sans-serif",
-                  fontSize: 11,
-                  letterSpacing: ".1em",
-                  textTransform: "uppercase",
-                  color: "rgba(0,51,107,.45)",
-                }}
-                data-testid="product-count"
-                aria-live="polite"
-              >
+              <span className="store-count" data-testid="product-count" aria-live="polite">
                 {visibleCount} {visibleCount === 1 ? "product" : "products"}
               </span>
             </div>
@@ -177,135 +158,29 @@ export default function MarketplacePage({
 
           <section style={{ padding: "36px 0 96px" }}>
             {activeTab === "own" && DIGITAL_COLLECTIBLES ? (
-              <div
-                className="store-grid"
-                data-testid="product-grid"
-                style={{
-                  display: "grid",
-                  gap: 18,
-                  gridTemplateColumns: "repeat(auto-fill,minmax(292px,1fr))",
-                }}
-              >
+              <div className="apps-row store-grid" data-testid="product-grid">
                 <a
                   href="https://opensea.io/collection/constructfi"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="own-card"
-                  style={{
-                    textDecoration: "none",
-                    cursor: "pointer",
-                    border: "1px dashed #b7c6d3",
-                    background: "#fbfdff",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
+                  className="own-card"
                 >
-                  <div style={{ height: 5, background: "#e4b95b" }} />
-                  <div
-                    style={{
-                      position: "relative",
-                      height: 190,
-                      background: "#041428",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(3,1fr)",
-                        gap: 6,
-                        width: 120,
-                      }}
-                    >
+                  <div className="own-card-line" />
+                  <div className="own-card-media">
+                    <div className="own-card-swatches">
                       {NFT_SWATCHES.map((swatch, index) => (
-                        <div
-                          key={`${swatch}-${index}`}
-                          style={{ aspectRatio: "1", background: swatch }}
-                        />
+                        <div key={`${swatch}-${index}`} style={{ aspectRatio: "1", background: swatch }} />
                       ))}
                     </div>
-                    <span
-                      style={{
-                        position: "absolute",
-                        left: 16,
-                        top: 14,
-                        fontFamily: "'Manrope', sans-serif",
-                        fontSize: 10,
-                        letterSpacing: ".14em",
-                        textTransform: "uppercase",
-                        color: "rgba(255,255,255,.5)",
-                      }}
-                    >
-                      NFT
-                    </span>
+                    <span className="own-card-label">NFT</span>
                   </div>
-                  <div
-                    style={{
-                      padding: 22,
-                      display: "flex",
-                      flexDirection: "column",
-                      flex: 1,
-                      borderTop: "1px solid #dee6ee",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontFamily: "'Manrope', sans-serif",
-                        fontSize: "10.5px",
-                        letterSpacing: ".12em",
-                        textTransform: "uppercase",
-                        color: "rgba(0,51,107,.5)",
-                      }}
-                    >
-                      Participate in the Ecosystem
-                    </div>
-                    <h3
-                      style={{
-                        margin: "12px 0 0",
-                        fontSize: 19.5,
-                        fontWeight: 600,
-                        letterSpacing: "-.012em",
-                      }}
-                    >
-                      {DIGITAL_COLLECTIBLES.name}
-                    </h3>
-                    <p
-                      style={{
-                        margin: "8px 0 0",
-                        fontSize: 15,
-                        lineHeight: 1.5,
-                        fontWeight: 500,
-                        color: "#00a87c",
-                      }}
-                    >
-                      {DIGITAL_COLLECTIBLES.tagline}
-                    </p>
-                    <p
-                      style={{
-                        margin: "14px 0 0",
-                        fontSize: 14.5,
-                        lineHeight: 1.6,
-                        color: "rgba(0,51,107,.65)",
-                        flex: 1,
-                        textWrap: "pretty",
-                      }}
-                    >
-                      {DIGITAL_COLLECTIBLES.shortDescription}
-                    </p>
-                    <div
-                      style={{
-                        marginTop: 18,
-                        paddingTop: 14,
-                        borderTop: "1px solid #eef3f8",
-                        fontSize: 13,
-                        lineHeight: 1.5,
-                        color: "#00a87c",
-                      }}
-                    >
-                      View collections on OpenSea ↗
-                    </div>
+                  <div className="own-card-body">
+                    <div className="own-card-kicker">Participate in the ecosystem</div>
+                    <h3>{DIGITAL_COLLECTIBLES.name}</h3>
+                    <p className="own-card-tag">{DIGITAL_COLLECTIBLES.tagline}</p>
+                    <p className="own-card-copy">{DIGITAL_COLLECTIBLES.shortDescription}</p>
+                    <div className="own-card-link">View collections on OpenSea ↗</div>
                   </div>
                 </a>
               </div>
