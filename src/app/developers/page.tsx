@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Github, ArrowUpRight, Code2, Boxes, FileCode2, Webhook } from "lucide-react";
+import Link from "next/link";
+import { Github, ArrowUpRight, Code2, Boxes, FileCode2, Webhook, BookOpen } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { Card, CardContent } from "@/components/ui/card";
@@ -82,6 +83,55 @@ export default function DevelopersPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+      </Section>
+
+      <Section className="bg-wash dark:bg-ink-2/30">
+        <div className="mx-auto grid max-w-5xl gap-8 rounded-2xl border border-line bg-background p-8 dark:border-border lg:grid-cols-[1.2fr_.8fr] lg:items-center">
+          <div>
+            <Badge className="bg-gold/15 text-gold dark:text-gold-2">Whitepaper</Badge>
+            <h2 className="mt-4 text-2xl font-bold text-navy dark:text-white">
+              The full technical &amp; economic model
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Read the complete ConstructFi whitepaper for the two-token model,
+              marketplace economics, governance, compliance posture, security
+              assumptions, and partner infrastructure.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild>
+                <Link href="/whitepaper">
+                  Read the whitepaper
+                  <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
+                </Link>
+              </Button>
+              <Button variant="outline" asChild>
+                <a
+                  href={`${SITE.githubRepo}/blob/main/src/lib/whitepaper.ts`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View source on GitHub
+                  <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
+                </a>
+              </Button>
+            </div>
+          </div>
+          <Card className="h-full">
+            <CardContent className="pt-6">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-teal/10 text-teal dark:text-mint">
+                <BookOpen className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-navy dark:text-white">
+                ConstructFi Whitepaper
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Version 2.1 covers marketplace, procurement, participation,
+                funder mappings, governance, security, compliance, roadmap, and
+                legal disclaimers in one source file.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </Section>
 

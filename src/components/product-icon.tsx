@@ -1,30 +1,32 @@
 import {
+  Blocks,
   Boxes,
   Briefcase,
+  Building2,
+  FileCheck2,
   Gamepad2,
-  Gauge,
   Gem,
   GraduationCap,
-  Package,
-  Ruler,
-  Target,
-  Wallet,
+  HandCoins,
+  Landmark,
+  Megaphone,
   type LucideIcon,
 } from "lucide-react";
 
 // Products store an icon *key* rather than a component so src/lib/products.ts
 // stays plain serializable data usable from both server and client trees.
 const PRODUCT_ICONS: Record<string, LucideIcon> = {
-  gauge: Gauge,
-  ruler: Ruler,
-  target: Target,
-  wallet: Wallet,
+  hub: Briefcase,
+  house: Landmark,
+  contract: FileCheck2,
+  megaphone: Megaphone,
+  "cap-arrow": GraduationCap,
+  bag: HandCoins,
+  cube: Boxes,
   gamepad: Gamepad2,
-  boxes: Boxes,
+  skyline: Building2,
+  brick: Blocks,
   gem: Gem,
-  briefcase: Briefcase,
-  graduation: GraduationCap,
-  package: Package,
 };
 
 export function ProductIcon({

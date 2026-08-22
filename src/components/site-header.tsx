@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/logo";
 import { Jul16ThemeToggle } from "@/components/theme-toggle";
 import { WalletConnect } from "@/components/wallet-connect";
-import { NAV_GROUPS, MOBILE_NAV, APP_URL, APP_URL_EXTERNAL } from "@/lib/site";
+import { NAV_GROUPS, MOBILE_NAV } from "@/lib/site";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -122,15 +122,14 @@ export function SiteHeader() {
 
         <div className="nav-cta">
           <div className="nav-wallet">
-            <WalletConnect disconnectedLabel="Wallet" />
+            <WalletConnect disconnectedLabel="Wallet" variant="header" />
           </div>
           <Link
             className="btn btn-primary"
-            href={APP_URL}
-            data-testid="button-launch-app"
-            {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            href="/partners"
+            data-testid="button-build-with-constructfi"
           >
-            Launch app
+            Build With ConstructFi
           </Link>
           <Jul16ThemeToggle />
           <button
@@ -170,16 +169,15 @@ export function SiteHeader() {
         <div className="mm-actions">
           <Link
             className="btn btn-primary"
-            href={APP_URL}
+            href="/partners"
             onClick={() => {
               setOpen(false);
               setOpenDropdown(null);
             }}
-            {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
-            Launch app
+            Build With ConstructFi
           </Link>
-          <WalletConnect />
+          <WalletConnect disconnectedLabel="Wallet" variant="header" />
         </div>
       </div>
     </nav>

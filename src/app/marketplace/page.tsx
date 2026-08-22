@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FeaturedProductCard, ProductCard } from "@/components/product-card";
-import { FEATURED_PRODUCT, PRODUCTS, type Product } from "@/lib/products";
+import {
+  CATEGORIES,
+  FEATURED_PRODUCT,
+  PRODUCTS,
+  type ProductCategory,
+} from "@/lib/products";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -41,17 +46,9 @@ const ECONOMICS = [
   },
 ];
 
-type MarketplaceTab = "all" | "run" | "source" | "analyze" | "learn" | "play" | "own";
+type MarketplaceTab = ProductCategory | "all";
 
-const MARKETPLACE_TABS: { key: MarketplaceTab; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "run", label: "Run Your Business" },
-  { key: "source", label: "Source" },
-  { key: "analyze", label: "Analyze" },
-  { key: "learn", label: "Learn" },
-  { key: "play", label: "Play" },
-  { key: "own", label: "Own" },
-];
+const MARKETPLACE_TABS = CATEGORIES.map(({ key, label }) => ({ key, label }));
 
 const NFT_SWATCHES = [
   "#e4b95b",
@@ -67,26 +64,6 @@ const NFT_SWATCHES = [
 
 const DIGITAL_COLLECTIBLES = PRODUCTS.find((product) => product.slug === "collectibles");
 
-function marketplaceTabForProduct(product: Product): Exclude<MarketplaceTab, "all" | "own"> {
-  switch (product.slug) {
-    case "revenueos":
-    case "sales-academy":
-      return "run";
-    case "supplier-marketplace":
-    case "material-marketplace":
-    case "covi-estimator":
-      return "source";
-    case "build-or-bust":
-      return "analyze";
-    case "house-hackers":
-      return "play";
-    case "readiness-tracker":
-    case "covi-wallet":
-    default:
-      return "learn";
-  }
-}
-
 function isMarketplaceTab(value: string | undefined): value is MarketplaceTab {
   return MARKETPLACE_TABS.some((tab) => tab.key === value);
 }
@@ -98,7 +75,7 @@ export default function MarketplacePage({
 }) {
   const activeTab = isMarketplaceTab(searchParams?.tab) ? searchParams.tab : "all";
   const visibleProducts = PRODUCTS.filter((product) => product.slug !== "collectibles").filter(
-    (product) => activeTab === "all" || marketplaceTabForProduct(product) === activeTab
+    (product) => (activeTab === "all" ? product.category !== "own" : product.category === activeTab)
   );
   const visibleCount = activeTab === "own" ? 1 : visibleProducts.length;
 
@@ -111,9 +88,9 @@ export default function MarketplacePage({
             Every ConstructFi product, in one place.
           </h1>
           <p style={{ fontSize: 18, color: "var(--ink2)", maxWidth: 620 }}>
-            Apps, games, materials, and collectibles — the marketplace is the single
-            store for everything the platform ships. Browse what arrives at launch and
-            what is sequenced behind it.
+            Explore apps, services, materials, learning platforms, AI tools, and
+            interactive experiences. Use products independently or discover how they
+            connect through the ConstructFi ecosystem.
           </p>
           <div className="store-line">
             <span className="chip soon">Launching {SITE.launchDate}</span>
@@ -134,8 +111,8 @@ export default function MarketplacePage({
           <div className="section-head" style={{ marginBottom: 26 }}>
             <h2 style={{ fontSize: 27 }}>Browse the store</h2>
             <p>
-              Nothing here is presented as shipped before it is. Dates and phases are
-              honest labels, not download links.
+              ConstructFi is the ecosystem. The Marketplace is where people discover
+              it. The products are how people use it.
             </p>
           </div>
           <div style={{ border: "1px solid #d3dfe9", background: "#fff" }}>
