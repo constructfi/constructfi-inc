@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font CSS variables — set manually since fonts are loaded via @fontsource */
+:root {
+  --font-fraunces: "Fraunces";
+  --font-manrope: "Manrope";
+  --font-space-grotesk: "Space Grotesk";
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
