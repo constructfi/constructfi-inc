@@ -4,7 +4,7 @@
 export const SITE = {
   name: "ConstructFi",
   tagline: "COVI moves. ELUV proves.",
-  subtagline: "From participation to ownership.",
+  subtagline: "From participation to progress.",
   description:
     "A programmable economic-participation platform built on real operations. COVI moves. ELUV proves.",
   url: "https://constructfi.co",
@@ -87,7 +87,25 @@ export type NavGroup = { label: string; href?: string; items?: NavItem[] };
 export const NAV_GROUPS: NavGroup[] = [
   { label: "Ecosystem", href: "/" },
   { label: "About", href: "/platform" },
-  { label: "Marketplace", href: "/marketplace", items: [{ href: "/#s-tokens", label: "COVI & ELUV" }] },
+  {
+    label: "Marketplace",
+    href: "/marketplace",
+    items: [
+      { href: "/marketplace?tab=run", label: "Run Your Business" },
+      { href: "/marketplace?tab=source", label: "Source & Buy" },
+      { href: "/marketplace?tab=analyze", label: "Analyze & Invest" },
+      { href: "/marketplace?tab=learn", label: "Learn & Grow" },
+      { href: "/marketplace?tab=build", label: "Build With ConstructFi" },
+    ],
+  },
+  {
+    label: "Participation",
+    href: "/participation",
+    items: [
+      { href: "/participation#s-covi", label: "COVI" },
+      { href: "/participation#s-eluv", label: "ELUV" },
+    ],
+  },
   { label: "Partner Solutions", href: "/partners", items: [{ href: "/developers", label: "Developers" }] },
 ];
 
@@ -96,7 +114,7 @@ export const MOBILE_NAV: NavItem[] = [
   { href: "/", label: "Ecosystem" },
   { href: "/platform", label: "About" },
   { href: "/marketplace", label: "Marketplace" },
-  { href: "/#s-tokens", label: "COVI & ELUV" },
+  { href: "/participation", label: "Participation (COVI & ELUV)" },
   { href: "/partners", label: "Partner Solutions" },
   { href: "/developers", label: "Developers" },
 ];
@@ -106,7 +124,7 @@ export const ON_THIS_PAGE = [
   { href: "#s-how", label: "How it works" },
   { href: "#s-app", label: "The app" },
   { href: "#s-market", label: "Marketplace" },
-  { href: "#s-tokens", label: "Tokenomics" },
+  { href: "#s-tokens", label: "Participation" },
   { href: "#s-build", label: "Build on ConstructFi" },
   { href: "#s-founder", label: "Team" },
   { href: "#s-roadmap", label: "Roadmap" },
@@ -136,6 +154,7 @@ export const FOOTER_LINKS = {
   Ecosystem: [
     { href: "/whitepaper", label: "Whitepaper" },
     { href: "/marketplace", label: "Marketplace" },
+    { href: "/participation", label: "Participation (COVI & ELUV)" },
     { href: "/developers", label: "Developers" },
     { href: "/partners", label: "Partner solutions" },
     { href: "/funders", label: "For funders" },

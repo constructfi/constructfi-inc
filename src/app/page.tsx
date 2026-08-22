@@ -20,7 +20,7 @@ import { COVI, ELUV, APP_URL, APP_URL_EXTERNAL } from "@/lib/site";
 
 // The homepage teases three products next to the flagship; the store has the rest.
 const HOME_PRODUCTS = PRODUCTS.filter((p) =>
-  ["supplier-marketplace", "covi-wallet", "collectibles"].includes(p.slug)
+  ["supplier-marketplace", "covi-wallet", "eluvial-academy"].includes(p.slug)
 );
 
 /** "Build or Bust" wordmark — green / muted / red, per the Jul 16 design. */
@@ -46,16 +46,17 @@ export default function HomePage() {
             <h1>
               From participation
               <br />
-              to <em>ownership.</em>
+              to <em>progress.</em>
             </h1>
             <p className="lede">
-              ConstructFi is an app store for real-estate and construction work — screen a
-              deal, price a job, and build a verified track record in one place.
+              ConstructFi is an ecosystem of tools and opportunities for real-estate
+              and construction work — screen a deal, price a job, source materials,
+              and build a verified track record in one place.
             </p>
             <p className="lede-sub">
               The work you actually complete earns COVI, a utility token you spend on platform
-              features, and mints ELUV, a soulbound credential that can only be earned — never
-              bought, sold, or transferred.
+              features, and can mint ELUV, a soulbound credential that can only be earned — never
+              bought, sold, or transferred. Token participation is optional.
             </p>
             <div className="hero-ctas">
               <Link
@@ -71,17 +72,17 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="router" aria-label="Choose your path">
-              <Link href="/marketplace">
+              <Link href="/marketplace?tab=learn">
                 <span className="r-k">Individuals</span>
-                <span className="r-v">Start earning →</span>
+                <span className="r-v">Learn &amp; grow →</span>
               </Link>
-              <Link href="/marketplace">
+              <Link href="/marketplace?tab=source">
                 <span className="r-k">Suppliers &amp; contractors</span>
-                <span className="r-v">Join the marketplace →</span>
+                <span className="r-v">Source &amp; procure →</span>
               </Link>
-              <Link href="/resources">
-                <span className="r-k">Institutions</span>
-                <span className="r-v">Run readiness programs →</span>
+              <Link href="/partners">
+                <span className="r-k">Organizations &amp; institutions</span>
+                <span className="r-v">Partner with us →</span>
               </Link>
             </div>
           </div>
@@ -113,11 +114,11 @@ export default function HomePage() {
             </div>
             <div className="pr">
               <div className="pr-n">02 · THE PRODUCTS</div>
-              <div className="pr-t">One app store, {PRODUCTS.length} products</div>
+              <div className="pr-t">One ecosystem, {PRODUCTS.length} products</div>
               <p className="pr-d">
-                Apps, games, materials, and collectibles all live in the marketplace.
-                Build or Bust — a real-estate deal analyzer with a free 60-second verdict
-                — is the flagship, and you can try it right now.
+                Apps, games, and materials all live in the marketplace. Build or Bust — a
+                real-estate deal analyzer with a free 60-second verdict — is the flagship,
+                and you can try it right now.
               </p>
             </div>
             <div className="pr">
@@ -144,7 +145,7 @@ export default function HomePage() {
               Try Build or Bust
             </Link>
             <Link className="btn btn-ghost" href="/marketplace">
-              Browse the app store →
+              Browse the marketplace →
             </Link>
             <Link className="btn btn-ghost" href="/getting-started">
               Getting started
@@ -293,12 +294,12 @@ export default function HomePage() {
       <section className="section alt" id="s-market">
         <div className="wrap">
           <div className="section-head">
-            <span className="eyebrow">The app store</span>
-            <h2>One marketplace. Many products.</h2>
+            <span className="eyebrow">Ecosystem marketplace</span>
+            <h2>One marketplace. Many pathways.</h2>
             <p>
-              The marketplace is the ConstructFi app store — apps, games, materials, and
-              collectibles in one place. Eligible activity earns COVI, and a share of
-              marketplace fees funds the rewards loop.
+              The marketplace is the ConstructFi ecosystem discovery layer — apps, games,
+              and materials organized by what you are trying to accomplish. Eligible
+              activity earns COVI, and a share of marketplace fees funds the rewards loop.
             </p>
           </div>
           <div className="store-layout">
@@ -311,10 +312,10 @@ export default function HomePage() {
               </div>
               <div className="store-line">
                 <Link className="btn btn-primary" href="/marketplace">
-                  Browse the app store
+                  Browse the marketplace
                 </Link>
                 <span style={{ fontSize: "13px", color: "var(--ink3)" }}>
-                  {PRODUCTS.length} products · apps, games, materials &amp; collectibles
+                  {PRODUCTS.length} products · apps, games &amp; materials
                 </span>
               </div>
             </div>
@@ -812,8 +813,8 @@ export default function HomePage() {
       <section className="section alt">
         <div className="wrap">
           <div className="cta-band">
-            <h2>Own a share of what you help build.</h2>
-            <p>Connect a wallet to start participating, or read the whitepaper first.</p>
+            <h2>Start participating in the ConstructFi ecosystem.</h2>
+            <p>Connect a wallet to begin, or read the whitepaper first.</p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <Link
                 className="btn btn-primary"
