@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { redirect, notFound } from "next/navigation";
 import { ProductIcon } from "@/components/product-icon";
 import { ProductCard } from "@/components/product-card";
 import { ProductShot } from "@/components/product-shot";
@@ -13,10 +13,22 @@ import {
   getProduct,
   relatedProducts,
 } from "@/lib/products";
+import { getProductBrand } from "@/lib/product-brand";
 import { SITE } from "@/lib/site";
 
 export function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ slug: p.slug }));
+  // Include canonical slugs and all legacy aliases so static generation
+  // pre-renders both /marketplace/constructos and /marketplace/revenueos.
+  const params: { slug: string }[] = [];
+  for (const p of PRODUCTS) {
+    params.push({ slug: p.slug });
+    if (p.aliases) {
+      for (const alias of p.aliases) {
+        params.push({ slug: alias });
+      }
+    }
+  }
+  return params;
 }
 
 export function generateMetadata({
@@ -42,35 +54,85 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const product = getProduct(params.slug);
   if (!product) notFound();
 
-  const category = CATEGORIES.find((c) => c.key === product.category)?.label;
-  const related = relatedProducts(product.slug);
+  // Redirect legacy alias slugs to the canonical URL.
+  if (product && params.slug !== product.slug) {
+    redirect(`/marketplace/${product.slug}`);
+  }
+
+  // product is guaranteed non-null after the notFound() guard above.
+  // TypeScript doesn't narrow through notFound(), so we assert here.
+  const p = product!;
+
+  const brand = getProductBrand(p.slug);
+  const accent = brand?.accent ?? "#041428";
+  const accentSecondary = brand?.accentSecondary ?? "#00A896";
+  const audience = brand?.audience;
+  const cta = brand?.primaryCTA ?? "Learn more";
+  const category = CATEGORIES.find((c) => c.key === p.category)?.label;
+  const related = relatedProducts(p.slug);
+
+  // CTA href depends on primary CTA text and product slug.
+  function ctaHref() {
+    if (p.slug === "build-or-bust") return "/app#demo";
+    if (cta === "Join waitlist") return "/getting-started";
+    if (cta === "Explore Phase 2") return "/marketplace";
+    return "/getting-started";
+  }
 
   return (
     <>
+      {/* Per-product accent bar */}
+      <div style={{ height: 6, background: accent }} aria-hidden />
+
       <header className="section" style={{ borderTop: "none", paddingBottom: 40 }}>
         <div className="wrap">
           <nav className="crumb" aria-label="Breadcrumb">
             <Link href="/marketplace">Marketplace</Link>
             <span aria-hidden>/</span>
-            <span>{product.name}</span>
+            <span>{p.name}</span>
           </nav>
           <div className="pd-hero">
             <div>
               <div className="pd-ic" aria-hidden>
-                <ProductIcon icon={product.icon} size={28} />
+                <ProductIcon icon={p.icon} size={28} />
               </div>
-              <h1>{product.name}</h1>
-              <p className="pd-tag">{product.tagline}</p>
+              <h1>{p.name}</h1>
+              {/* Master endorsement — required below product name on detail pages */}
+              <p
+                style={{
+                  fontFamily: "'Manrope', sans-serif",
+                  fontSize: 11.5,
+                  letterSpacing: ".07em",
+                  textTransform: "uppercase",
+                  color: "rgba(0,51,107,.5)",
+                  margin: "4px 0 8px",
+                }}
+              >
+                Part of the ConstructFi ecosystem
+              </p>
+              <p className="pd-tag">{p.tagline}</p>
               <div className="pd-meta">
                 <span className="chip">{category}</span>
-                <StatusPill status={product.status} />
+                <StatusPill status={p.status} />
               </div>
-              <TagChips tags={product.tags} />
+              <TagChips tags={p.tags} />
+              {audience && (
+                <p
+                  style={{
+                    marginTop: 12,
+                    fontSize: 13.5,
+                    color: "var(--ink2)",
+                    fontStyle: "italic",
+                  }}
+                >
+                  For: {audience}
+                </p>
+              )}
               <p className="pd-lede" style={{ marginTop: 18 }}>
-                {product.shortDescription}
+                {p.shortDescription}
               </p>
               <div className="pd-ctas">
-                {product.slug === "build-or-bust" ? (
+                {p.slug === "build-or-bust" ? (
                   <>
                     <Link className="btn btn-primary" href="/app#demo">
                       Try the interactive demo
@@ -81,8 +143,12 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   </>
                 ) : (
                   <>
-                    <Link className="btn btn-primary" href="/getting-started">
-                      How to get started
+                    <Link
+                      className="btn btn-primary"
+                      href={ctaHref()}
+                      style={{ background: accent }}
+                    >
+                      {cta}
                     </Link>
                     <Link className="btn btn-ghost" href="/marketplace">
                       ← Back to the store
@@ -91,7 +157,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 )}
               </div>
             </div>
-            <ProductShot product={product} />
+            <ProductShot product={p} accent={accent} accentSecondary={accentSecondary} />
           </div>
         </div>
       </header>
@@ -104,30 +170,37 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <h2 style={{ fontSize: 25 }}>What it is</h2>
               </div>
               <p style={{ color: "var(--ink2)", fontSize: "15.5px", marginBottom: 30 }}>
-                {product.longDescription}
+                {p.longDescription}
               </p>
               <div className="section-head" style={{ marginBottom: 18 }}>
                 <h2 style={{ fontSize: 25 }}>What it does</h2>
               </div>
               <ul className="pd-feats">
-                {product.features.map((f) => (
+                {p.features.map((f) => (
                   <li key={f}>{f}</li>
                 ))}
               </ul>
             </div>
             <div className="pd-note">
               <h3>How COVI &amp; ELUV apply</h3>
-              <p>{product.coviEluvNote}</p>
+              <p>{p.coviEluvNote}</p>
               <p style={{ marginTop: 14, fontSize: "13px", color: "var(--ink3)" }}>
                 COVI is a consumption token for ecosystem activity — not an investment.
                 ELUV is non-transferable and confers no financial rights.
               </p>
+              {p.eluvParticipationProduct && (
+                <p style={{ marginTop: 10, fontSize: "13px", color: "var(--ink3)" }}>
+                  Core participation pathways are available without COVI —
+                  token-optional for community education, nonprofit, and
+                  institutional participants.
+                </p>
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {product.slug === "build-or-bust" && (
+      {p.slug === "build-or-bust" && (
         <section className="section dkband" id="demo">
           <div className="wrap">
             <div className="section-head">
@@ -150,8 +223,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <h2 style={{ fontSize: 27 }}>Related products</h2>
           </div>
           <div className="apps-row store-grid">
-            {related.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+            {related.map((r) => (
+              <ProductCard key={r.slug} product={r} />
             ))}
           </div>
           <div className="store-line" style={{ marginTop: 30 }}>
@@ -161,6 +234,21 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
+
+      {/* Footer endorsement */}
+      <div
+        style={{
+          borderTop: "1px solid #d3dfe9",
+          padding: "14px 0",
+          textAlign: "center",
+          fontFamily: "'Manrope', sans-serif",
+          fontSize: 11,
+          letterSpacing: ".08em",
+          color: "rgba(0,51,107,.4)",
+        }}
+      >
+        Part of the ConstructFi ecosystem
+      </div>
     </>
   );
 }

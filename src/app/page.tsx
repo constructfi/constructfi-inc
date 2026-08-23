@@ -116,7 +116,7 @@ export default function HomePage() {
               <div className="pr-t">One app store, {PRODUCTS.length} products</div>
               <p className="pr-d">
                 Apps, games, materials, and collectibles all live in the marketplace.
-                Build or Bust — a real-estate deal analyzer with a free 60-second verdict
+                Build or Busted — a real-estate deal analyzer with a free 60-second verdict
                 — is the flagship, and you can try it right now.
               </p>
             </div>
@@ -141,7 +141,7 @@ export default function HomePage() {
           </div>
           <div className="store-line">
             <Link className="btn btn-primary" href="/app#demo">
-              Try Build or Bust
+              Try Build or Busted
             </Link>
             <Link className="btn btn-ghost" href="/marketplace">
               Browse the app store →

@@ -69,19 +69,24 @@ const DIGITAL_COLLECTIBLES = PRODUCTS.find((product) => product.slug === "collec
 
 function marketplaceTabForProduct(product: Product): Exclude<MarketplaceTab, "all" | "own"> {
   switch (product.slug) {
-    case "revenueos":
+    case "constructos":
     case "sales-academy":
       return "run";
     case "supplier-marketplace":
     case "material-marketplace":
     case "covi-estimator":
+    case "builder-bae":
       return "source";
     case "build-or-bust":
+    case "pact-pilot":
       return "analyze";
     case "house-hackers":
+    case "cashflow-city-tycoon":
+    case "brick-by-brick":
       return "play";
     case "readiness-tracker":
     case "covi-wallet":
+    case "eluvial-academy":
     default:
       return "learn";
   }

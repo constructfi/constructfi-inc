@@ -123,7 +123,7 @@ export const PRODUCT_BRANDS: ProductBrand[] = [
   // ── Existing products (slugs present in products.ts) ──────────────────────
 
   {
-    slug: "revenueos",
+    slug: "constructos",
     accent: "#0D1B2A",
     accentSecondary: "#00A896",
     iconMotif: "briefcase",
@@ -266,8 +266,7 @@ export const PRODUCT_BRANDS: ProductBrand[] = [
   // ── Pending products.ts entry (brand-portfolio products not yet in products.ts) ─
 
   /**
-   * PactPilot — recommended slug: "pact-pilot"
-   * Not yet in products.ts. Add a Product entry there to activate this brand config.
+   * PactPilot — slug: "pact-pilot"
    */
   {
     slug: "pact-pilot",
@@ -283,8 +282,7 @@ export const PRODUCT_BRANDS: ProductBrand[] = [
   },
 
   /**
-   * BuilderBae — recommended slug: "builder-bae"
-   * Not yet in products.ts. Add a Product entry there to activate this brand config.
+   * BuilderBae — slug: "builder-bae"
    */
   {
     slug: "builder-bae",
@@ -300,8 +298,9 @@ export const PRODUCT_BRANDS: ProductBrand[] = [
   },
 
   /**
-   * Eluvial Academy — recommended slug: "eluvial-academy"
-   * Not yet in products.ts. Add a Product entry there to activate this brand config.
+   * Eluvial Academy — slug: "eluvial-academy"
+   * Primary ELUV credential pathway. Token-optional participation for community
+   * education, nonprofit, and institutional contexts.
    */
   {
     slug: "eluvial-academy",
@@ -318,8 +317,7 @@ export const PRODUCT_BRANDS: ProductBrand[] = [
   },
 
   /**
-   * Cashflow City Tycoon — recommended slug: "cashflow-city-tycoon"
-   * Not yet in products.ts. Add a Product entry there to activate this brand config.
+   * Cashflow City Tycoon — slug: "cashflow-city-tycoon"
    */
   {
     slug: "cashflow-city-tycoon",
@@ -335,8 +333,7 @@ export const PRODUCT_BRANDS: ProductBrand[] = [
   },
 
   /**
-   * Brick by Brick — recommended slug: "brick-by-brick"
-   * Not yet in products.ts. Add a Product entry there to activate this brand config.
+   * Brick by Brick — slug: "brick-by-brick"
    */
   {
     slug: "brick-by-brick",
