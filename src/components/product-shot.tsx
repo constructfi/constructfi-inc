@@ -12,8 +12,61 @@ function altFor(product: Product) {
 }
 
 /** Detail-page hero shot: whole phone visible, with the required caption. */
-export function ProductShot({ product }: { product: Product }) {
-  if (!product.image) return null;
+export function ProductShot({
+  product,
+  accent,
+  accentSecondary,
+}: {
+  product: Product;
+  accent?: string;
+  accentSecondary?: string;
+}) {
+  if (!product.image) {
+    // Intentional motif treatment for products without illustration assets.
+    // Uses product accent colors and icon. Never a generic gradient.
+    const bg = accent ?? "#041428";
+    const fg = accentSecondary ?? "#00A896";
+    return (
+      <figure
+        className="pd-shot"
+        data-testid={`product-shot-${product.slug}`}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          background: `linear-gradient(150deg, ${bg} 0%, color-mix(in srgb, ${bg} 70%, ${fg}) 100%)`,
+          minHeight: 320,
+          padding: 32,
+          gap: 16,
+        }}
+      >
+        <div
+          aria-hidden
+          style={{
+            opacity: 0.7,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ProductIcon icon={product.icon} size={64} />
+        </div>
+        <figcaption
+          style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontSize: 11,
+            letterSpacing: ".1em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,.4)",
+            textAlign: "center",
+          }}
+        >
+          Illustration coming · intentional motif treatment
+        </figcaption>
+      </figure>
+    );
+  }
   return (
     <figure className="pd-shot" data-testid={`product-shot-${product.slug}`}>
       <div className="pd-shot-frame">
@@ -39,12 +92,24 @@ export function ProductShot({ product }: { product: Product }) {
  * unresolved thumbnail paints as a bare dark frame that reads as a broken card.
  */
 export function ProductThumb({ product, eager }: { product: Product; eager?: boolean }) {
-  // Products without a render still need the banner, or they collapse to a
-  // shorter tile and break the grid's rhythm next to products that have one.
+  // Products without a render get a intentional motif treatment using the
+  // product icon as the distinguishing visual element. This follows the brand
+  // standard: do not use generic gradient placeholders where an intentional
+  // motif treatment is specified as the required approach.
   if (!product.image) {
     return (
-      <span className="pc-shot pc-shot-blank" aria-hidden>
-        <ProductIcon icon={product.icon} size={34} />
+      <span
+        className="pc-shot pc-shot-blank"
+        aria-hidden
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "linear-gradient(160deg, #0d1b2a 0%, #1e3a5f 100%)",
+          minHeight: 160,
+        }}
+      >
+        <ProductIcon icon={product.icon} size={40} />
       </span>
     );
   }

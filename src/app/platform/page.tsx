@@ -77,7 +77,7 @@ const REVENUEOS_WORKSPACES = [
 ];
 
 export default function PlatformPage() {
-  const revenueos = getProduct("revenueos");
+  const revenueos = getProduct("constructos");
 
   return (
     <>
@@ -126,8 +126,8 @@ export default function PlatformPage() {
       <Section className="bg-wash dark:bg-ink-2/30">
         <SectionHeading
           eyebrow="Featured app"
-          title="ConstructFi RevenueOS"
-          lede="The flagship business-operations app on the platform — and the clearest example of what inheriting the shared services buys you."
+          title="ConstructOS"
+          lede="The flagship business-operations platform on ConstructFi — and the clearest example of what inheriting the shared services buys you."
         />
         <div className="mt-10 rounded-2xl border border-line bg-card p-6 dark:border-border sm:p-8">
           <div className="flex flex-wrap items-center gap-3">
@@ -135,13 +135,13 @@ export default function PlatformPage() {
             <span className="chip">Business operations</span>
           </div>
           <p className="mt-5 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            RevenueOS connects sales, estimating, procurement, logistics, and
+            ConstructOS connects sales, estimating, procurement, logistics, and
             executive reporting into one workspace, so a bid, the materials behind
             it, and the job it becomes stay attached to the same record. Each
             workspace shares the platform&apos;s identity, AI, and reporting layer.
             It ships at launch on {SITE.launchDate} — it is not available today.
           </p>
-          <ul className="mt-6 flex flex-wrap gap-2" aria-label="RevenueOS workspaces">
+          <ul className="mt-6 flex flex-wrap gap-2" aria-label="ConstructOS workspaces">
             {REVENUEOS_WORKSPACES.map((w) => (
               <li className="chip" key={w}>
                 {w}
@@ -150,7 +150,7 @@ export default function PlatformPage() {
           </ul>
           <div className="mt-7">
             <Button asChild>
-              <Link href="/marketplace/revenueos">
+              <Link href="/marketplace/constructos">
                 View app listing
                 <ArrowRight className="ml-1.5 h-4 w-4" />
               </Link>

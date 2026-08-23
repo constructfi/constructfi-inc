@@ -71,7 +71,7 @@ export const COVI_ALLOCATION = [
 export const NAV_LINKS = [
   { href: "/whitepaper", label: "Whitepaper" },
   { href: "/marketplace", label: "Marketplace" },
-  { href: "/app", label: "Build or Bust" },
+  { href: "/app", label: "Build or Busted" },
   { href: "/apps", label: "Apps" },
   { href: "/developers", label: "Developers" },
   { href: "/security", label: "Security" },
@@ -128,7 +128,7 @@ export const APP_URL_EXTERNAL = APP_LIVE;
 
 export const FOOTER_LINKS = {
   Platform: [
-    { href: "/app", label: "Build or Bust" },
+    { href: "/app", label: "Build or Busted" },
     { href: "/apps", label: "All apps & roadmap" },
     { href: "/dashboard", label: "Dashboard preview" },
     { href: "/admin", label: "Admin dashboard" },

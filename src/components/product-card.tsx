@@ -4,6 +4,7 @@ import { StatusPill } from "@/components/status-pill";
 import { TagChip } from "@/components/tag-chip";
 import { ProductShot, ProductThumb } from "@/components/product-shot";
 import { CATEGORIES, type Product } from "@/lib/products";
+import { getProductBrand } from "@/lib/product-brand";
 
 function categoryLabel(key: Product["category"]) {
   return CATEGORIES.find((c) => c.key === key)?.label ?? key;
@@ -17,6 +18,10 @@ export function ProductCard({
   product: Product;
   eagerImage?: boolean;
 }) {
+  const brand = getProductBrand(product.slug);
+  const accent = brand?.accent ?? "#041428";
+  const cta = brand?.primaryCTA ?? "Learn more";
+
   return (
     <Link
       href={`/marketplace/${product.slug}`}
@@ -24,6 +29,8 @@ export function ProductCard({
       data-testid={`product-card-${product.slug}`}
       data-category={product.category}
     >
+      {/* Per-product accent bar */}
+      <div style={{ height: 4, background: accent, flexShrink: 0 }} aria-hidden />
       <ProductThumb product={product} eager={eagerImage} />
       <div className="pc-top">
         <span className="pc-ic" aria-hidden>
@@ -40,7 +47,20 @@ export function ProductCard({
       </div>
       <div className="a-m">
         <span>{categoryLabel(product.category)}</span>
-        <span className="pc-view">View →</span>
+        <span className="pc-view">{cta} →</span>
+      </div>
+      {/* Master endorsement — required on every product surface */}
+      <div
+        style={{
+          padding: "10px 16px",
+          borderTop: "1px solid #eef3f8",
+          fontFamily: "'Manrope', sans-serif",
+          fontSize: 10,
+          letterSpacing: ".06em",
+          color: "rgba(0,51,107,.45)",
+        }}
+      >
+        Part of the ConstructFi ecosystem
       </div>
     </Link>
   );
@@ -48,8 +68,13 @@ export function ProductCard({
 
 /** Larger hero tile for the flagship product. */
 export function FeaturedProductCard({ product }: { product: Product }) {
+  const brand = getProductBrand(product.slug);
+  const accent = brand?.accent ?? "#041428";
+
   return (
     <div className="feat-card" data-testid={`featured-${product.slug}`}>
+      {/* Per-product accent bar on featured card */}
+      <div style={{ height: 5, background: accent }} aria-hidden />
       <div className="fc-mark">
         <ProductShot product={product} />
       </div>
@@ -59,6 +84,19 @@ export function FeaturedProductCard({ product }: { product: Product }) {
           <StatusPill status={product.status} />
         </div>
         <h3 className="fc-name">{product.name}</h3>
+        {brand && (
+          <div
+            style={{
+              fontFamily: "'Manrope', sans-serif",
+              fontSize: 11,
+              letterSpacing: ".05em",
+              color: "rgba(0,51,107,.5)",
+              marginBottom: 4,
+            }}
+          >
+            Part of the ConstructFi ecosystem
+          </div>
+        )}
         <p className="fc-tag">{product.tagline}</p>
         <p className="fc-desc">{product.shortDescription}</p>
         <div className="tag-row">

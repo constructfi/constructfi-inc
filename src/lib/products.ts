@@ -17,6 +17,11 @@ export type ProductStatus = "live" | "coming-soon" | "phase-2";
 
 export type Product = {
   slug: string;
+  /**
+   * Legacy slugs that redirect to this product. These are kept functional so
+   * existing links continue to resolve. Do not remove aliases once published.
+   */
+  aliases?: string[];
   name: string;
   tagline: string;
   category: ProductCategory;
@@ -43,6 +48,12 @@ export type Product = {
    */
   imageFocus?: string;
   featured?: boolean;
+  /**
+   * When true, this product uses ELUV credential pathways with separate
+   * participation identity. Apply only approved utility/progress/credential/
+   * access language on these product surfaces.
+   */
+  eluvParticipationProduct?: boolean;
 };
 
 /** Intrinsic size of every file in public/products/ — set on <Image> to reserve space. */
@@ -67,7 +78,7 @@ export const STATUS: Record<ProductStatus, { label: string; chip: string }> = {
 export const PRODUCTS: Product[] = [
   {
     slug: "build-or-bust",
-    name: "Build or Bust",
+    name: "Build or Busted",
     tagline: "Know in 60 seconds, before you fall in love with it.",
     category: "apps",
     secondaryCategories: ["games"],
@@ -161,7 +172,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "house-hackers",
-    name: "House Hackers",
+    name: "Covi BuildSim: House Hackers",
     tagline: "Learn by playing.",
     category: "games",
     status: "coming-soon",
@@ -227,8 +238,9 @@ export const PRODUCTS: Product[] = [
       "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
   },
   {
-    slug: "revenueos",
-    name: "ConstructFi RevenueOS",
+    slug: "constructos",
+    aliases: ["revenueos"],
+    name: "ConstructOS",
     tagline: "The revenue OS for construction.",
     category: "apps",
     status: "live",
@@ -237,7 +249,7 @@ export const PRODUCTS: Product[] = [
     shortDescription:
       "An AI-assisted revenue and business-development workspace that connects sales, estimating, procurement, logistics, and executive reporting into one system.",
     longDescription:
-      "RevenueOS is the business-operations app for contractors and suppliers who are running a real book of work. It connects sales, estimating, procurement, logistics, and executive reporting into a single workspace, so a bid, the materials behind it, and the job it becomes stay attached to the same record. Every module shares the platform's identity, AI, and reporting layer, which is why a number on the executive dashboard traces back to the workflow that produced it rather than to a manual reconciliation.",
+      "ConstructOS is the business-operations platform for contractors and suppliers who are running a real book of work. It connects sales, estimating, procurement, logistics, and executive reporting into a single workspace, so a bid, the materials behind it, and the job it becomes stay attached to the same record. Every module shares the platform's identity, AI, and reporting layer, which is why a number on the executive dashboard traces back to the workflow that produced it rather than to a manual reconciliation.",
     features: [
       "Executive Command Center — one operating view across pipeline, jobs, and reporting",
       "Construction CRM for contacts, bids, and job history",
@@ -293,13 +305,127 @@ export const PRODUCTS: Product[] = [
     coviEluvNote:
       "Eligible activity can involve COVI, the platform's utility token — transfer-paused and earn-only before listing, and not an investment. Verified contract addresses are published only after independent audit.",
   },
+  {
+    slug: "pact-pilot",
+    name: "PactPilot",
+    tagline: "Contract and document management with risk-layer overlays.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Contract management", "Risk layers", "Document review"],
+    icon: "file-contract",
+    shortDescription:
+      "Manage construction contracts and documents with risk-layer overlays. Integrates with ConstructOS records so your bids and contracts stay in the same system.",
+    longDescription:
+      "PactPilot brings contract management and document review into the same workspace as your bids and procurement. Risk-layer overlays highlight the clauses that matter most, and because PactPilot integrates with ConstructOS records, a contract traces directly back to the bid and the scope that produced it. Contractors, lenders, and legal reviewers work from the same document rather than emailing copies back and forth.",
+    features: [
+      "Contract creation and version management from a single workspace",
+      "Risk-layer overlays that surface key clauses for review",
+      "Verified signature workflows for contractors, subcontractors, and lenders",
+      "Integration with ConstructOS records — bids and contracts stay attached",
+      "Document history and audit trail for lender and legal review",
+    ],
+    coviEluvNote:
+      "Advanced document workflows and exports may run on COVI, the platform's utility token — transfer-paused and earn-only before listing, and not an investment.",
+  },
+  {
+    slug: "builder-bae",
+    name: "BuilderBae",
+    tagline: "Material and inventory companion for jobsite buyers.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Materials", "Inventory", "Jobsite"],
+    icon: "hard-hat",
+    shortDescription:
+      "A material and inventory companion for jobsite buyers, small contractors, and owner-builders. Connects to the Supplier Marketplace for vetted pricing and procurement.",
+    longDescription:
+      "BuilderBae is the jobsite companion for the buyer who needs materials organized and sourced without a full procurement team behind them. It organizes inventory by project, surfaces vetted pricing from the Supplier Marketplace, and keeps a jobsite checklist attached to the materials being ordered. Small contractors and owner-builders get the same access to vetted suppliers that larger operations use.",
+    features: [
+      "Project-organized inventory and material tracking",
+      "Vetted pricing surfaced from the Supplier Marketplace",
+      "Jobsite checklist linked to active material orders",
+      "Quick reorder for repeat project scopes",
+      "On-chain settlement available through the Supplier Marketplace connection",
+    ],
+    coviEluvNote:
+      "Eligible purchases can involve COVI, the platform's utility token — transfer-paused and earn-only before listing, and not an investment. Verified procurement activity can earn ELUV milestones.",
+  },
+  {
+    slug: "eluvial-academy",
+    name: "Eluvial Academy",
+    tagline: "Property-readiness education pathways toward verified credentials.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Education", "Earn ELUV", "Readiness pathways"],
+    icon: "pathway",
+    eluvParticipationProduct: true,
+    shortDescription:
+      "Structured education pathways for aspiring property owners and first-time buyers. Completing verified milestones can earn soulbound ELUV credentials — the primary credential pathway in the ConstructFi ecosystem.",
+    longDescription:
+      "Eluvial Academy is the primary ELUV credential pathway in the ConstructFi ecosystem. It offers structured property-readiness education tracks for aspiring owners, first-time buyers, and community education participants. Progress is milestone-driven: each verified milestone is reviewed rather than self-reported, and completion can mint one ELUV credential — a soulbound record that belongs to you, cannot be transferred, and confers no financial rights. Participation does not require COVI and is available through token-optional pathways for community education participants.",
+    features: [
+      "Structured education tracks across property readiness, procurement, and participation",
+      "Milestone-driven progress — each step reviewed before it counts",
+      "Verified completion can mint soulbound ELUV credentials",
+      "Token-optional participation — core pathways accessible without COVI",
+      "Progress feeds the Readiness Tracker milestone map",
+      "Community education pathways for nonprofit, institutional, and public-sector participants",
+    ],
+    coviEluvNote:
+      "Verified milestone completions can mint ELUV, an ERC-5192 soulbound credential that is earned only, never transferable, and confers no financial rights. Governance weight derives from verified milestone count and tier, with a per-address cap. Core participation pathways are available without COVI. Any COVI involvement is a utility token for platform activity — transfer-paused and earn-only before listing, and not an investment.",
+  },
+  {
+    slug: "cashflow-city-tycoon",
+    name: "Cashflow City Tycoon",
+    tagline: "Build your city. Learn construction and cashflow mechanics.",
+    category: "games",
+    status: "coming-soon",
+    tags: ["City building", "Earn COVI", "Learn-to-earn"],
+    icon: "city",
+    shortDescription:
+      "A city-building progression game that teaches construction and cashflow mechanics through play. Progress reflects engagement — no promise of financial return.",
+    longDescription:
+      "Cashflow City Tycoon is a city-building game where players expand districts, manage construction timelines, and learn how cash flows through a real development project. Mechanics are designed to build intuition for construction and property concepts through play — leaderboards rank engagement and progression, not outcomes. Game mechanics exist to make learning dynamic, never to imply a financial return.",
+    features: [
+      "City-building progression with construction and cashflow mechanics",
+      "District expansion and build-sequencing challenges",
+      "Learn-to-earn COVI participation rewards",
+      "Engagement leaderboards — rank progression, not financial outcomes",
+      "Concepts link to Build or Busted analysis pathways",
+    ],
+    coviEluvNote:
+      "Participation can earn COVI, the platform's utility token. Game mechanics are for engagement and education only — nothing here is a game of chance, and no outcome implies a financial return.",
+  },
+  {
+    slug: "brick-by-brick",
+    name: "Brick by Brick",
+    tagline: "Modular block game introducing construction and property concepts.",
+    category: "games",
+    status: "coming-soon",
+    tags: ["Puzzle game", "Earn COVI", "Beginner-friendly"],
+    icon: "blocks",
+    shortDescription:
+      "An accessible modular block and puzzle game that introduces construction and property concepts step by step. Built as an on-ramp for new entrants and community education participants.",
+    longDescription:
+      "Brick by Brick is the beginner on-ramp in the ConstructFi game portfolio. Its modular block and puzzle format introduces construction and property concepts through play — each challenge builds on the last, so the game stays accessible whether you are completely new to construction or just new to the platform. Progression is a measure of participation and understanding, never a promise of return.",
+    features: [
+      "Modular block challenges that introduce construction concepts step by step",
+      "Puzzle-grid format — accessible to complete beginners",
+      "Foundational building patterns tied to real construction sequences",
+      "Learn-to-earn COVI participation rewards",
+      "Community-friendly design suitable for nonprofit and institutional education contexts",
+    ],
+    coviEluvNote:
+      "Participation can earn COVI, the platform's utility token. Game mechanics are for engagement and education only — nothing here is a game of chance, and no outcome implies a financial return.",
+  },
 ];
 
 export const FEATURED_PRODUCT =
   PRODUCTS.find((p) => p.featured) ?? PRODUCTS[0];
 
 export function getProduct(slug: string): Product | undefined {
-  return PRODUCTS.find((p) => p.slug === slug);
+  return PRODUCTS.find(
+    (p) => p.slug === slug || p.aliases?.includes(slug)
+  );
 }
 
 export function productsInCategory(category: ProductCategory | "all"): Product[] {
