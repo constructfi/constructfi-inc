@@ -126,82 +126,39 @@ const CAT_ACCENT: Record<string, string> = {
   own: "#00D19A",
 };
 
-/** Hero phone mockup – app home screen (illustrative) */
-function HeroPhone() {
-  const tiles = [
-    { mono: "OS", name: "ConstructOS" },
-    { mono: "BoB", name: "Build or Busted" },
-    { mono: "SM", name: "Supplier Marketplace" },
-    { mono: "EA", name: "Eluvial Academy" },
-    { mono: "PP", name: "PactPilot" },
-    { mono: "HH", name: "House Hackers" },
-  ];
+function ProductCoverFallback({ mono, name, category }: { mono: string; name: string; category: string }) {
+  const accent = CAT_ACCENT[category] ?? "#00d19a";
   return (
     <div
-      aria-label="Illustrative ConstructFi app home screen"
-      role="img"
       style={{
-        width: "100%",
-        maxWidth: 330,
-        margin: "0 auto",
-        border: "1px solid rgba(255,255,255,.18)",
-        borderBottom: "none",
-        borderRadius: "30px 30px 0 0",
-        background: "#0a1b31",
-        padding: "14px 14px 0",
+        position: "absolute",
+        inset: 0,
+        background: "#041428",
+        backgroundImage: [
+          `radial-gradient(220px 140px at 86% 12%, ${accent}80, transparent 60%)`,
+          "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px)",
+          "linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)",
+        ].join(","),
+        backgroundSize: "auto, 24px 24px, 24px 24px",
+        display: "grid",
+        alignContent: "space-between",
+        padding: "18px 16px",
       }}
     >
-      <div
+      <span
         style={{
-          borderRadius: "20px 20px 0 0",
-          background: "#061527",
-          padding: "18px 16px 0",
-          border: "1px solid rgba(255,255,255,.08)",
-          borderBottom: "none",
+          fontFamily: "var(--font-manrope,'Manrope',sans-serif)",
+          fontSize: 10,
+          letterSpacing: ".12em",
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,.62)",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <span style={{ fontFamily: "var(--font-manrope,'Manrope',sans-serif)", fontSize: 9.5, letterSpacing: ".14em", color: "rgba(255,255,255,.4)" }}>9:41</span>
-          <span style={{ display: "flex", gap: 3, alignItems: "flex-end" }}>
-            <span style={{ width: 3, height: 6, background: "rgba(255,255,255,.35)", display: "block" }} />
-            <span style={{ width: 3, height: 9, background: "rgba(255,255,255,.45)", display: "block" }} />
-            <span style={{ width: 3, height: 12, background: "rgba(255,255,255,.6)", display: "block" }} />
-          </span>
-        </div>
-        <div style={{ marginTop: 22, fontSize: 19, fontWeight: 600, color: "#fff", letterSpacing: "-.02em" }}>Good morning</div>
-        <div style={{ marginTop: 3, fontFamily: "var(--font-manrope,'Manrope',sans-serif)", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#00d19a" }}>Your ecosystem</div>
-        <div style={{ marginTop: 18, display: "grid", gap: 8, gridTemplateColumns: "1fr 1fr" }}>
-          {tiles.map((t) => (
-            <div
-              key={t.mono}
-              style={{
-                border: "1px solid rgba(255,255,255,.1)",
-                background: "rgba(255,255,255,.04)",
-                padding: "12px 11px",
-                display: "grid",
-                gap: 14,
-              }}
-            >
-              <span style={{ fontFamily: "var(--font-manrope,'Manrope',sans-serif)", fontSize: 13, fontWeight: 600, color: "#00d19a" }}>{t.mono}</span>
-              <span style={{ fontSize: 11, lineHeight: 1.25, color: "rgba(255,255,255,.72)" }}>{t.name}</span>
-            </div>
-          ))}
-        </div>
-        <div
-          style={{
-            marginTop: 14,
-            borderTop: "1px solid rgba(255,255,255,.08)",
-            padding: "12px 0 16px",
-            display: "flex",
-            gap: 6,
-            alignItems: "center",
-          }}
-        >
-          <span style={{ width: 7, height: 7, background: "#00d19a", display: "block" }} />
-          <span style={{ fontFamily: "var(--font-manrope,'Manrope',sans-serif)", fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(255,255,255,.5)" }}>
-            Marketplace · {PRODUCTS.length} products
-          </span>
-        </div>
+        {category}
+      </span>
+      <div>
+        <span style={{ display: "block", fontSize: 34, fontWeight: 700, letterSpacing: "-.03em", color: "#fff" }}>{mono}</span>
+        <span style={{ display: "block", marginTop: 4, fontSize: 12, lineHeight: 1.4, color: "rgba(255,255,255,.72)" }}>{name}</span>
       </div>
     </div>
   );
@@ -230,7 +187,7 @@ export default function HomePage() {
         }}
       >
         <div
-          className="wrap"
+          className="wrap hp-wrap"
           style={{
             display: "grid",
             gap: 64,
@@ -360,9 +317,29 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: phone mockup */}
+          {/* Right: approved ecosystem visual */}
           <div style={{ alignSelf: "end" }}>
-            <HeroPhone />
+            <div
+              style={{
+                width: "100%",
+                maxWidth: 330,
+                margin: "0 auto",
+                border: "1px solid rgba(255,255,255,.18)",
+                borderBottom: "none",
+                borderRadius: "30px 30px 0 0",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src="/img/readiness.png"
+                alt="ConstructFi ecosystem mobile preview showing participation progress and connected products"
+                width={1024}
+                height={1536}
+                sizes="(max-width: 900px) 70vw, 330px"
+                style={{ width: "100%", height: "auto", display: "block" }}
+                priority
+              />
+            </div>
             <p
               style={{
                 margin: "14px 0 0",
@@ -375,7 +352,7 @@ export default function HomePage() {
                 color: "rgba(255,255,255,.38)",
               }}
             >
-              App home screen — illustrative
+              ConstructFi ecosystem app preview
             </p>
           </div>
         </div>
@@ -389,7 +366,7 @@ export default function HomePage() {
         aria-label="Ecosystem introduction"
         style={{ padding: "92px 0", borderBottom: "1px solid #dee6ee" }}
       >
-        <div className="wrap">
+        <div className="wrap hp-wrap">
           <div
             style={{
               display: "grid",
@@ -497,7 +474,7 @@ export default function HomePage() {
         aria-label="Marketplace"
         style={{ padding: "92px 0", background: "#f2f7fb", borderBottom: "1px solid #dee6ee" }}
       >
-        <div className="wrap">
+        <div className="wrap hp-wrap">
           <div style={{ maxWidth: 780 }}>
             <div
               style={{
@@ -580,7 +557,7 @@ export default function HomePage() {
         aria-label="Featured products"
         style={{ padding: "92px 0", borderBottom: "1px solid #dee6ee" }}
       >
-        <div className="wrap">
+        <div className="wrap hp-wrap">
           {/* Section header */}
           <div
             style={{
@@ -661,18 +638,7 @@ export default function HomePage() {
                     priority
                   />
                 ) : (
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: `linear-gradient(160deg, ${CAT_ACCENT[FEATURED_LEAD.category] ?? "#00d19a"}22 0%, transparent 60%)`,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <span style={{ fontSize: 48, fontWeight: 800, color: CAT_ACCENT[FEATURED_LEAD.category] ?? "#00d19a", opacity: 0.35 }}>{FEATURED_LEAD.mono}</span>
-                  </div>
+                  <ProductCoverFallback mono={FEATURED_LEAD.mono} name={FEATURED_LEAD.name} category={FEATURED_LEAD.category} />
                 )}
               </div>
               {/* Text */}
@@ -719,18 +685,7 @@ export default function HomePage() {
                         sizes="168px"
                       />
                     ) : (
-                      <div
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          background: `linear-gradient(140deg, ${CAT_ACCENT[p.category] ?? "#00d19a"}18 0%, transparent 70%)`,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <span style={{ fontSize: 28, fontWeight: 800, color: CAT_ACCENT[p.category] ?? "#00d19a", opacity: 0.35 }}>{p.mono}</span>
-                      </div>
+                      <ProductCoverFallback mono={p.mono} name={p.name} category={p.category} />
                     )}
                   </div>
                   {/* Text */}
@@ -766,7 +721,7 @@ export default function HomePage() {
           backgroundSize: "64px 64px",
         }}
       >
-        <div className="wrap">
+        <div className="wrap hp-wrap">
           <div
             style={{
               display: "grid",
@@ -858,7 +813,7 @@ export default function HomePage() {
         aria-label="Participation — COVI and ELUV"
         style={{ padding: "92px 0", borderBottom: "1px solid #dee6ee" }}
       >
-        <div className="wrap">
+        <div className="wrap hp-wrap">
           <div
             style={{
               display: "grid",
@@ -990,7 +945,7 @@ export default function HomePage() {
         aria-label="Get started"
         style={{ padding: "104px 0", background: "#f2f7fb" }}
       >
-        <div className="wrap">
+        <div className="wrap hp-wrap">
           <h2
             style={{
               margin: 0,

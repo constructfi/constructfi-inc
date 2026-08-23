@@ -41,8 +41,17 @@ a[data-testid="button-hero-partners"]:hover {
   background: rgba(4, 20, 40, 0.06) !important;
 }
 
+/* ── Homepage container width parity with design preview ── */
+.hp-wrap {
+  max-width: 1280px !important;
+  padding: 0 32px !important;
+}
+
 /* ── Hero section – responsive ──────────────────────────── */
 @media (max-width: 900px) {
+  .hp-wrap {
+    padding: 0 24px !important;
+  }
   /* Stack hero grid to single column */
   section[aria-label="ConstructFi — hero"] .wrap {
     grid-template-columns: 1fr !important;
@@ -93,6 +102,9 @@ a[data-testid="button-hero-partners"]:hover {
 
 /* ── Token card coins — size clamp on mobile ─────────────── */
 @media (max-width: 480px) {
+  .hp-wrap {
+    padding: 0 20px !important;
+  }
   #s-participation a > img {
     width: 40px !important;
     height: 40px !important;
