@@ -11,19 +11,11 @@ export function SiteFooter() {
             <Link className="logo" href="/" style={{ marginBottom: 14 }}>
               <Logo />
             </Link>
-            <p style={{ fontSize: "13.5px", color: "var(--ink3)", maxWidth: 280 }}>
-              A programmable economic-participation platform. Built on Ethereum. Verified
-              contract addresses will be published after independent audit.
+            <p style={{ fontSize: "14.5px", lineHeight: 1.6, color: "var(--ink2)", maxWidth: 280, marginTop: 18 }}>
+              The connected ecosystem for the built world.
             </p>
-            <p style={{ fontSize: "13.5px", color: "var(--ink3)", marginTop: 12 }}>
-              <a
-                href={SITE.githubRepo}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "var(--ink2)" }}
-              >
-                GitHub →
-              </a>
+            <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--green)", maxWidth: 280, marginTop: 14, lineHeight: 1.7 }}>
+              Start with what you need. Build what comes next.
             </p>
           </div>
           {Object.entries(FOOTER_LINKS).map(([group, links]) => (
@@ -53,7 +45,9 @@ export function SiteFooter() {
           </p>
           <p>
             © {new Date().getFullYear()} ConstructFi Inc. · {COMPANY.address} ·{" "}
-            {COMPANY.email}
+            <a href={`mailto:${COMPANY.email}`} style={{ color: "var(--ink2)" }}>{COMPANY.email}</a>
+            {" · "}
+            <a href={SITE.githubRepo} target="_blank" rel="noopener noreferrer" style={{ color: "var(--ink2)" }}>GitHub ↗</a>
           </p>
         </div>
       </div>
