@@ -43,7 +43,7 @@ h3,h4{font-family:var(--font-body);line-height:1.15;letter-spacing:-.01em}
 .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line2)}
 .btn-ghost:hover{border-color:var(--green);color:var(--green)}
 
-.nav{position:sticky;top:0;z-index:100;background:rgba(7,7,7,.84);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:100;background:#041428;backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.10)}
 .nav-inner{display:flex;align-items:center;gap:26px;height:66px}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--ink);cursor:pointer}
 .logo svg{display:block}
@@ -684,11 +684,11 @@ html:not(.dark) .os-badge,html:not(.dark) .ep .m.get{color:#0A82C4}
 html:not(.dark) .verdict .v-word{text-shadow:none}
 
 html:not(.dark) :is(.section.dkband,footer,.ink-surface){
-  --bg:#00234A; --bg2:#001A38; --panel:#0A3057; --panel2:#12406E;
-  --line:rgba(255,255,255,.12); --line2:rgba(255,255,255,.24);
-  --ink:#F2F7FB; --ink2:#C7D6E6; --ink3:#8FA7C0;
+  --bg:#041428; --bg2:#082140; --panel:#0a1b31; --panel2:#0c2040;
+  --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.18);
+  --ink:#F2F7FB; --ink2:rgba(255,255,255,.72); --ink3:rgba(255,255,255,.5);
   --green:#00D19A; --green2:#0AE8AE; --blue:#55C8FE; --indigo:#A3B2FD; --gold:#F5C36B; --red:#FF8A96;
-  background-color:#00234A;
+  background-color:#041428;
   color:var(--ink);
 }
 html:not(.dark) .section.dkband{padding:104px 0;border-top:none;background-image:radial-gradient(700px 420px at 82% -10%,rgba(0,209,154,.13),transparent 70%)}
@@ -791,7 +791,7 @@ html:not(.dark) #s-trust.section.dkband{background-image:radial-gradient(700px 4
 #s-market .apps-row{grid-template-columns:repeat(3,1fr)}
 @media(max-width:760px){#s-market .apps-row{grid-template-columns:1fr}}
 
-html:not(.dark) .nav{background:rgba(0,26,56,.93);border-bottom:1px solid rgba(255,255,255,.10)}
+html:not(.dark) .nav{background:#041428;border-bottom:1px solid rgba(255,255,255,.10)}
 html:not(.dark) .nav-links button{color:#C7D6E6}
 html:not(.dark) .nav-links button:hover{color:#FFFFFF}
 html:not(.dark) .nav-links button.active{color:#0AE8AE;background:rgba(0,209,154,.12)}

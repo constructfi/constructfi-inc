@@ -1,0 +1,100 @@
+/* ===================================================================
+   ConstructFi — Homepage-specific styles (v2 design)
+   Supplements the inline styles in src/app/page.tsx.
+   All selectors are scoped to #hp-* IDs or hp-* class prefixes to
+   avoid leaking into other pages.
+   =================================================================== */
+
+/* ── Hero CTA hover ── */
+a[data-testid="button-hero-marketplace"]:hover {
+  background: #0ae8ae !important;
+}
+a[data-testid="button-hero-partners"]:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* ── Marketplace category cards hover ── */
+#s-marketplace a:hover {
+  background: #f7fbff !important;
+}
+
+/* ── Featured product cards hover ── */
+#s-products a:hover {
+  border-color: #1bb6fd !important;
+  box-shadow: 0 18px 40px -28px rgba(4, 20, 40, 0.45);
+}
+#s-products .hp-side-card:hover {
+  border-color: #00a87c !important;
+  transform: translateY(-3px);
+}
+
+/* ── Participation token card hover ── */
+#s-participation a:hover {
+  border-color: #00a87c !important;
+}
+
+/* ── Closing section CTAs hover ── */
+#s-closing a:first-of-type:hover {
+  background: #082140 !important;
+}
+#s-closing a:last-of-type:hover {
+  background: rgba(4, 20, 40, 0.06) !important;
+}
+
+/* ── Hero section – responsive ──────────────────────────── */
+@media (max-width: 900px) {
+  /* Stack hero grid to single column */
+  section[aria-label="ConstructFi — hero"] .wrap {
+    grid-template-columns: 1fr !important;
+  }
+  /* Move phone below text and reduce size */
+  section[aria-label="ConstructFi — hero"] .wrap > :last-child {
+    display: none; /* hide phone on mobile to keep hero clean */
+  }
+  /* Reduce hero padding */
+  section[aria-label="ConstructFi — hero"] {
+    padding-bottom: 72px !important;
+  }
+  section[aria-label="ConstructFi — hero"] .wrap > :first-child {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* ── Ecosystem section – responsive ──────────────────────── */
+@media (max-width: 900px) {
+  section[aria-label="Ecosystem introduction"] .wrap > div {
+    grid-template-columns: 1fr !important;
+  }
+  section[aria-label="Ecosystem introduction"] .wrap > div > :first-child {
+    position: static !important;
+  }
+}
+
+/* ── Featured products – responsive ─────────────────────── */
+@media (max-width: 760px) {
+  #s-products .wrap > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Partner Solutions – responsive ─────────────────────── */
+@media (max-width: 760px) {
+  section[aria-label="Partner Solutions"] .wrap > div {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Participation – responsive ─────────────────────────── */
+@media (max-width: 760px) {
+  section[aria-label="Participation — COVI and ELUV"] .wrap > div {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Token card coins — size clamp on mobile ─────────────── */
+@media (max-width: 480px) {
+  #s-participation a > img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}

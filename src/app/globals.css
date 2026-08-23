@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font family custom properties — loaded via @fontsource in layout.tsx */
+:root {
+  --font-fraunces: 'Fraunces', Georgia, serif;
+  --font-manrope: 'Manrope', system-ui, sans-serif;
+  --font-space-grotesk: 'Space Grotesk', system-ui, sans-serif;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -53,10 +60,10 @@
   }
   h1,
   h2 {
-    font-family: var(--font-fraunces), "Fraunces", Georgia, serif;
+    font-family: var(--font-fraunces), Georgia, serif;
   }
   h3 {
-    font-family: var(--font-manrope), "Manrope", system-ui, sans-serif;
+    font-family: var(--font-manrope), system-ui, sans-serif;
   }
   a {
     transition: color 0.15s ease;

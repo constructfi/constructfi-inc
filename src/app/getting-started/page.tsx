@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/getting-started" },
 };
 
-export const STEPS = [
+const STEPS = [
   {
     n: "01",
     icon: Wallet,
