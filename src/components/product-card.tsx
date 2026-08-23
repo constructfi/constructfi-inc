@@ -1,8 +1,10 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { ProductIcon } from "@/components/product-icon";
 import { StatusPill } from "@/components/status-pill";
 import { TagChip } from "@/components/tag-chip";
 import { ProductShot, ProductThumb } from "@/components/product-shot";
+import { getProductBrand } from "@/lib/product-brand";
 import { CATEGORIES, type Product } from "@/lib/products";
 
 function categoryLabel(key: Product["category"]) {
@@ -17,12 +19,21 @@ export function ProductCard({
   product: Product;
   eagerImage?: boolean;
 }) {
+  const brand = getProductBrand(product.slug);
+  const brandVars = brand
+    ? ({
+        "--product-accent": brand.accent,
+        "--product-accent-secondary": brand.accentSecondary,
+      } as CSSProperties)
+    : undefined;
+
   return (
     <Link
       href={`/marketplace/${product.slug}`}
       className="app-card prod-card"
       data-testid={`product-card-${product.slug}`}
       data-category={product.category}
+      style={brandVars}
     >
       <ProductThumb product={product} eager={eagerImage} />
       <div className="pc-top">
@@ -48,8 +59,20 @@ export function ProductCard({
 
 /** Larger hero tile for the flagship product. */
 export function FeaturedProductCard({ product }: { product: Product }) {
+  const brand = getProductBrand(product.slug);
+  const brandVars = brand
+    ? ({
+        "--product-accent": brand.accent,
+        "--product-accent-secondary": brand.accentSecondary,
+      } as CSSProperties)
+    : undefined;
+
   return (
-    <div className="feat-card" data-testid={`featured-${product.slug}`}>
+    <div
+      className="feat-card"
+      data-testid={`featured-${product.slug}`}
+      style={brandVars}
+    >
       <div className="fc-mark">
         <ProductShot product={product} />
       </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import { ProductIcon } from "@/components/product-icon";
 import { ProductCard } from "@/components/product-card";
@@ -13,6 +14,7 @@ import {
   getProduct,
   relatedProducts,
 } from "@/lib/products";
+import { getProductBrand } from "@/lib/product-brand";
 import { SITE } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -44,10 +46,20 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
   const category = CATEGORIES.find((c) => c.key === product.category)?.label;
   const related = relatedProducts(product.slug);
+  const brand = getProductBrand(product.slug);
+  const brandVars = brand
+    ? ({
+        "--product-accent": brand.accent,
+        "--product-accent-secondary": brand.accentSecondary,
+      } as CSSProperties)
+    : undefined;
 
   return (
     <>
-      <header className="section" style={{ borderTop: "none", paddingBottom: 40 }}>
+      <header
+        className="section"
+        style={{ borderTop: "none", paddingBottom: 40, ...brandVars }}
+      >
         <div className="wrap">
           <nav className="crumb" aria-label="Breadcrumb">
             <Link href="/marketplace">Marketplace</Link>
@@ -96,7 +108,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </div>
       </header>
 
-      <section className="section">
+      <section className="section" style={brandVars}>
         <div className="wrap">
           <div className="pd-body">
             <div>
