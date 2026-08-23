@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ProductIcon } from "@/components/product-icon";
 import { ProductCard } from "@/components/product-card";
 import { ProductShot } from "@/components/product-shot";
@@ -41,12 +41,23 @@ export function generateMetadata({
 }
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
+  if (params.slug === "revenueos") {
+    redirect("/marketplace/constructos");
+  }
+
   const product = getProduct(params.slug);
   if (!product) notFound();
 
   const category = CATEGORIES.find((c) => c.key === product.category)?.label;
   const related = relatedProducts(product.slug);
   const brand = getProductBrand(product.slug);
+  const primaryCta = brand?.primaryCTA ?? "Learn more";
+  const primaryHref =
+    primaryCta === "Join waitlist"
+      ? `/contact?product=${product.slug}`
+      : primaryCta === "Explore Phase 2"
+        ? "/marketplace?tab=own"
+        : "/getting-started";
   const brandVars = brand
     ? ({
         "--product-accent": brand.accent,
@@ -76,31 +87,20 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <div className="pd-meta">
                 <span className="chip">{category}</span>
                 <StatusPill status={product.status} />
+                <span className="chip">{brand?.ecosystemLabel ?? "Part of the ConstructFi ecosystem"}</span>
               </div>
               <TagChips tags={product.tags} />
+              {brand?.audience && <p className="pd-aud">For {brand.audience}</p>}
               <p className="pd-lede" style={{ marginTop: 18 }}>
                 {product.shortDescription}
               </p>
               <div className="pd-ctas">
-                {product.slug === "build-or-bust" ? (
-                  <>
-                    <Link className="btn btn-primary" href="/app#demo">
-                      Try the interactive demo
-                    </Link>
-                    <Link className="btn btn-ghost" href="/app">
-                      Full product showcase →
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link className="btn btn-primary" href="/getting-started">
-                      How to get started
-                    </Link>
-                    <Link className="btn btn-ghost" href="/marketplace">
-                      ← Back to the store
-                    </Link>
-                  </>
-                )}
+                <Link className="btn btn-primary" href={primaryHref}>
+                  {primaryCta}
+                </Link>
+                <Link className="btn btn-ghost" href="/marketplace">
+                  ← Back to the store
+                </Link>
               </div>
             </div>
             <ProductShot product={product} />

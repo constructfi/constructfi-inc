@@ -44,14 +44,15 @@ export function ProductCard({
       </div>
       <span className="a-n">{product.name}</span>
       <div className="a-d">{product.tagline}</div>
+      {brand?.audience && <p className="pc-aud">For {brand.audience}</p>}
       <div className="tag-row">
         {product.tags.slice(0, 3).map((t) => (
           <TagChip key={t} tag={t} />
         ))}
       </div>
       <div className="a-m">
-        <span>{categoryLabel(product.category)}</span>
-        <span className="pc-view">View →</span>
+        <span>{brand?.ecosystemLabel ?? categoryLabel(product.category)}</span>
+        <span className="pc-view">{brand?.primaryCTA ?? "View"} →</span>
       </div>
     </Link>
   );
@@ -60,6 +61,13 @@ export function ProductCard({
 /** Larger hero tile for the flagship product. */
 export function FeaturedProductCard({ product }: { product: Product }) {
   const brand = getProductBrand(product.slug);
+  const primaryCta = brand?.primaryCTA ?? "Learn more";
+  const primaryHref =
+    primaryCta === "Join waitlist"
+      ? "/contact"
+      : primaryCta === "Explore Phase 2"
+        ? "/marketplace?tab=own"
+        : `/marketplace/${product.slug}`;
   const brandVars = brand
     ? ({
         "--product-accent": brand.accent,
@@ -84,14 +92,16 @@ export function FeaturedProductCard({ product }: { product: Product }) {
         <h3 className="fc-name">{product.name}</h3>
         <p className="fc-tag">{product.tagline}</p>
         <p className="fc-desc">{product.shortDescription}</p>
+        {brand?.audience && <p className="fc-aud">For {brand.audience}</p>}
+        <p className="fc-eco">{brand?.ecosystemLabel ?? "Part of the ConstructFi ecosystem"}</p>
         <div className="tag-row">
           {product.tags.map((t) => (
             <TagChip key={t} tag={t} />
           ))}
         </div>
         <div className="fc-ctas">
-          <Link className="btn btn-primary" href="/app#demo" data-testid="featured-cta-demo">
-            Try the interactive demo
+          <Link className="btn btn-primary" href={primaryHref} data-testid="featured-cta-primary">
+            {primaryCta}
           </Link>
           <Link className="btn btn-ghost" href={`/marketplace/${product.slug}`}>
             Product details →

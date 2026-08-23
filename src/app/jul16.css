@@ -1146,6 +1146,7 @@ html:not(.dark) .cat-tab.on{background:#00336B;color:#FFFFFF}
 .prod-card .pc-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .prod-card .pc-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--product-accent,var(--green)) 14%,transparent);color:var(--product-accent,var(--green));flex:none}
 .prod-card .a-d{margin-bottom:2px}
+.prod-card .pc-aud{margin:3px 0 4px;font-size:12.5px;line-height:1.45;color:var(--ink3)}
 .prod-card .pc-view{color:var(--product-accent,var(--green));font-weight:600}
 /* Full-bleed thumbnail: cancel the 20px card padding, keep the top corners round.
    The renders are portrait phones on near-black navy, so the frame matches that
@@ -1153,7 +1154,9 @@ html:not(.dark) .cat-tab.on{background:#00336B;color:#FFFFFF}
 .prod-card .pc-shot{display:block;position:relative;aspect-ratio:16/10;margin:-20px -20px 4px;border-radius:11px 11px 0 0;overflow:hidden;background:#070B1F;border-bottom:1px solid var(--line)}
 .prod-card .pc-shot img{object-fit:cover;object-position:center 46%}
 /* No render yet: keep the banner's footprint, fill it with the product mark. */
-.prod-card .pc-shot-blank{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0A1B33,#070B1F 60%);color:#00D19A}
+.prod-card .pc-shot-blank{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--product-accent,var(--green)) 38%,#070B1F),#070B1F 62%);color:var(--product-accent,var(--green));padding:14px 10px;text-align:center}
+.prod-card .pc-shot-icon{display:flex;align-items:center;justify-content:center}
+.prod-card .pc-shot-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:color-mix(in srgb,var(--product-accent,var(--green)) 65%,#fff)}
 
 /* Featured flagship card */
 .feat-card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:26px;align-items:start;background:linear-gradient(135deg,color-mix(in srgb,var(--product-accent,var(--green)) 10%,transparent),var(--panel) 55%);border:1px solid color-mix(in srgb,var(--product-accent,var(--green)) 45%,transparent);border-radius:18px;padding:30px}
@@ -1162,6 +1165,8 @@ html:not(.dark) .cat-tab.on{background:#00336B;color:#FFFFFF}
 .feat-card .fc-name{font-family:var(--font-display);font-weight:800;font-size:28px;margin:0 0 6px}
 .feat-card .fc-tag{font-size:16px;color:var(--product-accent,var(--green));font-weight:600;margin-bottom:10px}
 .feat-card .fc-desc{font-size:14.5px;color:var(--ink2);max-width:640px;margin-bottom:14px}
+.feat-card .fc-aud{font-size:13px;color:var(--ink3);margin:0 0 8px}
+.feat-card .fc-eco{font-size:12.5px;color:var(--ink3);margin:0 0 14px;font-family:var(--font-mono);letter-spacing:.04em;text-transform:uppercase}
 .feat-card .fc-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 @media(max-width:760px){.feat-card{grid-template-columns:1fr;gap:18px;padding:24px}.feat-card .fc-name{font-size:23px}.feat-card .fc-mark{width:170px;margin:0 auto}}
 
@@ -1174,6 +1179,7 @@ html:not(.dark) .cat-tab.on{background:#00336B;color:#FFFFFF}
 .pd-hero h1{font-size:42px;font-weight:800;margin:0 0 12px}
 .pd-tag{font-size:19px;color:var(--product-accent,var(--green));font-weight:600;margin-bottom:14px}
 .pd-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pd-aud{font-size:13.5px;color:var(--ink3);margin-top:14px}
 .pd-lede{font-size:16.5px;color:var(--ink2);max-width:660px}
 .pd-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
 .pd-body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:34px;align-items:start}
@@ -1187,6 +1193,9 @@ html:not(.dark) .cat-tab.on{background:#00336B;color:#FFFFFF}
 .pd-shot{margin:0;width:320px;max-width:100%}
 .pd-shot-frame{border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:#070B1F;line-height:0}
 .pd-shot-frame img{display:block;width:100%;height:auto}
+.pd-shot-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:480px;padding:22px;background:radial-gradient(circle at 22% 12%,color-mix(in srgb,var(--product-accent,var(--green)) 28%,transparent),transparent 60%),linear-gradient(145deg,#060B1F,#070B1F)}
+.pd-shot-icon{display:flex;align-items:center;justify-content:center;color:var(--product-accent,var(--green))}
+.pd-shot-badge{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;line-height:1.5;text-align:center;color:color-mix(in srgb,var(--product-accent,var(--green)) 70%,#fff)}
 .pd-shot figcaption{margin-top:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;color:var(--ink3);text-align:center}
 @media(max-width:960px){.pd-hero,.pd-body{grid-template-columns:1fr}.pd-hero h1{font-size:32px}.pd-shot{width:280px;margin:0 auto}}
 
