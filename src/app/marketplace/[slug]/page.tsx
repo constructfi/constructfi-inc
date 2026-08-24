@@ -1,22 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ProductIcon } from "@/components/product-icon";
 import { ProductCard } from "@/components/product-card";
 import { ProductShot } from "@/components/product-shot";
 import { StatusPill } from "@/components/status-pill";
 import { TagChips } from "@/components/tag-chip";
 import { BobDemo } from "@/components/bob-demo";
+import { StoreBadges } from "@/components/store-badges";
 import {
   CATEGORIES,
+  LEGACY_PRODUCT_SLUGS,
   PRODUCTS,
   getProduct,
   relatedProducts,
+  resolveProductSlug,
 } from "@/lib/products";
 import { SITE } from "@/lib/site";
 
 export function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ slug: p.slug }));
+  return [
+    ...PRODUCTS.map((p) => ({ slug: p.slug })),
+    ...Object.keys(LEGACY_PRODUCT_SLUGS).map((slug) => ({ slug })),
+  ];
 }
 
 export function generateMetadata({
@@ -24,7 +30,7 @@ export function generateMetadata({
 }: {
   params: { slug: string };
 }): Metadata {
-  const product = getProduct(params.slug);
+  const product = getProduct(resolveProductSlug(params.slug));
   if (!product) return { title: "Product not found" };
   return {
     title: `${product.name} — ConstructFi Marketplace`,
@@ -39,7 +45,11 @@ export function generateMetadata({
 }
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = getProduct(params.slug);
+  const resolvedSlug = resolveProductSlug(params.slug);
+  if (resolvedSlug !== params.slug) {
+    redirect(`/marketplace/${resolvedSlug}`);
+  }
+  const product = getProduct(resolvedSlug);
   if (!product) notFound();
 
   const category = CATEGORIES.find((c) => c.key === product.category)?.label;
@@ -90,6 +100,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   </>
                 )}
               </div>
+              {product.showStoreBadges ? (
+                <div style={{ marginTop: 18 }}>
+                  <StoreBadges phase="Launch" />
+                </div>
+              ) : null}
             </div>
             <ProductShot product={product} />
           </div>
@@ -114,8 +129,19 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   <li key={f}>{f}</li>
                 ))}
               </ul>
+              <div className="section-head" style={{ margin: "28px 0 18px" }}>
+                <h2 style={{ fontSize: 25 }}>Built for</h2>
+              </div>
+              <p style={{ color: "var(--ink2)", fontSize: "15.5px" }}>{product.forWho}</p>
             </div>
             <div className="pd-note">
+              <h3>Access</h3>
+              <p>{product.access}</p>
+              {product.showStoreBadges ? (
+                <div style={{ marginTop: 16 }}>
+                  <StoreBadges phase="Launch" />
+                </div>
+              ) : null}
               <h3>How COVI &amp; ELUV apply</h3>
               <p>{product.coviEluvNote}</p>
               <p style={{ marginTop: 14, fontSize: "13px", color: "var(--ink3)" }}>

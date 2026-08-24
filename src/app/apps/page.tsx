@@ -20,7 +20,7 @@ function categoryLabel(key: Product["category"]) {
 export const metadata: Metadata = {
   title: "All apps & roadmap",
   description:
-    "Every ConstructFi product and the order it ships in: Build or Bust, the supplier marketplace, the wallet, the readiness tracker, and what follows in Phase 2.",
+    "Every ConstructFi product and the order it ships in: operations, sourcing, analysis, learning, games, and collectibles across the ConstructFi ecosystem.",
   openGraph: {
     title: "ConstructFi apps & roadmap",
     description:
@@ -64,7 +64,7 @@ export default function AppsPage() {
       <PageHero
         eyebrow="Platform · Apps & roadmap"
         title="One platform, sequenced deliberately"
-        lede="ConstructFi ships as a small set of products that reinforce each other: screen deals in Build or Bust, procure in the marketplace, and watch it compound on your dashboard."
+        lede="ConstructFi ships as a connected set of products that reinforce each other: run the business, source the work, analyze the deal, build the skill, and carry the record forward."
       >
         <Badge className="bg-white/10 text-white">
           Phase 1 launches {SITE.launchDate}
@@ -75,7 +75,7 @@ export default function AppsPage() {
         <SectionHeading
           eyebrow="The platform map"
           title={`All ${PRODUCTS.length} products and the phase each ships in`}
-          lede="A roster, not a storefront — one line per product so the sequence is readable at a glance. Full descriptions, screenshots, and tags live in the marketplace."
+          lede="A roster, not a storefront — one line per product so the sequence is readable at a glance. Full descriptions, screenshots, and access notes live in the marketplace."
         />
         <ul className="mt-12 roster">
           {PRODUCTS.map((p) => (

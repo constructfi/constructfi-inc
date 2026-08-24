@@ -13,9 +13,7 @@ type Tab = ProductCategory | "all";
 
 function matchesCategory(product: Product, tab: Tab) {
   if (tab === "all") return true;
-  return (
-    product.category === tab || (product.secondaryCategories?.includes(tab) ?? false)
-  );
+  return product.category === tab;
 }
 
 function matchesQuery(product: Product, query: string) {

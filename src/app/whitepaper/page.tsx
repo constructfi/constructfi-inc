@@ -7,7 +7,8 @@ import { WP_CHAPTERS, WP_META } from "@/lib/whitepaper";
 import { SITE } from "@/lib/site";
 import { WhitepaperBody } from "@/components/whitepaper-body";
 
-const WHITEPAPER_CHAPTERS = WP_CHAPTERS.slice(0, 10);
+const WHITEPAPER_CHAPTERS = WP_CHAPTERS;
+const WHITEPAPER_SOURCE_URL = `${SITE.githubRepo}/blob/main/src/lib/whitepaper.ts`;
 
 export const metadata: Metadata = {
   title: "Whitepaper",
@@ -56,13 +57,13 @@ export default function WhitepaperPage() {
               asChild
             >
               <a
-                href={SITE.githubRepo}
+                href={WHITEPAPER_SOURCE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="button-github"
               >
                 <Github className="mr-1.5 h-4 w-4" />
-                View on GitHub
+                View source on GitHub
                 <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
               </a>
             </Button>

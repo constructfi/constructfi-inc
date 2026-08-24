@@ -20,7 +20,7 @@ import { COVI, ELUV, APP_URL, APP_URL_EXTERNAL } from "@/lib/site";
 
 // The homepage teases three products next to the flagship; the store has the rest.
 const HOME_PRODUCTS = PRODUCTS.filter((p) =>
-  ["supplier-marketplace", "covi-wallet", "collectibles"].includes(p.slug)
+  ["constructos", "supplier-marketplace", "eluvial-academy"].includes(p.slug)
 );
 
 /** "Build or Bust" wordmark — green / muted / red, per the Jul 16 design. */
@@ -42,46 +42,42 @@ export default function HomePage() {
       <header className="hero">
         <div className="wrap hero-grid">
           <div>
-            <span className="eyebrow">Platform launches September 9, 2026</span>
+            <span className="eyebrow">Construction. Real estate. Opportunity. Connected.</span>
             <h1>
-              From participation
+              The ecosystem
               <br />
-              to <em>ownership.</em>
+              for <em>people who build.</em>
             </h1>
             <p className="lede">
-              ConstructFi is an app store for real-estate and construction work — screen a
-              deal, price a job, and build a verified track record in one place.
+              ConstructFi connects the tools, marketplaces, intelligence,
+              education, and experiences that help contractors, suppliers,
+              developers, investors, and entrepreneurs build what is next.
             </p>
             <p className="lede-sub">
-              The work you actually complete earns COVI, a utility token you spend on platform
-              features, and mints ELUV, a soulbound credential that can only be earned — never
-              bought, sold, or transferred.
+              ConstructFi is the ecosystem. The Marketplace is where people
+              discover it. The products are how people use it. Partner
+              Solutions are how organizations build with it.
             </p>
             <div className="hero-ctas">
-              <Link
-                className="btn btn-primary"
-                href={APP_URL}
-                data-testid="button-hero-launch"
-                {...(APP_URL_EXTERNAL ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                Launch app
+              <Link className="btn btn-primary" href="/marketplace" data-testid="button-hero-launch">
+                Explore the Marketplace
               </Link>
-              <Link className="btn btn-ghost" href="/whitepaper">
-                Read the whitepaper
+              <Link className="btn btn-ghost" href="/partners">
+                Build With ConstructFi
               </Link>
             </div>
             <div className="router" aria-label="Choose your path">
               <Link href="/marketplace">
-                <span className="r-k">Individuals</span>
-                <span className="r-v">Start earning →</span>
+                <span className="r-k">Contractors &amp; builders</span>
+                <span className="r-v">Find the next tool →</span>
               </Link>
               <Link href="/marketplace">
-                <span className="r-k">Suppliers &amp; contractors</span>
-                <span className="r-v">Join the marketplace →</span>
+                <span className="r-k">Suppliers &amp; manufacturers</span>
+                <span className="r-v">Source better →</span>
               </Link>
-              <Link href="/resources">
-                <span className="r-k">Institutions</span>
-                <span className="r-v">Run readiness programs →</span>
+              <Link href="/partners">
+                <span className="r-k">Agencies, nonprofits &amp; institutions</span>
+                <span className="r-v">Build a program →</span>
               </Link>
             </div>
           </div>
@@ -104,20 +100,18 @@ export default function HomePage() {
           <div className="primer">
             <div className="pr">
               <div className="pr-n">01 · WHAT IT IS</div>
-              <div className="pr-t">A platform built on real operations</div>
+              <div className="pr-t">More than an app. A connected ecosystem.</div>
               <p className="pr-d">
-                ConstructFi runs on top of two operating businesses — $60M+ of development
-                activity and ~$7M/year of supply operations across six markets. The
-                platform turns that real commerce into participation anyone can join.
+                ConstructFi is the mobile-first gateway to a growing network
+                of specialized products for the built world.
               </p>
             </div>
             <div className="pr">
               <div className="pr-n">02 · THE PRODUCTS</div>
-              <div className="pr-t">One app store, {PRODUCTS.length} products</div>
+              <div className="pr-t">One marketplace, {PRODUCTS.length} products</div>
               <p className="pr-d">
-                Apps, games, materials, and collectibles all live in the marketplace.
-                Build or Bust — a real-estate deal analyzer with a free 60-second verdict
-                — is the flagship, and you can try it right now.
+                Discover operations software, procurement tools, learning
+                platforms, games, and collectibles in one place.
               </p>
             </div>
             <div className="pr">
