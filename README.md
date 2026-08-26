@@ -1,6 +1,6 @@
 # ConstructFi ecosystem site — developer handoff
 
-**Issued 22 August 2026. Supersedes `design_handoff_ecosystem_site/`.**
+**Issued 26 August 2026. Supersedes `design_handoff_ecosystem_site/`.**
 Repo: `constructfi/constructfi-inc`, branch `main`.
 
 ## Read in this order
@@ -9,6 +9,7 @@ Repo: `constructfi/constructfi-inc`, branch `main`.
 2. **`ConstructFi_Site_v2_standalone.html`** — the full design reference. Every page and product, self-contained, opens offline with no server. Click through it before writing code.
 3. **`IMPLEMENTATION_PLAN.md`** — step-by-step sequence for the site-level changes (fonts, nav, About, Partner Solutions, COVI & ELUV, marketplace). Still accurate for those steps. It predates the product-page build-outs described below.
 4. **`COPILOT_PROMPTS.md`** — paste-ready prompts per step, plus merge discipline.
+5. **`DEPLOY_HOSTINGER.md`** — hosting and delivery notes for the Hostinger rollout: plan requirements, domain shape, deployment checklist.
 
 ## What is in this bundle
 
@@ -18,6 +19,7 @@ Repo: `constructfi/constructfi-inc`, branch `main`.
 | `ConstructFi_Site_v2_standalone.html` | Design reference, all 24 screens, self-contained (~3.4 MB) |
 | `IMPLEMENTATION_PLAN.md` | Sequenced steps for site-level changes |
 | `COPILOT_PROMPTS.md` | Prompts per step |
+| `DEPLOY_HOSTINGER.md` | Hostinger hosting notes and deployment checklist |
 | `assets/img-01…09` | The nine bitmaps, extracted from base64. Prefer the repo's own `public/` copies where they exist. |
 
 ## The design reference is not shippable code
@@ -48,6 +50,7 @@ The earlier bundle covered site-level changes only. Since then, eleven product p
 - `Covi BuildSim: House Hackers` is renamed **House Hackers** everywhere.
 - All ten products except Collections carry App Store and Google Play buttons in both the hero and the Access panel. **Every URL currently points at a store search, not a listing.** Supply real links or hide the buttons per product.
 - Access lines updated: "App Store · Google Play" for the games and Build or Busted; "Enterprise · iOS and Android" or "In ConstructFi · iOS and Android" where the app also lives inside the platform.
+- The whitepaper section carries a **Download PDF** control alongside "Read the whitepaper"; it opens the whitepaper and fires the browser print dialog. Implement as a real PDF asset if one exists, otherwise keep the print path.
 - Product covers are app-surface illustrations showing the UI each product displays, sized to fit their frames.
 
 ## Per-product brand systems — do not normalise
