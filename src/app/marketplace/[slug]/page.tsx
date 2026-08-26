@@ -7,6 +7,15 @@ import { ProductShot } from "@/components/product-shot";
 import { StatusPill } from "@/components/status-pill";
 import { TagChips } from "@/components/tag-chip";
 import { BobDemo } from "@/components/bob-demo";
+import { StoreBadges } from "@/components/store-badges";
+import { BuildOrBustedUnderwriting } from "@/components/product-details/build-or-busted-underwriting";
+import { ConstructOSModuleMap } from "@/components/product-details/constructos-module-map";
+import { PactPilotFindings } from "@/components/product-details/pact-pilot-findings";
+import { MaterialMarketplacePricer } from "@/components/product-details/material-marketplace-pricer";
+import { SupplierMarketplaceRFQ } from "@/components/product-details/supplier-marketplace-rfq";
+import { HouseHackersMoves } from "@/components/product-details/house-hackers-moves";
+import { CashflowTycoonShop } from "@/components/product-details/cashflow-tycoon-shop";
+import { BrickByBrickPuzzle } from "@/components/product-details/brick-by-brick-puzzle";
 import {
   CATEGORIES,
   PRODUCTS,
@@ -18,6 +27,95 @@ import { SITE } from "@/lib/site";
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
 }
+
+// Games and Build or Busted read "App Store · Google Play". Apps that are
+// also available inside the ConstructOS platform read "Enterprise · iOS and
+// Android". Every product except Digital Collectibles carries store badges.
+const IN_PLATFORM_SLUGS = new Set([
+  "revenueos",
+  "covi-estimator",
+  "readiness-tracker",
+  "covi-wallet",
+  "sales-academy",
+  "material-marketplace",
+  "supplier-marketplace",
+  "pact-pilot",
+  "eluvial-academy",
+]);
+
+const STATUS_PHASE: Record<string, string> = {
+  live: "Launch",
+  "coming-soon": "Phase 1",
+  "phase-2": "Phase 2",
+};
+
+function accessLine(slug: string, category: string) {
+  if (category === "games" || slug === "build-or-bust") {
+    return "App Store · Google Play";
+  }
+  if (IN_PLATFORM_SLUGS.has(slug)) {
+    return "Enterprise · iOS and Android";
+  }
+  return "App Store · Google Play";
+}
+
+// Detail sections built out per the Aug 26, 2026 handoff. Each product keeps
+// its own approved typeface/palette per PRODUCT_BRANDS — see product-brand.ts.
+const DETAIL_SECTIONS: Record<
+  string,
+  { eyebrow: string; title: string; description: string; Component: () => JSX.Element; fontClass?: string }
+> = {
+  "build-or-bust": {
+    eyebrow: "Underwriting model",
+    title: "Five sliders, one verdict",
+    description:
+      "Move the underwriting inputs and watch the Build / Hold / Busted verdict react against fixed, visible thresholds.",
+    Component: BuildOrBustedUnderwriting,
+  },
+  revenueos: {
+    eyebrow: "Inside ConstructOS",
+    title: "Eight modules, one record",
+    description:
+      "Every module writes to a shared record, so a bid line traces from lead to closeout without a manual reconciliation.",
+    Component: ConstructOSModuleMap,
+  },
+  "pact-pilot": {
+    eyebrow: "Findings explainer",
+    title: "Three risk states, plain-English findings",
+    description: "Every clause lands in High Risk, Review, or Clear — with the reasoning attached.",
+    Component: PactPilotFindings,
+  },
+  "material-marketplace": {
+    eyebrow: "Live lot pricer",
+    title: "Price a lot in real time",
+    description: "Pick a listing, drag the quantity, and watch the line total, retail comparison, and stock recompute.",
+    Component: MaterialMarketplacePricer,
+  },
+  "supplier-marketplace": {
+    eyebrow: "RFQ comparison",
+    title: "Six quotes, one schedule constraint",
+    description: "Compare quotes side by side against a live delivery deadline and the verification record behind each supplier.",
+    Component: SupplierMarketplaceRFQ,
+  },
+  "house-hackers": {
+    eyebrow: "Opening moves",
+    title: "Every move plays out a 12-month chain",
+    description: "Pick an opening move and see how cash flow, equity, debt, and credit move over the next year.",
+    Component: HouseHackersMoves,
+  },
+  "cashflow-city-tycoon": {
+    eyebrow: "Plant shop",
+    title: "Toggle upgrades, watch the bank move",
+    description: "A $50,000 starting bank, three upgrades, and a rate of return that recomputes with every toggle.",
+    Component: CashflowTycoonShop,
+  },
+  "brick-by-brick": {
+    eyebrow: "Playable level",
+    title: "Three solutions, real feedback",
+    description: "Pick a solution to the level's constraint and see what actually happens next.",
+    Component: BrickByBrickPuzzle,
+  },
+};
 
 export function generateMetadata({
   params,
@@ -90,6 +188,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   </>
                 )}
               </div>
+              {product.slug !== "collectibles" && (
+                <div style={{ marginTop: 22 }}>
+                  <StoreBadges phase={STATUS_PHASE[product.status]} />
+                </div>
+              )}
             </div>
             <ProductShot product={product} />
           </div>
@@ -122,6 +225,12 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 COVI is a consumption token for ecosystem activity — not an investment.
                 ELUV is non-transferable and confers no financial rights.
               </p>
+              {product.slug !== "collectibles" && (
+                <>
+                  <h3 style={{ marginTop: 20 }}>Access</h3>
+                  <p>{accessLine(product.slug, product.category)}</p>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -142,6 +251,24 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
       )}
+
+      {DETAIL_SECTIONS[product.slug] &&
+        (() => {
+          const detail = DETAIL_SECTIONS[product.slug];
+          const { Component } = detail;
+          return (
+            <section className="section">
+              <div className="wrap">
+                <div className="section-head">
+                  <span className="eyebrow">{detail.eyebrow}</span>
+                  <h2>{detail.title}</h2>
+                  <p>{detail.description}</p>
+                </div>
+                <Component />
+              </div>
+            </section>
+          );
+        })()}
 
       <section className="section">
         <div className="wrap">
