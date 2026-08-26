@@ -26,6 +26,45 @@ const audiences = [
   "Institutions",
 ];
 
+const heroTiles = [
+  {
+    mono: "OS",
+    name: "ConstructOS",
+    badge: "bg-[#102734] text-[#70ecd3]",
+    dot: "bg-[#00d19a]",
+  },
+  {
+    mono: "BB",
+    name: "Build or Busted",
+    badge: "bg-[#30150d] text-[#ffb08d]",
+    dot: "bg-[#ff5a1f]",
+  },
+  {
+    mono: "MM",
+    name: "Material Marketplace",
+    badge: "bg-[#33270d] text-[#ffd18a]",
+    dot: "bg-[#e4b95b]",
+  },
+  {
+    mono: "SM",
+    name: "Supplier Marketplace",
+    badge: "bg-[#0f2a31] text-[#7ce2d1]",
+    dot: "bg-[#00a87c]",
+  },
+  {
+    mono: "EA",
+    name: "Eluvial Academy",
+    badge: "bg-[#171e3f] text-[#b8c1ff]",
+    dot: "bg-[#8298fc]",
+  },
+  {
+    mono: "HH",
+    name: "House Hackers",
+    badge: "bg-[#2e2415] text-[#ffd883]",
+    dot: "bg-[#d4a017]",
+  },
+] as const;
+
 const ecosystemLayers = [
   {
     number: "Layer 01",
@@ -119,44 +158,60 @@ const featuredProducts = [
   {
     category: "Analyze Deals and Agreements",
     name: "Build or Busted",
+    mono: "BB",
     tagline: "Know in 60 seconds, before you fall in love with it.",
     description:
       "Evaluate a property, get a plain-English verdict, and see the numbers that drove it before you sink time into the wrong deal.",
     href: "/marketplace/build-or-bust",
     image: "/products/build-or-bust.webp",
-    accent: "bg-sky",
+    accent: "bg-[#ff5a1f]",
+    accentText: "text-[#ff5a1f]",
+    access: "App Store · Google Play",
+    objectPosition: "center 14%",
   },
   {
     category: "Source Materials and Suppliers",
     name: "Supplier Marketplace",
+    mono: "SM",
     tagline: "Verified suppliers. Real settlement.",
     description:
       "Procure materials and services from a vetted supplier network backed by live operations.",
     href: "/marketplace/supplier-marketplace",
     image: "/products/supplier-marketplace.webp",
-    accent: "bg-mint",
+    accent: "bg-[#00a87c]",
+    accentText: "text-[#00a87c]",
+    access: "Enterprise · iOS and Android",
+    objectPosition: "center 22%",
   },
   {
     category: "Learn and Build Skills",
     name: "Covi Wallet",
+    mono: "CW",
     tagline: "COVI & ELUV — non-custodial.",
     description:
       "View wallet activity and earned credentials in one place without giving up control of your keys.",
     href: "/marketplace/covi-wallet",
     image: "/products/covi-wallet.webp",
-    accent: "bg-indigo",
+    accent: "bg-[#d4a017]",
+    accentText: "text-[#b38710]",
+    access: "In ConstructFi · iOS and Android",
+    objectPosition: "center 16%",
   },
   {
     category: "Play, Practice, and Explore",
     name: "House Hackers",
+    mono: "HH",
     tagline: "Learn by playing.",
     description:
       "Use simulation and game mechanics to practice real-estate and readiness concepts through action.",
     href: "/marketplace/house-hackers",
     image: "/products/house-hackers.webp",
-    accent: "bg-periwinkle",
+    accent: "bg-[#d4a017]",
+    accentText: "text-[#386641]",
+    access: "App Store · Google Play",
+    objectPosition: "center 18%",
   },
-];
+] as const;
 
 const partnerSolutions = [
   "Community and member platforms",
@@ -343,19 +398,60 @@ export default function HomePage() {
 
           <div className="mx-auto w-full max-w-[360px] self-end">
             <div className="rounded-t-[30px] border border-white/20 border-b-0 bg-[#0a1b31] p-3.5 pb-0">
-              <div className="overflow-hidden rounded-t-[20px] border border-white/10 border-b-0 bg-[#061527]">
+              <div className="relative overflow-hidden rounded-t-[20px] border border-white/10 border-b-0 bg-[#061527] px-4 pt-4">
                 <Image
                   src="/img/hero.png"
-                  alt="ConstructFi app home screen preview"
-                  width={1823}
-                  height={863}
-                  className="h-auto w-full"
+                  alt="ConstructFi ecosystem home screen preview"
+                  fill
+                  className="object-cover object-center opacity-30"
+                  sizes="(max-width: 1024px) 330px, 360px"
                   priority
                 />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,21,39,0.3)_0%,rgba(6,21,39,0.66)_42%,rgba(6,21,39,0.94)_100%)]" />
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[9.5px] tracking-[0.14em] text-white/40">9:41</span>
+                    <span className="flex items-end gap-[3px]">
+                      <span className="h-1.5 w-[3px] bg-white/35" />
+                      <span className="h-[9px] w-[3px] bg-white/45" />
+                      <span className="h-3 w-[3px] bg-white/60" />
+                    </span>
+                  </div>
+                  <div className="mt-[22px] text-[19px] font-semibold tracking-[-0.02em] text-white">
+                    Good morning
+                  </div>
+                  <div className="mt-[3px] text-[10px] uppercase tracking-[0.12em] text-mint">
+                    Your ecosystem
+                  </div>
+                  <div className="mt-[18px] grid grid-cols-2 gap-2">
+                    {heroTiles.map((tile) => (
+                      <div
+                        key={tile.name}
+                        className="grid gap-3.5 border border-white/10 bg-white/[0.045] px-3 py-3 backdrop-blur-[2px]"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span
+                            className={`inline-flex h-7 min-w-7 items-center justify-center px-2 text-[11px] font-semibold tracking-[0.08em] ${tile.badge}`}
+                          >
+                            {tile.mono}
+                          </span>
+                          <span className={`h-2 w-2 rounded-full ${tile.dot}`} />
+                        </div>
+                        <span className="text-[11px] leading-[1.25] text-white/72">{tile.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-[14px] flex items-center gap-1.5 border-t border-white/10 py-3">
+                    <span className="h-[7px] w-[7px] bg-mint" />
+                    <span className="text-[9.5px] uppercase tracking-[0.1em] text-white/50">
+                      Marketplace · 10 products
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <p className="mt-3.5 text-center text-[10px] uppercase tracking-[0.1em] text-white/40">
-              App home screen — swap in the real build
+              App home screen — real local preview with branded ecosystem tiles
             </p>
           </div>
         </div>
@@ -473,14 +569,43 @@ export default function HomePage() {
               className="flex h-full flex-col overflow-hidden border border-[#d3dfe9] bg-white transition hover:border-sky hover:shadow-[0_18px_40px_-28px_rgba(4,20,40,0.45)]"
             >
               <div className={`h-9 ${featuredLead.accent}`} />
-              <div className="relative min-h-[280px] flex-1">
+              <div className="relative min-h-[320px] flex-1 overflow-hidden bg-[#071522]">
                 <Image
                   src={featuredLead.image}
-                  alt={`${featuredLead.name} product artwork`}
+                  alt={`${featuredLead.name} product cover art`}
                   fill
                   className="object-cover"
+                  style={{ objectPosition: featuredLead.objectPosition }}
                   sizes="(max-width: 1279px) 100vw, 60vw"
                 />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.08)_0%,rgba(4,20,40,0.18)_30%,rgba(4,20,40,0.86)_100%)]" />
+                <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2.5">
+                  <span className="inline-flex h-8 min-w-8 items-center justify-center bg-[#30150d] px-2 text-[11px] font-semibold tracking-[0.08em] text-[#ffb08d]">
+                    {featuredLead.mono}
+                  </span>
+                  <span className="border border-white/15 bg-black/20 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
+                    {featuredLead.access}
+                  </span>
+                </div>
+                <div className="absolute inset-x-5 bottom-5">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-[#14b86a] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white">
+                      Build
+                    </span>
+                    <span className="bg-[#d9a441] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#041428]">
+                      Hold
+                    </span>
+                    <span className="bg-[#d84343] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white">
+                      Busted
+                    </span>
+                  </div>
+                  <div className="mt-4 max-w-[22ch] text-[27px] font-semibold leading-[1.02] tracking-[-0.03em] text-white">
+                    Build or Busted
+                  </div>
+                  <div className="mt-1 text-[11px] uppercase tracking-[0.12em] text-white/68">
+                    Verdict-led underwriting
+                  </div>
+                </div>
               </div>
               <div className="border-t border-[#d3dfe9] p-7">
                 <div className="text-[10.5px] uppercase tracking-[0.14em] text-navy/50">
@@ -489,7 +614,7 @@ export default function HomePage() {
                 <h3 className="mt-3.5 text-[26px] font-semibold tracking-[-0.022em] text-ink">
                   {featuredLead.name}
                 </h3>
-                <p className="mt-2.5 text-[17px] font-medium leading-[1.45] text-teal">
+                <p className={`mt-2.5 text-[17px] font-medium leading-[1.45] ${featuredLead.accentText}`}>
                   {featuredLead.tagline}
                 </p>
                 <p className="mt-4 max-w-[52ch] text-[15.5px] leading-[1.6] text-navy/70">
@@ -505,14 +630,69 @@ export default function HomePage() {
                   href={product.href}
                   className="grid overflow-hidden border border-[#d3dfe9] bg-white transition hover:-translate-y-0.5 hover:border-teal hover:shadow-[0_14px_32px_-26px_rgba(4,20,40,0.45)] sm:grid-cols-[168px_minmax(0,1fr)]"
                 >
-                  <div className="relative min-h-[158px] border-b border-[#d3dfe9] sm:border-b-0 sm:border-r">
+                  <div className="relative min-h-[180px] overflow-hidden border-b border-[#d3dfe9] bg-[#071522] sm:border-b-0 sm:border-r">
                     <Image
                       src={product.image}
-                      alt={`${product.name} product artwork`}
+                      alt={`${product.name} product cover art`}
                       fill
                       className="object-cover"
+                      style={{ objectPosition: product.objectPosition }}
                       sizes="(max-width: 639px) 100vw, 168px"
                     />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.05)_0%,rgba(4,20,40,0.12)_32%,rgba(4,20,40,0.9)_100%)]" />
+                    <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
+                      <span
+                        className={`inline-flex h-7 min-w-7 items-center justify-center px-2 text-[10px] font-semibold tracking-[0.08em] ${
+                          product.name === "Supplier Marketplace"
+                            ? "bg-[#0f2a31] text-[#7ce2d1]"
+                            : product.name === "Covi Wallet"
+                              ? "bg-[#2f2812] text-[#f7d77a]"
+                              : "bg-[#2d2316] text-[#ffd883]"
+                        }`}
+                      >
+                        {product.mono}
+                      </span>
+                      <span className="border border-white/15 bg-black/20 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
+                        {product.access}
+                      </span>
+                    </div>
+                    <div className="absolute inset-x-3 bottom-3">
+                      <div className="text-[16px] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
+                        {product.name}
+                      </div>
+                      <div className="mt-1 flex flex-wrap gap-1.5">
+                        {product.name === "Supplier Marketplace" && (
+                          <>
+                            <span className="bg-[#00a87c] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
+                              Verified
+                            </span>
+                            <span className="border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white/82">
+                              Action
+                            </span>
+                          </>
+                        )}
+                        {product.name === "Covi Wallet" && (
+                          <span className="inline-flex items-center gap-1.5 border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white/82">
+                            <Image src="/coins/covi.png" alt="" width={14} height={14} className="h-[14px] w-[14px]" />
+                            <Image src="/coins/eluv.png" alt="" width={14} height={14} className="h-[14px] w-[14px]" />
+                            COVI · ELUV
+                          </span>
+                        )}
+                        {product.name === "House Hackers" && (
+                          <>
+                            <span className="bg-[#d4a017] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#041428]">
+                              Equity
+                            </span>
+                            <span className="bg-[#386641] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
+                              Cash flow
+                            </span>
+                            <span className="bg-[#d84343] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
+                              Debt
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    </div>
                   </div>
                   <div className="p-5 sm:px-[22px]">
                     <div className="flex items-center gap-2.5">
@@ -524,7 +704,7 @@ export default function HomePage() {
                     <h3 className="mt-2.5 text-[18.5px] font-semibold tracking-[-0.014em] text-ink">
                       {product.name}
                     </h3>
-                    <p className="mt-1.5 text-[14.5px] font-medium leading-[1.45] text-teal">
+                    <p className={`mt-1.5 text-[14.5px] font-medium leading-[1.45] ${product.accentText}`}>
                       {product.tagline}
                     </p>
                     <p className="mt-2.5 text-[14px] leading-[1.55] text-navy/65">
