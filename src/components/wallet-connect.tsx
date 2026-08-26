@@ -4,7 +4,7 @@ import { useAccount, useDisconnect } from "wagmi";
 import { useAppKit } from "@reown/appkit/react";
 import { base } from "@reown/appkit/networks";
 import { Wallet, LogOut, ShieldAlert } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 function shortAddr(addr?: string) {
@@ -16,10 +16,26 @@ export function WalletConnect({
   className,
   size = "sm",
   disconnectedLabel = "Connect wallet",
+  disconnectedVariant = "default",
+  connectedVariant = "outline",
+  disconnectVariant = "ghost",
+  disconnectedClassName,
+  connectedClassName,
+  disconnectClassName,
+  hideDisconnectedIcon = false,
+  hideDisconnectButton = false,
 }: {
   className?: string;
-  size?: "sm" | "default" | "lg";
+  size?: ButtonProps["size"];
   disconnectedLabel?: string;
+  disconnectedVariant?: ButtonProps["variant"];
+  connectedVariant?: ButtonProps["variant"];
+  disconnectVariant?: ButtonProps["variant"];
+  disconnectedClassName?: string;
+  connectedClassName?: string;
+  disconnectClassName?: string;
+  hideDisconnectedIcon?: boolean;
+  hideDisconnectButton?: boolean;
 }) {
   const { open } = useAppKit();
   const { address, isConnected, chainId } = useAccount();
@@ -29,11 +45,12 @@ export function WalletConnect({
     return (
       <Button
         size={size}
+        variant={disconnectedVariant}
         onClick={() => open()}
-        className={cn("gap-2", className)}
+        className={cn("gap-2", disconnectedClassName, className)}
         data-testid="button-connect-wallet"
       >
-        <Wallet className="h-4 w-4" />
+        {!hideDisconnectedIcon && <Wallet className="h-4 w-4" />}
         {disconnectedLabel}
       </Button>
     );
@@ -44,10 +61,10 @@ export function WalletConnect({
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <Button
-        variant="outline"
+        variant={connectedVariant}
         size={size}
         onClick={() => open({ view: "Account" })}
-        className="gap-2 font-mono text-xs"
+        className={cn("gap-2 font-mono text-xs", connectedClassName)}
         data-testid="button-wallet-account"
       >
         {wrongNetwork ? (
@@ -57,15 +74,18 @@ export function WalletConnect({
         )}
         {shortAddr(address)}
       </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={() => disconnect()}
-        aria-label="Disconnect wallet"
-        data-testid="button-disconnect-wallet"
-      >
-        <LogOut className="h-4 w-4" />
-      </Button>
+      {!hideDisconnectButton && (
+        <Button
+          variant={disconnectVariant}
+          size="icon"
+          onClick={() => disconnect()}
+          aria-label="Disconnect wallet"
+          className={disconnectClassName}
+          data-testid="button-disconnect-wallet"
+        >
+          <LogOut className="h-4 w-4" />
+        </Button>
+      )}
     </div>
   );
 }
