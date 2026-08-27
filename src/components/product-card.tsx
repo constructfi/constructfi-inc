@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ProductIcon } from "@/components/product-icon";
+import { ProductMark } from "@/components/product-mark";
 import { StatusPill } from "@/components/status-pill";
 import { TagChip } from "@/components/tag-chip";
 import { ProductShot, ProductThumb } from "@/components/product-shot";
@@ -27,7 +27,7 @@ export function ProductCard({
       <ProductThumb product={product} eager={eagerImage} />
       <div className="pc-top">
         <span className="pc-ic" aria-hidden>
-          <ProductIcon icon={product.icon} />
+          <ProductMark mark={product.mark} icon={product.icon} name={product.name} size={40} />
         </span>
         <StatusPill status={product.status} />
       </div>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ProductIcon } from "@/components/product-icon";
+import { ProductMark } from "@/components/product-mark";
 import { PRODUCT_IMAGE_SIZE, type Product } from "@/lib/products";
 
 /**
@@ -44,7 +44,7 @@ export function ProductThumb({ product, eager }: { product: Product; eager?: boo
   if (!product.image) {
     return (
       <span className="pc-shot pc-shot-blank" aria-hidden>
-        <ProductIcon icon={product.icon} size={34} />
+        <ProductMark mark={product.mark} icon={product.icon} name={product.name} size={40} />
       </span>
     );
   }
