@@ -1,95 +1,86 @@
 import type { CSSProperties } from "react";
 
-export type HomepageVisualKey =
+export type ProductVisualKey =
   | "build-or-busted"
   | "builderbae"
   | "constructos"
   | "pactpilot"
   | "supplier-marketplace"
-  | "eluvial-academy"
-  | "house-hackers";
+  | "eluvial-academy";
+
+type ProductVisualMode = "badge" | "tile" | "cover";
 
 type ProductVisualSpec = {
-  mono: string;
   keyColor: string;
   inkColor: string;
   badgeBackground: string;
+  badgeBorder: string;
   badgeForeground: string;
   tileBackground: string;
-  titleColor: string;
+  tileForeground: string;
   dotColor: string;
 };
 
-const specs: Record<HomepageVisualKey, ProductVisualSpec> = {
+const specs: Record<ProductVisualKey, ProductVisualSpec> = {
   "build-or-busted": {
-    mono: "BoB",
     keyColor: "#FF5A1F",
     inkColor: "#0E1420",
-    badgeBackground: "#2d140d",
+    badgeBackground: "#281610",
+    badgeBorder: "rgba(255,90,31,.45)",
     badgeForeground: "#ffb08d",
     tileBackground: "#281610",
-    titleColor: "#ffb08d",
+    tileForeground: "#ffb08d",
     dotColor: "#FF5A1F",
   },
   builderbae: {
-    mono: "MM",
     keyColor: "#F2B01E",
     inkColor: "#191510",
-    badgeBackground: "#33260f",
-    badgeForeground: "#ffd584",
-    tileBackground: "#261e13",
-    titleColor: "#f8d27b",
+    badgeBackground: "#2a1f0d",
+    badgeBorder: "rgba(242,176,30,.4)",
+    badgeForeground: "#ffe09e",
+    tileBackground: "#241c12",
+    tileForeground: "#f8d27b",
     dotColor: "#F2B01E",
   },
   constructos: {
-    mono: "OS",
     keyColor: "#14C8B4",
     inkColor: "#14171A",
-    badgeBackground: "#132423",
-    badgeForeground: "#8ef1e4",
+    badgeBackground: "#122020",
+    badgeBorder: "rgba(20,200,180,.36)",
+    badgeForeground: "#9ff1e7",
     tileBackground: "#122020",
-    titleColor: "#9ff1e7",
+    tileForeground: "#9ff1e7",
     dotColor: "#14C8B4",
   },
   pactpilot: {
-    mono: "PP",
     keyColor: "#F2C14E",
     inkColor: "#0B1D2E",
-    badgeBackground: "#243140",
+    badgeBackground: "#1a2937",
+    badgeBorder: "rgba(242,193,78,.38)",
     badgeForeground: "#fde3a1",
     tileBackground: "#162534",
-    titleColor: "#f8df9b",
+    tileForeground: "#fde3a1",
     dotColor: "#F2C14E",
   },
   "supplier-marketplace": {
-    mono: "SM",
     keyColor: "#00A87C",
     inkColor: "#122118",
     badgeBackground: "#102320",
+    badgeBorder: "rgba(0,168,124,.35)",
     badgeForeground: "#9fe0be",
     tileBackground: "#102320",
-    titleColor: "#9fe0be",
+    tileForeground: "#9fe0be",
     dotColor: "#00A87C",
   },
   "eluvial-academy": {
-    mono: "EA",
     keyColor: "#8298FC",
     inkColor: "#171f3d",
     badgeBackground: "#162038",
-    badgeForeground: "#c4cbff",
-    tileBackground: "#162038",
-    titleColor: "#c4cbff",
-    dotColor: "#8298FC",
-  },
-  "house-hackers": {
-    mono: "HH",
-    keyColor: "#8298FC",
-    inkColor: "#15183A",
-    badgeBackground: "#1b1f45",
-    badgeForeground: "#d5dbff",
-    tileBackground: "#1b1f45",
-    titleColor: "#d5dbff",
-    dotColor: "#8298FC",
+    badgeBorder: "rgba(130,152,252,.35)",
+    badgeForeground: "#d3dbff",
+    tileBackground: "linear-gradient(180deg,#162038,#193020)",
+    tileForeground: "#d3dbff",
+    dotColor: "#4c8f59",
   },
 };
 
@@ -102,96 +93,241 @@ function coverGrid(inkColor: string): CSSProperties {
   };
 }
 
-export function getHomepageVisualSpec(key: HomepageVisualKey) {
+export function getProductVisualSpec(key: ProductVisualKey) {
   return specs[key];
 }
 
-export function HomepageProductBadge({
-  visualKey,
-  size = "md",
-}: {
-  visualKey: HomepageVisualKey;
-  size?: "sm" | "md";
-}) {
+function ProductBadgeShape({ visualKey }: { visualKey: ProductVisualKey }) {
   const spec = specs[visualKey];
-  const sizeClass =
-    size === "sm"
-      ? "h-7 min-w-7 px-2 text-[10px]"
-      : "h-8 min-w-8 px-2.5 text-[11px]";
+  const stroke = { borderColor: spec.badgeBorder };
+
+  if (visualKey === "constructos") {
+    return (
+      <span className="relative block h-4 w-4">
+        <span className="absolute left-[1px] top-0 h-4 w-[3px] rounded-full bg-[#14C8B4]" />
+        <span className="absolute left-[6px] top-[2px] h-[3px] w-[9px] rounded-full bg-[#9ff1e7]" />
+        <span className="absolute left-[6px] top-[7px] h-[3px] w-[7px] rounded-full bg-[#9ff1e7]/80" />
+        <span className="absolute left-[6px] top-[12px] h-[3px] w-[8px] rounded-full bg-[#9ff1e7]/55" />
+      </span>
+    );
+  }
+
+  if (visualKey === "build-or-busted") {
+    return (
+      <span className="grid h-4 w-[18px] grid-cols-3 gap-[2px]">
+        <span className="bg-[#14b86a]" />
+        <span className="bg-[#F2C14E]" />
+        <span className="bg-[#FF5A1F]" />
+      </span>
+    );
+  }
+
+  if (visualKey === "builderbae") {
+    return (
+      <span className="relative block h-4 w-[18px]">
+        <span className="absolute inset-x-0 bottom-0 h-[11px] rounded-[2px] bg-[#F2B01E]" />
+        <span className="absolute left-[2px] top-[2px] h-[5px] w-[14px] rounded-[2px] border" style={stroke} />
+        <span className="absolute left-[4px] top-[4px] h-px w-[10px] bg-[#191510]" />
+      </span>
+    );
+  }
+
+  if (visualKey === "supplier-marketplace") {
+    return (
+      <span className="grid h-4 w-4 grid-cols-2 gap-[2px]">
+        {[0, 1, 2, 3].map((i) => (
+          <span
+            key={i}
+            className="rounded-[1px]"
+            style={{ backgroundColor: i === 1 || i === 2 ? "#00A87C" : "rgba(159,224,190,.22)" }}
+          />
+        ))}
+      </span>
+    );
+  }
+
+  if (visualKey === "pactpilot") {
+    return (
+      <span className="relative block h-4 w-[18px] rounded-[2px] border border-[#F2C14E]/35">
+        <span className="absolute left-[3px] top-[3px] h-px w-[10px] bg-[#fde3a1]/70" />
+        <span className="absolute left-[3px] top-[7px] h-px w-[8px] bg-[#fde3a1]/55" />
+        <span className="absolute left-[3px] top-[11px] h-px w-[12px] bg-[#F2C14E]" />
+      </span>
+    );
+  }
 
   return (
-    <span
-      className={`inline-flex items-center justify-center font-semibold tracking-[0.08em] ${sizeClass}`}
-      style={{ backgroundColor: spec.badgeBackground, color: spec.badgeForeground }}
-    >
-      {spec.mono}
+    <span className="relative block h-4 w-[18px]">
+      <span className="absolute bottom-0 left-0 h-[7px] w-[5px] bg-[#8298FC]" />
+      <span className="absolute bottom-0 left-[6px] h-[10px] w-[5px] bg-[#4c8f59]" />
+      <span className="absolute bottom-0 left-[12px] h-[13px] w-[5px] bg-[#8298FC]" />
     </span>
   );
 }
 
-export function HomepageHeroTile({ visualKey, name }: { visualKey: HomepageVisualKey; name: string }) {
+function ProductBadge({ visualKey, size = "md" }: { visualKey: ProductVisualKey; size?: "sm" | "md" }) {
   const spec = specs[visualKey];
+  const sizeClass = size === "sm" ? "h-7 w-7" : "h-8 w-8";
 
   return (
-    <div
-      className="grid gap-3.5 border px-[11px] py-3"
+    <span
+      className={`inline-flex items-center justify-center overflow-hidden border ${sizeClass}`}
       style={{
-        borderColor: "rgba(255,255,255,.1)",
-        background: spec.tileBackground,
+        background: spec.badgeBackground,
+        borderColor: spec.badgeBorder,
+        color: spec.badgeForeground,
       }}
+      aria-hidden="true"
     >
-      <div className="flex items-center justify-between">
-        <HomepageProductBadge visualKey={visualKey} size="sm" />
-        <span
-          className="h-2 w-2 rounded-none"
-          style={{ backgroundColor: spec.dotColor }}
-        />
+      <ProductBadgeShape visualKey={visualKey} />
+    </span>
+  );
+}
+
+function HeroTileSurface({ visualKey }: { visualKey: ProductVisualKey }) {
+  if (visualKey === "constructos") {
+    return (
+      <div className="grid gap-[5px]">
+        <div className="flex items-center gap-[6px]">
+          <span className="h-7 w-[3px] bg-[#14C8B4]" />
+          <div className="grid flex-1 gap-[5px]">
+            <span className="h-[5px] w-[70%] bg-[#9ff1e7]/85" />
+            <span className="h-[5px] w-[48%] bg-[#9ff1e7]/55" />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-[5px]">
+          <span className="h-6 border border-white/10 bg-white/[0.04]" />
+          <span className="h-6 border border-[#14C8B4]/35 bg-[#14C8B4]/12" />
+        </div>
       </div>
-      <span className="text-[11px] leading-[1.25]" style={{ color: spec.titleColor }}>
-        {name}
-      </span>
+    );
+  }
+
+  if (visualKey === "build-or-busted") {
+    return (
+      <div className="grid gap-[6px]">
+        <div className="border border-white/10 bg-white/[0.05] p-[6px]">
+          <span className="block h-[4px] w-[58%] bg-white/30" />
+          <span className="mt-[6px] block h-[8px] w-[45%] bg-white/80" />
+          <span className="mt-[6px] block h-[4px] w-full bg-white/10">
+            <span className="block h-[4px] w-[65%] bg-[#FF5A1F]" />
+          </span>
+        </div>
+        <div className="grid grid-cols-3 gap-[4px]">
+          <span className="h-4 bg-[#14b86a]" />
+          <span className="h-4 bg-[#F2C14E]" />
+          <span className="h-4 bg-[#d84343]" />
+        </div>
+      </div>
+    );
+  }
+
+  if (visualKey === "builderbae") {
+    return (
+      <div className="grid gap-[6px]">
+        <div className="border border-white/10 bg-white/[0.05] p-[6px]">
+          <span className="block h-[4px] w-[62%] bg-white/28" />
+          <span className="mt-[6px] block h-[8px] w-[40%] bg-[#F2B01E]" />
+        </div>
+        <div className="flex items-center justify-between gap-[6px]">
+          <span className="h-4 flex-1 bg-white/10" />
+          <span className="h-4 w-10 bg-[#F2B01E]" />
+        </div>
+      </div>
+    );
+  }
+
+  if (visualKey === "supplier-marketplace") {
+    return (
+      <div className="grid grid-cols-3 gap-[5px]">
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <span
+            key={i}
+            className="h-5 rounded-[2px]"
+            style={{ backgroundColor: i === 1 || i === 4 ? "#00A87C" : "rgba(255,255,255,.08)" }}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  if (visualKey === "pactpilot") {
+    return (
+      <div className="grid gap-[6px]">
+        <div className="border border-white/10 bg-white/[0.05] p-[6px]">
+          <span className="block h-[4px] w-[58%] bg-white/28" />
+          <span className="mt-[5px] block h-[4px] w-[75%] bg-white/16" />
+          <span className="mt-[5px] block h-[4px] w-[62%] bg-white/16" />
+        </div>
+        <div className="flex gap-[4px]">
+          <span className="h-4 w-6 bg-[#f05454]" />
+          <span className="h-4 w-6 bg-[#F2C14E]" />
+          <span className="h-4 w-6 bg-[#14b86a]" />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid gap-[6px]">
+      <div className="flex items-end gap-[4px]">
+        <span className="h-4 w-4 bg-[#8298FC]" />
+        <span className="h-6 w-4 bg-[#4c8f59]" />
+        <span className="h-8 w-4 bg-[#8298FC]" />
+      </div>
+      <span className="h-[4px] w-[70%] bg-white/22" />
     </div>
   );
 }
 
 function BuildOrBustedCover({ compact = false }: { compact?: boolean }) {
-  const metric = compact ? "text-[11px]" : "text-[14px]";
-  const body = compact ? "p-4" : "p-6";
-
   return (
-    <div className={`relative h-full w-full overflow-hidden ${body}`} style={coverGrid("#0E1420")}>
-      <div className="absolute inset-x-0 top-0 h-1.5 bg-[#FF5A1F]" />
-      <div className="grid h-full gap-4 min-[700px]:grid-cols-[1.15fr_.85fr]">
-        <div className="flex flex-col justify-between">
-          <div className="rounded-[10px] border border-white/10 bg-white/[0.06] p-4">
-            <div className="text-[10px] uppercase tracking-[0.12em] text-white/55">Acquisition</div>
-            <div className={`mt-2 font-semibold tracking-[-0.03em] text-white ${compact ? "text-[28px]" : "text-[34px]"}`}>
-              $312k
+    <div className="relative h-full w-full overflow-hidden p-4 sm:p-5" style={coverGrid("#0E1420")}>
+      <div className="absolute inset-x-0 top-0 h-[3px] bg-[#FF5A1F]" />
+      <div className="grid h-full gap-3">
+        <div className="grid gap-3 min-[700px]:grid-cols-[1.18fr_.82fr]">
+          <div className="rounded-[12px] border border-white/10 bg-white/[0.05] p-4">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="text-[9px] uppercase tracking-[0.14em] text-white/55">Deal metric</div>
+                <div className={`mt-2 font-semibold tracking-[-0.035em] text-white ${compact ? "text-[24px]" : "text-[34px]"}`}>
+                  $312k
+                </div>
+              </div>
+              <div className="border border-[#FF5A1F]/35 bg-[#FF5A1F]/12 px-2 py-1 text-[9px] uppercase tracking-[0.14em] text-[#ffb08d]">
+                Review
+              </div>
             </div>
-            <div className="mt-3 h-2 w-full bg-white/10">
-              <div className="h-2 w-[72%] bg-[#FF5A1F]" />
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {[
+                ["DSCR", "1.42"],
+                ["Cash-on-cash", "13.8%"],
+                ["Exit cap", "6.1%"],
+                ["Spread", "+$42k"],
+              ].map(([label, value]) => (
+                <div key={label} className="border border-white/10 bg-[#0a111b] p-3">
+                  <div className="text-[9px] uppercase tracking-[0.12em] text-white/50">{label}</div>
+                  <div className="mt-1 text-[14px] font-medium text-white">{value}</div>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-2">
-            <span className="bg-[#14b86a] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
-              Build
-            </span>
-            <span className="bg-[#d9a441] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#041428]">
-              Hold
-            </span>
-            <span className="bg-[#d84343] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
-              Busted
-            </span>
-          </div>
-        </div>
-        <div className="grid gap-3">
-          {["DSCR 1.42", "Cash-on-cash 13.8%", "Stabilized spread +$42k"].map((item) => (
-            <div key={item} className="rounded-[10px] border border-white/10 bg-white/[0.05] p-3">
-              <div className={`text-white ${metric}`}>{item}</div>
+          <div className="grid gap-3">
+            <div className="border border-white/10 bg-white/[0.05] p-3">
+              <div className="text-[9px] uppercase tracking-[0.12em] text-white/50">Property</div>
+              <div className="mt-2 text-[13px] text-white">12-unit value-add · South Dallas</div>
+              <div className="mt-3 h-[5px] bg-white/10">
+                <div className="h-[5px] w-[72%] bg-[#FF5A1F]" />
+              </div>
             </div>
-          ))}
-          <div className="rounded-[10px] border border-[#FF5A1F]/50 bg-[#FF5A1F]/10 p-3 text-[10px] uppercase tracking-[0.12em] text-[#ffb08d]">
-            Underwriting verdict surface
+            <div className="grid grid-cols-3 gap-2">
+              <span className="bg-[#14b86a] px-2 py-1 text-center text-[9px] font-semibold uppercase tracking-[0.1em] text-white">Build</span>
+              <span className="bg-[#F2C14E] px-2 py-1 text-center text-[9px] font-semibold uppercase tracking-[0.1em] text-[#041428]">Hold</span>
+              <span className="bg-[#d84343] px-2 py-1 text-center text-[9px] font-semibold uppercase tracking-[0.1em] text-white">Busted</span>
+            </div>
+            <div className="border border-[#FF5A1F]/35 bg-[#FF5A1F]/10 p-3 text-[10px] uppercase tracking-[0.12em] text-[#ffb08d]">
+              Orange action bar · underwriting verdict
+            </div>
           </div>
         </div>
       </div>
@@ -203,50 +339,40 @@ function MaterialMarketplaceCover({ compact = false }: { compact?: boolean }) {
   return (
     <div className="relative h-full w-full overflow-hidden p-4" style={coverGrid("#191510")}>
       <div className="grid h-full gap-3">
-        <div className="flex items-center justify-between rounded-[10px] border border-white/10 bg-white/[0.06] px-3 py-2">
-          <div className="text-[10px] uppercase tracking-[0.12em] text-white/55">Procurement lot</div>
-          <div className="rounded-full bg-[#F2B01E] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#191510]">
-            Price
-          </div>
-        </div>
-        <div className="grid gap-3 min-[700px]:grid-cols-[1fr_.8fr]">
-          <div className="rounded-[12px] border border-white/10 bg-white/[0.05] p-3">
-            <div className="text-[13px] font-medium text-white">Division 09 finish package</div>
-            <div className="mt-2 space-y-2">
-              {["2,480 sq ft", "Lead time 6 days", "Verified mill + distributor"].map((row) => (
-                <div key={row} className="h-2 rounded-full bg-white/12" aria-hidden="true">
-                  <div className="sr-only">{row}</div>
-                </div>
-              ))}
+        <div className="border border-white/10 bg-white/[0.05] p-3">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <div className="text-[9px] uppercase tracking-[0.12em] text-white/50">Procurement listing</div>
+              <div className="mt-1 text-[13px] font-medium text-white">Reclaimed oak flooring pallet</div>
             </div>
-            <div className="mt-4 flex items-center gap-2">
-              <span className="rounded border border-white/15 px-2 py-1 text-[9px] uppercase tracking-[0.1em] text-white/70">
-                Provenance
-              </span>
-              <span className="rounded border border-[#F2B01E]/35 bg-[#F2B01E]/12 px-2 py-1 text-[9px] uppercase tracking-[0.1em] text-[#ffd37c]">
-                Quantity
-              </span>
+            <span className="border border-[#F2B01E]/35 bg-[#F2B01E]/12 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-[#ffe09e]">
+              Verified
+            </span>
+          </div>
+          <div className="mt-2 text-[10px] text-white/60">Nashville, TN · Division 09 finish package</div>
+        </div>
+        <div className="grid flex-1 gap-3 min-[700px]:grid-cols-[1fr_.9fr]">
+          <div className="border border-white/10 bg-white/[0.05] p-3">
+            <div className="flex flex-wrap gap-2">
+              <span className="border border-white/12 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-white/65">Qty 144</span>
+              <span className="border border-[#F2B01E]/35 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-[#ffe09e]">Provenance</span>
+            </div>
+            <div className="mt-3 space-y-2">
+              <div className="h-[5px] w-[84%] bg-white/16" />
+              <div className="h-[5px] w-[67%] bg-white/16" />
+              <div className="h-[5px] w-[52%] bg-white/16" />
             </div>
           </div>
           <div className="grid gap-3">
-            <div className="rounded-[12px] border border-white/10 bg-white/[0.05] p-3">
-              <div className="text-[10px] uppercase tracking-[0.12em] text-white/55">Unit price</div>
-              <div className={`mt-2 font-semibold tracking-[-0.03em] text-[#F2B01E] ${compact ? "text-[24px]" : "text-[30px]"}`}>
+            <div className="border border-white/10 bg-white/[0.05] p-3">
+              <div className="text-[9px] uppercase tracking-[0.12em] text-white/50">Price</div>
+              <div className={`mt-2 font-semibold tracking-[-0.03em] text-[#F2B01E] ${compact ? "text-[22px]" : "text-[30px]"}`}>
                 $18.40
               </div>
+              <div className="mt-1 text-[10px] text-white/38 line-through">$22.10</div>
             </div>
-            <div className="rounded-[12px] border border-white/10 bg-white/[0.05] p-3">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] uppercase tracking-[0.12em] text-white/55">Qty</span>
-                <span className="text-[12px] text-white">144</span>
-              </div>
-              <div className="mt-3 flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center border border-white/15 text-white">−</span>
-                <span className="h-2 flex-1 bg-white/10">
-                  <span className="block h-2 w-[58%] bg-[#F2B01E]" />
-                </span>
-                <span className="flex h-7 w-7 items-center justify-center border border-white/15 text-white">+</span>
-              </div>
+            <div className="border border-[#F2B01E]/25 bg-[#F2B01E]/10 p-3 text-[10px] uppercase tracking-[0.12em] text-[#ffe09e]">
+              8 pallets left
             </div>
           </div>
         </div>
@@ -259,43 +385,40 @@ function ConstructOSCover({ compact = false }: { compact?: boolean }) {
   return (
     <div className="relative h-full w-full overflow-hidden p-4" style={coverGrid("#14171A")}>
       <div className="grid h-full gap-3 min-[700px]:grid-cols-[.85fr_1.15fr]">
-        <div className="relative rounded-[12px] border border-white/10 bg-white/[0.04] p-4">
-          <div className="absolute bottom-4 left-4 top-4 w-[3px] rounded-full bg-[#14C8B4]" />
-          <div className="ml-4 grid gap-3">
-            {[0.42, 0.35, 0.6, 0.3].map((width, index) => (
-              <div key={index} className="relative rounded-[8px] border border-white/10 bg-white/[0.04] p-3">
-                <div
-                  className="h-2 rounded-full bg-white/12"
-                  style={{ width: `${width * 100}%` }}
-                />
-                {index === 2 && (
-                  <div className="absolute inset-0 rounded-[8px] ring-1 ring-[#14C8B4] shadow-[0_0_18px_rgba(20,200,180,.25)]" />
-                )}
+        <div className="relative border border-white/10 bg-white/[0.04] p-4">
+          <div className="absolute bottom-4 left-4 top-4 w-[4px] bg-[#14C8B4]" />
+          <div className="ml-5 grid gap-3">
+            {[0.44, 0.3, 0.62, 0.36].map((width, index) => (
+              <div key={index} className="relative border border-white/10 bg-white/[0.04] p-3">
+                <div className="h-[5px] bg-white/16" style={{ width: `${width * 100}%` }} />
+                {index === 2 && <div className="absolute inset-0 border border-[#14C8B4]/50 shadow-[0_0_20px_rgba(20,200,180,.18)]" />}
               </div>
             ))}
           </div>
         </div>
         <div className="grid gap-3">
-          <div className="rounded-[12px] border border-white/10 bg-white/[0.05] p-4">
-            <div className="flex items-center justify-between">
-              <div className="text-[10px] uppercase tracking-[0.12em] text-white/55">Decision dashboard</div>
-              <div className="rounded-full bg-[#14C8B4]/15 px-2 py-1 text-[9px] uppercase tracking-[0.1em] text-[#89f0e3]">
+          <div className="border border-white/10 bg-white/[0.05] p-4">
+            <div className="flex items-center justify-between gap-2">
+              <div className="text-[9px] uppercase tracking-[0.12em] text-white/50">Decision dashboard</div>
+              <span className="border border-[#14C8B4]/35 bg-[#14C8B4]/12 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-[#9ff1e7]">
                 AI signal
-              </div>
+              </span>
             </div>
-            <div className={`mt-3 font-semibold tracking-[-0.03em] text-white ${compact ? "text-[20px]" : "text-[24px]"}`}>
+            <div className={`mt-3 font-semibold tracking-[-0.03em] text-white ${compact ? "text-[18px]" : "text-[24px]"}`}>
               Margin leak in Division 03
             </div>
-            <div className="mt-3 h-2 w-full bg-white/10">
-              <div className="h-2 w-[64%] bg-[#14C8B4]" />
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              {["Procurement", "Ops", "BD", "Reporting"].map((label) => (
+                <span key={label} className="border border-white/10 bg-[#121719] px-2 py-2 text-[10px] text-white/72">
+                  {label}
+                </span>
+              ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            {["BD pipeline", "Procurement", "Executive report", "Logistics"].map((item) => (
-              <div key={item} className="rounded-[12px] border border-white/10 bg-white/[0.05] p-3 text-[11px] text-white/75">
-                {item}
-              </div>
-            ))}
+          <div className="grid grid-cols-3 gap-2">
+            <span className="h-8 border border-white/10 bg-white/[0.04]" />
+            <span className="h-8 border border-[#14C8B4]/35 bg-[#14C8B4]/12" />
+            <span className="h-8 border border-white/10 bg-white/[0.04]" />
           </div>
         </div>
       </div>
@@ -306,45 +429,44 @@ function ConstructOSCover({ compact = false }: { compact?: boolean }) {
 function PactPilotCover({ compact = false }: { compact?: boolean }) {
   return (
     <div className="relative h-full w-full overflow-hidden p-4" style={coverGrid("#0B1D2E")}>
-      <div className="grid h-full gap-3 min-[700px]:grid-cols-[1fr_.82fr]">
-        <div className="rounded-[12px] border border-white/12 bg-white/[0.06] p-4">
-          <div className="space-y-2">
-            {[1, 2, 3, 4].map((line) => (
-              <div key={line} className="h-2 rounded-full bg-white/18" />
-            ))}
+      <div className="grid h-full gap-3 min-[700px]:grid-cols-[1.1fr_.9fr]">
+        <div className="border border-white/10 bg-white/[0.05] p-4">
+          <div className="flex items-center justify-between gap-2">
+            <div className="text-[9px] uppercase tracking-[0.12em] text-white/50">Finding</div>
+            <span className="border border-[#F2C14E]/35 bg-[#F2C14E]/12 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-[#fde3a1]">
+              Counsel review
+            </span>
           </div>
-          <div className="mt-3 rounded-[10px] border border-[#F2C14E]/40 bg-[#F2C14E]/12 p-3">
-            <div className="flex items-center gap-2">
-              <span className="h-3 w-3 rounded-full bg-[#F2C14E]" />
-              <span className="h-2 flex-1 rounded-full bg-white/30" />
+          <div className="mt-3 grid grid-cols-[1fr_1fr] gap-3">
+            <div className="space-y-2 border-r border-white/10 pr-3">
+              <div className="h-[5px] w-[86%] bg-white/18" />
+              <div className="h-[5px] w-[72%] bg-white/14" />
+              <div className="h-[5px] w-[66%] bg-white/14" />
+              <div className="h-[5px] w-[80%] bg-white/14" />
             </div>
-          </div>
-          <div className="mt-3 space-y-2">
-            <div className="h-2 w-[88%] rounded-full bg-white/14" />
-            <div className="h-2 w-[70%] rounded-full bg-white/14" />
+            <div className="space-y-2">
+              <div className="h-[5px] w-[76%] bg-white/18" />
+              <div className="h-[5px] w-[58%] bg-white/14" />
+              <div className="h-[5px] w-[63%] bg-white/14" />
+              <div className="h-[5px] w-[49%] bg-white/14" />
+            </div>
           </div>
         </div>
         <div className="grid gap-3">
-          <div className="rounded-[12px] border border-white/10 bg-white/[0.05] p-3">
-            <div className="text-[10px] uppercase tracking-[0.12em] text-white/55">Findings</div>
+          <div className="border border-white/10 bg-white/[0.05] p-3">
+            <div className="text-[9px] uppercase tracking-[0.12em] text-white/50">Status</div>
             <div className="mt-3 flex flex-wrap gap-2">
-              <span className="rounded bg-[#f05454] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
-                High
-              </span>
-              <span className="rounded bg-[#F2C14E] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#0B1D2E]">
-                Review
-              </span>
-              <span className="rounded bg-[#14b86a] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
-                Clear
-              </span>
+              <span className="bg-[#f05454] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">High</span>
+              <span className="bg-[#F2C14E] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#0B1D2E]">Review</span>
+              <span className="bg-[#14b86a] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">Clear</span>
             </div>
           </div>
-          <div className="rounded-[12px] border border-white/10 bg-white/[0.05] p-3">
-            <div className="text-[10px] uppercase tracking-[0.12em] text-white/55">Clause risk</div>
-            <div className={`mt-2 font-semibold tracking-[-0.03em] text-white ${compact ? "text-[18px]" : "text-[22px]"}`}>
+          <div className="border border-white/10 bg-white/[0.05] p-3">
+            <div className="text-[9px] uppercase tracking-[0.12em] text-white/50">Clause</div>
+            <div className={`mt-2 font-semibold tracking-[-0.03em] text-white ${compact ? "text-[16px]" : "text-[22px]"}`}>
               Missing indemnity exception
             </div>
-            <div className="mt-3 rounded border border-[#F2C14E]/40 px-2 py-1 text-[9px] uppercase tracking-[0.1em] text-[#fde3a1]">
+            <div className="mt-3 border border-[#F2C14E]/35 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-[#fde3a1]">
               Not legal advice
             </div>
           </div>
@@ -354,16 +476,50 @@ function PactPilotCover({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export function HomepageProductCover({
-  visualKey,
-  compact = false,
-}: {
-  visualKey: Extract<
-    HomepageVisualKey,
-    "build-or-busted" | "builderbae" | "constructos" | "pactpilot"
-  >;
+type ProductVisualProps = {
+  visualKey: ProductVisualKey;
+  mode: ProductVisualMode;
+  name?: string;
   compact?: boolean;
-}) {
+  size?: "sm" | "md";
+};
+
+export function ProductVisual({
+  visualKey,
+  mode,
+  name,
+  compact = false,
+  size = "md",
+}: ProductVisualProps) {
+  const spec = specs[visualKey];
+
+  if (mode === "badge") {
+    return <ProductBadge visualKey={visualKey} size={size} />;
+  }
+
+  if (mode === "tile") {
+    return (
+      <div
+        className="grid gap-3 border px-[11px] py-3"
+        style={{
+          borderColor: "rgba(255,255,255,.1)",
+          background: spec.tileBackground,
+        }}
+      >
+        <div className="flex items-start justify-between gap-2">
+          <ProductBadge visualKey={visualKey} size="sm" />
+          <span className="h-2 w-2 shrink-0" style={{ backgroundColor: spec.dotColor }} />
+        </div>
+        <HeroTileSurface visualKey={visualKey} />
+        {name ? (
+          <span className="text-[11px] leading-[1.25]" style={{ color: spec.tileForeground }}>
+            {name}
+          </span>
+        ) : null}
+      </div>
+    );
+  }
+
   if (visualKey === "build-or-busted") return <BuildOrBustedCover compact={compact} />;
   if (visualKey === "builderbae") return <MaterialMarketplaceCover compact={compact} />;
   if (visualKey === "constructos") return <ConstructOSCover compact={compact} />;

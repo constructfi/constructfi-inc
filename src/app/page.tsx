@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  getHomepageVisualSpec,
-  HomepageHeroTile,
-  HomepageProductBadge,
-  HomepageProductCover,
+  getProductVisualSpec,
+  ProductVisual,
 } from "@/components/homepage-product-visuals";
 
 export const metadata: Metadata = {
@@ -420,7 +418,12 @@ export default function HomePage() {
                   </div>
                   <div className="mt-[18px] grid grid-cols-2 gap-2">
                     {heroTiles.map((tile) => (
-                      <HomepageHeroTile key={tile.name} visualKey={tile.visualKey} name={tile.name} />
+                      <ProductVisual
+                        key={tile.name}
+                        visualKey={tile.visualKey}
+                        mode="tile"
+                        name={tile.name}
+                      />
                     ))}
                   </div>
                   <div className="mt-[14px] flex items-center gap-1.5 border-t border-white/10 py-3">
@@ -549,10 +552,10 @@ export default function HomePage() {
             >
               <div className="h-9" style={{ backgroundColor: featuredLead.accentColor }} />
               <div className="relative h-[352px] overflow-hidden bg-[#071522]">
-                <HomepageProductCover visualKey={featuredLead.visualKey} />
+                <ProductVisual visualKey={featuredLead.visualKey} mode="cover" />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.05)_0%,rgba(4,20,40,0.12)_28%,rgba(4,20,40,0.82)_100%)]" />
                 <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2.5">
-                  <HomepageProductBadge visualKey={featuredLead.visualKey} />
+                  <ProductVisual visualKey={featuredLead.visualKey} mode="badge" />
                   <span className="border border-white/15 bg-black/20 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
                     {featuredLead.access}
                   </span>
@@ -594,7 +597,7 @@ export default function HomePage() {
 
             <div className="grid gap-5">
               {featuredRest.map((product) => {
-                const spec = getHomepageVisualSpec(product.visualKey);
+                const spec = getProductVisualSpec(product.visualKey);
 
                 return (
                 <Link
@@ -603,10 +606,10 @@ export default function HomePage() {
                   className="grid overflow-hidden border border-[#d3dfe9] bg-white transition hover:-translate-y-0.5 hover:border-teal hover:shadow-[0_14px_32px_-26px_rgba(4,20,40,0.45)] min-[700px]:grid-cols-[168px_minmax(0,1fr)]"
                 >
                   <div className="relative h-[160px] overflow-hidden border-b border-[#d3dfe9] bg-[#071522] min-[700px]:h-[200px] min-[700px]:border-b-0 min-[700px]:border-r">
-                    <HomepageProductCover visualKey={product.visualKey} compact />
+                    <ProductVisual visualKey={product.visualKey} mode="cover" compact />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.04)_0%,rgba(4,20,40,0.14)_34%,rgba(4,20,40,0.86)_100%)]" />
                     <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
-                      <HomepageProductBadge visualKey={product.visualKey} size="sm" />
+                      <ProductVisual visualKey={product.visualKey} mode="badge" size="sm" />
                       <span className="border border-white/15 bg-black/20 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
                         {product.access}
                       </span>
