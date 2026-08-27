@@ -1,38 +1,18 @@
 import Image from "next/image";
 
-const variants = {
-  header: {
-    gap: "gap-[11px]",
-    emblem: "h-[30px]",
-    wordmark: "text-[19px]",
-  },
-  footer: {
-    gap: "gap-[10px]",
-    emblem: "h-[26px]",
-    wordmark: "text-[17px]",
-  },
-} as const;
-
-type BrandLockupProps = {
-  variant: keyof typeof variants;
-  priority?: boolean;
-};
-
-export function BrandLockup({ variant, priority = false }: BrandLockupProps) {
-  const styles = variants[variant];
-
+export function BrandLockup({ priority = false }: { priority?: boolean }) {
   return (
-    <span className={`inline-flex items-center ${styles.gap}`}>
+    <span className="inline-flex items-center gap-2.5 sm:gap-[11px]">
       <Image
         src="/brand/constructfi-emblem.svg"
         alt=""
         aria-hidden="true"
-        width={variant === "header" ? 30 : 26}
-        height={variant === "header" ? 30 : 26}
-        className={`${styles.emblem} w-auto shrink-0`}
+        width={30}
+        height={30}
+        className="h-6 w-auto shrink-0 sm:h-[30px]"
         priority={priority}
       />
-      <span className={`${styles.wordmark} font-bold leading-none tracking-[-0.02em] text-white`}>
+      <span className="whitespace-nowrap text-[17px] font-bold leading-none tracking-[-0.02em] text-white sm:text-[19px]">
         Construct<span className="text-mint">Fi</span>
       </span>
     </span>

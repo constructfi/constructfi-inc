@@ -39,14 +39,14 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50" ref={navRef}>
       <nav className="border-b border-white/10 bg-ink">
-        <div className="mx-auto flex h-[70px] max-w-[1280px] items-center gap-4 px-8 lg:gap-6">
+        <div className="mx-auto flex h-[70px] max-w-[1280px] items-center gap-4 px-5 sm:px-8 lg:gap-6">
           <Link
             className="inline-flex shrink-0 items-center"
             href="/"
             aria-label="ConstructFi home"
             data-testid="link-home"
           >
-            <BrandLockup variant="header" priority />
+            <BrandLockup priority />
           </Link>
 
           <div className="hidden items-center lg:flex">
@@ -180,7 +180,7 @@ export function SiteHeader() {
           role="menu"
           aria-label="Main pages"
         >
-          <div className="mx-auto grid max-w-[1280px] gap-1 px-8 py-4">
+          <div className="mx-auto grid max-w-[1280px] gap-1 px-5 py-4 sm:px-8">
             {MOBILE_NAV.map((item) => (
               <Link
                 key={item.href}

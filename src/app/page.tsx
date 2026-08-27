@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  getHomepageVisualSpec,
+  HomepageHeroTile,
+  HomepageProductBadge,
+  HomepageProductCover,
+} from "@/components/homepage-product-visuals";
 
 export const metadata: Metadata = {
   title: "ConstructFi — The ecosystem for people who build",
@@ -8,9 +14,9 @@ export const metadata: Metadata = {
     "ConstructFi connects the tools, marketplaces, intelligence, education, and experiences that help contractors, suppliers, developers, investors, and entrepreneurs build what is next.",
 };
 
-const shell = "mx-auto max-w-[1280px] px-8";
+const shell = "mx-auto max-w-[1280px] px-5 sm:px-8";
 const lightButton =
-  "inline-flex items-center justify-center px-6 py-4 text-[15.5px] font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2";
+  "inline-flex min-h-12 items-center justify-center px-6 py-4 text-[15.5px] font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2";
 const sectionLabel =
   "border-b border-line pb-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-navy/55";
 
@@ -28,46 +34,28 @@ const audiences = [
 
 const heroTiles = [
   {
+    visualKey: "constructos",
     name: "ConstructOS",
-    mark: "/products/constructos-mark.svg",
-    surface: "bg-[#0e2430]",
-    nameClass: "text-[#94efe0]",
-    dot: "bg-[#00d19a]",
   },
   {
+    visualKey: "build-or-busted",
     name: "Build or Busted",
-    mark: "/products/build-or-busted-mark.svg",
-    surface: "bg-[#281610]",
-    nameClass: "text-[#ffb08d]",
-    dot: "bg-[#ff5a1f]",
   },
   {
+    visualKey: "builderbae",
     name: "Material Marketplace",
-    mark: "/products/material-marketplace-mark.svg",
-    surface: "bg-[#182719]",
-    nameClass: "text-[#d6e8a0]",
-    dot: "bg-[#a7c957]",
   },
   {
+    visualKey: "supplier-marketplace",
     name: "Supplier Marketplace",
-    mark: "/products/supplier-marketplace-mark.svg",
-    surface: "bg-[#102320]",
-    nameClass: "text-[#9fe0be]",
-    dot: "bg-[#00a87c]",
   },
   {
-    mark: "/brand/constructfi-emblem-tight.svg",
+    visualKey: "pactpilot",
+    name: "PactPilot",
+  },
+  {
+    visualKey: "eluvial-academy",
     name: "Eluvial Academy",
-    surface: "bg-[#162038]",
-    nameClass: "text-[#bfc7ff]",
-    dot: "bg-[#8298fc]",
-  },
-  {
-    mark: "/products/house-hackers-mark.svg",
-    name: "House Hackers",
-    surface: "bg-[#1d1e38]",
-    nameClass: "text-[#d2d8ff]",
-    dot: "bg-[#8298fc]",
   },
 ] as const;
 
@@ -162,18 +150,16 @@ const categories = [
 
 const featuredProducts = [
   {
+    visualKey: "build-or-busted",
     category: "Analyze Deals and Agreements",
     name: "Build or Busted",
     tagline: "Know in 60 seconds, before you fall in love with it.",
     description:
       "Evaluate a property, get a plain-English verdict, and see the numbers that drove it before you sink time into the wrong deal.",
     href: "/marketplace/build-or-bust",
-    image: "/products/build-or-busted-cover.png",
-    mark: "/products/build-or-busted-mark.svg",
-    accent: "bg-[#ff5a1f]",
+    accentColor: "#FF5A1F",
     accentText: "text-[#ff5a1f]",
     access: "App Store · Google Play",
-    objectPosition: "center center",
     detail: "Verdict-led underwriting",
     chips: [
       { label: "Build", className: "bg-[#14b86a] text-white" },
@@ -182,63 +168,54 @@ const featuredProducts = [
     ],
   },
   {
+    visualKey: "builderbae",
     category: "Source Materials and Suppliers",
     name: "Material Marketplace",
     tagline: "Division-based material packages from vetted manufacturers.",
     description:
       "Source coherent material packages by division, with vetted manufacturers and pricing that connect into the wider supplier network.",
     href: "/marketplace/material-marketplace",
-    image: "/products/material-marketplace-cover.png",
-    mark: "/products/material-marketplace-mark.svg",
-    accent: "bg-[#a7c957]",
-    accentText: "text-[#386641]",
+    accentColor: "#F2B01E",
+    accentText: "text-[#8d6208]",
     access: "In ConstructFi",
-    objectPosition: "center center",
-    detail: "Division-based sourcing",
-    chips: [{ label: "Price", className: "bg-[#d4a95a] text-[#041428]" }],
+    detail: "Procurement + provenance",
+    chips: [
+      { label: "Price", className: "bg-[#f2b01e] text-[#191510]" },
+      { label: "Verified", className: "border border-[#f2b01e]/35 bg-[#f2b01e]/10 text-[#8d6208]" },
+    ],
   },
   {
+    visualKey: "constructos",
     category: "Run Your Business",
     name: "ConstructOS",
     tagline: "The operating system for construction.",
     description:
       "Connect CRM, business development, estimating, procurement, logistics, project management, and executive reporting in one operating spine.",
     href: "/marketplace/revenueos",
-    image: "/products/constructos-cover.png",
-    mark: "/products/constructos-mark.svg",
-    accent: "bg-[#019599]",
+    accentColor: "#14C8B4",
     accentText: "text-[#019599]",
     access: "Enterprise",
-    objectPosition: "center center",
-    detail: "Connected operations",
+    detail: "One decision in focus",
     chips: [{ label: "AI signals", className: "bg-[#019599] text-[#041428]" }],
   },
   {
-    category: "Source Materials and Suppliers",
-    name: "Supplier Marketplace",
-    tagline: "Verified suppliers. Real settlement.",
+    visualKey: "pactpilot",
+    category: "Analyze Deals and Agreements",
+    name: "PactPilot",
+    tagline: "Contract intelligence for more confident deals.",
     description:
-      "Procure materials and services from a vetted supplier network backed by live operations, verification workflows, and order tracking.",
-    href: "/marketplace/supplier-marketplace",
-    image: "/products/supplier-marketplace-cover.png",
-    mark: "/products/supplier-marketplace-mark.svg",
-    accent: "bg-[#386641]",
-    accentText: "text-[#00a87c]",
-    access: "Enterprise",
-    objectPosition: "center center",
-    detail: "Verification + action",
+      "Review and analyze complex real estate agreements for risks, missing provisions, negotiation considerations, and areas requiring further review.",
+    href: "/marketplace",
+    accentColor: "#F2C14E",
+    accentText: "text-[#9b7626]",
+    access: "In ConstructFi",
+    detail: "Clause review + risk chips",
     chips: [
-      { label: "Verified", className: "bg-[#00a87c] text-white" },
-      { label: "Action", className: "border border-white/15 bg-white/10 text-white/82" },
+      { label: "High", className: "bg-[#f05454] text-white" },
+      { label: "Review", className: "bg-[#F2C14E] text-[#0B1D2E]" },
     ],
   },
 ] as const;
-
-const houseHackersCallout = {
-  mark: "/products/house-hackers-mark.svg",
-  image: "/products/house-hackers-cover.png",
-  objectPosition: "center center",
-} as const;
 
 const partnerSolutions = [
   "Community and member platforms",
@@ -380,9 +357,9 @@ export default function HomePage() {
 
   return (
     <main className="bg-white text-navy">
-      <section className="overflow-hidden bg-ink bg-[radial-gradient(1100px_520px_at_78%_-10%,rgba(27,182,253,0.16),transparent_62%),radial-gradient(820px_460px_at_2%_8%,rgba(0,209,154,0.13),transparent_58%),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[length:auto,auto,64px_64px,64px_64px] pt-24">
-        <div className={`${shell} grid gap-16 lg:grid-cols-[minmax(0,1.12fr)_minmax(300px,0.88fr)] lg:items-end`}>
-          <div className="pb-20 lg:pb-[104px]">
+    <section className="overflow-hidden bg-ink bg-[radial-gradient(1100px_520px_at_78%_-10%,rgba(27,182,253,0.16),transparent_62%),radial-gradient(820px_460px_at_2%_8%,rgba(0,209,154,0.13),transparent_58%),linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:auto,auto,64px_64px,64px_64px] pt-24">
+      <div className={`${shell} grid gap-12 pb-0 lg:grid-cols-[minmax(0,1.12fr)_minmax(300px,0.88fr)] lg:items-end lg:gap-16`}>
+        <div className="pb-12 lg:pb-[104px]">
             <div className="flex items-center gap-3.5">
               <span className="h-px w-11 bg-mint" />
               <span className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-mint">
@@ -397,16 +374,16 @@ export default function HomePage() {
               experiences that help contractors, suppliers, developers, investors, and
               entrepreneurs build what is next.
             </p>
-            <div className="mt-[36px] flex flex-wrap gap-3">
+            <div className="mt-[36px] flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href="/marketplace"
-                className={`${lightButton} bg-mint text-ink hover:bg-mint-3 focus-visible:outline-mint`}
+                className={`${lightButton} w-full bg-mint text-ink hover:bg-mint-3 focus-visible:outline-mint sm:w-auto`}
               >
                 Explore the Marketplace →
               </Link>
               <Link
                 href="/partners"
-                className={`${lightButton} border border-white/25 text-white hover:bg-white/5 focus-visible:outline-white`}
+                className={`${lightButton} w-full border border-white/25 text-white hover:bg-white/5 focus-visible:outline-white sm:w-auto`}
               >
                 Build With ConstructFi
               </Link>
@@ -423,7 +400,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="w-full max-w-[330px] justify-self-center self-end">
+          <div className="w-full max-w-full justify-self-center self-end min-[700px]:max-w-[330px]">
             <div className="rounded-t-[30px] border border-white/[0.18] border-b-0 bg-[#0a1b31] p-[14px] pb-0">
               <div className="overflow-hidden rounded-t-[20px] border border-white/[0.08] border-b-0 bg-[#061527] px-4 pt-[18px]">
                 <div>
@@ -443,23 +420,7 @@ export default function HomePage() {
                   </div>
                   <div className="mt-[18px] grid grid-cols-2 gap-2">
                     {heroTiles.map((tile) => (
-                      <div
-                        key={tile.name}
-                        className={`grid gap-3.5 border border-white/10 px-[11px] py-3 ${tile.surface}`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <Image
-                            src={tile.mark}
-                            alt=""
-                            aria-hidden="true"
-                            width={28}
-                            height={28}
-                            className="h-7 w-7"
-                          />
-                          <span className={`h-2 w-2 rounded-full ${tile.dot}`} />
-                        </div>
-                        <span className={`text-[11px] leading-[1.25] ${tile.nameClass}`}>{tile.name}</span>
-                      </div>
+                      <HomepageHeroTile key={tile.name} visualKey={tile.visualKey} name={tile.name} />
                     ))}
                   </div>
                   <div className="mt-[14px] flex items-center gap-1.5 border-t border-white/10 py-3">
@@ -581,31 +542,17 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-11 grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)]">
+          <div className="mt-11 grid gap-5 min-[700px]:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)]">
             <Link
               href={featuredLead.href}
               className="flex h-full flex-col overflow-hidden border border-[#d3dfe9] bg-white transition hover:border-sky hover:shadow-[0_18px_40px_-28px_rgba(4,20,40,0.45)]"
             >
-              <div className={`h-9 ${featuredLead.accent}`} />
-              <div className="relative min-h-[280px] flex-1 overflow-hidden bg-[#071522]">
-                <Image
-                  src={featuredLead.image}
-                  alt={`${featuredLead.name} product cover art`}
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: featuredLead.objectPosition }}
-                  sizes="(max-width: 1279px) 100vw, 60vw"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.08)_0%,rgba(4,20,40,0.18)_30%,rgba(4,20,40,0.86)_100%)]" />
+              <div className="h-9" style={{ backgroundColor: featuredLead.accentColor }} />
+              <div className="relative h-[352px] overflow-hidden bg-[#071522]">
+                <HomepageProductCover visualKey={featuredLead.visualKey} />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.05)_0%,rgba(4,20,40,0.12)_28%,rgba(4,20,40,0.82)_100%)]" />
                 <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2.5">
-                  <Image
-                    src={featuredLead.mark}
-                    alt=""
-                    aria-hidden="true"
-                    width={40}
-                    height={40}
-                    className="h-10 w-10"
-                  />
+                  <HomepageProductBadge visualKey={featuredLead.visualKey} />
                   <span className="border border-white/15 bg-black/20 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
                     {featuredLead.access}
                   </span>
@@ -622,7 +569,7 @@ export default function HomePage() {
                     ))}
                   </div>
                   <div className="mt-4 max-w-[22ch] text-[27px] font-semibold leading-[1.02] tracking-[-0.03em] text-white">
-                    Build or Busted
+                    {featuredLead.name}
                   </div>
                   <div className="mt-1 text-[11px] uppercase tracking-[0.12em] text-white/68">
                     {featuredLead.detail}
@@ -646,31 +593,20 @@ export default function HomePage() {
             </Link>
 
             <div className="grid gap-5">
-              {featuredRest.map((product) => (
+              {featuredRest.map((product) => {
+                const spec = getHomepageVisualSpec(product.visualKey);
+
+                return (
                 <Link
                   key={product.name}
                   href={product.href}
-                  className="grid overflow-hidden border border-[#d3dfe9] bg-white transition hover:-translate-y-0.5 hover:border-teal hover:shadow-[0_14px_32px_-26px_rgba(4,20,40,0.45)] sm:grid-cols-[168px_minmax(0,1fr)]"
+                  className="grid overflow-hidden border border-[#d3dfe9] bg-white transition hover:-translate-y-0.5 hover:border-teal hover:shadow-[0_14px_32px_-26px_rgba(4,20,40,0.45)] min-[700px]:grid-cols-[168px_minmax(0,1fr)]"
                 >
-                  <div className="relative min-h-[158px] overflow-hidden border-b border-[#d3dfe9] bg-[#071522] sm:border-b-0 sm:border-r">
-                    <Image
-                      src={product.image}
-                      alt={`${product.name} product cover art`}
-                      fill
-                      className="object-cover"
-                      style={{ objectPosition: product.objectPosition }}
-                      sizes="(max-width: 639px) 100vw, 168px"
-                    />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.05)_0%,rgba(4,20,40,0.12)_32%,rgba(4,20,40,0.9)_100%)]" />
+                  <div className="relative h-[160px] overflow-hidden border-b border-[#d3dfe9] bg-[#071522] min-[700px]:h-[200px] min-[700px]:border-b-0 min-[700px]:border-r">
+                    <HomepageProductCover visualKey={product.visualKey} compact />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.04)_0%,rgba(4,20,40,0.14)_34%,rgba(4,20,40,0.86)_100%)]" />
                     <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
-                      <Image
-                        src={product.mark}
-                        alt=""
-                        aria-hidden="true"
-                        width={30}
-                        height={30}
-                        className="h-[30px] w-[30px]"
-                      />
+                      <HomepageProductBadge visualKey={product.visualKey} size="sm" />
                       <span className="border border-white/15 bg-black/20 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
                         {product.access}
                       </span>
@@ -696,7 +632,7 @@ export default function HomePage() {
                   </div>
                   <div className="p-5 sm:px-[22px]">
                     <div className="flex items-center gap-2.5">
-                      <span className={`h-2 w-2 ${product.accent}`} />
+                      <span className="h-2 w-2" style={{ backgroundColor: spec.dotColor }} />
                       <span className="text-[10px] uppercase tracking-[0.14em] text-navy/50">
                         {product.category}
                       </span>
@@ -712,67 +648,10 @@ export default function HomePage() {
                     </p>
                   </div>
                 </Link>
-              ))}
+                );
+              })}
             </div>
           </div>
-          <Link
-            href="/marketplace/house-hackers"
-            className="mt-5 grid overflow-hidden border border-[#d3dfe9] bg-[#071522] transition hover:border-indigo hover:shadow-[0_14px_32px_-26px_rgba(4,20,40,0.45)] md:grid-cols-[minmax(220px,0.42fr)_minmax(0,1fr)]"
-          >
-            <div className="relative min-h-[210px] overflow-hidden border-b border-white/10 md:border-b-0 md:border-r md:border-white/10">
-              <Image
-                src={houseHackersCallout.image}
-                alt="House Hackers product cover art"
-                fill
-                className="object-cover"
-                style={{ objectPosition: houseHackersCallout.objectPosition }}
-                sizes="(max-width: 767px) 100vw, 28vw"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,48,0.14)_0%,rgba(11,16,48,0.3)_35%,rgba(11,16,48,0.88)_100%)]" />
-              <div className="absolute left-4 top-4 flex items-center gap-2.5">
-                <Image
-                  src={houseHackersCallout.mark}
-                  alt=""
-                  aria-hidden="true"
-                  width={34}
-                  height={34}
-                  className="h-[34px] w-[34px]"
-                />
-                <span className="border border-white/15 bg-black/20 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
-                  App Store · Google Play
-                </span>
-              </div>
-            </div>
-            <div className="bg-white p-6 md:px-7">
-              <div className="flex items-center gap-2.5">
-                <span className="h-2 w-2 bg-[#8298fc]" />
-                <span className="text-[10px] uppercase tracking-[0.14em] text-navy/50">
-                  Play, Practice, and Explore
-                </span>
-              </div>
-              <h3 className="mt-3 text-[24px] font-semibold tracking-[-0.02em] text-ink">
-                House Hackers
-              </h3>
-              <p className="mt-2 text-[16px] font-medium leading-[1.45] text-[#4a67ce]">
-                Learn by playing.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="bg-[#d4a017] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#041428]">
-                  Equity
-                </span>
-                <span className="bg-[#386641] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white">
-                  Cash flow
-                </span>
-                <span className="bg-[#d84343] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white">
-                  Debt
-                </span>
-              </div>
-              <p className="mt-4 max-w-[54ch] text-[15px] leading-[1.6] text-navy/70">
-                Use simulation and game mechanics to practice real-estate and readiness concepts
-                through action, with visible equity, cash-flow, and debt tradeoffs.
-              </p>
-            </div>
-          </Link>
         </div>
       </section>
 

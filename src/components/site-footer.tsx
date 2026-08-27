@@ -1,15 +1,21 @@
+import Image from "next/image";
 import Link from "next/link";
-import { BrandLockup } from "@/components/brand-lockup";
 import { COMPANY, FOOTER_LINKS, SITE } from "@/lib/site";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-ink">
-      <div className="mx-auto max-w-[1280px] px-8 py-16 sm:pb-9">
+      <div className="mx-auto max-w-[1280px] px-5 py-16 sm:px-8 sm:pb-9">
         <div className="grid gap-10 sm:grid-cols-2 xl:grid-cols-[minmax(0,1.25fr)_repeat(4,minmax(0,1fr))]">
           <div>
             <Link className="inline-flex items-center" href="/" aria-label="ConstructFi home">
-              <BrandLockup variant="footer" />
+              <Image
+                src="/brand/constructfi-lockup-dark.svg"
+                alt="ConstructFi"
+                width={179}
+                height={32}
+                className="h-8 w-auto"
+              />
             </Link>
             <p className="mt-[18px] max-w-[30ch] text-[14.5px] leading-6 text-white/60">
               The connected ecosystem for the built world.
