@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "ConstructFi connects the tools, marketplaces, intelligence, education, and experiences that help contractors, suppliers, developers, investors, and entrepreneurs build what is next.",
 };
 
-const shell = "mx-auto max-w-[1280px] px-5 sm:px-8";
+const shell = "mx-auto max-w-[1280px] px-8";
 const lightButton =
   "inline-flex items-center justify-center px-6 py-4 text-[15.5px] font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2";
 const sectionLabel =
@@ -28,40 +28,46 @@ const audiences = [
 
 const heroTiles = [
   {
-    mono: "OS",
     name: "ConstructOS",
-    badge: "bg-[#102734] text-[#70ecd3]",
+    mark: "/products/constructos-mark.svg",
+    surface: "bg-[#0e2430]",
+    nameClass: "text-[#94efe0]",
     dot: "bg-[#00d19a]",
   },
   {
-    mono: "BB",
     name: "Build or Busted",
-    badge: "bg-[#30150d] text-[#ffb08d]",
+    mark: "/products/build-or-busted-mark.svg",
+    surface: "bg-[#281610]",
+    nameClass: "text-[#ffb08d]",
     dot: "bg-[#ff5a1f]",
   },
   {
-    mono: "MM",
     name: "Material Marketplace",
-    badge: "bg-[#33270d] text-[#ffd18a]",
-    dot: "bg-[#e4b95b]",
+    mark: "/products/material-marketplace-mark.svg",
+    surface: "bg-[#182719]",
+    nameClass: "text-[#d6e8a0]",
+    dot: "bg-[#a7c957]",
   },
   {
-    mono: "SM",
     name: "Supplier Marketplace",
-    badge: "bg-[#0f2a31] text-[#7ce2d1]",
+    mark: "/products/supplier-marketplace-mark.svg",
+    surface: "bg-[#102320]",
+    nameClass: "text-[#9fe0be]",
     dot: "bg-[#00a87c]",
   },
   {
-    mono: "EA",
+    mark: "/brand/constructfi-emblem-tight.svg",
     name: "Eluvial Academy",
-    badge: "bg-[#171e3f] text-[#b8c1ff]",
+    surface: "bg-[#162038]",
+    nameClass: "text-[#bfc7ff]",
     dot: "bg-[#8298fc]",
   },
   {
-    mono: "HH",
+    mark: "/products/house-hackers-mark.svg",
     name: "House Hackers",
-    badge: "bg-[#2e2415] text-[#ffd883]",
-    dot: "bg-[#d4a017]",
+    surface: "bg-[#1d1e38]",
+    nameClass: "text-[#d2d8ff]",
+    dot: "bg-[#8298fc]",
   },
 ] as const;
 
@@ -158,60 +164,81 @@ const featuredProducts = [
   {
     category: "Analyze Deals and Agreements",
     name: "Build or Busted",
-    mono: "BB",
     tagline: "Know in 60 seconds, before you fall in love with it.",
     description:
       "Evaluate a property, get a plain-English verdict, and see the numbers that drove it before you sink time into the wrong deal.",
     href: "/marketplace/build-or-bust",
-    image: "/products/build-or-bust.webp",
+    image: "/products/build-or-busted-cover.png",
+    mark: "/products/build-or-busted-mark.svg",
     accent: "bg-[#ff5a1f]",
     accentText: "text-[#ff5a1f]",
     access: "App Store · Google Play",
-    objectPosition: "center 14%",
+    objectPosition: "center center",
+    detail: "Verdict-led underwriting",
+    chips: [
+      { label: "Build", className: "bg-[#14b86a] text-white" },
+      { label: "Hold", className: "bg-[#d9a441] text-[#041428]" },
+      { label: "Busted", className: "bg-[#d84343] text-white" },
+    ],
+  },
+  {
+    category: "Source Materials and Suppliers",
+    name: "Material Marketplace",
+    tagline: "Division-based material packages from vetted manufacturers.",
+    description:
+      "Source coherent material packages by division, with vetted manufacturers and pricing that connect into the wider supplier network.",
+    href: "/marketplace/material-marketplace",
+    image: "/products/material-marketplace-cover.png",
+    mark: "/products/material-marketplace-mark.svg",
+    accent: "bg-[#a7c957]",
+    accentText: "text-[#386641]",
+    access: "In ConstructFi",
+    objectPosition: "center center",
+    detail: "Division-based sourcing",
+    chips: [{ label: "Price", className: "bg-[#d4a95a] text-[#041428]" }],
+  },
+  {
+    category: "Run Your Business",
+    name: "ConstructOS",
+    tagline: "The operating system for construction.",
+    description:
+      "Connect CRM, business development, estimating, procurement, logistics, project management, and executive reporting in one operating spine.",
+    href: "/marketplace/revenueos",
+    image: "/products/constructos-cover.png",
+    mark: "/products/constructos-mark.svg",
+    accent: "bg-[#019599]",
+    accentText: "text-[#019599]",
+    access: "Enterprise",
+    objectPosition: "center center",
+    detail: "Connected operations",
+    chips: [{ label: "AI signals", className: "bg-[#019599] text-[#041428]" }],
   },
   {
     category: "Source Materials and Suppliers",
     name: "Supplier Marketplace",
-    mono: "SM",
     tagline: "Verified suppliers. Real settlement.",
     description:
-      "Procure materials and services from a vetted supplier network backed by live operations.",
+      "Procure materials and services from a vetted supplier network backed by live operations, verification workflows, and order tracking.",
     href: "/marketplace/supplier-marketplace",
-    image: "/products/supplier-marketplace.webp",
-    accent: "bg-[#00a87c]",
+    image: "/products/supplier-marketplace-cover.png",
+    mark: "/products/supplier-marketplace-mark.svg",
+    accent: "bg-[#386641]",
     accentText: "text-[#00a87c]",
-    access: "Enterprise · iOS and Android",
-    objectPosition: "center 22%",
-  },
-  {
-    category: "Learn and Build Skills",
-    name: "Covi Wallet",
-    mono: "CW",
-    tagline: "COVI & ELUV — non-custodial.",
-    description:
-      "View wallet activity and earned credentials in one place without giving up control of your keys.",
-    href: "/marketplace/covi-wallet",
-    image: "/products/covi-wallet.webp",
-    accent: "bg-[#d4a017]",
-    accentText: "text-[#b38710]",
-    access: "In ConstructFi · iOS and Android",
-    objectPosition: "center 16%",
-  },
-  {
-    category: "Play, Practice, and Explore",
-    name: "House Hackers",
-    mono: "HH",
-    tagline: "Learn by playing.",
-    description:
-      "Use simulation and game mechanics to practice real-estate and readiness concepts through action.",
-    href: "/marketplace/house-hackers",
-    image: "/products/house-hackers.webp",
-    accent: "bg-[#d4a017]",
-    accentText: "text-[#386641]",
-    access: "App Store · Google Play",
-    objectPosition: "center 18%",
+    access: "Enterprise",
+    objectPosition: "center center",
+    detail: "Verification + action",
+    chips: [
+      { label: "Verified", className: "bg-[#00a87c] text-white" },
+      { label: "Action", className: "border border-white/15 bg-white/10 text-white/82" },
+    ],
   },
 ] as const;
+
+const houseHackersCallout = {
+  mark: "/products/house-hackers-mark.svg",
+  image: "/products/house-hackers-cover.png",
+  objectPosition: "center center",
+} as const;
 
 const partnerSolutions = [
   "Community and member platforms",
@@ -354,23 +381,23 @@ export default function HomePage() {
   return (
     <main className="bg-white text-navy">
       <section className="overflow-hidden bg-ink bg-[radial-gradient(1100px_520px_at_78%_-10%,rgba(27,182,253,0.16),transparent_62%),radial-gradient(820px_460px_at_2%_8%,rgba(0,209,154,0.13),transparent_58%),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[length:auto,auto,64px_64px,64px_64px] pt-24">
-        <div className={`${shell} grid gap-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(300px,0.88fr)] lg:items-end lg:gap-16`}>
-          <div className="pb-14 lg:pb-24">
+        <div className={`${shell} grid gap-16 lg:grid-cols-[minmax(0,1.12fr)_minmax(300px,0.88fr)] lg:items-end`}>
+          <div className="pb-20 lg:pb-[104px]">
             <div className="flex items-center gap-3.5">
               <span className="h-px w-11 bg-mint" />
               <span className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-mint">
                 Construction. Real estate. Opportunity. Connected.
               </span>
             </div>
-            <h1 className="mt-6 max-w-[15ch] text-[clamp(44px,5.4vw,72px)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
+            <h1 className="mt-[26px] max-w-[15ch] text-[clamp(44px,5.4vw,72px)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
               The ecosystem for people who build.
             </h1>
-            <p className="mt-6 max-w-[52ch] text-[19px] leading-[1.6] text-white/70">
+            <p className="mt-[26px] max-w-[52ch] text-[19px] leading-[1.6] text-white/70">
               ConstructFi connects the tools, marketplaces, intelligence, education, and
               experiences that help contractors, suppliers, developers, investors, and
               entrepreneurs build what is next.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-[36px] flex flex-wrap gap-3">
               <Link
                 href="/marketplace"
                 className={`${lightButton} bg-mint text-ink hover:bg-mint-3 focus-visible:outline-mint`}
@@ -384,7 +411,7 @@ export default function HomePage() {
                 Build With ConstructFi
               </Link>
             </div>
-            <div className="mt-11 flex flex-wrap gap-2 border-t border-white/10 pt-[22px]">
+            <div className="mt-[44px] flex flex-wrap gap-2 border-t border-white/10 pt-[22px]">
               {audiences.map((audience) => (
                 <span
                   key={audience}
@@ -396,19 +423,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mx-auto w-full max-w-[360px] self-end">
-            <div className="rounded-t-[30px] border border-white/20 border-b-0 bg-[#0a1b31] p-3.5 pb-0">
-              <div className="relative overflow-hidden rounded-t-[20px] border border-white/10 border-b-0 bg-[#061527] px-4 pt-4">
-                <Image
-                  src="/img/hero.png"
-                  alt="ConstructFi ecosystem home screen preview"
-                  fill
-                  className="object-cover object-center opacity-30"
-                  sizes="(max-width: 1024px) 330px, 360px"
-                  priority
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,21,39,0.3)_0%,rgba(6,21,39,0.66)_42%,rgba(6,21,39,0.94)_100%)]" />
-                <div className="relative z-10">
+          <div className="w-full max-w-[330px] justify-self-center self-end">
+            <div className="rounded-t-[30px] border border-white/[0.18] border-b-0 bg-[#0a1b31] p-[14px] pb-0">
+              <div className="overflow-hidden rounded-t-[20px] border border-white/[0.08] border-b-0 bg-[#061527] px-4 pt-[18px]">
+                <div>
                   <div className="flex items-center justify-between">
                     <span className="text-[9.5px] tracking-[0.14em] text-white/40">9:41</span>
                     <span className="flex items-end gap-[3px]">
@@ -427,17 +445,20 @@ export default function HomePage() {
                     {heroTiles.map((tile) => (
                       <div
                         key={tile.name}
-                        className="grid gap-3.5 border border-white/10 bg-white/[0.045] px-3 py-3 backdrop-blur-[2px]"
+                        className={`grid gap-3.5 border border-white/10 px-[11px] py-3 ${tile.surface}`}
                       >
                         <div className="flex items-center justify-between">
-                          <span
-                            className={`inline-flex h-7 min-w-7 items-center justify-center px-2 text-[11px] font-semibold tracking-[0.08em] ${tile.badge}`}
-                          >
-                            {tile.mono}
-                          </span>
+                          <Image
+                            src={tile.mark}
+                            alt=""
+                            aria-hidden="true"
+                            width={28}
+                            height={28}
+                            className="h-7 w-7"
+                          />
                           <span className={`h-2 w-2 rounded-full ${tile.dot}`} />
                         </div>
-                        <span className="text-[11px] leading-[1.25] text-white/72">{tile.name}</span>
+                        <span className={`text-[11px] leading-[1.25] ${tile.nameClass}`}>{tile.name}</span>
                       </div>
                     ))}
                   </div>
@@ -450,9 +471,6 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <p className="mt-3.5 text-center text-[10px] uppercase tracking-[0.1em] text-white/40">
-              App home screen — real local preview with branded ecosystem tiles
-            </p>
           </div>
         </div>
       </section>
@@ -569,7 +587,7 @@ export default function HomePage() {
               className="flex h-full flex-col overflow-hidden border border-[#d3dfe9] bg-white transition hover:border-sky hover:shadow-[0_18px_40px_-28px_rgba(4,20,40,0.45)]"
             >
               <div className={`h-9 ${featuredLead.accent}`} />
-              <div className="relative min-h-[320px] flex-1 overflow-hidden bg-[#071522]">
+              <div className="relative min-h-[280px] flex-1 overflow-hidden bg-[#071522]">
                 <Image
                   src={featuredLead.image}
                   alt={`${featuredLead.name} product cover art`}
@@ -580,30 +598,34 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.08)_0%,rgba(4,20,40,0.18)_30%,rgba(4,20,40,0.86)_100%)]" />
                 <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2.5">
-                  <span className="inline-flex h-8 min-w-8 items-center justify-center bg-[#30150d] px-2 text-[11px] font-semibold tracking-[0.08em] text-[#ffb08d]">
-                    {featuredLead.mono}
-                  </span>
+                  <Image
+                    src={featuredLead.mark}
+                    alt=""
+                    aria-hidden="true"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10"
+                  />
                   <span className="border border-white/15 bg-black/20 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
                     {featuredLead.access}
                   </span>
                 </div>
                 <div className="absolute inset-x-5 bottom-5">
                   <div className="flex flex-wrap gap-2">
-                    <span className="bg-[#14b86a] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white">
-                      Build
-                    </span>
-                    <span className="bg-[#d9a441] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#041428]">
-                      Hold
-                    </span>
-                    <span className="bg-[#d84343] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white">
-                      Busted
-                    </span>
+                    {featuredLead.chips.map((chip) => (
+                      <span
+                        key={chip.label}
+                        className={`px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] ${chip.className}`}
+                      >
+                        {chip.label}
+                      </span>
+                    ))}
                   </div>
                   <div className="mt-4 max-w-[22ch] text-[27px] font-semibold leading-[1.02] tracking-[-0.03em] text-white">
                     Build or Busted
                   </div>
                   <div className="mt-1 text-[11px] uppercase tracking-[0.12em] text-white/68">
-                    Verdict-led underwriting
+                    {featuredLead.detail}
                   </div>
                 </div>
               </div>
@@ -630,7 +652,7 @@ export default function HomePage() {
                   href={product.href}
                   className="grid overflow-hidden border border-[#d3dfe9] bg-white transition hover:-translate-y-0.5 hover:border-teal hover:shadow-[0_14px_32px_-26px_rgba(4,20,40,0.45)] sm:grid-cols-[168px_minmax(0,1fr)]"
                 >
-                  <div className="relative min-h-[180px] overflow-hidden border-b border-[#d3dfe9] bg-[#071522] sm:border-b-0 sm:border-r">
+                  <div className="relative min-h-[158px] overflow-hidden border-b border-[#d3dfe9] bg-[#071522] sm:border-b-0 sm:border-r">
                     <Image
                       src={product.image}
                       alt={`${product.name} product cover art`}
@@ -641,17 +663,14 @@ export default function HomePage() {
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.05)_0%,rgba(4,20,40,0.12)_32%,rgba(4,20,40,0.9)_100%)]" />
                     <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
-                      <span
-                        className={`inline-flex h-7 min-w-7 items-center justify-center px-2 text-[10px] font-semibold tracking-[0.08em] ${
-                          product.name === "Supplier Marketplace"
-                            ? "bg-[#0f2a31] text-[#7ce2d1]"
-                            : product.name === "Covi Wallet"
-                              ? "bg-[#2f2812] text-[#f7d77a]"
-                              : "bg-[#2d2316] text-[#ffd883]"
-                        }`}
-                      >
-                        {product.mono}
-                      </span>
+                      <Image
+                        src={product.mark}
+                        alt=""
+                        aria-hidden="true"
+                        width={30}
+                        height={30}
+                        className="h-[30px] w-[30px]"
+                      />
                       <span className="border border-white/15 bg-black/20 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
                         {product.access}
                       </span>
@@ -660,37 +679,18 @@ export default function HomePage() {
                       <div className="text-[16px] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
                         {product.name}
                       </div>
+                      <div className="mt-1 text-[9px] uppercase tracking-[0.12em] text-white/60">
+                        {product.detail}
+                      </div>
                       <div className="mt-1 flex flex-wrap gap-1.5">
-                        {product.name === "Supplier Marketplace" && (
-                          <>
-                            <span className="bg-[#00a87c] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
-                              Verified
-                            </span>
-                            <span className="border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white/82">
-                              Action
-                            </span>
-                          </>
-                        )}
-                        {product.name === "Covi Wallet" && (
-                          <span className="inline-flex items-center gap-1.5 border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white/82">
-                            <Image src="/coins/covi.png" alt="" width={14} height={14} className="h-[14px] w-[14px]" />
-                            <Image src="/coins/eluv.png" alt="" width={14} height={14} className="h-[14px] w-[14px]" />
-                            COVI · ELUV
+                        {product.chips.map((chip) => (
+                          <span
+                            key={chip.label}
+                            className={`px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] ${chip.className}`}
+                          >
+                            {chip.label}
                           </span>
-                        )}
-                        {product.name === "House Hackers" && (
-                          <>
-                            <span className="bg-[#d4a017] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#041428]">
-                              Equity
-                            </span>
-                            <span className="bg-[#386641] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
-                              Cash flow
-                            </span>
-                            <span className="bg-[#d84343] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-white">
-                              Debt
-                            </span>
-                          </>
-                        )}
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -715,6 +715,64 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+          <Link
+            href="/marketplace/house-hackers"
+            className="mt-5 grid overflow-hidden border border-[#d3dfe9] bg-[#071522] transition hover:border-indigo hover:shadow-[0_14px_32px_-26px_rgba(4,20,40,0.45)] md:grid-cols-[minmax(220px,0.42fr)_minmax(0,1fr)]"
+          >
+            <div className="relative min-h-[210px] overflow-hidden border-b border-white/10 md:border-b-0 md:border-r md:border-white/10">
+              <Image
+                src={houseHackersCallout.image}
+                alt="House Hackers product cover art"
+                fill
+                className="object-cover"
+                style={{ objectPosition: houseHackersCallout.objectPosition }}
+                sizes="(max-width: 767px) 100vw, 28vw"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,48,0.14)_0%,rgba(11,16,48,0.3)_35%,rgba(11,16,48,0.88)_100%)]" />
+              <div className="absolute left-4 top-4 flex items-center gap-2.5">
+                <Image
+                  src={houseHackersCallout.mark}
+                  alt=""
+                  aria-hidden="true"
+                  width={34}
+                  height={34}
+                  className="h-[34px] w-[34px]"
+                />
+                <span className="border border-white/15 bg-black/20 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm">
+                  App Store · Google Play
+                </span>
+              </div>
+            </div>
+            <div className="bg-white p-6 md:px-7">
+              <div className="flex items-center gap-2.5">
+                <span className="h-2 w-2 bg-[#8298fc]" />
+                <span className="text-[10px] uppercase tracking-[0.14em] text-navy/50">
+                  Play, Practice, and Explore
+                </span>
+              </div>
+              <h3 className="mt-3 text-[24px] font-semibold tracking-[-0.02em] text-ink">
+                House Hackers
+              </h3>
+              <p className="mt-2 text-[16px] font-medium leading-[1.45] text-[#4a67ce]">
+                Learn by playing.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="bg-[#d4a017] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#041428]">
+                  Equity
+                </span>
+                <span className="bg-[#386641] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white">
+                  Cash flow
+                </span>
+                <span className="bg-[#d84343] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white">
+                  Debt
+                </span>
+              </div>
+              <p className="mt-4 max-w-[54ch] text-[15px] leading-[1.6] text-navy/70">
+                Use simulation and game mechanics to practice real-estate and readiness concepts
+                through action, with visible equity, cash-flow, and debt tradeoffs.
+              </p>
+            </div>
+          </Link>
         </div>
       </section>
 

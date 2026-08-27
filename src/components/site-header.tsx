@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BrandLockup } from "@/components/brand-lockup";
 import { WalletConnect } from "@/components/wallet-connect";
 import { MOBILE_NAV, NAV_GROUPS } from "@/lib/site";
 
@@ -38,31 +38,15 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50" ref={navRef}>
-      <div className="border-b border-white/10 bg-[#020d1c]">
-        <div className="mx-auto hidden h-[34px] max-w-[1280px] items-center gap-5 px-5 text-[10.5px] uppercase tracking-[0.14em] text-white/40 sm:flex sm:px-8">
-          <span className="font-medium tracking-[0.16em] text-mint">
-            The connected ecosystem for the built world
-          </span>
-          <span className="ml-auto">Marketplace · Products · Partner Solutions · Participation</span>
-        </div>
-      </div>
-
       <nav className="border-b border-white/10 bg-ink">
-        <div className="mx-auto flex h-[70px] max-w-[1280px] items-center gap-4 px-5 sm:px-8 lg:gap-6">
+        <div className="mx-auto flex h-[70px] max-w-[1280px] items-center gap-4 px-8 lg:gap-6">
           <Link
-            className="shrink-0"
+            className="inline-flex shrink-0 items-center"
             href="/"
             aria-label="ConstructFi home"
             data-testid="link-home"
           >
-            <Image
-              src="/brand/constructfi-lockup-light.svg"
-              alt="ConstructFi"
-              width={190}
-              height={30}
-              className="h-[30px] w-auto"
-              priority
-            />
+            <BrandLockup variant="header" priority />
           </Link>
 
           <div className="hidden items-center lg:flex">
@@ -176,7 +160,7 @@ export function SiteHeader() {
 
           <div className="ml-auto flex items-center gap-3 lg:hidden">
             <button
-              className="inline-flex h-10 items-center justify-center border border-white/15 px-3 text-sm font-medium text-white/70"
+              className="inline-flex h-10 items-center justify-center border border-white/15 px-3 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white"
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
@@ -196,7 +180,7 @@ export function SiteHeader() {
           role="menu"
           aria-label="Main pages"
         >
-          <div className="mx-auto grid max-w-[1280px] gap-1 px-5 py-4 sm:px-8">
+          <div className="mx-auto grid max-w-[1280px] gap-1 px-8 py-4">
             {MOBILE_NAV.map((item) => (
               <Link
                 key={item.href}
