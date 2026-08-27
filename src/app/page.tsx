@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   getProductVisualSpec,
   ProductVisual,
+  type ProductVisualKey,
 } from "@/components/homepage-product-visuals";
 
 export const metadata: Metadata = {
@@ -95,7 +96,13 @@ const ecosystemLayers = [
   },
 ];
 
-const categories = [
+const categories: ReadonlyArray<{
+  label: string;
+  need: string;
+  examples: string;
+  href: string;
+  visuals: readonly ProductVisualKey[];
+}> = [
   {
     label: "Run Your Business",
     need: "Manage operations, sales, projects, and growth",
