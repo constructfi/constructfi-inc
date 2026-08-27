@@ -123,7 +123,7 @@ export const PRODUCT_BRANDS: ProductBrand[] = [
   // ── Existing products (slugs present in products.ts) ──────────────────────
 
   {
-    slug: "revenueos",
+    slug: "constructos",
     accent: "#0D1B2A",
     accentSecondary: "#00A896",
     iconMotif: "briefcase",
@@ -361,5 +361,9 @@ export const PRODUCT_BRANDS: ProductBrand[] = [
  * Returns undefined if the slug has no brand entry yet.
  */
 export function getProductBrand(slug: string): ProductBrand | undefined {
+  if (slug === "revenueos") return PRODUCT_BRANDS.find((b) => b.slug === "constructos");
+  if (slug === "build-or-busted") {
+    return PRODUCT_BRANDS.find((b) => b.slug === "build-or-bust");
+  }
   return PRODUCT_BRANDS.find((b) => b.slug === slug);
 }

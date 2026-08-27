@@ -67,12 +67,12 @@ export const STATUS: Record<ProductStatus, { label: string; chip: string }> = {
 export const PRODUCTS: Product[] = [
   {
     slug: "build-or-bust",
-    name: "Build or Bust",
+    name: "Build or Busted",
     tagline: "Know in 60 seconds, before you fall in love with it.",
     category: "apps",
     secondaryCategories: ["games"],
     status: "live",
-    tags: ["Free verdict", "Earn COVI", "Earn ELUV"],
+    tags: ["Free verdict", "Guided analysis", "Progress milestones"],
     icon: "gauge",
     image: "/products/build-or-bust.webp",
     featured: true,
@@ -99,7 +99,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Takeoffs, bids & material scope.",
     category: "apps",
     status: "coming-soon",
-    tags: ["Spend COVI", "Supplier network"],
+    tags: ["Supplier network", "Bid workflows"],
     icon: "ruler",
     image: "/products/covi-estimator.webp",
     shortDescription:
@@ -121,7 +121,7 @@ export const PRODUCTS: Product[] = [
     tagline: "ELUV milestones & progress.",
     category: "apps",
     status: "coming-soon",
-    tags: ["Earn ELUV"],
+    tags: ["Progress milestones", "Readiness tracking"],
     icon: "target",
     image: "/products/readiness-tracker.webp",
     shortDescription:
@@ -140,10 +140,10 @@ export const PRODUCTS: Product[] = [
   {
     slug: "covi-wallet",
     name: "Covi Wallet",
-    tagline: "COVI & ELUV — non-custodial.",
+    tagline: "Utility activity + credentials — non-custodial.",
     category: "apps",
     status: "coming-soon",
-    tags: ["COVI & ELUV", "Non-custodial"],
+    tags: ["Utility activity", "Non-custodial"],
     icon: "wallet",
     image: "/products/covi-wallet.webp",
     shortDescription:
@@ -161,11 +161,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "house-hackers",
-    name: "House Hackers",
+    name: "Covi BuildSim: House Hackers",
     tagline: "Learn by playing.",
     category: "games",
     status: "coming-soon",
-    tags: ["Earn COVI", "Learn-to-earn"],
+    tags: ["Simulation learning", "Participation milestones"],
     icon: "gamepad",
     image: "/products/house-hackers.webp",
     shortDescription:
@@ -174,7 +174,7 @@ export const PRODUCTS: Product[] = [
       "House Hackers teaches the same concepts Build or Bust screens for, but through play. You work scenarios, make calls, and see how they land. Game mechanics exist to make learning engaging — progression is a measure of participation and understanding, never a promise of financial return, and the leaderboards rank engagement rather than money.",
     features: [
       "Scenario challenges built from real underwriting decisions",
-      "Learn-to-earn COVI participation rewards",
+      "Participation milestones tied to verified learning progression",
       "Leaderboards that rank engagement, not financial outcomes",
       "Progress feeds the Readiness Tracker milestone map",
     ],
@@ -187,7 +187,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Verified suppliers. Real settlement.",
     category: "materials",
     status: "live",
-    tags: ["Supplier network", "Earn ELUV", "Spend/Earn COVI"],
+    tags: ["Supplier network", "Verified participation", "On-chain settlement"],
     icon: "boxes",
     image: "/products/supplier-marketplace.webp",
     shortDescription:
@@ -207,32 +207,32 @@ export const PRODUCTS: Product[] = [
   {
     slug: "collectibles",
     name: "Digital Collectibles",
-    tagline: "Listed on OpenSea, not in-app.",
+    tagline: "Phase 2 digital collectibles.",
     category: "nfts",
     status: "phase-2",
-    tags: ["NFT", "OpenSea"],
+    tags: ["NFT", "Phase 2"],
     icon: "gem",
     image: "/products/collectibles.webp",
     shortDescription:
-      "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
+      "Digital collectibles are planned for a later phase. They remain separate from ELUV credentials, which are non-transferable readiness records.",
     longDescription:
-      "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
+      "Digital collectibles are planned for a later phase. This page does not represent a live sale surface.",
     features: [
-      "All ConstructFi NFT collections are minted and traded on OpenSea",
-      "NFT collections are not sold directly through this marketplace",
+      "Digital collectibles are planned for a later phase",
+      "Collectibles are not represented as currently available for purchase",
       "ELUV credentials are a separate, non-transferable category",
       "ELUV credentials are never listed here",
     ],
     coviEluvNote:
-      "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
+      "Digital collectibles remain a separate Phase 2 surface. ELUV stays a non-transferable credential and is never represented as a collectible.",
   },
   {
-    slug: "revenueos",
-    name: "ConstructFi RevenueOS",
+    slug: "constructos",
+    name: "ConstructOS",
     tagline: "The revenue OS for construction.",
     category: "apps",
     status: "live",
-    tags: ["Business operations", "Spend COVI"],
+    tags: ["Business operations", "Executive workflows"],
     icon: "briefcase",
     shortDescription:
       "An AI-assisted revenue and business-development workspace that connects sales, estimating, procurement, logistics, and executive reporting into one system.",
@@ -255,7 +255,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Certification-grade sales onboarding.",
     category: "apps",
     status: "coming-soon",
-    tags: ["Education", "Earn ELUV"],
+    tags: ["Education", "Defined program"],
     icon: "graduation",
     shortDescription:
       "A structured sales onboarding, coaching, and performance program that runs on RevenueOS. Verified completions can mint soulbound ELUV credentials.",
@@ -272,12 +272,117 @@ export const PRODUCTS: Product[] = [
       "Verified completions can mint ELUV, an ERC-5192 soulbound credential that is earned only, never transferable, and never sold. Any COVI involved is a utility token for platform activity — transfer-paused and earn-only before listing, and not an investment.",
   },
   {
+    slug: "pact-pilot",
+    name: "PactPilot",
+    tagline: "Contract and document workflows with risk-layer context.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Document workflows", "Risk-layer context"],
+    icon: "briefcase",
+    shortDescription:
+      "A contract and document workspace for construction teams that need consistent records and risk-aware review context.",
+    longDescription:
+      "PactPilot provides a structured place for contract packets, revisions, and review checkpoints so teams can track what changed and what still needs decisions. It is presented as a coming-soon workflow surface, not as a live legal, settlement, or signature system.",
+    features: [
+      "Structured document packets with clear revision history",
+      "Risk-layer overlays to flag items for follow-up review",
+      "Role-based review checkpoints for internal coordination",
+      "Linkage to related ConstructOS project records",
+    ],
+    coviEluvNote:
+      "PactPilot can be used without token flows by default. Any future COVI usage remains utility-only for platform actions, and ELUV remains a non-transferable credential for verified milestones.",
+  },
+  {
+    slug: "builder-bae",
+    name: "BuilderBae",
+    tagline: "Material and inventory companion for jobsite buyers.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Inventory companion", "Jobsite planning"],
+    icon: "package",
+    shortDescription:
+      "A practical planning companion focused on material visibility and everyday inventory decisions for smaller jobsite teams.",
+    longDescription:
+      "BuilderBae is designed as a warm, practical companion for buyers who need a simpler way to track material needs and organize procurement intent before purchase. It is a coming-soon planning surface and does not claim live supplier integrations or real-time settlement.",
+    features: [
+      "Material-list organization by job or scope",
+      "Inventory-style views for planning and prep",
+      "Checklist-driven handoff into procurement workflows",
+      "Simple progress states for team coordination",
+    ],
+    coviEluvNote:
+      "BuilderBae is token-optional by default. If COVI or ELUV appears in later phases, usage stays utility-and-credential only under existing platform guardrails.",
+  },
+  {
+    slug: "eluvial-academy",
+    name: "Eluvial Academy",
+    tagline: "Property-readiness pathways with milestone-based progress.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Education pathways", "Milestone progress"],
+    icon: "graduation",
+    shortDescription:
+      "A structured education pathway for readiness concepts, built around defined milestones and practical next steps.",
+    longDescription:
+      "Eluvial Academy organizes readiness education into sequenced pathways so participants can move from fundamentals to more advanced property concepts with clear checkpoints. It is positioned as a coming-soon learning surface with milestone progress, not a promise of financial outcomes.",
+    features: [
+      "Sequential readiness pathways by learning stage",
+      "Milestone map with progress checkpoints",
+      "Practical exercises tied to defined program outcomes",
+      "Optional handoff into broader ConstructFi participation surfaces",
+    ],
+    coviEluvNote:
+      "ELUV remains a non-transferable credential for verified milestones only. COVI remains a utility token for platform activity and is never described as an investment.",
+  },
+  {
+    slug: "cashflow-city-tycoon",
+    name: "Cashflow City Tycoon",
+    tagline: "City-building progression game for property-curious learners.",
+    category: "games",
+    status: "coming-soon",
+    tags: ["City-building simulation", "Progression gameplay"],
+    icon: "gamepad",
+    shortDescription:
+      "A progression-first city-building game introducing construction and cashflow concepts through guided play loops.",
+    longDescription:
+      "Cashflow City Tycoon presents construction and operating tradeoffs through city-building progression, with each stage focused on decision quality and learning feedback. It is a coming-soon educational game surface and does not represent real investment returns or trading outcomes.",
+    features: [
+      "District-by-district city progression loops",
+      "Scenario choices with immediate learning feedback",
+      "Beginner-friendly ramp for property-curious players",
+      "Optional cross-links to readiness education pathways",
+    ],
+    coviEluvNote:
+      "Participation language remains educational and utility-focused only. Any future token interactions stay under the existing COVI utility and ELUV credential guardrails.",
+  },
+  {
+    slug: "brick-by-brick",
+    name: "Brick by Brick",
+    tagline: "Modular puzzle play for construction fundamentals.",
+    category: "games",
+    status: "coming-soon",
+    tags: ["Modular puzzle", "Beginner on-ramp"],
+    icon: "gamepad",
+    shortDescription:
+      "A modular puzzle-format game that introduces construction and property concepts step by step for beginners.",
+    longDescription:
+      "Brick by Brick uses approachable puzzle patterns to teach foundational construction ideas in short, confidence-building sessions. It is a coming-soon beginner on-ramp and does not make claims about investment, yield, or guaranteed rewards.",
+    features: [
+      "Modular puzzle tracks with progressive difficulty",
+      "Foundational concept prompts tied to each level",
+      "Short-session format designed for new entrants",
+      "Clear progression checkpoints without financial claims",
+    ],
+    coviEluvNote:
+      "Any participation pathways remain optional and utility-focused. ELUV references stay limited to verified, non-transferable credential milestones.",
+  },
+  {
     slug: "material-marketplace",
     name: "Material Marketplace",
     tagline: "Division-based material packages from vetted manufacturers.",
     category: "materials",
     status: "live",
-    tags: ["Supplier network", "Spend/Earn COVI"],
+    tags: ["Supplier network", "Defined procurement flow"],
     icon: "package",
     shortDescription:
       "A sourcing exchange for division-organized material packages from vetted manufacturers, connected to the same verified supplier operations behind the Supplier Marketplace.",
@@ -298,8 +403,14 @@ export const PRODUCTS: Product[] = [
 export const FEATURED_PRODUCT =
   PRODUCTS.find((p) => p.featured) ?? PRODUCTS[0];
 
+const PRODUCT_SLUG_ALIASES: Record<string, string> = {
+  revenueos: "constructos",
+  "build-or-busted": "build-or-bust",
+};
+
 export function getProduct(slug: string): Product | undefined {
-  return PRODUCTS.find((p) => p.slug === slug);
+  const normalized = PRODUCT_SLUG_ALIASES[slug] ?? slug;
+  return PRODUCTS.find((p) => p.slug === normalized);
 }
 
 export function productsInCategory(category: ProductCategory | "all"): Product[] {
@@ -314,7 +425,7 @@ export function productsInCategory(category: ProductCategory | "all"): Product[]
 export function relatedProducts(slug: string, limit = 3): Product[] {
   const current = getProduct(slug);
   if (!current) return [];
-  const others = PRODUCTS.filter((p) => p.slug !== slug);
+  const others = PRODUCTS.filter((p) => p.slug !== current.slug);
   const sameCategory = others.filter((p) => p.category === current.category);
   const rest = others.filter((p) => p.category !== current.category);
   return [...sameCategory, ...rest].slice(0, limit);
