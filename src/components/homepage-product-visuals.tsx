@@ -6,7 +6,8 @@ export type ProductVisualKey =
   | "constructos"
   | "pactpilot"
   | "supplier-marketplace"
-  | "eluvial-academy";
+  | "eluvial-academy"
+  | "house-hackers";
 
 type ProductVisualMode = "badge" | "tile" | "cover";
 
@@ -73,14 +74,24 @@ const specs: Record<ProductVisualKey, ProductVisualSpec> = {
     dotColor: "#00A87C",
   },
   "eluvial-academy": {
-    keyColor: "#8298FC",
-    inkColor: "#171f3d",
-    badgeBackground: "#162038",
-    badgeBorder: "rgba(130,152,252,.35)",
-    badgeForeground: "#d3dbff",
-    tileBackground: "linear-gradient(180deg,#162038,#193020)",
-    tileForeground: "#d3dbff",
-    dotColor: "#4c8f59",
+    keyColor: "#D4A017",
+    inkColor: "#193020",
+    badgeBackground: "#193020",
+    badgeBorder: "rgba(212,160,23,.4)",
+    badgeForeground: "#efd48a",
+    tileBackground: "linear-gradient(180deg,#172726,#193020)",
+    tileForeground: "#dfe6c1",
+    dotColor: "#D4A017",
+  },
+  "house-hackers": {
+    keyColor: "#D4A017",
+    inkColor: "#23262B",
+    badgeBackground: "#23262B",
+    badgeBorder: "rgba(212,160,23,.42)",
+    badgeForeground: "#f2d27a",
+    tileBackground: "#1f2228",
+    tileForeground: "#f0d58e",
+    dotColor: "#D4A017",
   },
 };
 
@@ -114,10 +125,11 @@ function ProductBadgeShape({ visualKey }: { visualKey: ProductVisualKey }) {
 
   if (visualKey === "build-or-busted") {
     return (
-      <span className="grid h-4 w-[18px] grid-cols-3 gap-[2px]">
-        <span className="bg-[#14b86a]" />
-        <span className="bg-[#F2C14E]" />
-        <span className="bg-[#FF5A1F]" />
+      <span className="relative block h-4 w-[18px] overflow-hidden">
+        <span className="absolute inset-0 border border-[#FF5A1F]/45" />
+        <span className="absolute left-[2px] top-[2px] h-[10px] w-[5px] bg-white/20" />
+        <span className="absolute left-[8px] top-[2px] h-[10px] w-[8px] bg-[#FF5A1F]" />
+        <span className="absolute inset-x-[2px] bottom-[2px] h-[2px] bg-[#ffb08d]" />
       </span>
     );
   }
@@ -134,33 +146,41 @@ function ProductBadgeShape({ visualKey }: { visualKey: ProductVisualKey }) {
 
   if (visualKey === "supplier-marketplace") {
     return (
-      <span className="grid h-4 w-4 grid-cols-2 gap-[2px]">
-        {[0, 1, 2, 3].map((i) => (
-          <span
-            key={i}
-            className="rounded-[1px]"
-            style={{ backgroundColor: i === 1 || i === 2 ? "#00A87C" : "rgba(159,224,190,.22)" }}
-          />
-        ))}
+      <span className="relative block h-4 w-4">
+        <span
+          className="absolute inset-0"
+          style={{
+            clipPath: "polygon(26% 3%,74% 3%,97% 50%,74% 97%,26% 97%,3% 50%)",
+            background: "rgba(159,224,190,.18)",
+            border: "1px solid rgba(0,168,124,.35)",
+          }}
+        />
+        <span
+          className="absolute inset-[3px]"
+          style={{
+            clipPath: "polygon(26% 3%,74% 3%,97% 50%,74% 97%,26% 97%,3% 50%)",
+            background: "#00A87C",
+          }}
+        />
       </span>
     );
   }
 
   if (visualKey === "pactpilot") {
     return (
-      <span className="relative block h-4 w-[18px] rounded-[2px] border border-[#F2C14E]/35">
-        <span className="absolute left-[3px] top-[3px] h-px w-[10px] bg-[#fde3a1]/70" />
-        <span className="absolute left-[3px] top-[7px] h-px w-[8px] bg-[#fde3a1]/55" />
-        <span className="absolute left-[3px] top-[11px] h-px w-[12px] bg-[#F2C14E]" />
+      <span className="relative block h-4 w-[18px] overflow-hidden rounded-[2px] border border-[#F2C14E]/35">
+        <span className="absolute inset-y-0 left-[5px] w-px bg-[#F2C14E]" />
+        <span className="absolute inset-y-0 right-[5px] w-px bg-[#fde3a1]/55" />
+        <span className="absolute bottom-[3px] left-[2px] right-[2px] h-px bg-[#F2C14E]" />
       </span>
     );
   }
 
   return (
-    <span className="relative block h-4 w-[18px]">
-      <span className="absolute bottom-0 left-0 h-[7px] w-[5px] bg-[#8298FC]" />
-      <span className="absolute bottom-0 left-[6px] h-[10px] w-[5px] bg-[#4c8f59]" />
-      <span className="absolute bottom-0 left-[12px] h-[13px] w-[5px] bg-[#8298FC]" />
+    <span className="relative block h-4 w-[18px] overflow-hidden rounded-[2px] border border-[#D4A017]/35 bg-[#193020]">
+      <span className="absolute inset-x-[2px] top-[2px] h-[4px] bg-[#D4A017]" />
+      <span className="absolute bottom-[2px] left-[2px] h-[6px] w-[5px] bg-[#4c8f59]" />
+      <span className="absolute bottom-[2px] left-[8px] h-[8px] w-[8px] bg-[#efd48a]" />
     </span>
   );
 }
@@ -226,7 +246,10 @@ function HeroTileSurface({ visualKey }: { visualKey: ProductVisualKey }) {
     return (
       <div className="grid gap-[6px]">
         <div className="border border-white/10 bg-white/[0.05] p-[6px]">
-          <span className="block h-[4px] w-[62%] bg-white/28" />
+          <div className="flex items-center gap-[5px]">
+            <span className="h-4 w-4 border border-[#F2B01E]/35 bg-[#F2B01E]/15" />
+            <span className="h-[4px] flex-1 bg-white/28" />
+          </div>
           <span className="mt-[6px] block h-[8px] w-[40%] bg-[#F2B01E]" />
         </div>
         <div className="flex items-center justify-between gap-[6px]">
@@ -243,8 +266,11 @@ function HeroTileSurface({ visualKey }: { visualKey: ProductVisualKey }) {
         {[0, 1, 2, 3, 4, 5].map((i) => (
           <span
             key={i}
-            className="h-5 rounded-[2px]"
-            style={{ backgroundColor: i === 1 || i === 4 ? "#00A87C" : "rgba(255,255,255,.08)" }}
+            className="h-5"
+            style={{
+              clipPath: "polygon(26% 3%,74% 3%,97% 50%,74% 97%,26% 97%,3% 50%)",
+              backgroundColor: i === 1 || i === 4 ? "#00A87C" : "rgba(255,255,255,.08)",
+            }}
           />
         ))}
       </div>
@@ -270,10 +296,9 @@ function HeroTileSurface({ visualKey }: { visualKey: ProductVisualKey }) {
 
   return (
     <div className="grid gap-[6px]">
-      <div className="flex items-end gap-[4px]">
-        <span className="h-4 w-4 bg-[#8298FC]" />
-        <span className="h-6 w-4 bg-[#4c8f59]" />
-        <span className="h-8 w-4 bg-[#8298FC]" />
+      <div className="grid grid-cols-[1.1fr_.9fr] gap-[5px]">
+        <span className="h-5 border border-[#D4A017]/35 bg-[#D4A017]/18" />
+        <span className="h-5 border border-[#4c8f59]/35 bg-[#4c8f59]/18" />
       </div>
       <span className="h-[4px] w-[70%] bg-white/22" />
     </div>

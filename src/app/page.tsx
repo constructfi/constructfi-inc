@@ -101,48 +101,42 @@ const categories = [
     need: "Manage operations, sales, projects, and growth",
     examples: "ConstructOS · Covington Sales Academy",
     href: "/marketplace/revenueos",
-    accent: "bg-[#019599]",
-    kind: "hub",
+    visuals: ["constructos", "eluvial-academy"],
   },
   {
     label: "Source Materials and Suppliers",
     need: "Find materials, suppliers, pricing, and procurement support",
     examples: "Material Marketplace · Supplier Marketplace",
     href: "/marketplace/material-marketplace",
-    accent: "bg-mint",
-    kind: "bag",
+    visuals: ["builderbae", "supplier-marketplace"],
   },
   {
     label: "Analyze Deals and Agreements",
     need: "Evaluate real estate opportunities and contracts",
     examples: "Build or Busted · PactPilot",
     href: "/marketplace/build-or-bust",
-    accent: "bg-sky",
-    kind: "contract",
+    visuals: ["build-or-busted", "pactpilot"],
   },
   {
     label: "Learn and Build Skills",
     need: "Gain practical knowledge, coaching, and tools",
     examples: "Eluvial Academy · Sales Academy",
     href: "/marketplace/sales-academy",
-    accent: "bg-indigo",
-    kind: "cap",
+    visuals: ["eluvial-academy", "constructos"],
   },
   {
     label: "Play, Practice, and Explore",
     need: "Learn through simulation, games, and challenges",
     examples: "House Hackers · Cashflow Tycoon · Brick by Brick",
     href: "/marketplace/house-hackers",
-    accent: "bg-periwinkle",
-    kind: "cube",
+    visuals: ["house-hackers", "build-or-busted"],
   },
   {
     label: "Participate in the Ecosystem",
     need: "Access eligible programs and digital experiences",
     examples: "COVI · ELUV · digital collectibles",
     href: "#participation",
-    accent: "bg-gold",
-    kind: "coin",
+    visuals: ["supplier-marketplace", "eluvial-academy"],
   },
 ];
 
@@ -511,9 +505,11 @@ export default function HomePage() {
                 className="flex min-h-[236px] flex-col gap-3.5 bg-white px-[26px] py-7 transition hover:-translate-y-0.5 hover:bg-[#fbfdff] focus-visible:z-10"
               >
                 <div className="flex items-center gap-3">
-                  <span className={`flex h-8 w-8 items-center justify-center rounded-[7px] ${category.accent}`}>
-                    <Glyph kind={category.kind} />
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {category.visuals.map((visualKey) => (
+                      <ProductVisual key={visualKey} visualKey={visualKey} mode="badge" size="sm" />
+                    ))}
+                  </div>
                   <h3 className="text-[18.5px] font-semibold tracking-[-0.01em] text-ink">
                     {category.label}
                   </h3>
@@ -603,9 +599,9 @@ export default function HomePage() {
                 <Link
                   key={product.name}
                   href={product.href}
-                  className="grid overflow-hidden border border-[#d3dfe9] bg-white transition hover:-translate-y-0.5 hover:border-teal hover:shadow-[0_14px_32px_-26px_rgba(4,20,40,0.45)] min-[700px]:grid-cols-[168px_minmax(0,1fr)]"
+                  className="grid overflow-hidden border border-[#d3dfe9] bg-white transition hover:-translate-y-0.5 hover:border-teal hover:shadow-[0_14px_32px_-26px_rgba(4,20,40,0.45)] min-[700px]:grid-cols-[200px_minmax(0,1fr)]"
                 >
-                  <div className="relative h-[160px] overflow-hidden border-b border-[#d3dfe9] bg-[#071522] min-[700px]:h-[200px] min-[700px]:border-b-0 min-[700px]:border-r">
+                  <div className="relative h-[160px] overflow-hidden border-b border-[#d3dfe9] bg-[#071522] min-[700px]:h-[168px] min-[700px]:border-b-0 min-[700px]:border-r">
                     <ProductVisual visualKey={product.visualKey} mode="cover" compact />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,20,40,0.04)_0%,rgba(4,20,40,0.14)_34%,rgba(4,20,40,0.86)_100%)]" />
                     <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
