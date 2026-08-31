@@ -1,6 +1,9 @@
 import {
+  Blocks,
   Boxes,
   Briefcase,
+  Building2,
+  FileText,
   Gamepad2,
   Gauge,
   Gem,
@@ -25,6 +28,9 @@ const PRODUCT_ICONS: Record<string, LucideIcon> = {
   briefcase: Briefcase,
   graduation: GraduationCap,
   package: Package,
+  "file-contract": FileText,
+  city: Building2,
+  blocks: Blocks,
 };
 
 export function ProductIcon({

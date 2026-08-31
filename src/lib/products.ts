@@ -67,7 +67,7 @@ export const STATUS: Record<ProductStatus, { label: string; chip: string }> = {
 export const PRODUCTS: Product[] = [
   {
     slug: "build-or-bust",
-    name: "Build or Bust",
+    name: "Build or Busted",
     tagline: "Know in 60 seconds, before you fall in love with it.",
     category: "apps",
     secondaryCategories: ["games"],
@@ -228,7 +228,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "revenueos",
-    name: "ConstructFi RevenueOS",
+    name: "ConstructOS",
     tagline: "The revenue OS for construction.",
     category: "apps",
     status: "live",
@@ -292,6 +292,96 @@ export const PRODUCTS: Product[] = [
     ],
     coviEluvNote:
       "Eligible activity can involve COVI, the platform's utility token — transfer-paused and earn-only before listing, and not an investment. Verified contract addresses are published only after independent audit.",
+  },
+  {
+    slug: "pact-pilot",
+    name: "PactPilot",
+    tagline: "Contract review that tells you where the risk actually is.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Contract review", "Earn ELUV"],
+    icon: "file-contract",
+    shortDescription:
+      "A contract review and risk-scoring tool for construction. Upload a contract and get every clause sorted into High Risk, Review, or Clear — with the finding explained in plain English. Not legal advice.",
+    longDescription:
+      "PactPilot reads a construction contract the way an experienced reviewer would: clause by clause, flagging what actually needs attention instead of returning a wall of legalese. Every finding lands in one of three states — High Risk, Review, or Clear — with a plain-English explanation of why. It is built to make you a better-informed party at the table, not to replace the attorney who signs off on the deal.",
+    features: [
+      "Clause-by-clause scan sorted into High Risk, Review, or Clear",
+      "Plain-English explanation attached to every finding",
+      "Payment terms, change-order language, and indemnification get named scrutiny",
+      "Findings export alongside the original contract for your reviewer",
+      "Verified review milestones can mint soulbound ELUV credentials",
+      "Always labeled: PactPilot findings are not legal advice",
+    ],
+    coviEluvNote:
+      "Deeper review and export features run on COVI, the platform's utility token — earned through platform activity and spent on platform features, never an investment. Verified milestones can mint ELUV, a soulbound credential that is earned only and can never be transferred or sold. PactPilot findings are informational and are not legal advice.",
+  },
+  {
+    slug: "cashflow-city-tycoon",
+    name: "Cashflow Tycoon",
+    tagline: "Grow a plant shop, learn how cash flow actually works.",
+    category: "games",
+    status: "coming-soon",
+    tags: ["Earn COVI", "Learn-to-earn"],
+    icon: "city",
+    shortDescription:
+      "A financial-simulation game about cash flow management. Start a plant shop with a fixed bank, toggle upgrades, and watch rate of return, payback period, and remaining bank recompute in real time.",
+    longDescription:
+      "Cashflow Tycoon puts you behind the counter of a small plant shop with a fixed starting bank and a set of upgrades you can toggle on and off. Every choice recomputes the numbers that matter — the rate of return, how long the upgrade takes to pay for itself, and what is left in the bank — so the consequences of a decision are visible before you commit to it. The four-beat loop of scouting, investing, collecting, and reinvesting repeats across three tiers as the shop grows.",
+    features: [
+      "Toggleable upgrades that recompute rate of return, payback period, and remaining bank",
+      "Over-budget states handled — you cannot spend past the bank",
+      "Four-beat loop: Scout, Invest, Collect, Reinvest",
+      "Three tiers of growth: Seedling, Grower, Tycoon",
+      "Learn-to-earn COVI participation rewards",
+      "Progress feeds the Readiness Tracker milestone map",
+    ],
+    coviEluvNote:
+      "Participation can earn COVI, the platform's utility token. Game mechanics are for engagement and education only — nothing here is a game of chance, and no outcome implies a financial return.",
+  },
+  {
+    slug: "brick-by-brick",
+    name: "Brick by Brick",
+    tagline: "Puzzles that teach construction and financial thinking.",
+    category: "games",
+    status: "coming-soon",
+    tags: ["Earn COVI", "Learn-to-earn"],
+    icon: "blocks",
+    shortDescription:
+      "A puzzle game that teaches construction and financial concepts. Each level presents a constraint, three possible solutions, and real feedback on the one you pick.",
+    longDescription:
+      "Brick by Brick teaches by making you solve, not read. Every level hands you a real constraint — a budget, a set of resources, a deadline — and three candidate solutions. Pick one and the level shows you what actually happens, so the lesson comes from the outcome rather than a lecture. The puzzle sets step up from Foundation through Framework to Finish as the underlying concepts get harder.",
+    features: [
+      "Three-solution levels with real feedback on the choice you make",
+      "Teaches budget reading, resource allocation, and timing decisions",
+      "Three puzzle sets: Foundation, Framework, Finish",
+      "Learn-to-earn COVI participation rewards",
+      "Progress feeds the Readiness Tracker milestone map",
+    ],
+    coviEluvNote:
+      "Participation can earn COVI, the platform's utility token. Game mechanics are for engagement and education only — nothing here is a game of chance, and no outcome implies a financial return.",
+  },
+  {
+    slug: "eluvial-academy",
+    name: "Eluvial Academy",
+    tagline: "Education that turns into a verified credential.",
+    category: "apps",
+    status: "coming-soon",
+    tags: ["Education", "Earn ELUV"],
+    icon: "graduation",
+    shortDescription:
+      "An online education platform covering readiness topics for aspiring property owners and platform members. Verified course completions can mint soulbound ELUV credentials.",
+    longDescription:
+      "Eluvial Academy is the education layer behind the ELUV credential — structured courses on the readiness topics that matter before you buy, build, or operate: financing basics, procurement, and platform participation. Courses are self-paced, completion is checked rather than self-reported, and a verified course can mint one soulbound ELUV credential, so your record reflects study that actually happened.",
+    features: [
+      "Self-paced courses across financing, procurement, and readiness topics",
+      "Checked completions rather than self-reported progress",
+      "Verified course completion can mint a soulbound ELUV credential",
+      "Progress feeds the Readiness Tracker milestone map",
+      "Built for aspiring owners, first-time buyers, and platform members",
+    ],
+    coviEluvNote:
+      "Verified completions can mint ELUV, an ERC-5192 soulbound credential that is earned only, never transferable, and never sold. Any COVI involved is a utility token for platform activity — transfer-paused and earn-only before listing, and not an investment.",
   },
 ];
 
