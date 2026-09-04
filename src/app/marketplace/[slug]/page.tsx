@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ProductIcon } from "@/components/product-icon";
+import { ProductMark } from "@/components/product-mark";
 import { ProductCard } from "@/components/product-card";
 import { ProductShot } from "@/components/product-shot";
 import { StatusPill } from "@/components/status-pill";
@@ -57,7 +57,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <div className="pd-hero">
             <div>
               <div className="pd-ic" aria-hidden>
-                <ProductIcon icon={product.icon} size={28} />
+                <ProductMark mark={product.mark} icon={product.icon} name={product.name} size={40} />
               </div>
               <h1>{product.name}</h1>
               <p className="pd-tag">{product.tagline}</p>

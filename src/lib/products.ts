@@ -31,6 +31,13 @@ export type Product = {
   /** Key into PRODUCT_ICONS in src/components/product-icon.tsx. */
   icon: string;
   /**
+   * Path under /public to this product's brand mark, from its own brand
+   * standards deck. Absent where no deck exists — ProductMark then falls back
+   * to `icon`. Never recolour or restyle these; each carries its product's
+   * approved palette.
+   */
+  mark?: string;
+  /**
    * Illustrative 900x1350 preview render in public/products/. These are brand
    * artwork, not screenshots of a shipped app, so every surface that shows one
    * labels it as an illustrative preview.
@@ -74,6 +81,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     tags: ["Free verdict", "Earn COVI", "Earn ELUV"],
     icon: "gauge",
+    mark: "/brand/build-or-busted/mark.svg",
     image: "/products/build-or-bust.webp",
     featured: true,
     shortDescription:
@@ -167,6 +175,7 @@ export const PRODUCTS: Product[] = [
     status: "coming-soon",
     tags: ["Earn COVI", "Learn-to-earn"],
     icon: "gamepad",
+    mark: "/brand/house-hackers/mark.svg",
     image: "/products/house-hackers.webp",
     shortDescription:
       "A learn-to-earn game that teaches real-estate and readiness concepts through play. Progress engages game mechanics — no promise of return.",
@@ -189,6 +198,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     tags: ["Supplier network", "Earn ELUV", "Spend/Earn COVI"],
     icon: "boxes",
+    mark: "/brand/supplier-marketplace/mark.svg",
     image: "/products/supplier-marketplace.webp",
     shortDescription:
       "Procure materials and services from a vetted supplier network. A portion of transaction fees recycles into the COVI rewards pool; verified activity can earn ELUV.",
@@ -212,6 +222,7 @@ export const PRODUCTS: Product[] = [
     status: "phase-2",
     tags: ["NFT", "OpenSea"],
     icon: "gem",
+    mark: "/brand/collections/mark.svg",
     image: "/products/collectibles.webp",
     shortDescription:
       "All ConstructFi NFT collections are minted and traded on OpenSea rather than sold directly through this marketplace. ELUV credentials are a separate, non-transferable category and are never listed here.",
@@ -257,6 +268,7 @@ export const PRODUCTS: Product[] = [
     status: "coming-soon",
     tags: ["Education", "Earn ELUV"],
     icon: "graduation",
+    mark: "/brand/covington/mark.svg",
     shortDescription:
       "A structured sales onboarding, coaching, and performance program that runs on RevenueOS. Verified completions can mint soulbound ELUV credentials.",
     longDescription:
@@ -279,6 +291,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     tags: ["Supplier network", "Spend/Earn COVI"],
     icon: "package",
+    mark: "/brand/material-marketplace/mark.svg",
     shortDescription:
       "A sourcing exchange for division-organized material packages from vetted manufacturers, connected to the same verified supplier operations behind the Supplier Marketplace.",
     longDescription:

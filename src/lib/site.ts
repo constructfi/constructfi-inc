@@ -86,17 +86,17 @@ export type NavGroup = { label: string; href?: string; items?: NavItem[] };
 
 export const NAV_GROUPS: NavGroup[] = [
   { label: "Ecosystem", href: "/" },
-  { label: "About", href: "/platform" },
-  { label: "Marketplace", href: "/marketplace", items: [{ href: "/#s-tokens", label: "COVI & ELUV" }] },
+  { label: "About", href: "/about" },
+  { label: "Marketplace", href: "/marketplace", items: [{ href: "/#participation", label: "COVI & ELUV" }] },
   { label: "Partner Solutions", href: "/partners", items: [{ href: "/developers", label: "Developers" }] },
 ];
 
 // Flat mobile drawer, mirroring the Jul 16 mobile menu order.
 export const MOBILE_NAV: NavItem[] = [
   { href: "/", label: "Ecosystem" },
-  { href: "/platform", label: "About" },
+  { href: "/about", label: "About" },
   { href: "/marketplace", label: "Marketplace" },
-  { href: "/#s-tokens", label: "COVI & ELUV" },
+  { href: "/#participation", label: "COVI & ELUV" },
   { href: "/partners", label: "Partner Solutions" },
   { href: "/developers", label: "Developers" },
 ];
@@ -127,29 +127,28 @@ export const APP_URL = APP_LIVE ? APP_ORIGIN : "/app";
 export const APP_URL_EXTERNAL = APP_LIVE;
 
 export const FOOTER_LINKS = {
-  Platform: [
-    { href: "/app", label: "Build or Bust" },
-    { href: "/apps", label: "All apps & roadmap" },
-    { href: "/dashboard", label: "Dashboard preview" },
-    { href: "/admin", label: "Admin dashboard" },
-  ],
   Ecosystem: [
-    { href: "/whitepaper", label: "Whitepaper" },
+    { href: "/", label: "Ecosystem overview" },
     { href: "/marketplace", label: "Marketplace" },
-    { href: "/developers", label: "Developers" },
-    { href: "/partners", label: "Partner solutions" },
-    { href: "/funders", label: "For funders" },
+    { href: "/about", label: "About ConstructFi" },
   ],
-  Resources: [
-    { href: "/security", label: "Security & compliance" },
+  "Build with us": [
+    { href: "/partners", label: "Partner Solutions" },
+    { href: "/developers", label: "Developers" },
+    { href: "/whitepaper", label: "Whitepaper" },
+    { href: "/#participation", label: "COVI & ELUV" },
     { href: "/resources", label: "Resources" },
-    { href: "/getting-started", label: "Getting started guide" },
+  ],
+  Company: [
     { href: "/contact", label: "Contact" },
+    { href: "/getting-started", label: "Getting started" },
+    { href: "/security", label: "Security" },
+    { href: "/admin", label: "Admin (preview)" },
   ],
   Legal: [
-    { href: "/legal/terms", label: "Terms of service" },
+    { href: "/legal/terms", label: "Terms of use" },
     { href: "/legal/privacy", label: "Privacy policy" },
-    { href: "/legal/risk", label: "Risk disclosures" },
+    { href: "/legal/risk", label: "Risk disclosure" },
   ],
 } as const;
 

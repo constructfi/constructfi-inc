@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { StoreBadges } from "@/components/store-badges";
-import { ProductIcon } from "@/components/product-icon";
+import { ProductMark } from "@/components/product-mark";
 import { StatusPill } from "@/components/status-pill";
 import { CATEGORIES, PRODUCTS, type Product } from "@/lib/products";
 import { SITE } from "@/lib/site";
@@ -81,7 +81,7 @@ export default function AppsPage() {
           {PRODUCTS.map((p) => (
             <li className="roster-row" key={p.slug} data-testid={`roster-${p.slug}`}>
               <span className="roster-ic" aria-hidden>
-                <ProductIcon icon={p.icon} />
+                <ProductMark mark={p.mark} icon={p.icon} name={p.name} size={40} />
               </span>
               <span className="roster-txt">
                 <b>{p.name}</b>
